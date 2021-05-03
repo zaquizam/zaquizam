@@ -1,0 +1,98 @@
+<%	@language=vbscript%>
+
+<!--#include file="Conexion.asp"-->
+
+<%
+'Session.LCID = 8202 
+'==========================================================================================
+' Variables y Constantes
+'==========================================================================================
+	
+	ynum=Request.QueryString("num")
+	yreg=Request.QueryString("reg")
+	if ynum ="" then ynum="0"
+	yOpc = ""
+
+	if yreg<> "" then 
+		dim gDatosSol2
+		dim rsx2
+		set rsx2 = CreateObject("ADODB.Recordset")
+		rsx2.CursorType = adOpenKeyset 
+		rsx2.LockType = 2 'adLockOptimistic 
+
+		sql = ""
+		sql = sql & " SELECT "
+		sql = sql & " Id_Municipio "
+		sql = sql & " FROM "
+		sql = sql & " PH_PanelHogar "
+		sql = sql & " WHERE "
+		sql = sql & " Id_PanelHogar = " & cint(yreg)
+		'response.write "<br>220 sql:=" & sql
+		'response.end
+		rsx2.Open sql ,conexion
+		'response.write "<br> Linea 223 " &
+		'response.end
+		gDatosSol2 = rsx2.GetRows
+		rsx2.close
+		yOpc = gDatosSol2(0,0)
+		'response.write "<br>37 Ciudad:=" & yOpc
+	end if
+
+	dim gDatosSol
+	dim rsx1
+	set rsx1 = CreateObject("ADODB.Recordset")
+	rsx1.CursorType = adOpenKeyset 
+	rsx1.LockType = 2 'adLockOptimistic 
+
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " id_Municipio, "
+	sql = sql & " Municipio "
+	sql = sql & " FROM "
+	sql = sql & " ss_Municipio "
+	sql = sql & " Where "
+	sql = sql & " Id_Estado = " & int(ynum)
+	sql = sql & " ORDER BY "
+	sql = sql & " Municipio "
+	'response.write "<br>220 sql:=" & sql
+	'response.end
+    rsx1.Open sql ,conexion
+	'response.write "<br> Linea 223 " &
+	'response.end
+	iExiste = 0
+	if rsx1.eof then
+		iExiste = 0
+		%>
+		<div id="DivMunicipio"> 
+			<select name="Municipio" id="Municipio" onchange="buscar_parroquia();" >
+				<option value="0">Seleccionar</option> 
+			</select>
+		</div> 
+		<%
+	else
+		gDatosSol = rsx1.GetRows
+		rsx1.close
+		iExiste = 1
+		%>
+		<div id="DivMunicipio"> 
+			<select name="Municipio" id="Municipio" onchange="buscar_parroquia()" >
+				<option value="0">Seleccionar</option> 
+				<%
+				if iExiste = 1 then
+					sSeleccion =""
+					for iReg = 0 to ubound(gDatosSol,2)
+						if int(gDatosSol(0,iReg)) = yOpc and yOpc <> "" then
+							sSeleccion =" selected"
+						else
+							sSeleccion =""
+						end if
+						Response.write "<option value=" &  gDatosSol(0,iReg)  & sSeleccion &">" & gDatosSol(1,iReg) & "</option>"
+					next
+				end if
+				%>
+			</select>
+		</div> 
+		<%
+	end if
+	
+%>

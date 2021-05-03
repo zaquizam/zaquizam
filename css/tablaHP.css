@@ -1,0 +1,56 @@
+/*01-05-2020 19:53:50*/
+
+
+label {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  max-width: 100%;
+}
+
+#formcss input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"] {
+  border: 1px;
+  border-bottom: 1px solid red;
+  text-align: right;
+  background: transparent;
+  /* outline: none; */
+  height: 30px;
+  color: #000;
+  font-size: 16px;
+}
+
+#formcss select {
+
+  border: 1px;
+  border-bottom: 1px solid rgb(93, 19, 211);
+  /*outline: none; */
+  height: 30px;
+  color: #000;
+  font-size: 16px;
+  padding: 5px;
+  /* width: 240px; */
+}
+
+.sort-heading {
+  cursor: pointer;
+}
+
+.table-responsive{
+  height:400px;  
+  overflow:scroll;
+}
+
+thead{
+  background: #F9F2F4;
+}
+ thead tr:nth-child(1) th{
+    /* background: rgb(251, 251, 251); */
+    background: #F9F2F4;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }

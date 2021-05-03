@@ -1,0 +1,120 @@
+<%@language=vbscript%>
+<!--#include file="conexion.asp"-->
+<%
+	'
+	' g_ValBuscarLlenarCmbConsumosResueltos.asp //  20ene21 - 28ene21
+	'
+	Session.lcid = 1034
+	Response.CodePage = 65001
+	Response.CharSet = "utf-8"	
+	'
+	Dim Resuelto, arrHogar, QrySql, idHogar
+	'
+	idSemana = Request.QueryString("id_Semana")	
+	'
+	' Buscar todos consumos investigados por hogar 
+	'			
+	' QrySql = vbnullstring
+	' QrySql = QrySql & " SELECT"
+	' QrySql = QrySql & " PH_Consumo.Id_Consumo,"	
+	' QrySql = QrySql & " ROW_NUMBER() OVER(ORDER BY PH_Consumo.Id_Consumo ASC) AS Item,"	
+	' QrySql = QrySql & " (CASE DATENAME(dw,fecha_creacion) when 'Monday' then 'LUN' when 'Tuesday' then 'MAR' when 'Wednesday' then 'MIE' when 'Thursday' then 'JUE' when 'Friday' then 'VIE' when 'Saturday' then 'SAB' when 'Sunday' then 'DOM' END) AS DIA,"
+	' QrySql = QrySql & " FORMAT (PH_Consumo.fecha_creacion, 'dd-MM-yyyy ') AS FECHA,"
+	' QrySql = QrySql & " PH_Consumo.Id_Hogar,"
+	' QrySql = QrySql & " SUBSTRING( ss_Semana.Semana, 1, 2) AS semana"	
+	' QrySql = QrySql & " FROM"
+	' QrySql = QrySql & " PH_Consumo"
+	' QrySql = QrySql & " INNER JOIN PH_PanelHogar ON PH_Consumo.Id_Hogar= PH_PanelHogar.Id_PanelHogar"
+	' QrySql = QrySql & " INNER JOIN ss_Semana ON PH_Consumo.Id_Semana= ss_Semana.IdSemana"
+	' QrySql = QrySql & " WHERE"
+	' QrySql = QrySql & " PH_Consumo.Enviado_investigar = 0"
+	' QrySql = QrySql & " AND"
+	' QrySql = QrySql & " PH_Consumo.Resuelto = 1"
+	' QrySql = QrySql & " AND"
+	' QrySql = QrySql & " PH_Consumo.Id_semana = " & idSemana
+	'
+	QrySql = vbnullstring
+	QrySql = QrySql & " SELECT"
+	QrySql = QrySql & " PH_Consumo.Id_Consumo,"
+	QrySql = QrySql & " ROW_NUMBER() OVER(ORDER BY PH_Consumo.Id_Consumo ASC) AS Item,"
+	QrySql = QrySql & " PH_Consumo.Id_Hogar,"
+	QrySql = QrySql & " (CASE DATENAME(dw,fecha_creacion) when 'Monday' then 'LUN' when 'Tuesday' then 'MAR' when 'Wednesday' then 'MIE' when 'Thursday'"
+	QrySql = QrySql & " then 'JUE' when 'Friday' then 'VIE' when 'Saturday' then 'SAB' when 'Sunday' then 'DOM' END) AS DIA,"
+	QrySql = QrySql & " FORMAT (PH_Consumo.fecha_creacion, 'dd-MM-yyyy ') AS FECHA,"
+	QrySql = QrySql & " PH_GArea.Area,"
+	QrySql = QrySql & " ss_Estado.Estado,"
+	QrySql = QrySql & " PH_TipoConsumo.TipoConsumo,"
+	QrySql = QrySql & " PH_GArea.Abreviatura AS AbrArea,"
+	QrySql = QrySql & " PH_TipoConsumo.Abreviatura AS AbrConsumo,"
+	QrySql = QrySql & " PH_GAreaEstado.Abreviatura AS AbrAreaEstado,"
+	QrySql = QrySql & " PH_TipoConsumo.Id_TipoConsumo"
+	QrySql = QrySql & " FROM"
+	QrySql = QrySql & " PH_PanelHogar"
+	QrySql = QrySql & " INNER JOIN ss_Estado ON PH_PanelHogar.Id_Estado = ss_Estado.Id_Estado"
+	QrySql = QrySql & " INNER JOIN PH_Consumo ON PH_Consumo.Id_Hogar = PH_PanelHogar.Id_PanelHogar"
+	QrySql = QrySql & " INNER JOIN PH_GAreaEstado ON ss_Estado.Id_Estado = PH_GAreaEstado.Id_Estado"
+	QrySql = QrySql & " INNER JOIN PH_GArea ON PH_GAreaEstado.Id_Area = PH_GArea.Id_Area"
+	QrySql = QrySql & " INNER JOIN PH_TipoConsumo ON PH_Consumo.id_TipoConsumo = PH_TipoConsumo.Id_TipoConsumo"
+	QrySql = QrySql & " WHERE"
+	QrySql = QrySql & " PH_Consumo.Enviado_investigar = 0"
+	QrySql = QrySql & " AND"
+	QrySql = QrySql & " PH_Consumo.Resuelto = 1"
+	QrySql = QrySql & " AND"
+	QrySql = QrySql & " PH_Consumo.Id_Semana =" & idSemana
+	QrySql = QrySql & " ORDER BY"
+	QrySql = QrySql & " PH_GArea.Area ASC,"
+	QrySql = QrySql & " PH_Consumo.Fecha_Creacion ASC"
+	'	
+	' Response.Write QrySql '& "<BR><BR>"
+	' Response.end
+	'
+	Set Resuelto = Server.CreateObject("ADODB.recordset")
+	Resuelto.Open QrySql,conexion
+	'
+	if not Resuelto.EOF then
+    	arrHogar = Resuelto.GetRows()  ' Convert recordset to 2D Array
+	end if
+	'
+	Response.ContentType = "application/json"
+	'
+	' Crear Archivo Array Json
+	'
+	sTabla=""
+
+    if IsArray(arrHogar) then
+
+        For i = 0 to UBound(arrHogar, 2)
+            '
+			sTabla     =  chr(123) &  chr(34) & "id" 	  & chr(34) & ":" & cstr(arrHogar(0,i))  & chr(44)
+			'sTabla     =  sTabla   &  chr(34) & "nombre"  & chr(34) & ":" & chr(34) &  Right("00" & arrHogar(1,i), 2)  & " - " & arrHogar(4,i) & " - " &  arrHogar(2,i) & " - " & arrHogar(3,i)  &  chr(34) & chr(125) & chr(44)
+			'sTabla     =  sTabla   &  chr(34) & "nombre"  & chr(34) & ":" & chr(34) &  Right("00" & arrHogar(1,i), 2)  & " - " & arrHogar(2,i) & " - " &  arrHogar(3,i) & " - " & arrHogar(4,i) & " - " & arrHogar(5,i) & " - " & arrHogar(6,i) & " - " & arrHogar(7,i) &  chr(34) & chr(125) & chr(44)
+			sTabla     =  sTabla   &  chr(34) & "nombre"  & chr(34) & ":" & chr(34)  & arrHogar(2,i) & " - " &  arrHogar(3,i) & " - " & arrHogar(4,i) & " - " & arrHogar(5,i) & " - " & arrHogar(6,i) & " - " & arrHogar(7,i) &  chr(34) & chr(125) & chr(44)
+			sTablaJson =  sTablaJson & sTabla
+			sTabla=""
+            '
+        next
+
+    else
+        'Eof()
+        sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & "0" 			& chr(34) & chr(44)
+        sTabla    =   sTabla &   chr(34) & "nombre"   & chr(34)& ":" & chr(34) & "No Aplica" 	& chr(34) & chr(125) & chr(44)
+        '
+        sTablaJson = sTablaJson & sTabla
+        sTabla=""
+
+    end if
+	''
+	sTabla 		= 	Left(sTablaJson, Len(sTablaJson) - 1) 'Devuelve "Cadena"
+	'JsonData	= 	chr(91) & sTabla & chr(93) '& chr(125)
+	JsonData = chr(123) & chr(34) & "data" & chr(34) & ":" & chr(91) & sTabla & chr(93) & chr(125)
+	Response.Write(JsonData)
+	'
+	' Cerrar conexiones
+	'
+	Resuelto.Close
+	Set Resuelto = Nothing
+	'
+	conexion.close
+	set conexion = nothing
+	'
+%>

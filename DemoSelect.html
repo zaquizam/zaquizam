@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function MarcarSelect(listID, isSelect) {
+      var listbox = document.getElementById(listID);
+      for (var count = 0; count < listbox.options.length; count++) {
+        listbox.options[count].selected = isSelect;
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+  <select id="cboDemo" size="15" multiple="">
+        <option value="1">Luis</option>
+        <option value="2">Damarys</option>
+        <option value="3">Jose</option>
+        <option value="4">Genesis</option>
+        <option value="5">Alcira</option>
+        <option value="6">Alexander</option>
+        <option value="7">Pedro</option>
+        <option value="8">Henry</option>
+  </select>
+  <br>
+  <button onclick="MarcarSelect('cboDemo', true);">Marcar todo</button>
+  <button onclick="MarcarSelect('cboDemo', false);">Desmarcar Todo</button>
+
+</body>
+
+</html>

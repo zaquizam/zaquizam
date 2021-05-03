@@ -1,0 +1,7 @@
+#grad1 { 
+    background: rgb(51,163,107);
+    padding-top: 5px;
+    /* background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgb(87,135,194) 100%, rgba(198,198,217,1) 62%); */
+    background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgba(198,198,217,1) 62%, rgba(68,202,230,1) 100%);
+	/*background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgba(198,198,217,1) 62%, rgba(243,243,243,1) 100%);  */
+}

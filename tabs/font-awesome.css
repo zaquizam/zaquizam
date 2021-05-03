@@ -1,0 +1,1338 @@
+/ *!
+ * Font Awesome 4.0.3 por @davegandy - http://fontawesome.io - @fontawesome
+ * Licencia - http://fontawesome.io/license (Fuente: SIL OFL 1.1, CSS: Licencia MIT)
+ * /
+/ * RUTA DE FUENTE
+ * -------------------------- * /
+@Perfil delantero {
+  familia de fuentes: 'FontAwesome';
+  src: url ('../ fonts / fontawesome-webfont.eot? v = 4.0.3');
+  src: url ('../ fonts / fontawesome-webfont.eot? # iefix & v = 4.0.3') formato ('embedded-opentype'), url ('../ fonts / fontawesome-webfont.woff? v = 4.0 .3 ') formato (' woff '), url (' ../ fonts / fontawesome-webfont.ttf? V = 4.0.3 ') formato (' truetype '), url (' ../ fonts / fontawesome-webfont .svg? v = 4.0.3 # fontawesomeregular ') formato (' svg ');
+  font-weight: normal;
+  estilo de fuente: normal;
+}
+.fa {
+  pantalla: bloque en línea;
+  familia de fuentes: FontAwesome;
+  estilo de fuente: normal;
+  font-weight: normal;
+  altura de línea: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: escala de grises;
+}
+/ * hace que la fuente sea un 33% más grande en relación con el contenedor de iconos * /
+.fa-lg {
+  tamaño de fuente: 1.3333333333333333em;
+  altura de línea: 0,75em;
+  alineación vertical: -15%;
+}
+.fa-2x {
+  tamaño de fuente: 2em;
+}
+.fa-3x {
+  tamaño de fuente: 3em;
+}
+.fa-4x {
+  tamaño de fuente: 4em;
+}
+.fa-5x {
+  tamaño de fuente: 5em;
+}
+.fa-fw {
+  ancho: 1.2857142857142858em;
+  alineación de texto: centro;
+}
+.fa-ul {
+  padding-left: 0;
+  margen izquierdo: 2.142857142857143em;
+  tipo de estilo de lista: ninguno;
+}
+.fa-ul> li {
+  posición: relativa;
+}
+.fa-li {
+  posición: absoluta;
+  izquierda: -2,142857142857143em;
+  ancho: 2.142857142857143em;
+  arriba: 0.14285714285714285em;
+  alineación de texto: centro;
+}
+.fa-li.fa-lg {
+  izquierda: -1.8571428571428572em;
+}
+.fa-border {
+  acolchado: .2em .25em .15em;
+  borde: sólido 0.08em #eeeeee;
+  radio del borde: .1em;
+}
+.pull-right {
+  flotar derecho;
+}
+.pull-left {
+  flotador izquierdo;
+}
+.fa.pull-left {
+  margen derecho: .3em;
+}
+.fa.pull-right {
+  margen izquierdo: .3em;
+}
+.fa-spin {
+  -webkit-animation: spin 2s infinito lineal;
+  -moz-animation: spin 2s infinito lineal;
+  -o-animación: giro 2s infinito lineal;
+  animación: giro 2s infinito lineal;
+}
+@ -moz-keyframes spin {
+  0% {
+    -moz-transform: rotate (0deg);
+  }
+  100% {
+    -moz-transform: rotar (359 grados);
+  }
+}
+@ -webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate (0deg);
+  }
+  100% {
+    -webkit-transform: rotar (359 grados);
+  }
+}
+@ -o-keyframes spin {
+  0% {
+    -o-transform: rotate (0deg);
+  }
+  100% {
+    -o-transformar: rotar (359 grados);
+  }
+}
+@ -ms-keyframes spin {
+  0% {
+    -ms-transform: rotate (0deg);
+  }
+  100% {
+    -ms-transform: rotar (359 grados);
+  }
+}
+@keyframes spin {
+  0% {
+    transformar: rotar (0deg);
+  }
+  100% {
+    transformar: rotar (359 grados);
+  }
+}
+.fa-rotate-90 {
+  filtro: progid: DXImageTransform.Microsoft.BasicImage (rotación = 1);
+  -webkit-transform: rotar (90 grados);
+  -moz-transform: rotar (90 grados);
+  -ms-transform: rotar (90 grados);
+  -o-transform: rotar (90 grados);
+  transformar: rotar (90 grados);
+}
+.fa-rotate-180 {
+  filtro: progid: DXImageTransform.Microsoft.BasicImage (rotación = 2);
+  -webkit-transform: rotar (180 grados);
+  -moz-transform: rotar (180 grados);
+  -ms-transform: rotar (180 grados);
+  -o-transform: rotar (180 grados);
+  transformar: rotar (180 grados);
+}
+.fa-rotate-270 {
+  filtro: progid: DXImageTransform.Microsoft.BasicImage (rotación = 3);
+  -webkit-transform: rotar (270 grados);
+  -moz-transform: rotar (270 grados);
+  -ms-transform: rotar (270 grados);
+  -o-transformar: rotar (270 grados);
+  transformar: rotar (270 grados);
+}
+.fa-flip-horizontal {
+  filtro: progid: DXImageTransform.Microsoft.BasicImage (rotación = 0, espejo = 1);
+  -webkit-transform: escala (-1, 1);
+  -moz-transform: escala (-1, 1);
+  -ms-transform: escala (-1, 1);
+  -o-transformar: escala (-1, 1);
+  transformar: escala (-1, 1);
+}
+.fa-flip-vertical {
+  filtro: progid: DXImageTransform.Microsoft.BasicImage (rotación = 2, espejo = 1);
+  -webkit-transform: escala (1, -1);
+  -moz-transform: escala (1, -1);
+  -ms-transform: escala (1, -1);
+  -o-transformar: escala (1, -1);
+  transformar: escala (1, -1);
+}
+.fa-stack {
+  posición: relativa;
+  pantalla: bloque en línea;
+  ancho: 2em;
+  altura: 2em;
+  altura de línea: 2em;
+  alineación vertical: medio;
+}
+.fa-stack-1x,
+.fa-stack-2x {
+  posición: absoluta;
+  izquierda: 0;
+  ancho: 100%;
+  alineación de texto: centro;
+}
+.fa-stack-1x {
+  altura de línea: heredar;
+}
+.fa-stack-2x {
+  tamaño de fuente: 2em;
+}
+.fa-inverse {
+  color: #ffffff;
+}
+/ * Font Awesome usa el área de uso privado Unicode (PUA) para asegurar la pantalla
+   los lectores no leen caracteres aleatorios que representan iconos * /
+.fa-glass: antes de {
+  contenido: "\ f000";
+}
+.fa-music: antes de {
+  contenido: "\ f001";
+}
+.fa-search: antes de {
+  contenido: "\ f002";
+}
+.fa-sobre-o: antes de {
+  contenido: "\ f003";
+}
+.fa-heart: antes de {
+  contenido: "\ f004";
+}
+.fa-star: antes de {
+  contenido: "\ f005";
+}
+.fa-star-o: antes de {
+  contenido: "\ f006";
+}
+.fa-user: antes de {
+  contenido: "\ f007";
+}
+.fa-film: antes de {
+  contenido: "\ f008";
+}
+.fa-th-large: antes de {
+  contenido: "\ f009";
+}
+.fa-th: antes de {
+  contenido: "\ f00a";
+}
+.fa-th-list: antes de {
+  contenido: "\ f00b";
+}
+.fa-check: antes de {
+  contenido: "\ f00c";
+}
+.fa-times: antes de {
+  contenido: "\ f00d";
+}
+.fa-search-plus: antes de {
+  contenido: "\ f00e";
+}
+.fa-search-minus: antes de {
+  contenido: "\ f010";
+}
+.fa-power-off: antes de {
+  contenido: "\ f011";
+}
+.fa-signal: antes de {
+  contenido: "\ f012";
+}
+.fa-gear: antes,
+.fa-cog: antes de {
+  contenido: "\ f013";
+}
+.fa-trash-o: before {
+  contenido: "\ f014";
+}
+.fa-home: antes de {
+  contenido: "\ f015";
+}
+.fa-file-o: antes de {
+  contenido: "\ f016";
+}
+.fa-clock-o: antes de {
+  contenido: "\ f017";
+}
+.fa-road: antes de {
+  contenido: "\ f018";
+}
+.fa-download: antes {
+  contenido: "\ f019";
+}
+.fa-arrow-circle-o-down: before {
+  contenido: "\ f01a";
+}
+.fa-arrow-circle-o-up: before {
+  contenido: "\ f01b";
+}
+.fa-inbox: antes de {
+  contenido: "\ f01c";
+}
+.fa-play-circle-o: antes de {
+  contenido: "\ f01d";
+}
+.fa-rotate-right: antes,
+.fa-repeat: antes de {
+  contenido: "\ f01e";
+}
+.fa-refresh: antes de {
+  contenido: "\ f021";
+}
+.fa-list-alt: antes de {
+  contenido: "\ f022";
+}
+.fa-lock: antes de {
+  contenido: "\ f023";
+}
+.fa-flag: antes de {
+  contenido: "\ f024";
+}
+.fa-auriculares: antes de {
+  contenido: "\ f025";
+}
+.fa-volume-off: antes de {
+  contenido: "\ f026";
+}
+.fa-volume-down: antes de {
+  contenido: "\ f027";
+}
+.fa-volume-up: antes de {
+  contenido: "\ f028";
+}
+.fa-qrcode: antes de {
+  contenido: "\ f029";
+}
+.fa-código de barras: antes de {
+  contenido: "\ f02a";
+}
+.fa-tag: antes de {
+  contenido: "\ f02b";
+}
+.fa-tags: antes de {
+  contenido: "\ f02c";
+}
+.fa-book: antes de {
+  contenido: "\ f02d";
+}
+.fa-bookmark: antes de {
+  contenido: "\ f02e";
+}
+.fa-print: antes de {
+  contenido: "\ f02f";
+}
+.fa-camera: antes {
+  contenido: "\ f030";
+}
+.fa-font: antes de {
+  contenido: "\ f031";
+}
+.fa-bold: antes de {
+  contenido: "\ f032";
+}
+.fa-italic: antes de {
+  contenido: "\ f033";
+}
+.fa-text-height: before {
+  contenido: "\ f034";
+}
+.fa-text-width: antes de {
+  contenido: "\ f035";
+}
+.fa-align-left: antes de {
+  contenido: "\ f036";
+}
+.fa-align-center: antes de {
+  contenido: "\ f037";
+}
+.fa-align-right: antes de {
+  contenido: "\ f038";
+}
+.fa-align-justify: antes de {
+  contenido: "\ f039";
+}
+.fa-list: antes de {
+  contenido: "\ f03a";
+}
+.fa-dedent: antes,
+.fa-outdent: antes de {
+  contenido: "\ f03b";
+}
+.fa-indent: antes de {
+  contenido: "\ f03c";
+}
+.fa-video-camera: antes de {
+  contenido: "\ f03d";
+}
+.fa-picture-o: before {
+  contenido: "\ f03e";
+}
+.fa-pencil: antes de {
+  contenido: "\ f040";
+}
+.fa-map-marker: before {
+  contenido: "\ f041";
+}
+.fa-adjust: antes de {
+  contenido: "\ f042";
+}
+.fa-tint: antes de {
+  contenido: "\ f043";
+}
+.fa-edit: antes,
+.fa-pencil-square-o: antes de {
+  contenido: "\ f044";
+}
+.fa-share-square-o: antes de {
+  contenido: "\ f045";
+}
+.fa-check-square-o: antes de {
+  contenido: "\ f046";
+}
+.fa-flechas: antes de {
+  contenido: "\ f047";
+}
+.fa-step-backward: antes de {
+  contenido: "\ f048";
+}
+.fa-fast-backward: antes de {
+  contenido: "\ f049";
+}
+.fa-backward: antes de {
+  contenido: "\ f04a";
+}
+.fa-play: antes de {
+  contenido: "\ f04b";
+}
+.fa-pause: antes de {
+  contenido: "\ f04c";
+}
+.fa-stop: antes de {
+  contenido: "\ f04d";
+}
+.fa-forward: antes de {
+  contenido: "\ f04e";
+}
+.fa-fast-forward: antes de {
+  contenido: "\ f050";
+}
+.fa-step-forward: antes de {
+  contenido: "\ f051";
+}
+.fa-eject: antes de {
+  contenido: "\ f052";
+}
+.fa-chevron-left: antes de {
+  contenido: "\ f053";
+}
+.fa-chevron-right: antes de {
+  contenido: "\ f054";
+}
+.fa-plus-circle: antes de {
+  contenido: "\ f055";
+}
+.fa-minus-circle: antes de {
+  contenido: "\ f056";
+}
+.fa-times-circle: antes de {
+  contenido: "\ f057";
+}
+.fa-check-circle: antes de {
+  contenido: "\ f058";
+}
+.fa-question-circle: antes de {
+  contenido: "\ f059";
+}
+.fa-info-circle: antes de {
+  contenido: "\ f05a";
+}
+.fa-crosshairs: before {
+  contenido: "\ f05b";
+}
+.fa-times-circle-o: antes de {
+  contenido: "\ f05c";
+}
+.fa-check-circle-o: antes de {
+  contenido: "\ f05d";
+}
+.fa-ban: antes de {
+  contenido: "\ f05e";
+}
+.fa-arrow-left: antes de {
+  contenido: "\ f060";
+}
+.fa-arrow-right: antes de {
+  contenido: "\ f061";
+}
+.fa-arrow-up: before {
+  contenido: "\ f062";
+}
+.fa-arrow-down: before {
+  contenido: "\ f063";
+}
+.fa-mail-forward: antes,
+.fa-share: antes de {
+  contenido: "\ f064";
+}
+.fa-expand: antes de {
+  contenido: "\ f065";
+}
+.fa-compress: antes de {
+  contenido: "\ f066";
+}
+.fa-plus: antes de {
+  contenido: "\ f067";
+}
+.fa-minus: antes de {
+  contenido: "\ f068";
+}
+.fa-asterisco: antes de {
+  contenido: "\ f069";
+}
+.fa-círculo-de-exclamación: antes de {
+  contenido: "\ f06a";
+}
+.fa-gift: antes {
+  contenido: "\ f06b";
+}
+.fa-leaf: antes de {
+  contenido: "\ f06c";
+}
+.fa-fire: antes de {
+  contenido: "\ f06d";
+}
+.fa-eye: antes de {
+  contenido: "\ f06e";
+}
+.fa-eye-slash: antes de {
+  contenido: "\ f070";
+}
+.fa-warning: antes,
+.fa-exclamation-triangle: antes de {
+  contenido: "\ f071";
+}
+.fa-plane: antes de {
+  contenido: "\ f072";
+}
+.fa-calendar: antes de {
+  contenido: "\ f073";
+}
+.fa-random: antes de {
+  contenido: "\ f074";
+}
+.fa-comment: antes de {
+  contenido: "\ f075";
+}
+.fa-magnet: antes de {
+  contenido: "\ f076";
+}
+.fa-chevron-up: before {
+  contenido: "\ f077";
+}
+.fa-chevron-down: before {
+  contenido: "\ f078";
+}
+.fa-retweet: antes de {
+  contenido: "\ f079";
+}
+.fa-shopping-cart: antes {
+  contenido: "\ f07a";
+}
+.fa-folder: antes de {
+  contenido: "\ f07b";
+}
+.fa-folder-open: antes de {
+  contenido: "\ f07c";
+}
+.fa-flechas-v: antes de {
+  contenido: "\ f07d";
+}
+.fa-flechas-h: antes de {
+  contenido: "\ f07e";
+}
+.fa-bar-chart-o: before {
+  contenido: "\ f080";
+}
+.fa-twitter-square: antes de {
+  contenido: "\ f081";
+}
+.fa-facebook-square: antes de {
+  contenido: "\ f082";
+}
+.fa-camera-retro: antes {
+  contenido: "\ f083";
+}
+.fa-key: antes de {
+  contenido: "\ f084";
+}
+.fa-gears: antes,
+.fa-cogs: antes de {
+  contenido: "\ f085";
+}
+.fa-comments: antes de {
+  contenido: "\ f086";
+}
+.fa-thumbs-o-up: before {
+  contenido: "\ f087";
+}
+.fa-thumbs-o-down: before {
+  contenido: "\ f088";
+}
+.fa-star-half: before {
+  contenido: "\ f089";
+}
+.fa-heart-o: antes {
+  contenido: "\ f08a";
+}
+.fa-sign-out: antes de {
+  contenido: "\ f08b";
+}
+.fa-linkedin-square: antes de {
+  contenido: "\ f08c";
+}
+.fa-thumb-tack: before {
+  contenido: "\ f08d";
+}
+.fa-external-link: antes de {
+  contenido: "\ f08e";
+}
+.fa-sign-in: before {
+  contenido: "\ f090";
+}
+.fa-trofeo: antes de {
+  contenido: "\ f091";
+}
+.fa-github-square: antes de {
+  contenido: "\ f092";
+}
+.fa-upload: antes de {
+  contenido: "\ f093";
+}
+.fa-lemon-o: antes de {
+  contenido: "\ f094";
+}
+.fa-phone: antes de {
+  contenido: "\ f095";
+}
+.fa-square-o: antes de {
+  contenido: "\ f096";
+}
+.fa-bookmark-o: before {
+  contenido: "\ f097";
+}
+.fa-phone-square: antes de {
+  contenido: "\ f098";
+}
+.fa-twitter: antes de {
+  contenido: "\ f099";
+}
+.fa-facebook: antes {
+  contenido: "\ f09a";
+}
+.fa-github: antes de {
+  contenido: "\ f09b";
+}
+.fa-unlock: antes de {
+  contenido: "\ f09c";
+}
+.fa-credit-card: antes de {
+  contenido: "\ f09d";
+}
+.fa-rss: antes de {
+  contenido: "\ f09e";
+}
+.fa-hdd-o: before {
+  contenido: "\ f0a0";
+}
+.fa-megáfono: antes de {
+  contenido: "\ f0a1";
+}
+.fa-bell: antes de {
+  contenido: "\ f0f3";
+}
+.fa-certificate: antes de {
+  contenido: "\ f0a3";
+}
+.fa-hand-o-right: antes de {
+  contenido: "\ f0a4";
+}
+.fa-hand-o-left: antes de {
+  contenido: "\ f0a5";
+}
+.fa-hand-o-up: before {
+  contenido: "\ f0a6";
+}
+.fa-hand-o-down: before {
+  contenido: "\ f0a7";
+}
+.fa-arrow-circle-left: antes de {
+  contenido: "\ f0a8";
+}
+.fa-arrow-circle-right: antes de {
+  contenido: "\ f0a9";
+}
+.fa-arrow-circle-up: before {
+  contenido: "\ f0aa";
+}
+.fa-arrow-circle-down: before {
+  contenido: "\ f0ab";
+}
+.fa-globe: antes de {
+  contenido: "\ f0ac";
+}
+.fa-wrench: antes de {
+  contenido: "\ f0ad";
+}
+.fa-tasks: before {
+  contenido: "\ f0ae";
+}
+.fa-filter: antes de {
+  contenido: "\ f0b0";
+}
+.fa-maletín: antes de {
+  contenido: "\ f0b1";
+}
+.fa-flechas-alt: antes de {
+  contenido: "\ f0b2";
+}
+.fa-group: antes,
+.fa-users: antes de {
+  contenido: "\ f0c0";
+}
+.fa-chain: antes,
+.fa-link: antes de {
+  contenido: "\ f0c1";
+}
+.fa-cloud: antes de {
+  contenido: "\ f0c2";
+}
+.fa-frasco: antes de {
+  contenido: "\ f0c3";
+}
+.fa-cut: antes,
+.fa-tijeras: antes de {
+  contenido: "\ f0c4";
+}
+.fa-copy: antes,
+.fa-files-o: antes de {
+  contenido: "\ f0c5";
+}
+.fa-paperclip: antes de {
+  contenido: "\ f0c6";
+}
+.fa-save: antes,
+.fa-floppy-o: antes de {
+  contenido: "\ f0c7";
+}
+.fa-cuadrado: antes de {
+  contenido: "\ f0c8";
+}
+.fa-bars: antes de {
+  contenido: "\ f0c9";
+}
+.fa-list-ul: antes de {
+  contenido: "\ f0ca";
+}
+.fa-list-ol: antes de {
+  contenido: "\ f0cb";
+}
+.fa-tachado: antes de {
+  contenido: "\ f0cc";
+}
+.fa-underline: antes de {
+  contenido: "\ f0cd";
+}
+.fa-table: antes de {
+  contenido: "\ f0ce";
+}
+.fa-magic: antes de {
+  contenido: "\ f0d0";
+}
+.fa-truck: antes de {
+  contenido: "\ f0d1";
+}
+.fa-pinterest: antes de {
+  contenido: "\ f0d2";
+}
+.fa-pinterest-square: antes de {
+  contenido: "\ f0d3";
+}
+.fa-google-plus-square: antes de {
+  contenido: "\ f0d4";
+}
+.fa-google-plus: antes {
+  contenido: "\ f0d5";
+}
+.fa-money: antes de {
+  contenido: "\ f0d6";
+}
+.fa-caret-down: antes de {
+  contenido: "\ f0d7";
+}
+.fa-caret-up: antes de {
+  contenido: "\ f0d8";
+}
+.fa-caret-left: antes de {
+  contenido: "\ f0d9";
+}
+.fa-caret-right: antes de {
+  contenido: "\ f0da";
+}
+.fa-columnas: antes de {
+  contenido: "\ f0db";
+}
+.fa-sin clasificar: antes,
+.fa-sort: antes de {
+  contenido: "\ f0dc";
+}
+.fa-sort-down: antes,
+.fa-sort-asc: before {
+  contenido: "\ f0dd";
+}
+.fa-sort-up: antes,
+.fa-sort-desc: antes de {
+  contenido: "\ f0de";
+}
+.fa-sobre: ​​antes de {
+  contenido: "\ f0e0";
+}
+.fa-linkedin: antes de {
+  contenido: "\ f0e1";
+}
+.fa-rotate-left: antes,
+.fa-undo: antes de {
+  contenido: "\ f0e2";
+}
+.fa-legal: antes,
+.fa-martillo: antes de {
+  contenido: "\ f0e3";
+}
+.fa-dashboard: antes,
+.fa-tacómetro: antes de {
+  contenido: "\ f0e4";
+}
+.fa-comment-o: before {
+  contenido: "\ f0e5";
+}
+.fa-comments-o: before {
+  contenido: "\ f0e6";
+}
+.fa-flash: antes,
+.fa-bolt: antes de {
+  contenido: "\ f0e7";
+}
+.fa-sitemap: antes de {
+  contenido: "\ f0e8";
+}
+.fa-umbrella: antes de {
+  contenido: "\ f0e9";
+}
+.fa-paste: antes,
+.fa-clipboard: before {
+  contenido: "\ f0ea";
+}
+.fa-lightbulb-o: before {
+  contenido: "\ f0eb";
+}
+.fa-exchange: antes de {
+  contenido: "\ f0ec";
+}
+.fa-cloud-download: antes {
+  contenido: "\ f0ed";
+}
+.fa-cloud-upload: antes de {
+  contenido: "\ f0ee";
+}
+.fa-user-md: antes {
+  contenido: "\ f0f0";
+}
+.fa-estetoscopio: antes de {
+  contenido: "\ f0f1";
+}
+.fa-maleta: antes {
+  contenido: "\ f0f2";
+}
+.fa-bell-o: antes de {
+  contenido: "\ f0a2";
+}
+.fa-coffee: antes de {
+  contenido: "\ f0f4";
+}
+.fa-cubiertos: antes de {
+  contenido: "\ f0f5";
+}
+.fa-file-text-o: before {
+  contenido: "\ f0f6";
+}
+.fa-building-o: antes de {
+  contenido: "\ f0f7";
+}
+.fa-hospital-o: antes de {
+  contenido: "\ f0f8";
+}
+.fa-ambulance: before {
+  contenido: "\ f0f9";
+}
+.fa-medkit: before {
+  contenido: "\ f0fa";
+}
+.fa-fighter-jet: before {
+  contenido: "\ f0fb";
+}
+.fa-beer: antes de {
+  contenido: "\ f0fc";
+}
+.fa-h-square: antes de {
+  contenido: "\ f0fd";
+}
+.fa-plus-square: antes de {
+  contenido: "\ f0fe";
+}
+.fa-angle-double-left: before {
+  contenido: "\ f100";
+}
+.fa-angle-double-right: before {
+  contenido: "\ f101";
+}
+.fa-angle-double-up: before {
+  contenido: "\ f102";
+}
+.fa-angle-double-down: before {
+  contenido: "\ f103";
+}
+.fa-angle-left: antes de {
+  contenido: "\ f104";
+}
+.fa-angle-right: antes de {
+  contenido: "\ f105";
+}
+.fa-angle-up: before {
+  contenido: "\ f106";
+}
+.fa-angle-down: before {
+  contenido: "\ f107";
+}
+.fa-desktop: antes de {
+  contenido: "\ f108";
+}
+.fa-laptop: antes {
+  contenido: "\ f109";
+}
+.fa-tablet: antes de {
+  contenido: "\ f10a";
+}
+.fa-mobile-phone: antes,
+.fa-mobile: antes de {
+  contenido: "\ f10b";
+}
+.fa-circle-o: antes de {
+  contenido: "\ f10c";
+}
+.fa-quote-left: antes de {
+  contenido: "\ f10d";
+}
+.fa-quote-right: antes de {
+  contenido: "\ f10e";
+}
+.fa-spinner: antes de {
+  contenido: "\ f110";
+}
+.fa-circle: antes de {
+  contenido: "\ f111";
+}
+.fa-mail-reply: antes,
+.fa-reply: antes de {
+  contenido: "\ f112";
+}
+.fa-github-alt: antes de {
+  contenido: "\ f113";
+}
+.fa-folder-o: antes de {
+  contenido: "\ f114";
+}
+.fa-folder-open-o: before {
+  contenido: "\ f115";
+}
+.fa-smile-o: antes {
+  contenido: "\ f118";
+}
+.fa-fruncir el ceño-o: antes de {
+  contenido: "\ f119";
+}
+.fa-meh-o: antes de {
+  contenido: "\ f11a";
+}
+.fa-gamepad: antes de {
+  contenido: "\ f11b";
+}
+.fa-keyboard-o: antes de {
+  contenido: "\ f11c";
+}
+.fa-flag-o: antes de {
+  contenido: "\ f11d";
+}
+.fa-flag-checkered: before {
+  contenido: "\ f11e";
+}
+.fa-terminal: antes de {
+  contenido: "\ f120";
+}
+.fa-code: antes de {
+  contenido: "\ f121";
+}
+.fa-reply-all: before {
+  contenido: "\ f122";
+}
+.fa-mail-reply-all: before {
+  contenido: "\ f122";
+}
+.fa-star-half-empty: antes,
+.fa-star-half-full: antes,
+.fa-star-half-o: before {
+  contenido: "\ f123";
+}
+.fa-location-arrow: antes de {
+  contenido: "\ f124";
+}
+.fa-crop: antes de {
+  contenido: "\ f125";
+}
+.fa-code-fork: antes de {
+  contenido: "\ f126";
+}
+.fa-unlink: antes,
+.fa-chain-broken: before {
+  contenido: "\ f127";
+}
+.fa-question: before {
+  contenido: "\ f128";
+}
+.fa-info: antes de {
+  contenido: "\ f129";
+}
+.fa-exclamación: antes de {
+  contenido: "\ f12a";
+}
+.fa-superíndice: antes de {
+  contenido: "\ f12b";
+}
+.fa-subscript: antes de {
+  contenido: "\ f12c";
+}
+.fa-eraser: antes de {
+  contenido: "\ f12d";
+}
+.fa-puzzle-piece: before {
+  contenido: "\ f12e";
+}
+.fa-micrófono: antes de {
+  contenido: "\ f130";
+}
+.fa-micrófono-barra: antes de {
+  contenido: "\ f131";
+}
+.fa-shield: antes de {
+  contenido: "\ f132";
+}
+.fa-calendar-o: antes de {
+  contenido: "\ f133";
+}
+.fa-extintor de incendios: antes de {
+  contenido: "\ f134";
+}
+.fa-rocket: antes de {
+  contenido: "\ f135";
+}
+.fa-maxcdn: antes de {
+  contenido: "\ f136";
+}
+.fa-chevron-circle-left: antes de {
+  contenido: "\ f137";
+}
+.fa-chevron-circle-right: antes de {
+  contenido: "\ f138";
+}
+.fa-chevron-circle-up: before {
+  contenido: "\ f139";
+}
+.fa-chevron-circle-down: before {
+  contenido: "\ f13a";
+}
+.fa-html5: antes {
+  contenido: "\ f13b";
+}
+.fa-css3: antes {
+  contenido: "\ f13c";
+}
+.fa-anchor: antes de {
+  contenido: "\ f13d";
+}
+.fa-unlock-alt: antes de {
+  contenido: "\ f13e";
+}
+.fa-bullseye: before {
+  contenido: "\ f140";
+}
+.fa-ellipsis-h: antes de {
+  contenido: "\ f141";
+}
+.fa-ellipsis-v: antes de {
+  contenido: "\ f142";
+}
+.fa-rss-square: antes de {
+  contenido: "\ f143";
+}
+.fa-play-circle: antes de {
+  contenido: "\ f144";
+}
+.fa-ticket: antes de {
+  contenido: "\ f145";
+}
+.fa-minus-square: antes de {
+  contenido: "\ f146";
+}
+.fa-minus-square-o: antes de {
+  contenido: "\ f147";
+}
+.fa-level-up: antes de {
+  contenido: "\ f148";
+}
+.fa-level-down: antes de {
+  contenido: "\ f149";
+}
+.fa-check-square: antes de {
+  contenido: "\ f14a";
+}
+.fa-pencil-square: antes de {
+  contenido: "\ f14b";
+}
+.fa-external-link-square: antes de {
+  contenido: "\ f14c";
+}
+.fa-share-square: antes de {
+  contenido: "\ f14d";
+}
+.fa-compass: antes de {
+  contenido: "\ f14e";
+}
+.fa-toggle-down: antes,
+.fa-caret-square-o-down: antes de {
+  contenido: "\ f150";
+}
+.fa-toggle-up: antes,
+.fa-caret-square-o-up: antes de {
+  contenido: "\ f151";
+}
+.fa-toggle-right: antes,
+.fa-caret-square-o-right: antes de {
+  contenido: "\ f152";
+}
+.fa-euro: antes,
+.fa-eur: antes de {
+  contenido: "\ f153";
+}
+.fa-gbp: antes de {
+  contenido: "\ f154";
+}
+.fa-dollar: antes,
+.fa-usd: antes {
+  contenido: "\ f155";
+}
+.fa-rupia: antes,
+.fa-inr: antes de {
+  contenido: "\ f156";
+}
+.fa-cny: antes,
+.fa-rmb: antes,
+.fa-yen: antes,
+.fa-jpy: antes de {
+  contenido: "\ f157";
+}
+.fa-rublo: antes,
+.fa-rublo: antes,
+.fa-rub: antes de {
+  contenido: "\ f158";
+}
+.fa-won: antes,
+.fa-krw: antes de {
+  contenido: "\ f159";
+}
+.fa-bitcoin: antes,
+.fa-btc: antes {
+  contenido: "\ f15a";
+}
+.fa-file: antes de {
+  contenido: "\ f15b";
+}
+.fa-file-text: antes de {
+  contenido: "\ f15c";
+}
+.fa-sort-alpha-asc: before {
+  contenido: "\ f15d";
+}
+.fa-sort-alpha-desc: before {
+  contenido: "\ f15e";
+}
+.fa-sort-amount-asc: before {
+  contenido: "\ f160";
+}
+.fa-sort-amount-desc: before {
+  contenido: "\ f161";
+}
+.fa-sort-numeric-asc: antes de {
+  contenido: "\ f162";
+}
+.fa-sort-numeric-desc: before {
+  contenido: "\ f163";
+}
+.fa-thumbs-up: before {
+  contenido: "\ f164";
+}
+.fa-thumbs-down: before {
+  contenido: "\ f165";
+}
+.fa-youtube-square: antes de {
+  contenido: "\ f166";
+}
+.fa-youtube: antes de {
+  contenido: "\ f167";
+}
+.fa-xing: antes de {
+  contenido: "\ f168";
+}
+.fa-xing-square: antes de {
+  contenido: "\ f169";
+}
+.fa-youtube-play: antes de {
+  contenido: "\ f16a";
+}
+.fa-dropbox: antes de {
+  contenido: "\ f16b";
+}
+.fa-stack-overflow: antes {
+  contenido: "\ f16c";
+}
+.fa-instagram: antes {
+  contenido: "\ f16d";
+}
+.fa-flickr: antes {
+  contenido: "\ f16e";
+}
+.fa-adn: antes de {
+  contenido: "\ f170";
+}
+.fa-bitbucket: antes de {
+  contenido: "\ f171";
+}
+.fa-bitbucket-square: antes de {
+  contenido: "\ f172";
+}
+.fa-tumblr: antes {
+  contenido: "\ f173";
+}
+.fa-tumblr-square: antes de {
+  contenido: "\ f174";
+}
+.fa-long-arrow-down: before {
+  contenido: "\ f175";
+}
+.fa-long-arrow-up: before {
+  contenido: "\ f176";
+}
+.fa-long-arrow-left: antes de {
+  contenido: "\ f177";
+}
+.fa-flecha-larga-derecha: antes de {
+  contenido: "\ f178";
+}
+.fa-apple: antes de {
+  contenido: "\ f179";
+}
+.fa-windows: antes de {
+  contenido: "\ f17a";
+}
+.fa-android: antes {
+  contenido: "\ f17b";
+}
+.fa-linux: antes {
+  contenido: "\ f17c";
+}
+.fa-dribbble: antes de {
+  contenido: "\ f17d";
+}
+.fa-skype: antes de {
+  contenido: "\ f17e";
+}
+.fa-foursquare: antes de {
+  contenido: "\ f180";
+}
+.fa-trello: antes {
+  contenido: "\ f181";
+}
+.fa-female: antes de {
+  contenido: "\ f182";
+}
+.fa-male: antes de {
+  contenido: "\ f183";
+}
+.fa-gittip: before {
+  contenido: "\ f184";
+}
+.fa-sun-o: antes de {
+  contenido: "\ f185";
+}
+.fa-moon-o: antes de {
+  contenido: "\ f186";
+}
+.fa-archive: antes de {
+  contenido: "\ f187";
+}
+.fa-bug: antes de {
+  contenido: "\ f188";
+}
+.fa-vk: antes de {
+  contenido: "\ f189";
+}
+.fa-weibo: antes de {
+  contenido: "\ f18a";
+}
+.fa-renren: antes de {
+  contenido: "\ f18b";
+}
+.fa-pagelines: antes de {
+  contenido: "\ f18c";
+}
+.fa-stack-exchange: antes de {
+  contenido: "\ f18d";
+}
+.fa-arrow-circle-o-right: antes de {
+  contenido: "\ f18e";
+}
+.fa-arrow-circle-o-left: antes de {
+  contenido: "\ f190";
+}
+.fa-toggle-left: antes,
+.fa-caret-square-o-left: antes de {
+  contenido: "\ f191";
+}
+.fa-dot-circle-o: antes de {
+  contenido: "\ f192";
+}
+.fa-silla de ruedas: antes de {
+  contenido: "\ f193";
+}
+.fa-vimeo-square: antes de {
+  contenido: "\ f194";
+}
+.fa-turkish-lira: antes,
+.fa-try: before {
+  contenido: "\ f195";
+}
+.fa-plus-square-o: antes de {
+  contenido: "\ f196";
+}

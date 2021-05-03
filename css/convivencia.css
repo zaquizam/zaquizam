@@ -1,0 +1,33 @@
+#grad1{ 
+
+    background: rgb(243,243,243);
+    background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgba(198,198,217,1) 62%, rgba(68,202,230,1) 100%);
+
+	/*background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgba(198,198,217,1) 62%, rgba(243,243,243,1) 100%);  */
+	
+	/* background-image: url(../images/fondos/fondoazul.png); */
+	/* background-repeat: no-repeat; */
+	/* /* background-size: contain; */
+	/* /* background-position: 50% 50%; */ 
+	/* max-width: 100%; */
+	/* background-size:cover; */
+
+}
+
+/* html {  */
+  /* background: url(../images/fondos/fondoazul.png) no-repeat center center fixed;  */
+  /* -webkit-background-size: cover; */
+  /* -moz-background-size: cover; */
+  /* -o-background-size: cover; */
+  /* background-size: cover; */
+/* } */
+
+/* .table { */
+  /* border-radius: 5px; */
+/* } */
+/* th:first-of-type { */
+  /* border-top-left-radius: 5px; */
+/* } */
+/* th:last-of-type { */
+  /* border-top-right-radius: 5px; */
+/* } */
