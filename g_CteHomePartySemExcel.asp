@@ -13,6 +13,9 @@
 	dim sSeg
 	dim sRan
 	dim sInd
+	dim sSem
+	dim sSemanas
+	dim sSemAcum
 	dim iAre
 	dim iFab
 	dim iMar
@@ -28,6 +31,9 @@
 	'26Ene2021-2
 	dim TotalFabricante 
 	dim gProductosTotal
+	dim gSemanas
+	dim gSemanasAcum
+	dim TotalSemAcum
 
 	sCat=Request.QueryString("cat")
 	if sCat = "" Then sCat = 1
@@ -38,6 +44,24 @@
 	sSeg=Request.QueryString("seg")
 	sRan=Request.QueryString("ran")
 	sInd=Request.QueryString("ind")
+	sSem=Request.QueryString("sem")
+	sSemAcum=Request.QueryString("semacum")
+	sSemanas = sSem
+	'response.write "<br>84 Sem:=" & sSem
+	'response.end
+	
+	iCol = 1
+	do
+		ix = instr(sSem,",")
+		if ix <> 0 then
+			'response.write "<br>Semana:= " & mid(sSem,iCol,ix-1) & "=" & ix
+			ix = ix + 1
+			sSem = mid(sSem,ix)
+		end if
+	loop until ix = 0
+	'response.write "<br>Semana:= " & sSem
+	
+	
 
 	'26Ene2021-8
 	TotalFabricante = "NO"
@@ -78,6 +102,7 @@
 
 	
 	idSemana = 16
+	'Semanas
 	sql = ""
 	sql = sql & " SELECT "
 	sql = sql & " IdSemana, "
@@ -85,33 +110,67 @@
 	sql = sql & " FROM "
 	sql = sql & " ss_Semana "
 	sql = sql & " WHERE "
-	sql = sql & " IdSemana = " & idSemana
+	sql = sql & " IdSemana in ( " & sSemanas & ")"
+	sql = sql & " Order By "
+	sql = sql & " IdSemana "
 	'response.write "<br>36 sql:=" & sql
 	'response.end
 	rsx1.Open sql ,conexion
 	if rsx1.eof then
 		rsx1.close
 	else
-		gDatos1 = rsx1.GetRows
+		gSemanas = rsx1.GetRows
 		rsx1.close
-		strSemana = gDatos1(1,0)
 	end if
-	strSemana1 = "(01) Del 04 Ene 2021 al 10 Ene 2021"
-	strSemana2 = "(02) Del 11 Ene 2021 al 17 Ene 2021"
-	strSemana3 = "(03) Del 18 Ene 2021 al 24 Ene 2021"
-	strSemana4 = "(04) Del 25 Ene 2021 al 31 Ene 2021"
-	strSemana5 = "(05) Del 01 Feb 2021 al 07 Feb 2021"
-	strSemana6 = "(06) Del 08 Feb 2021 al 14 Feb 2021"
-	strSemana7 = "(07) Del 15 Feb 2021 al 21 Feb 2021"
-	strSemana8 = "(08) Del 22 Feb 2021 al 28 Feb 2021"
-	strSemana9 = "(09) Del 01 Mar 2021 al 07 Mar 2021"
-	strSemana10 = "(10) Del 08 Mar 2021 al 14 Mar 2021"
-	strSemana11 = "(11) Del 15 Mar 2021 al 21 Mar 2021"
-	strSemana12 = "(12) Del 22 Mar 2021 al 28 Mar 2021"
-	strSemana13 = "(13) Del 29 May 2021 al 04 Abr 2021"
-	strSemana14 = "(14) Del 05 Abr 2021 al 11 Abr 2021"
-	strSemana15 = "(15) Del 12 Abr 2021 al 18 Abr 2021"
-	
+	strSemana1 = ""
+	strSemana2 = ""
+	strSemana3 = ""
+	strSemana4 = ""
+	strSemana5 = ""
+	for iSem = 0 to  ubound(gSemanas,2)
+		if iSem = 0 then strSemana1 = gSemanas(1,iSem)
+		if iSem = 1 then strSemana2 = gSemanas(1,iSem)
+		if iSem = 2 then strSemana3 = gSemanas(1,iSem)
+		if iSem = 3 then strSemana4 = gSemanas(1,iSem)
+		if iSem = 4 then strSemana5 = gSemanas(1,iSem)
+	next
+	if sSemAcum <> "" then
+		'Semanas Acumuladas
+		sql = ""
+		sql = sql & " SELECT "
+		sql = sql & " IdSemana, "
+		sql = sql & " Semana "
+		sql = sql & " FROM "
+		sql = sql & " ss_Semana "
+		sql = sql & " WHERE "
+		sql = sql & " IdSemana in ( " & sSemAcum & ")"
+		sql = sql & " Order By "
+		sql = sql & " IdSemana "
+		'response.write "<br>36 sql:=" & sql
+		'response.end
+		isw = 0
+		rsx1.Open sql ,conexion
+		if rsx1.eof then
+			'response.write "<br>152 Paso" 
+			rsx1.close
+			isw = 0
+		else
+			gSemanasAcum = rsx1.GetRows
+			'response.write "<br>157 Paso" 
+			rsx1.close
+			isw = 1
+			strSemana5 = "Acum. "
+			TotalSemAcum = 0
+			for iSem = 0 to  ubound(gSemanasAcum,2)
+				strSemana5 = strSemana5 & mid(gSemanasAcum(1,iSem),1,5)
+				TotalSemAcum = TotalSemAcum + 1
+			next
+		end if
+		if isw = 1 then
+			'response.write "<br>164 Paso" 
+		end if 
+	end if
+	'response.end
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
 	'else
@@ -289,37 +348,40 @@
 	iExiste = 0
 	'response.write "<br>84 LLEGO"
 	'response.end
+			Response.ContentType = "application/vnd.ms-excel"
+			Response.AddHeader "Content-disposition","attachment; filename=tem.xls"
 	if rsx1.eof then
 		rsx1.close
 		%>
 		<center>
 		<h2>No hay Data para Mostrar</h2>
 		</center>
-		<table>
-			<tr class="row100 head">
-				<th class="cell100 column1 text-left">Fabricante</th>
-				<th class="cell100 column2 text-center">Marca</th>
-				<th class="cell100 column3 text-center">Segmento</th>
-				<th class="cell100 column4 text-center"></th>
-				<th class="cell100 column5 text-center">Indicador</th>
-				<th class="cell100 column6 text-center">UniMed</th>
-				<th class="cell100 column7 text-center"><%=strSemana1%></th>
-				<th class="cell100 column8 text-center"><%=strSemana2%></th>									
-				<th class="cell100 column9 text-center"><%=strSemana3%></th>									
-				<th class="cell100 column10 text-center"><%=strSemana4%></th>
-				<th class="cell100 column10 text-center"><%=strSemana5%></th>
-				<th class="cell100 column10 text-center"><%=strSemana6%></th>
-				<th class="cell100 column10 text-center"><%=strSemana7%></th>
-				<th class="cell100 column10 text-center"><%=strSemana8%></th>
-				<th class="cell100 column10 text-center"><%=strSemana9%></th>
-				<th class="cell100 column10 text-center"><%=strSemana10%></th>
-				<th class="cell100 column10 text-center"><%=strSemana11%></th>
-				<th class="cell100 column10 text-center"><%=strSemana12%></th>
-				<th class="cell100 column10 text-center"><%=strSemana13%></th>
-				<th class="cell100 column10 text-center"><%=strSemana14%></th>
-				<th class="cell100 column10 text-center"><%=strSemana15%></th>
-			</tr>
-		</table>
+		<div class="limiter">
+			<div class="container-table100">
+				<div class="wrap-table100">
+					<div class="table100 ver1 m-b-110">
+							<div class="table100-head">
+								<table>
+									<thead>
+										<tr class="row100 head">
+											<th class="cell100 column1 text-left">Fabricante</th>
+											<th class="cell100 column2 text-center">Marca</th>
+											<th class="cell100 column3 text-center">Segmento</th>
+											<th class="cell100 column4 text-center">Indicador</th>
+											<th class="cell100 column5 text-center">UniMed</th>
+											<th class="cell100 column6 text-center"><%=strSemana1%></th>
+											<th class="cell100 column7 text-center"><%=strSemana2%></th>									
+											<th class="cell100 column8 text-center"><%=strSemana3%></th>									
+											<th class="cell100 column9 text-center"><%=strSemana4%></th>
+											<th class="cell100 column10 text-center"><%=strSemana5%></th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
 			
 		<%
 	else
@@ -327,317 +389,217 @@
 		'response.end
 		gProductos = rsx1.GetRows
 		rsx1.close
-		Response.AddHeader "Content-disposition","attachment; filename=tem.xls"
-		Response.ContentType = "application/vnd.ms-excel"
 		%>
-		<table>
-			<tr class="row100 head">
-				<th class="cell100 column1 text-left">Fabricante</th>
-				<th class="cell100 column2 text-center">Marca</th>
-				<th class="cell100 column3 text-center">Segmento</th>
-				<th class="cell100 column4 text-center"></th>
-				<th class="cell100 column5 text-center">Indicador</th>
-				<th class="cell100 column6 text-center">UniMed</th>
-				<th class="cell100 column7 text-center"><%=strSemana1%></th>
-				<th class="cell100 column8 text-center"><%=strSemana2%></th>									
-				<th class="cell100 column9 text-center"><%=strSemana3%></th>									
-				<th class="cell100 column10 text-center"><%=strSemana4%></th>
-				<th class="cell100 column10 text-center"><%=strSemana5%></th>
-				<th class="cell100 column10 text-center"><%=strSemana6%></th>
-				<th class="cell100 column10 text-center"><%=strSemana7%></th>
-				<th class="cell100 column10 text-center"><%=strSemana8%></th>
-				<th class="cell100 column10 text-center"><%=strSemana9%></th>
-				<th class="cell100 column10 text-center"><%=strSemana10%></th>
-				<th class="cell100 column10 text-center"><%=strSemana11%></th>
-				<th class="cell100 column10 text-center"><%=strSemana12%></th>
-				<th class="cell100 column10 text-center"><%=strSemana13%></th>
-				<th class="cell100 column10 text-center"><%=strSemana14%></th>
-				<th class="cell100 column10 text-center"><%=strSemana15%></th>
-			</tr>
-		</table>
+		<div class="limiter">
+			
+			<div class="container-table100">
+			
+				<div class="wrap-table100">
 								
-		<table border=0>
-				<% 
-				'26Ene2021-Todo el IF
-				if TotalFabricante = "SI" then 
-					for iPro = 0 to  ubound(gProductosTotal,2)
-						for iInd = 0 to  ubound(gIndicadores,2)
-							response.write "<tr class='row100 body'>"
-								'Fabricante
-								response.write "<td width=15% class='cell100 column1'>"
-									response.write gProductosTotal(1,iPro) 
-								response.write "</td>"
-
-								response.write "<td>"
-								response.write "</td>"
-
-								response.write "<td>"
-								response.write "</td>"
-
-								response.write "<td>"
-								response.write "</td>"
-
-								response.write "<td width=5% class='cell100 column5 text-center'>"
-									response.write "<b>"
-									'response.write gIndicadores(0,iInd) & ".-" & gIndicadores(1,iInd)
-									response.write gIndicadores(1,iInd)
-									response.write "</b>"
-								response.write "</td>"
-								response.write "<td width=5%  class='text-center'>"
-									response.write "<b>"
-									response.write gIndicadores(2,iInd)
-									response.write "</b>"
-								response.write "</td>"
-								Indicador = gIndicadores(0,iInd)
-								iFab = gProductosTotal(0,iPro)
-								iMar = gProductosTotal(2,iPro)
-								iSeg = gProductosTotal(4,iPro)
-								'response.write "<br>Ind = " & Indicador
-								idSemana = 16
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='cell100 column8 text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 17
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 18
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 19
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 20
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 21
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 22
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 23
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 24
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 25
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 26
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 27
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 28
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 29
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
-								idSemana = 30
-								TotalDias = 7
-								CalcularIndicador
-								response.write "<td width=10% class='text-right'>"
-									response.write Valor
-								response.write "</td>"
+					<div class="table100 ver1 m-b-110">
+						
+							<div class="table100-head">
+							
+								<table border=0>
+									<thead>
+										<tr class="row100 head">
+											<th class="cell100 column1 text-left">Fabricante</th>
+											<th class="cell100 column2 text-center">Marca</th>
+											<th class="cell100 column3 text-center">Segmento</th>
+											<th class="cell100 column4 text-center">Indicador</th>
+											<th class="cell100 column5 text-center">UniMed</th>
+											<th class="cell100 column6 text-center"><%=strSemana1%></th>
+											<th class="cell100 column7 text-center"><%=strSemana2%></th>									
+											<th class="cell100 column8 text-center"><%=strSemana3%></th>									
+											<th class="cell100 column9 text-center"><%=strSemana4%></th>
+											<th class="cell100 column10 text-center"><%=strSemana5%></th>
+										</tr>
+									</thead>
+								</table>
 								
-							response.write "</tr>"
-						next
-					next					
-				end if
-				if sFab = "" and sMar = "" and sRan = "" then
+							</div>
+												
+							<div class="table100-body js-pscroll">
+								<table border=0>
+									<tbody>					
+										<% 
+										'26Ene2021-Todo el IF
+										if TotalFabricante = "SI" then 
+											for iPro = 0 to  ubound(gProductosTotal,2)
+												for iInd = 0 to  ubound(gIndicadores,2)
+												
+												response.write "<tr class='row100 body'>"
+													'Fabricante
+													response.write "<td width=15% class='cell100 column1'>"
+														response.write gProductosTotal(1,iPro) 
+													response.write "</td>"
+													'Marca
+													response.write "<td width=15% class='cell100 column1'>"
+														
+													response.write "</td>"
+													'Segmento
+													response.write "<td width=15% class='cell100 column1'>"
+														
+													response.write "</td>"
+
+													response.write "</td>"
+														response.write "</td>"
+														response.write "<td width=5% class='cell100 column5 text-center'>"
+															response.write "<b>"
+															'response.write gIndicadores(0,iInd) & ".-" & gIndicadores(1,iInd)
+															response.write gIndicadores(1,iInd)
+															response.write "</b>"
+														response.write "</td>"
+														response.write "<td width=5%  class='text-center'>"
+															response.write "<b>"
+															response.write gIndicadores(2,iInd)
+															response.write "</b>"
+														response.write "</td>"
+														Indicador = gIndicadores(0,iInd)
+														iFab = gProductosTotal(0,iPro)
+														iMar = gProductosTotal(2,iPro)
+														iSeg = gProductosTotal(4,iPro)
+														'response.write "<br>Ind = " & Indicador
+														for iSem = 0 to  ubound(gSemanas,2)
+															idSemana = gSemanas(0,iSem)
+															TotalDias = 7
+															CalcularIndicador
+															response.write "<td width=10% class='cell100 column8 text-right'>"
+																response.write Valor
+															response.write "</td>"
+														next
+														ix = cint(ubound(gSemanas,2))
+														if TotalSemAcum > 0 then
+															idSemana = sSemAcum
+															TotalDias = 7 * TotalSemAcum
+															CalcularIndicador
+															response.write "<td width=10% class='cell100 column8 text-right'>"
+																response.write Valor
+															response.write "</td>"
+															ix = ix + 1
+														end if
+														iy = 4 - ix
+														if iy <> 0 then  
+															for ia = 1 to iy
+																response.write "<td width=10% class='cell100 column8 text-right'>"
+																response.write "</td>"
+															next 
+														end if
+													response.write "</tr>"
+												next
+											next					
+										end if
+										if sFab = "" and sMar = "" and sRan = "" then
+										
+										else
+										for iPro = 0 to  ubound(gProductos,2)
+											for iInd = 0 to  ubound(gIndicadores,2)
+											
+											response.write "<tr class='row100 body'>"
+												'Fabricante
+												response.write "<td width=15% class='cell100 column1'>"
+													response.write gProductos(1,iPro) 
+												response.write "</td>"
+												'Marca
+												response.write "<td width=15% class='cell100 column2 text-center'>"
+													iX = 3
+													if sMar <> "" then
+														'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
+														'else
+															response.write gProductos(iX,iPro)
+															iX = IX + 2
+														'end if
+													end if
+												response.write "</td>"
+												'Segmento
+												response.write "<td width=10% class='cell100 column3 text-center'>"
+													if sSeg <> "" then
+														'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
+														'else
+															response.write gProductos(iX,iPro)
+														'end if
+													end if
+												response.write "</td>"
+												'Rango
+												'response.write "<td width=5% class='cell100 column4 text-center'>"
+												'	if sRan <> "" then
+												'		response.write gProductos(7,iPro)
+												'	end if
+												'response.write "</td>"
+													response.write "<td width=5% class='cell100 column5 text-center'>"
+														response.write "<b>"
+														'response.write gIndicadores(0,iInd) & ".-" & gIndicadores(1,iInd)
+														response.write gIndicadores(1,iInd)
+														response.write "</b>"
+													response.write "</td>"
+													response.write "<td width=5%  class='text-center'>"
+														response.write "<b>"
+														response.write gIndicadores(2,iInd) 
+														response.write "</b>"
+													response.write "</td>"
+													Indicador = gIndicadores(0,iInd)
+													iFab = gProductos(0,iPro)
+													iX = 2
+													if sMar <> "" then
+														iMar = gProductos(iX,iPro)
+														iX = IX + 2
+													end if
+													if sSeg <> "" then
+														iSeg = gProductos(iX,iPro)
+														iX = IX + 2
+													end if
+													if sRan <> "" then
+														iRan = gProductos(iX,iPro)
+														iX = IX + 2
+													end if
+													'response.write "<br>Ind = " & Indicador
+														for iSem = 0 to  ubound(gSemanas,2)
+															idSemana = gSemanas(0,iSem)
+															TotalDias = 7
+															CalcularIndicador
+															response.write "<td width=10% class='cell100 column8 text-right'>"
+																response.write Valor
+															response.write "</td>"
+														next
+														ix = cint(ubound(gSemanas,2))
+														if TotalSemAcum > 0 then
+															idSemana = sSemAcum
+															TotalDias = 7 * TotalSemAcum
+															CalcularIndicador
+															response.write "<td width=10% class='cell100 column8 text-right'>"
+																response.write Valor
+															response.write "</td>"
+															ix = ix + 1
+														end if
+														iy = 4 - ix
+														if iy <> 0 then  
+															for ia = 1 to iy
+																response.write "<td width=10% class='cell100 column8 text-right'>"
+																response.write "</td>"
+															next 
+														end if
+														iy = 4 - ix
+														if iy <> 0 then  
+															for ia = 1 to iy
+																response.write "<td width=10% class='cell100 column8 text-right'>"
+																response.write "</td>"
+															next 
+														end if
+												response.write "</tr>"
+											next
+										next					
+										end if
+										%>
+									</tbody>
+								</table>
+							</div>
+					</div>
 				
-				else
-				for iPro = 0 to  ubound(gProductos,2)
-					for iInd = 0 to  ubound(gIndicadores,2)
-						response.write "<tr class='row100 body'>"
-							'Fabricante
-							response.write "<td width=15% class='cell100 column1'>"
-								response.write gProductos(1,iPro) 
-							response.write "</td>"
-							'Marca
-							response.write "<td width=15% class='cell100 column2 text-center'>"
-								if sMar <> "" then
-									'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
-									'else
-										response.write gProductos(3,iPro)
-									'end if
-								end if
-							response.write "</td>"
-							'Segmento
-							response.write "<td width=10% class='cell100 column3 text-center'>"
-								if sSeg <> "" then
-									'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
-									'else
-										response.write gProductos(5,iPro)
-									'end if
-								end if
-							response.write "</td>"
-							response.write "<td>"
-							response.write "</td>"
-							response.write "<td width=5% class='cell100 column5 text-center'>"
-								response.write "<b>"
-								'response.write gIndicadores(0,iInd) & ".-" & gIndicadores(1,iInd)
-								response.write gIndicadores(1,iInd)
-								response.write "</b>"
-							response.write "</td>"
-							response.write "<td width=5%  class='text-center'>"
-								response.write "<b>"
-								response.write gIndicadores(2,iInd) 
-								response.write "</b>"
-							response.write "</td>"
-							Indicador = gIndicadores(0,iInd)
-							iFab = gProductos(0,iPro)
-							if sMar <> "" then
-								iMar = gProductos(2,iPro)
-							end if
-							if sSeg <> "" then
-								iSeg = gProductos(4,iPro)
-							end if
-							if sRan <> "" then
-								iRan = gProductos(6,iPro)
-							end if
-							'response.write "<br>Ind = " & Indicador
-							idSemana = 16
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='cell100 column8 text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 17
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 18
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								'Valor = ""
-								response.write Valor
-							response.write "</td>"
-							idSemana = 19
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 20
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 21
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 22
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 23
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 24
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 25
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 26
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 27
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 28
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 29
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-							idSemana = 30
-							TotalDias = 7
-							CalcularIndicador
-							response.write "<td width=10% class='text-right'>"
-								response.write Valor
-							response.write "</td>"
-						response.write "</tr>"
-					next
-				next					
-				end if
-				%>
-		</table>
+				</div>
+				
+			</div>
+			
+		</div>
 		<%
 	end if
 	
@@ -1018,9 +980,7 @@ Sub CalcularIndicador
 				sql = sql & " PH_DataCruda "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
-				if sFab <> "" then 
-					sql = sql & " And Id_Fabricante = " & iFab 
-				end if
+				sql = sql & " And Id_Fabricante = " & iFab 
 				if sMar <> "" then 
 					sql = sql & " And Id_Marca = " & iMar 
 				end if
@@ -1031,20 +991,37 @@ Sub CalcularIndicador
 					sql = sql & " And Id_RangoTamano = " & iRan
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
+				'response.write "<br>933Paso 1" 
 			else
-				sql = ""
-				sql = sql & " SELECT "
-				sql = sql & " Tamano, "
-				sql = sql & " Cantidad "
-				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
-				sql = sql & " WHERE "
-				sql = sql & " Id_Categoria = " & sCat
-				sql = sql & " And Id_Fabricante = 0 "
-				sql = sql & " And Id_Marca = 0"
-				sql = sql & " And Id_Segmento = 0"
-				sql = sql & " And Id_RangoTamano = 0"
-				sql = sql & " And id_Semana in( " & idSemana & ")"
+				if iFab = 0 and iMar = 0 and iSeg <> 0 then
+					sql = ""
+					sql = sql & " SELECT "
+					sql = sql & " Tamano, "
+					sql = sql & " Cantidad "
+					sql = sql & " FROM "
+					sql = sql & " PH_DataCruda "
+					sql = sql & " WHERE "
+					sql = sql & " Id_Categoria = " & sCat
+					sql = sql & " And Id_Fabricante = 0 "
+					sql = sql & " And Id_Marca =  0 "
+					sql = sql & " And Id_Segmento = " & iSeg 
+					sql = sql & " And id_Semana in( " & idSemana & ")"
+				else
+					sql = ""
+					sql = sql & " SELECT "
+					sql = sql & " Tamano, "
+					sql = sql & " Cantidad "
+					sql = sql & " FROM "
+					sql = sql & " PH_DataCruda "
+					sql = sql & " WHERE "
+					sql = sql & " Id_Categoria = " & sCat
+					sql = sql & " And Id_Fabricante = 0 "
+					sql = sql & " And Id_Marca = 0"
+					sql = sql & " And Id_Segmento = 0"
+					sql = sql & " And Id_RangoTamano = 0"
+					sql = sql & " And id_Semana in( " & idSemana & ")"
+					'response.write "<br>933Paso 2" 
+				end if
 			end if
 			'response.write "<br>36 sql:=" & sql
 			'response.end

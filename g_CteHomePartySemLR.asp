@@ -7,6 +7,7 @@
 	'response.write "<br>84 LLEGO"
 	'response.end
 	dim sCat
+	dim Mostrar
 	dim sAre
 	dim sFab
 	dim sMar
@@ -25,6 +26,7 @@
 	dim TotalRan
 	dim idSemana
 	dim TotalDias
+	Mostrar = 0
 	'26Ene2021-2
 	dim TotalFabricante 
 	dim gProductosTotal
@@ -107,11 +109,14 @@
 	'strSemana1 = "(09) Del 01 Mar 2021 al 07 Mar 2021"
 	'strSemana1 = "(10) Del 08 Mar 2021 al 14 Mar 2021"
 	'strSemana1 = "(11) Del 15 Mar 2021 al 21 Mar 2021"
-	strSemana1 = "(12) Del 22 Mar 2021 al 28 Mar 2021"
-	strSemana2 = "(13) Del 29 Mar 2021 al 04 Abr 2021"
-	strSemana3 = "(14) Del 05 Abr 2021 al 11 Abr 2021"
-	strSemana4 = "(15) Del 12 Abr 2021 al 18 Abr 2021"
-	strSemana5 = "(16) Del 19 Abr 2021 al 25 Abr 2021"
+	'strSemana1 = "(12) Del 22 Mar 2021 al 28 Mar 2021"
+	'strSemana1 = "(13) Del 29 Mar 2021 al 04 Abr 2021"
+	'strSemana1 = "(14) Del 05 Abr 2021 al 11 Abr 2021"
+	strSemana1 = "(15) Del 12 Abr 2021 al 18 Abr 2021"
+	strSemana2 = "(16) Del 19 Abr 2021 al 25 Abr 2021"
+	strSemana3 = "(17) Del 26 Abr 2021 al 02 May 2021"
+	strSemana4 = "(18) Del 03 May 2021 al 09 May 2021"
+	strSemana5 = "(19) Del 10 May 2021 al 16 May 2021"
 	
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
@@ -365,6 +370,7 @@
 										<% 
 										'26Ene2021-Todo el IF
 										if TotalFabricante = "SI" then 
+											if Mostrar = 1 then response.write "<br> Paso1"
 											for iPro = 0 to  ubound(gProductosTotal,2)
 												'Response.flush
 												response.write "<tr class='row100 body'>"
@@ -397,31 +403,31 @@
 														iMar = gProductosTotal(2,iPro)
 														iSeg = gProductosTotal(4,iPro)
 														'response.write "<br>Ind = " & Indicador
-														idSemana = 27
+														idSemana = 30
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='cell100 column8 text-right'>"
 															response.write Valor
 														response.write "</td>"
-														idSemana = 28
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 29
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 30
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
 														idSemana = 31
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 32
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 33
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 34
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
@@ -432,8 +438,9 @@
 											next					
 										end if
 										if sFab = "" and sMar = "" and sRan = "" then
-										
+											if Mostrar = 1 then response.write "<br> Paso2"
 										else
+											if Mostrar = 1 then response.write "<br> Paso3"
 										for iPro = 0 to  ubound(gProductos,2)
 											'Response.flush
 											response.write "<tr class='row100 body'>"
@@ -443,10 +450,12 @@
 												response.write "</td>"
 												'Marca
 												response.write "<td width=15% class='cell100 column2 text-center'>"
+													iX = 3
 													if sMar <> "" then
 														'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
 														'else
-															response.write gProductos(3,iPro)
+															response.write gProductos(iX,iPro)
+															iX = IX + 2
 														'end if
 													end if
 												response.write "</td>"
@@ -455,7 +464,7 @@
 													if sSeg <> "" then
 														'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
 														'else
-															response.write gProductos(5,iPro)
+															response.write gProductos(iX,iPro)
 														'end if
 													end if
 												response.write "</td>"
@@ -485,42 +494,46 @@
 													response.write "</td>"
 													Indicador = gIndicadores(0,iInd)
 													iFab = gProductos(0,iPro)
+													iX = 2
 													if sMar <> "" then
-														iMar = gProductos(2,iPro)
+														iMar = gProductos(iX,iPro)
+														iX = IX + 2
 													end if
 													if sSeg <> "" then
-														iSeg = gProductos(4,iPro)
+														iSeg = gProductos(iX,iPro)
+														iX = IX + 2
 													end if
 													if sRan <> "" then
-														iRan = gProductos(6,iPro)
+														iRan = gProductos(iX,iPro)
+														iX = IX + 2
 													end if
 													'response.write "<br>Ind = " & Indicador
-													idSemana = 27
+													idSemana = 30
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='cell100 column8 text-right'>"
 														response.write Valor
 													response.write "</td>"
-													idSemana = 28
+													idSemana = 31
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
 														response.write Valor
 													response.write "</td>"
-													idSemana = 29
+													idSemana = 32
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
 														'Valor = ""
 														response.write Valor
 													response.write "</td>"
-													idSemana = 30
+													idSemana = 33
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
 														response.write Valor
 													response.write "</td>"
-													idSemana = 31
+													idSemana = 34
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"

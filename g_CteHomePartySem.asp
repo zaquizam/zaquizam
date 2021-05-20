@@ -496,10 +496,12 @@
 												response.write "</td>"
 												'Marca
 												response.write "<td width=15% class='cell100 column2 text-center'>"
+													iX = 3
 													if sMar <> "" then
 														'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
 														'else
-															response.write gProductos(3,iPro)
+															response.write gProductos(iX,iPro)
+															iX = IX + 2
 														'end if
 													end if
 												response.write "</td>"
@@ -508,7 +510,7 @@
 													if sSeg <> "" then
 														'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
 														'else
-															response.write gProductos(5,iPro)
+															response.write gProductos(iX,iPro)
 														'end if
 													end if
 												response.write "</td>"
@@ -538,14 +540,18 @@
 													response.write "</td>"
 													Indicador = gIndicadores(0,iInd)
 													iFab = gProductos(0,iPro)
+													iX = 2
 													if sMar <> "" then
-														iMar = gProductos(2,iPro)
+														iMar = gProductos(iX,iPro)
+														iX = IX + 2
 													end if
 													if sSeg <> "" then
-														iSeg = gProductos(4,iPro)
+														iSeg = gProductos(iX,iPro)
+														iX = IX + 2
 													end if
 													if sRan <> "" then
-														iRan = gProductos(6,iPro)
+														iRan = gProductos(iX,iPro)
+														iX = IX + 2
 													end if
 													'response.write "<br>Ind = " & Indicador
 														for iSem = 0 to  ubound(gSemanas,2)

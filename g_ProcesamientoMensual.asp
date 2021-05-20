@@ -21,9 +21,9 @@ Session.LCID = 8202
 	
 	ymes = replace(ymes,",","*")
 	
-	Ejecutar = "EXEC [cacevedo_atenas].[ProcesamientoMensual] @Id_Semana =N'" & ymes & "', @Id_Categoria = " & ycat
-	response.write "<br>Ejecutar ="  & Ejecutar
-	response.end
+	Ejecutar = "EXEC [cacevedo_atenas].[ProcesamientoMensual] @Semana =N'" & ymes & "', @Id_Categoria = " & ycat
+	'response.write "<br>Ejecutar ="  & Ejecutar
+	'response.end
 	Set objExec = conexion.Execute(Ejecutar)
 	Set objExec = Nothing
 	

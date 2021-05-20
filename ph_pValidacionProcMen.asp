@@ -180,9 +180,9 @@ End Sub
 		'hidden
 		'response.write "pro:=" & sPar
 		%>
-		<input type="text" name="Mes" id="Mes" value="<%=idMes%>" align="right" size=5>
-		<input type="text" name="Categoria" id="Categoria" value="<%=idCategoria%>" align="right" size=5>
-		<input type="text" name="Programa" id="Programa" value="" align="right" size=30>
+		<input type="hidden" name="Mes" id="Mes" value="<%=idMes%>" align="right" size=5>
+		<input type="hidden" name="Categoria" id="Categoria" value="<%=idCategoria%>" align="right" size=5>
+		<input type="hidden" name="Programa" id="Programa" value="" align="right" size=30>
 		</br>
 		</br>
 			<center>

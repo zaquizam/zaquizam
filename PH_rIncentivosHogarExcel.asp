@@ -2,19 +2,16 @@
 <!--#include file="conexion.asp"-->
 <%
 
+	Server.ScriptTimeout=1000
+	Response.buffer = true
   
 '==========================================================================================
 ' Variables y Constantes
 '==========================================================================================
-	dim idCantidadConsumos
-	dim idMesPago
-	dim idSemanasPago
-	dim gHogares
-	dim idArea
-	dim idEstado
-	
 	dim gDatosSol1
 	dim rsx1
+	dim gHogares
+	
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
 	rsx1.LockType = 2 'adLockOptimistic 
@@ -24,6 +21,99 @@
 	set rsx2 = CreateObject("ADODB.Recordset")
 	rsx2.CursorType = adOpenKeyset 
 	rsx2.LockType = 2 'adLockOptimistic 
+
+	idMesPago = Request.QueryString("mes") 
+	idCantidadConsumos = Request.QueryString("can")  
+	idArea = Request.QueryString("are")  
+	idEstado = Request.QueryString("est")  
+	
+
+Sub Combos
+ 
+	'response.write "<br>372 Combo1:=" & ed_sPar(1,0)
+	'response.write " Combo2:=" & ed_sPar(2,0)
+	'response.write " Combo3:=" & ed_sPar(3,0)
+	'response.write " Combo4:=" & ed_sPar(4,0)
+	'response.write " Combo3:=" & ed_sPar(5,0)
+	'response.end 
+    
+	ed_iCombo = 2
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " Id, "
+	sql = sql & " Periodo "
+	sql = sql & " FROM "
+	sql = sql & " ss_Periodo "
+	sql = sql & " WHERE "
+	sql = sql & " IdAno = 2021 "
+	sql = sql & " AND IdMes = 4 "
+	'response.write "<br>372 Combo1:=" & sql
+    ed_sCombo(1,0)="Mes"
+    ed_sCombo(1,1)=sql 
+    ed_sCombo(1,2)="Seleccionar"
+
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " Id_Cantidad, "
+	sql = sql & " Cantidad "
+	sql = sql & " FROM "
+	sql = sql & " ss_Cantidad "
+	sql = sql & " WHERE "
+	sql = sql & " Id_Cantidad < 5 "
+	'response.write "<br>372 Combo1:=" & sql
+    ed_sCombo(2,0)="Cantidad Semanas"
+    ed_sCombo(2,1)=sql 
+    ed_sCombo(2,2)="Seleccionar"
+
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " Id_Area, "
+	sql = sql & " Area "
+	sql = sql & " FROM PH_GArea "
+	sql = sql & " Order By "
+	sql = sql & " Id_Area "
+	'response.write "<br>372 Combo1:=" & sql
+    ed_sCombo(3,0)="Area"
+    ed_sCombo(3,1)=sql 
+    ed_sCombo(3,2)="Seleccionar"
+
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " PH_GAreaEstado.Id_Estado, "
+	sql = sql & " ss_Estado.Estado "
+	sql = sql & " FROM PH_GAreaEstado INNER JOIN ss_Estado ON PH_GAreaEstado.Id_Estado = ss_Estado.Id_Estado "
+	if ed_sPar(3,0) <> "" and ed_sPar(3,0) <> "Seleccionar" then
+		sql = sql & " WHERE PH_GAreaEstado.Id_Area = " & ed_sPar(3,0)
+	end if
+	sql = sql & " Order By "
+	sql = sql & " ss_Estado.Estado "
+	'response.write "<br>372 Combo2:=" & sql
+    ed_sCombo(4,0)="Estado"
+    ed_sCombo(4,1)=sql 
+    ed_sCombo(4,2)="Seleccionar"
+
+	
+End Sub
+
+sub BuscarSemanas
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " Semanas "
+	sql = sql & " FROM "
+	sql = sql & " ss_Periodo "
+	sql = sql & " WHERE "
+	sql = sql & " Id = " & idMesPago
+	'response.write "<br>232 sql:= " & sql
+	'response.end
+	rsx2.Open sql ,conexion
+	if rsx2.eof then
+		rsx2.close
+	else 
+		gDatosSol2 = rsx2.GetRows
+		rsx2.close
+		idSemanasPago = gDatosSol2(0,0)
+	end if
+end sub	
 
 sub BuscarHogares
 	'if idArea = "" then exit sub
@@ -44,8 +134,6 @@ sub BuscarHogares
 	sql = sql & " WHERE "
 	sql = sql & " PH_PanelHogar.Ind_Activo = 1 "
 	sql = sql & " AND PH_Panelistas.ResponsablePanel = 1 "
-	sql = sql & " and PH_GArea.id_Area = "  & idArea
-	sql = sql & " and ss_Estado.id_Estado = " & idEstado
 	'sql = sql & " and PH_PanelHogar.Id_PanelHogar = 706 "
 	sql = sql & " Order by "
 	sql = sql & " PH_GArea.Area, "
@@ -53,7 +141,7 @@ sub BuscarHogares
 	'response.write "<br>232 sql:= " & sql
 	'response.end
 	rsx2.Open sql ,conexion
-	if rsx2.eof then 
+	if rsx2.eof then
 		rsx2.close
 	else 
 		gHogares = rsx2.GetRows
@@ -64,68 +152,91 @@ sub BuscarHogares
 
 end sub
    
+    'LeePar
+	'Combos
+	
   
-	idMesPago = Request.QueryString("mes") 
-	idCantidadConsumos = Request.QueryString("can")  
-	idArea = Request.QueryString("are")  
-	idEstado = Request.QueryString("est")  
+	' if ed_sPar(1,0) = "Seleccionar" then
+		' idMesPago = 0 
+	' else
+		' idMesPago = ed_sPar(1,0)
+	' end if
+	' if ed_sPar(2,0) = "Seleccionar" then
+		' idCantidadConsumos = 0 
+	' else
+		' idCantidadConsumos = ed_sPar(2,0)
+	' end if
 
+	' if ed_sPar(3,0) = "Seleccionar" then
+		' idArea = 0 
+	' else
+		' idArea = ed_sPar(3,0)
+	' end if
+
+	' if ed_sPar(4,0) = "Seleccionar" or ed_sPar(4,0) = "" then
+		' idEstado = 0 
+	' else
+		' idEstado = ed_sPar(4,0)
+	' end if
+    
+
+	'sExcel = "mes=" & idMesPago & "&can=" & idCantidadConsumos & "&are=" & idArea & "&est=" & idEstado
     
 %>
 		
 	<%
+	'hidden
 	
-	%>
-	<%
+	'response.write "<br> Combo1:=" & ed_sPar(1,0) & "==>" & idMesPago
+	'response.write "<br> Combo2:=" & ed_sPar(2,0) & "==>" & idCantidadConsumos
+	'response.write "<br> Combo3:=" & ed_sPar(3,0) & "==>" & idArea
+	'response.write "llego1"
 	if idMesPago = "" then idMesPago = 0
 	if idCantidadConsumos = "" then idCantidadConsumos = 0
 	if idArea = "" then idArea = 0 
+	'response.end
+	'hidden 
 	Response.AddHeader "Content-disposition","attachment; filename=tem.xls"
 	Response.ContentType = "application/vnd.ms-excel"
-	
 
-	'response.write "<br>LLEGO"
 	'response.end
-	if cint(idMesPago) <> 0 and cint(idCantidadConsumos) <> 0 and cint(idArea) <> 0 then
+	'if cint(idMesPago) <> 0 and cint(idCantidadConsumos) <> 0 and cint(idArea) <> 0  and cint(idEstado) <> 0 then
+	'if cint(idMesPago) <> 0 and cint(idCantidadConsumos) <> 0 then
 		'BuscarSemanas
 		BuscarHogares
 		'response.write "<br>140 Semanas:= " & idSemanasPago
+		'response.end
 		%>
 		<table>
-			<thead>
-				<tr class="w3-blue">
-					<th>idHogar</th>
-					<th>Hogar</th>
-					<th>Area</th>
-					<th>Estado</th>
-					<th>Nombre Panelista</th>
-					<th>Apellido Panelista</th>
-					<th>Nombre y Apellido Titular</th>
-					<th>Cedula</th>
-					<th>Banco</th>
-					<th>Banco Codigo</th>
-					<th>Cuenta</th>
-					<th>(09) Del 01 Mar 2021 al 07 Mar 2021</th>
-					<th>(10) Del 08 Mar 2021 al 14 Mar 2021</th>
-					<th>(11) Del 15 Mar 2021 al 21 Mar 2021</th>
-					<th>(12) Del 22 Mar 2021 al 28 Mar 2021</th>
-					<th>(13) Del 29 Mar 2021 al 04 Abr 2021</th>
-					<th>Prueba de producto - Limpieza de manos</th>
-					<th>Cuidado Personal</th>
-					<th>Pagar Incentivo</th>
-					<th>Pagar Encuesta1</th>
-					<th>Pagar Encuesta2</th>
-				</tr>
-			</thead>
+			<tr>
+				<td>idHogar</td>
+				<td>Hogar</td>
+				<td>Area</td>
+				<td>Estado</td>
+				<td>Nombre Panelista</td>
+				<td>Apellido Panelista</td>
+				<td>Nombre y Apellido Titular</td>
+				<td>Cedula</td>
+				<td>Banco</td>
+				<td>Banco Codigo</td>
+				<td>Cuenta</td>
+				<td>(14) Del 05 Abr 2021 al 11 Abr 2021</td>
+				<td>(15) Del 12 Abr 2021 al 18 Abr 2021</td>
+				<td>(16) Del 19 Abr 2021 al 25 Abr 2021</td>
+				<td>(17) Del 26 Abr 2021 al 02 May 2021</td>
+				<td>Pagar Incentivo</td>
+			</tr>
 			<%
+			'response.end
 			for iHog = 0 to ubound(gHogares,2)
 				idHogar = gHogares(0,iHog)
+				
 				sql = ""
 				sql = sql & " SELECT "
 				sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 				sql = sql & " FROM PH_Consumo "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 24 "
+				sql = sql & " PH_Consumo.Id_Semana = 29 "
 				sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 				sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 				'response.write "<br>232 sql:= " & sql
@@ -144,7 +255,7 @@ end sub
 				sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 				sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 24 "
+				sql = sql & " PH_Consumo.Id_Semana = 29 "
 				sql = sql & " GROUP BY "
 				sql = sql & " PH_Consumo.Id_Hogar, "
 				sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -168,7 +279,7 @@ end sub
 				sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 				sql = sql & " FROM PH_Consumo "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 25 "
+				sql = sql & " PH_Consumo.Id_Semana = 30 "
 				sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 				sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 				'response.write "<br>232 sql:= " & sql
@@ -187,7 +298,7 @@ end sub
 				sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 				sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 25 "
+				sql = sql & " PH_Consumo.Id_Semana = 30 "
 				sql = sql & " GROUP BY "
 				sql = sql & " PH_Consumo.Id_Hogar, "
 				sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -212,7 +323,7 @@ end sub
 				sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 				sql = sql & " FROM PH_Consumo "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 26 "
+				sql = sql & " PH_Consumo.Id_Semana = 31 "
 				sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 				sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 				'response.write "<br>232 sql:= " & sql
@@ -231,7 +342,7 @@ end sub
 				sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 				sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 26 "
+				sql = sql & " PH_Consumo.Id_Semana = 31 "
 				sql = sql & " GROUP BY "
 				sql = sql & " PH_Consumo.Id_Hogar, "
 				sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -255,7 +366,7 @@ end sub
 				sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 				sql = sql & " FROM PH_Consumo "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 27 "
+				sql = sql & " PH_Consumo.Id_Semana = 32 "
 				sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 				sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 				'response.write "<br>232 sql:= " & sql
@@ -274,7 +385,7 @@ end sub
 				sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 				sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 27 "
+				sql = sql & " PH_Consumo.Id_Semana = 32 "
 				sql = sql & " GROUP BY "
 				sql = sql & " PH_Consumo.Id_Hogar, "
 				sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -293,103 +404,17 @@ end sub
 					iSemana4Reg = gDatosSol1(0,0)  
 				end if
 
-				sql = ""
-				sql = sql & " SELECT "
-				sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
-				sql = sql & " FROM PH_Consumo "
-				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 28 "
-				sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
-				sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
-				'response.write "<br>232 sql:= " & sql
-				'response.end
-				rsx2.Open sql ,conexion
-				if rsx2.eof then
-					rsx2.close
-					iSemana5 = 0
-				else 
-					gDatosSol1 = rsx2.GetRows
-					rsx2.close
-					iSemana5 = gDatosSol1(0,0)  
-				end if
-				sql = ""
-				sql = sql & " SELECT "
-				sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
-				sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
-				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 28 "
-				sql = sql & " GROUP BY "
-				sql = sql & " PH_Consumo.Id_Hogar, "
-				sql = sql & " PH_Consumo.id_TipoConsumo "
-				sql = sql & " HAVING "
-				sql = sql & " PH_Consumo.Id_Hogar = " & idHogar 
-				sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
-				'response.write "<br>232 sql:= " & sql
-				'response.end
-				rsx2.Open sql ,conexion
-				if rsx2.eof then
-					rsx2.close
-					iSemana5Reg = 0
-				else 
-					gDatosSol1 = rsx2.GetRows
-					rsx2.close
-					iSemana5Reg = gDatosSol1(0,0)  
-				end if
-
-				sql = ""
-				sql = sql & " SELECT "
-				sql = sql & " Id_EncuestaEspecial, "
-				sql = sql & " Id_Hogar, "
-				sql = sql & " Ind_Realizada "
-				sql = sql & " FROM PH_EncuestaHogar "
-				sql = sql & " WHERE "
-				sql = sql & " Id_EncuestaEspecial = 29 "
-				sql = sql & " and Id_Hogar = " & idHogar
-				sql = sql & " AND Ind_Realizada =  1 "
-				'response.write "<br>232 sql:= " & sql
-				'response.end
-				rsx2.Open sql ,conexion
-				if rsx2.eof then
-					rsx2.close
-					iEncuesta1 = 0
-				else 
-					gDatosSol1 = rsx2.GetRows
-					rsx2.close
-					iEncuesta1 = 1
-				end if
-
-				sql = ""
-				sql = sql & " SELECT "
-				sql = sql & " Id_EncuestaEspecial, "
-				sql = sql & " Id_Hogar, "
-				sql = sql & " Ind_Realizada "
-				sql = sql & " FROM PH_EncuestaHogar "
-				sql = sql & " WHERE "
-				sql = sql & " Id_EncuestaEspecial = 33 "
-				sql = sql & " and Id_Hogar = " & idHogar
-				sql = sql & " AND Ind_Realizada =  1 "
-				'response.write "<br>232 sql:= " & sql
-				'response.end
-				rsx2.Open sql ,conexion
-				if rsx2.eof then
-					rsx2.close
-					iEncuesta2 = 0
-				else 
-					gDatosSol1 = rsx2.GetRows
-					rsx2.close
-					iEncuesta2 = 1
-				end if
-
 				iSemana = 0
 				if iSemana1 > 0 then iSemana = iSemana + 1
 				if iSemana2 > 0 then iSemana = iSemana + 1
 				if iSemana3 > 0 then iSemana = iSemana + 1
 				if iSemana4 > 0 then iSemana = iSemana + 1
-				if iSemana5 > 0 then iSemana = iSemana + 1
 				
 				if cint(iSemana) >= cint(idCantidadConsumos)  or iEncuesta1 = 1 or  iEncuesta2 = 1 then
 					response.write "<tr>"
+
 						Response.flush
+						'response.write "<td>(" & iHog & ")" & gHogares(0,iHog) & "</td>"
 						response.write "<td>" & gHogares(0,iHog) & "</td>"
 						response.write "<td>" & gHogares(1,iHog) & "</td>"
 						response.write "<td>" & gHogares(2,iHog) & "</td>"
@@ -411,41 +436,26 @@ end sub
 						response.write "<td>V" & Cedula & "</td>"
 						response.write "<td>" & gHogares(8,iHog) & "</td>"
 						response.write "<td>" & gHogares(9,iHog) & "</td>"
-						response.write "<td>'" & gHogares(10,iHog) & "</td>"
+						response.write "<td>" & gHogares(10,iHog) & "</td>"
 						
-						response.write "<td>'" & iSemana1 & "-" & iSemana1Reg & "</td>"
-						response.write "<td>'" & iSemana2 & "-" & iSemana2Reg &"</td>"
-						response.write "<td>'" & iSemana3 & "-" & iSemana3Reg &"</td>"
-						response.write "<td>'" & iSemana4 & "-" & iSemana4Reg &"</td>"
-						response.write "<td>'" & iSemana5 & "-" & iSemana5Reg &"</td>"
-						response.write "<td>" & iEncuesta1 & "</td>"
-						response.write "<td>" & iEncuesta2 & "</td>"
+						response.write "<td>" & iSemana1 & "-" & iSemana1Reg & "</td>"
+						response.write "<td>" & iSemana2 & "-" & iSemana2Reg &"</td>"
+						response.write "<td>" & iSemana3 & "-" & iSemana3Reg &"</td>"
+						response.write "<td>" & iSemana4 & "-" & iSemana4Reg &"</td>"
 						
 						if cint(iSemana) >= cint(idCantidadConsumos) then
 							response.write "<td>Si</td>"
 						else
 							response.write "<td>No</td>"
 						end if
-						
-						if iEncuesta1 = 1 then
-							response.write "<td>Si</td>"
-						else
-							response.write "<td>No</td>"
-						end if
-						if iEncuesta2 = 1 then
-							response.write "<td>Si</td>"
-						else
-							response.write "<td>No</td>"
-						end if
 					response.write "</tr>"
-					
 				end if
 			next 
 			
 			%>
 		</table>
 		<%
-	end if
+	'end if
 
 
 	conexion.close

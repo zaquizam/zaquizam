@@ -31,6 +31,8 @@ if not isnull(Session("linkjvg") ) then sLinkCli = Session("linkjvg") & "?edpas=
 			sLogo = "Sindoni.png"
 		case 7
 			sLogo = "Genica.png"
+		case 8
+			sLogo = "dimassilogo.png"
 		case 9
 			sLogo = "Cargill.jpg"
 		case 10
@@ -47,10 +49,19 @@ if not isnull(Session("linkjvg") ) then sLinkCli = Session("linkjvg") & "?edpas=
 			sLogo = "Colgate-Palmolive.png"
 		case 17
 			sLogo = "Nestle.jpg"
-		case 20
+		case 19
+			sLogo = "logoBaron.jpg"
+		case 20	
 			sLogo = "centralelpalmar.png"
 		case 21
 			sLogo = "eltunal.jpg"
+		case 24
+			sLogo = "Heinz-logo.png"
+		case 27
+			sLogo = "Pharsana.png"
+		case 23
+			sLogo = "LogoBotalon.png"
+			
 			
 	end select 
 	

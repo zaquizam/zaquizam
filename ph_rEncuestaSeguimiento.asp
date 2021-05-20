@@ -210,6 +210,7 @@ End Sub
 							<th>Rechazadas</th>
 							<th>Pendientes</th>
 							<th>% de Cumplimiento</th>
+							<!--<th>Cifras</th>-->
 						</tr>
 					</thead>
 					<% 
@@ -293,8 +294,8 @@ End Sub
 						sql = sql & " WHERE "
 						sql = sql & " PH_EncuestaHogar.Id_EncuestaEspecial = " & Encuesta  
 						sql = sql & " AND PH_PanelHogar.Ind_Activo = 1 "
-						sql = sql & " AND PH_EncuestaHogar.Ind_Rechazada = 0 "
-						sql = sql & " AND PH_EncuestaHogar.Ind_Realizada = 0 "
+						'sql = sql & " AND PH_EncuestaHogar.Ind_Rechazada = 0 "
+						'sql = sql & " AND PH_EncuestaHogar.Ind_Realizada = 0 "
 						sql = sql & " GROUP BY "
 						sql = sql & " ss_Estado.Estado, "
 						sql = sql & " ss_Estado.Id_Estado "
@@ -364,12 +365,41 @@ End Sub
 									Rechazadas = gDatosSol3(0,0)
 								end if
 								'Pendientes
-								Response.write "<td>" & gDatosSol1(1,iReg) & "</td>"
-								Pendientes = cint(gDatosSol1(1,iReg))
+								sql = ""
+								sql = sql & " SELECT "
+								sql = sql & " Count(PH_EncuestaHogar.Id_EncuestaHogar) AS CuentaDeId_EncuestaHogar "
+								sql = sql & " FROM (PH_EncuestaHogar INNER JOIN PH_PanelHogar ON PH_EncuestaHogar.Id_Hogar = PH_PanelHogar.Id_PanelHogar) INNER JOIN ss_Estado ON PH_PanelHogar.Id_Estado = ss_Estado.Id_Estado "
+								sql = sql & " WHERE "
+								sql = sql & " PH_EncuestaHogar.Id_EncuestaEspecial = " & Encuesta
+								sql = sql & " AND PH_PanelHogar.Ind_Activo = 1 "
+								sql = sql & " AND ss_Estado.Estado = '" & Estado & "'" 
+								sql = sql & " AND PH_EncuestaHogar.Ind_Rechazada = 0 "
+								sql = sql & " AND PH_EncuestaHogar.Ind_Realizada= 0 "
+								'response.write "<br>36 sql:=" & sql
+								'response.end
+								rsx3.Open sql ,conexion
+								if rsx3.eof then
+									rsx3.close
+									'Response.write "<td></td>"
+									Pendientes = 0
+								else
+									gDatosSol4 = rsx3.GetRows
+									rsx3.close
+									Pendientes = cint(gDatosSol4(0,0))
+								end if
+								'Response.write "<td>" & gDatosSol1(1,iReg) & "</td>"
+								Response.write "<td>" & Pendientes & "</td>"
+								'Pendientes = cint(gDatosSol1(1,iReg))
 								Total = Pendientes + Realizadas + Rechazadas
 								Cumplimiento = (Realizadas * 100) / Total
 								'Cumplimiento = (Realizadas / Pendientes) * 100
 								Response.write "<td>" & formatnumber(Cumplimiento) & "</td>"
+								'Response.write "<td>"
+								'Response.write "Pendientes:" & Pendientes
+								'Response.write "Realizadas:" & Realizadas
+								'Response.write "Rechazadas:" & Rechazadas
+								'Response.write "</td>"
+								
 							Response.write "</tr>"
 						next
 					
@@ -442,7 +472,7 @@ End Sub
 			</div>
 			<%
 		end if
-
+		'response.end
 		'********Hogares Faltantes
 		sql = ""
 		sql = sql & " SELECT "

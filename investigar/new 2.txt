@@ -1,0 +1,11 @@
+
+	SELECT
+	(CASE DATENAME(dw,fecha_creacion) when 'Monday' then 'LUN' when 'Tuesday' then 'MAR' when 'Wednesday' then 'MIE' when 'Thursday' then 'JUE' when 'Friday' then 'VIE' when 'Saturday' then 'SAB' when 'Sunday' then 'DOM' END) AS DIA,
+	PH_Consumo.fecha_creacion, 
+	FORMAT (PH_Consumo.fecha_creacion, 'dd-MM-yyyy ') AS FECHA,
+	Count(PH_Consumo.Fecha_Creacion) AS TOTAL_ROWS
+	FROM
+	PH_Consumo
+	WHERE	
+	PH_Consumo.id_Consumo = "  & idConsumo
+	

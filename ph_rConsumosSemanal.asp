@@ -111,7 +111,7 @@ Sub Semanas
 	'Tipos de Consumo 
 	sql = ""
 	sql = sql & " SELECT "
-	sql = sql & " Top 4 "
+	sql = sql & " Top 6 "
 	sql = sql & " IdSemana, "
 	sql = sql & " Semana "
 	sql = sql & " FROM "
@@ -321,7 +321,7 @@ End Sub
 							response.write "<td>" & gTipoConsumo(1,0) & "</td>"
 							
 							
-							for iReg3 = 0 to 3
+							for iReg3 = 0 to 5
 								idSemana = gSemanas(0,iReg3)
 								'response.write "<br>Semana:= " & idSemana
 								'Consumos

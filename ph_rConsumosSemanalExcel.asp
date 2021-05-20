@@ -33,7 +33,7 @@
 	'Semana 
 	sql = ""
 	sql = sql & " SELECT "
-	sql = sql & " Top 4 "
+	sql = sql & " Top 6 "
 	sql = sql & " IdSemana, "
 	sql = sql & " Semana "
 	sql = sql & " FROM "
@@ -147,7 +147,7 @@
 										response.write "<td></td>"
 									end if
 									response.write "<td>" & gTipoConsumo(1,iReg2) & "</td>"
-									for iReg3 = 0 to 3
+									for iReg3 = 0 to 5
 										idSemana = gSemanas(0,iReg3)
 										'response.write "<br>Semana:= " & idSemana
 										'Consumos

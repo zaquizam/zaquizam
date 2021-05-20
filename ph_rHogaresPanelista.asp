@@ -48,7 +48,7 @@ Sub ParDat
 	ed_Bot(2)="disabled"
 	ed_Bot(4)="disabled"
 	'ed_Bot(1)="disabled"
-	ed_iNumCam		=18					' Numero de campos en la pantalla principal
+	ed_iNumCam		=25					' Numero de campos en la pantalla principal
 	ed_iRegPag		=25					' Numero de registros por pagina
 	
 	ed_sNomTab		="PH_Panelistas"
@@ -75,6 +75,8 @@ Sub ParDat
 	sqlcla = sqlcla & " PH_Parentesco.Parentesco, "
 	sqlcla = sqlcla & " PH_Panelistas.Titular, "
 	sqlcla = sqlcla & " PH_Panelistas.CedulaTitular, "
+	sqlcla = sqlcla & " PH_Panelistas.id_sexo, "
+	sqlcla = sqlcla & " PH_Panelistas.Fec_Nacimiento, "
 	sqlcla = sqlcla & " PH_Banco.Banco, "
 	sqlcla = sqlcla & " PH_Panelistas.NumeroCuenta, "
 	sqlcla = sqlcla & " PH_PanelHogar.Id_Mascotas, "
@@ -85,6 +87,7 @@ Sub ParDat
 	sqlcla = sqlcla & " PH_PanelHogar.Ind_Ave, "
 	sqlcla = sqlcla & " PH_PanelHogar.Ind_Roedor, "
 	sqlcla = sqlcla & " PH_PanelHogar.Ind_Otro, " 
+	sqlcla = sqlcla & " PH_PanelHogar.ClaseSocial, " 
 	sqlcla = sqlcla & " PH_PanelHogar.IP, "
 	sqlcla = sqlcla & " PH_PanelHogar.USR, "
 	sqlcla = sqlcla & " PH_PanelHogar.Fec_Ult_Mod, "
@@ -158,8 +161,10 @@ Sub ParDat
 	'ed_sQue(16,0)=  " SELECT Id_TipoIngreso, TipoIngreso FROM  PH_TipoIngreso "
 	'ed_sQue(22,0)=  " SELECT Id_Profesion, Profesion FROM  PH_Profesion "
 	'ed_sQue(25,0)=  " SELECT Id_Banco, Banco FROM  PH_Banco "
-	ed_sQue(14,0)=  " SELECT id_SiNo, SiNo FROM  PH_SiNo "
+	ed_sQue(16,0)=  " SELECT id_SiNo, SiNo FROM  PH_SiNo "	
+	'ed_sQue(12,0)=  " SELECT id_SiNo, SiNo FROM  PH_SiNo "
 	'ed_sQue(29,0)=  " SELECT id_FrecuenciaCompra, FrecuenciaCompra FROM  PH_FrecuenciaCompra "
+	ed_sQue(12,0)=  " SELECT Id_SEXO, Sexo FROM  PH_Sexo "
 	
 	ed_Formato(00,0)="w3-col l1  w3-left w3-padding "
 	'ed_Formato(01,0)="w3-col l3  w3-left w3-padding "

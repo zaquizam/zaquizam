@@ -70,7 +70,7 @@ Sub Combos
 	'response.write " Combo3:=" & ed_sPar(5,0)
 	'response.end 
     
-	ed_iCombo = 4
+	ed_iCombo = 2
 	sql = ""
 	sql = sql & " SELECT "
 	sql = sql & " Id, "
@@ -279,7 +279,6 @@ end sub
 		BuscarHogares
 		'response.write "<br>140 Semanas:= " & idSemanasPago
 		%>
-		OJO = AUN SE ESTA VERIFICANDO LAS CIFRAS
 		<div id="DivBuscarInformación">
 			<div class="ex1">
 				<table class="w3-table w3-striped w3-bordered w3-card-4 w3-small" style=" margin-left:auto; margin-right:auto;margin-top:10px ">
@@ -489,7 +488,8 @@ end sub
 							response.write "<tr>"
 
 								Response.flush
-								response.write "<td>(" & iHog & ")" & gHogares(0,iHog) & "</td>"
+								'response.write "<td>(" & iHog & ")" & gHogares(0,iHog) & "</td>"
+								response.write "<td>" & gHogares(0,iHog) & "</td>"
 								response.write "<td>" & gHogares(1,iHog) & "</td>"
 								response.write "<td>" & gHogares(2,iHog) & "</td>"
 								response.write "<td>" & gHogares(3,iHog) & "</td>"
