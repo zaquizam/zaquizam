@@ -160,7 +160,7 @@
 	'if idCliente = 10 then
 	
 	'Categorias Trimestrales Feb-Mar-Abr 2021
-	if (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 8) or (sCat = 14) or (sCat = 19) or (sCat = 38)  then 
+	if (sCat = 12 and idCliente = 21) or (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 8) or (sCat = 14) or (sCat = 19) or (sCat = 38) or (sCat = 41) then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,0)
@@ -207,7 +207,7 @@
 	if sInd <> "" then
 		sql = sql & " And Id_Indicador in (" & sInd & ")"
 	end if
-	if cint(sCat) = 56  or cint(sCat) = 42 or cint(sCat) = 28 or cint(sCat) = 42 or cint(sCat) = 40 or cint(sCat) = 19 or cint(sCat) = 41 then
+	if cint(sCat) = 29 or cint(sCat) = 56  or cint(sCat) = 42 or cint(sCat) = 28 or cint(sCat) = 42 or cint(sCat) = 40 or cint(sCat) = 19 or cint(sCat) = 41 or cint(sCat) = 18 then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32) "
 	end if
 	sql = sql & " ORDER BY "
@@ -2658,7 +2658,7 @@
 												sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
 												sql = sql & " PH_DataCrudaMensual.Tamano "
 												sql = sql & " HAVING "
-												sql = sql & " PH_DataCrudaMensual.Id_Area = 0 "
+												sql = sql & " PH_DataCrudaMensual.Id_Area  in (" & sAre & ")"
 												sql = sql & " AND PH_DataCrudaMensual.Id_Fabricante in (" & sFab & ")"
 												sql = sql & " AND PH_DataCrudaMensual.Id_Marca in (" & sMar & ")"
 												sql = sql & " AND PH_DataCrudaMensual.Id_Segmento in (" & sSeg & ")"
@@ -2717,7 +2717,7 @@
 														response.write "</td>"
 														Indicador = gIndicadores(0,iInd)
 														sAre = ""
-														iAre = 0
+														iAre = gProductos(0,iPro)
 														iFab = gProductos(2,iPro)
 														iMar = gProductos(4,iPro)
 														iSeg = gProductos(6,iPro)
@@ -4358,7 +4358,7 @@ Sub CalcularIndicador
 				Valor = FormatNumber(Valor,2)
 			end if
 
-		Case 13 'CiCloComp
+		Case 13 'CicloCompra
 			sql = ""
 			sql = sql & " SELECT "
 			sql = sql & " Cantidad, "
@@ -5251,7 +5251,9 @@ Sub CalcularIndicador
 			sql = sql & " PH_DataCrudaMensual "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
-			sql = sql & " and Id_Area = 0" '& iAre
+			'20May2021
+			'sql = sql & " and Id_Area = 0" '& iAre
+			sql = sql & " and Id_Area = " & iAre
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0"
 			sql = sql & " And Id_Segmento = 0"
@@ -5388,7 +5390,9 @@ Sub CalcularIndicador
 			sql = sql & " PH_DataCrudaMensual "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
-			sql = sql & " and Id_Area = 0 " '& iAre
+			'20May2021
+			'sql = sql & " and Id_Area = 0" '& iAre
+			sql = sql & " and Id_Area = " & iAre
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0 "
 			sql = sql & " And Id_Segmento = 0 "
@@ -5519,7 +5523,9 @@ Sub CalcularIndicador
 			sql = sql & " PH_DataCrudaMensual "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
-			sql = sql & " and Id_Area = 0 " '& iAre
+			'20May2021
+			'sql = sql & " and Id_Area = 0" '& iAre
+			sql = sql & " and Id_Area = " & iAre
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0 "
 			sql = sql & " And Id_Segmento = 0 "

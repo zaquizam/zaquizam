@@ -2623,7 +2623,7 @@
 												sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
 												sql = sql & " PH_DataCrudaMensual.Tamano "
 												sql = sql & " HAVING "
-												sql = sql & " PH_DataCrudaMensual.Id_Area = 0 "
+												sql = sql & " PH_DataCrudaMensual.Id_Area  in (" & sAre & ")"
 												sql = sql & " AND PH_DataCrudaMensual.Id_Fabricante in (" & sFab & ")"
 												sql = sql & " AND PH_DataCrudaMensual.Id_Marca in (" & sMar & ")"
 												sql = sql & " AND PH_DataCrudaMensual.Id_Segmento in (" & sSeg & ")"
@@ -2683,7 +2683,7 @@
 														response.write "</td>"
 														Indicador = gIndicadores(0,iInd)
 														sAre = ""
-														iAre = 0
+														iAre = gProductos(0,iPro)
 														iFab = gProductos(2,iPro)
 														iMar = gProductos(4,iPro)
 														iSeg = gProductos(6,iPro)
@@ -5212,7 +5212,9 @@ Sub CalcularIndicador
 			sql = sql & " PH_DataCrudaMensual "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
-			sql = sql & " and Id_Area = 0" '& iAre
+			'20May2021
+			'sql = sql & " and Id_Area = 0" '& iAre
+			sql = sql & " and Id_Area = " & iAre
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0"
 			sql = sql & " And Id_Segmento = 0"
@@ -5349,7 +5351,9 @@ Sub CalcularIndicador
 			sql = sql & " PH_DataCrudaMensual "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
-			sql = sql & " and Id_Area = 0 " '& iAre
+			'20May2021
+			'sql = sql & " and Id_Area = 0 " '& iAre
+			sql = sql & " and Id_Area =  " & iAre
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0 "
 			sql = sql & " And Id_Segmento = 0 "
@@ -5480,7 +5484,9 @@ Sub CalcularIndicador
 			sql = sql & " PH_DataCrudaMensual "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
-			sql = sql & " and Id_Area = 0 " '& iAre
+			'20May2021
+			'sql = sql & " and Id_Area = 0 " '& iAre
+			sql = sql & " and Id_Area = " & iAre
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0 "
 			sql = sql & " And Id_Segmento = 0 "

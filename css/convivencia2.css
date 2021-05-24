@@ -1,0 +1,64 @@
+#grad1{ 
+
+    /*
+	background: rgb(243,243,243);
+    background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgba(198,198,217,1) 62%, rgba(68,202,230,1) 100%);
+	*/
+	/*background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgba(198,198,217,1) 62%, rgba(243,243,243,1) 100%);  */
+	
+	/* background-image: url(../images/fondos/fondoazul.png); */
+	/* background-repeat: no-repeat; */
+	/* /* background-size: contain; */
+	/* /* background-position: 50% 50%; */ 
+	/* max-width: 100%; */
+	/* background-size:cover; */
+	
+	background-color: #F4F6F9;
+
+}
+
+.coolBackground {
+  background-image: url("../css/versus.jpg");
+  background-size: cover;
+}
+/* centrar imagen */
+.img-center {margin:0 auto;}
+
+/* redondear select */
+.selectWrapper{
+  border-radius:36px;
+  display:inline-block;
+  overflow:hidden;
+  background:#cccccc;
+  border:1px solid #cccccc;
+}
+.selectBox{
+  width:140px;
+  height:40px;
+  border:0px;
+  outline:none;
+}
+
+.form-control {
+  border-radius: 40px !important;
+}
+.form-control[multiple] {
+  border-radius: 20px !important;
+}
+
+/* centrar imagen */
+.separa{
+	margin:0 auto;
+	padding :3px;	
+}
+
+.lb {
+	margin:0 auto;
+	padding :3px;
+    text-align: left;
+    font-Size: 14px;
+    font-weight: bold;
+    color: navy;
+    font-family: Verdana;
+	text-shadow: 2px 2px #cccccc;
+}

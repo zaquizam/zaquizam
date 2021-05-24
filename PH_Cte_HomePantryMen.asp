@@ -895,7 +895,7 @@ Sub DataCombos
 	sql = sql & " GROUP BY "
 	sql = sql & " Id_Area, "
 	sql = sql & " Area "
-	if idCliente <> 16 and idCliente <> 19 and idCliente <> 17 then
+	if idCliente <> 16 and idCliente <> 19 and idCliente <> 17 and idCliente <> 28 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Area <> 0 "
 	else
@@ -907,9 +907,10 @@ Sub DataCombos
 				sql = sql & " HAVING "
 				sql = sql & " Id_Area in(2,3)"
 			else
-				if idCliente = 17 and (cint(ed_sPar(1,0)) = 6 or cint(ed_sPar(1,0)) = 5 or cint(ed_sPar(1,0)) = 11) then 
+				if (idCliente = 17 and (cint(ed_sPar(1,0)) = 6 or cint(ed_sPar(1,0)) = 5 or cint(ed_sPar(1,0)) = 11 )) or (idCliente = 28 and (cint(ed_sPar(1,0)) = 93 )) then 
 					'sql = sql & " Id_Area in(99)"
 					iSoloNacional = 1
+					'response.write "<br>913 Solo Nacional" 
 				else
 					sql = sql & " HAVING "
 					sql = sql & " Id_Area <> 0 "
@@ -1060,7 +1061,7 @@ Sub DataCombos
 	sql = sql & " PH_Indicadores "
 	sql = sql & " WHERE "
 	sql = sql & " Ind_Men = 1 " 
-	if cint(ed_sPar(1,0)) = 56  or cint(ed_sPar(1,0)) = 42 or cint(ed_sPar(1,0)) = 28 or cint(ed_sPar(1,0)) = 42 or cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 19 or cint(ed_sPar(1,0)) = 41   then
+	if cint(ed_sPar(1,0)) = 29 or cint(ed_sPar(1,0)) = 56  or cint(ed_sPar(1,0)) = 42 or cint(ed_sPar(1,0)) = 28 or cint(ed_sPar(1,0)) = 42 or cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 19 or cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 18   then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32) "
 	end if
 	sql = sql & " ORDER BY "
