@@ -12,7 +12,7 @@
 	<link href="favicon.ico" rel="icon" type="image/x-icon">
 	<link href="css/sweetalert.css"  rel="stylesheet" type="text/css" />
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />	
-	<link href="matconvivencia/css/convivencia2.css"  rel="stylesheet" type="text/css" />			
+	<link href="css/convivencia2.css"  rel="stylesheet" type="text/css" />			
 </head>
 <body topmargin="0">
 	
@@ -38,7 +38,7 @@
 		
 			<!-- CATEGORIA A -->			
 			<div class="col-sm-5">			
-						
+				<br>			
 			  	<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Categoria</label>
 			  	<div class="col-sm-6 col-md-6 separa">
 					<select class="form-control input-sm" id="cboCategoria_A" name="cboCategoria_A" >				  		
@@ -73,13 +73,13 @@
 			
 			<!-- Imagen -->
 			<div class="col-sm-2 coolBackground">
-				
+				<br>
     		    <img src="images/versus6.png" class="img-responsive  img-center" />	
   			</div>			
 			
 			<!-- CATEGORIA B -->						
 			<div class="col-sm-5">			
-							
+				<br>			
 			  	<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Categoria</label>
 			  	<div class="col-sm-6 col-md-6 separa">
 					<select id="cboCategoria_B" class="form-control input-sm">
@@ -114,44 +114,48 @@
 	  
 		</div>
 		<!-- < / class="form-group" -->	
-	
+						
+		<div class="form-group" id="grad2">		
+			<!-- AREA -->			
+			<div class="col-sm-4">			
+				<br>			
+			  	<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Area</label>
+			  	<div class="col-sm-6 col-md-6 separa">
+					<select class="form-control input-sm" id="cboArea" name="cboArea" >				  		
+				  		<option value="0" selected disabled >-- Seleccione -- </option>
+					</select> 
+			  	</div>			  				
+			</div>
+			
+			<!-- AREA -->			
+			<div class="col-sm-4">			
+				<br>			
+			  	<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Periodo</label>
+			  	<div class="col-sm-6 col-md-6 separa">
+					<select class="form-control input-sm" id="cboPeriodo" name="cboPeriodo" >				  		
+				  		<option value="0" selected disabled >-- Seleccione -- </option>
+					</select> 
+			  	</div>			  				
+			</div>
+			
+			<!-- AREA -->			
+			<div class="col-sm-4">			
+				<br>					
+				<button id="BtnProcesar"  title="Procesar" type="submit" class="btn btn-block btn-xs btn-success" onclick="Procesar();"><i class="fas fa-check fa-2x"></i></button>
+				<button id="borrar"  title="Borrar Pantalla" type="submit" class="btn btn-block btn-xs btn-danger" onclick="Reset();"><i class="fas fa-recycle fa-2x"></i></button>				
+			</div>
+						
+			
+			
+	  
+		</div>
+		<!-- < / class="form-group" -->	
+
+
+		
 	</div>        
 	<!-- < / class="container-fluid" id="grad1" -->
-	
-	<div class="container-fluid barrabotones">		
-		<!-- AREA -->			
-		<div class="col-sm-4">						
-			<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Area</label>
-			<div class="col-sm-6 col-md-6 separa">
-				<select class="form-control input-sm" id="cboArea" name="cboArea" >				  		
-					<option value="0" selected disabled >-- Seleccione -- </option>
-				</select> 
-			</div>			  				
-		</div>
 		
-		<!-- PERIODO -->			
-		<div class="col-sm-4">									
-			<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Periodo</label>
-			<div class="col-sm-6 col-md-6 separa">
-				<select class="form-control input-sm" id="cboPeriodo" name="cboPeriodo" >				  		
-					<option value="0" selected disabled >-- Seleccione -- </option>
-				</select> 
-			</div>			  				
-		</div>
-		
-		<!-- BOTONES -->			
-		<div class="col-sm-4">			
-			<div class="col-sm-6 col-md-6 separa">
-				<button id="BtnProcesar"  title="Procesar" type="submit" class="btn btn-block btn-xs btn-success" onclick="Procesar();"><i class="fas fa-check fa-2x"></i></button>
-			</div>	
-			<div class="col-sm-6 col-md-6 separa">
-				<button id="BtnBorrar"  title="Borrar filtros" type="submit" class="btn btn-block btn-xs btn-danger" onclick="Reset();"><i class="fas fa-recycle fa-2x"></i></button>
-			</div>
-		</div>
-			
-	</div>
-	<!-- < / class="form-group" -->	
-	
 	<div class="container-fluid text-center text-primary" id="cargando" style="display:none;">
 		<br>
 		<span ><img src="images/ajax-loader8.gif"><strong>&nbsp;Espere, Procesando...!</strong></span>
@@ -197,6 +201,8 @@
 			
 	</div>
 	<!-- </ class="container-fluid" id="detallesMaestro" style="display:block;" > -->
+
+	<hr>	
 		
 	<%conexion.close%>
 	

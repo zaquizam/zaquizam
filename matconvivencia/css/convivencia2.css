@@ -32,7 +32,14 @@
 	/* max-width: 100%; */
 	/* background-size:cover; */
 	
-	background-color: #f3f8f9;
+	background-color: #1a52c6;
+}
+
+.barrabotones {
+  background-color: #DcDcDc;
+  
+  vertical-align: middle;
+  
 }
 
 /*

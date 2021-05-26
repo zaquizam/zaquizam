@@ -1,0 +1,71 @@
+	$.ajax({
+		url: "matconvivencia/llenar_cmb_convivencias.asp",
+		type: "POST",
+		cache: false,
+		async: true,
+		data:  ajax,
+		dataType: "JSON",		
+		beforeSend: function(){			
+			$("#cargando").css("display", "block");
+		}
+	})
+	/*Si la consulta se realizo con exito*/
+	.done(function(data) {
+		console.log(data);
+		debugger;
+		//				
+		let $select = $("#cboCategoria1");
+		$select.find("option").remove();
+		$select.append("<option value='0' selected disabled>-- Seleccione --</option>");
+		$.each(data, function (i, value) {				
+			$select.append("<option value=" + value.id + ">" + value.nombre + "</option>");				
+		});			
+		//
+		//$("#cboCategoria_A").find("option").clone().appendTo("#cboCategoria_B");
+		$("#cargando").css("display", "none");
+		$("#cboCategoria1").prop("disabled", false);
+		$("#cboCategoria_B").prop("disabled", false);
+		$("#cboCategoria1").focus();
+		//
+	})
+	/*Si la consulta Fallo*/
+	.fail(function() {
+		alert("Fallo - LlenarCombos()");
+	},'json');
+	
+	
+	//
+	$.ajax({
+		url: "matconvivencia/llenar_cmb_convivencias.asp",
+		type: "POST", //Use "PUT" for HTTP PUT methods
+		dataType: 'json',   
+		data:  ajax,		
+		beforeSend: function(){			
+			$("#cargando").css("display", "block");
+		}		
+	})
+	.done (function(data, textStatus, jqXHR) { 
+		alert("Success: " + data); 
+		console.log(data);
+		debugger;
+		//				
+		let $select = $("#cboCategoria1");
+		$select.find("option").remove();
+		$select.append("<option value='0' selected disabled>-- Seleccione --</option>");
+		$.each(data, function (i, value) {				
+			$select.append("<option value=" + value.id + ">" + value.nombre + "</option>");				
+		});			
+		//
+		//$("#cboCategoria_A").find("option").clone().appendTo("#cboCategoria_B");
+		$("#cargando").css("display", "none");
+		$("#cboCategoria1").prop("disabled", false);
+		$("#cboCategoria_B").prop("disabled", false);
+		$("#cboCategoria1").focus();
+		//
+	})
+	.fail (function(jqXHR, textStatus, errorThrown) { 
+		alert("Error"); 
+	})
+	.always (function(jqXHROrData, textStatus, jqXHROrErrorThrown) { 
+		alert("complete"); 
+	});

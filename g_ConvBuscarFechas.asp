@@ -68,10 +68,8 @@
 	'
 	' Cerrar conexiones
 	'
-	rsFechas.Close
-	Set rsFechas = Nothing
+	rsFechas.Close : Set rsFechas = Nothing
 	'
-	conexion.close
-	set conexion = nothing
+	conexion.close : set conexion = nothing
 	'
 %>

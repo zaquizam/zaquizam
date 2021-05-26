@@ -12,8 +12,7 @@
 	<link href="favicon.ico" rel="icon" type="image/x-icon">
 	<link href="css/sweetalert.css"  rel="stylesheet" type="text/css" />
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />	
-	<link href="css/convivencia.css"  rel="stylesheet" type="text/css" />	
-		
+	<link href="css/convivencia.css"  rel="stylesheet" type="text/css" />			
 </head>
 <body topmargin="0">
 	
