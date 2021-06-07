@@ -549,7 +549,14 @@ End Sub
 			</div>
 			<%
 		end if
-	
+		response.Write "<br>"
+		response.Write "<center>"
+		response.Write "<h1>"
+		response.Write "Ya no se esta mostrando los resultados de la encuesta por ser muy larga"
+		response.Write "</h1>"
+		response.Write "</center>"
+		response.end
+
 		dim gDatosSol11
 		'********Hogares Realizadas
 		sql = ""
@@ -607,6 +614,8 @@ End Sub
 				</div>
 			</div>
 			<br>
+			<% 
+			%>
 			<div class="ex1">
 				<table class="w3-table w3-striped w3-bordered w3-card-4 w3-small" style="width:1000px; margin-left:auto; margin-right:auto;margin-top:10px ">
 					<thead>

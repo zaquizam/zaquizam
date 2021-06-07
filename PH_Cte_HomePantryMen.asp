@@ -1061,8 +1061,14 @@ Sub DataCombos
 	sql = sql & " PH_Indicadores "
 	sql = sql & " WHERE "
 	sql = sql & " Ind_Men = 1 " 
-	if cint(ed_sPar(1,0)) = 29 or cint(ed_sPar(1,0)) = 56  or cint(ed_sPar(1,0)) = 42 or cint(ed_sPar(1,0)) = 28 or cint(ed_sPar(1,0)) = 42 or cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 19 or cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 18   then
+	if cint(ed_sPar(1,0)) = 29 or cint(ed_sPar(1,0)) = 56  or cint(ed_sPar(1,0)) = 28 or cint(ed_sPar(1,0)) = 19  then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32) "
+	end if
+	if (cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 42  or cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 18) and idCliente = 8 then
+		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
+	end if
+	if (cint(ed_sPar(1,0)) = 40 ) and idCliente = 16 then
+		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
 	end if
 	sql = sql & " ORDER BY "
 	sql = sql & " Id_Indicador "

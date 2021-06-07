@@ -53,8 +53,8 @@ Sub Combos
 	sql = sql & " Id_EncuestaEspecial, "
 	sql = sql & " EncuestaEspecial "
 	sql = sql & " FROM PH_EncuestaEspecial "
-	sql = sql & " WHERE "
-	sql = sql & " Ind_Activo = 1 "
+	'sql = sql & " WHERE "
+	'sql = sql & " Ind_Activo = 1 "
 	sql = sql & " Order By "
 	sql = sql & " EncuestaEspecial "
 	'response.write "<br>372 Combo1:=" & sql

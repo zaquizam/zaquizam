@@ -3441,6 +3441,10 @@
 												response.write "</td>"
 												'Tamaño
 												response.write "<td width=10% class='cell100 column6 text-center'>"
+													if sTam <> "" then
+														ix = ix + 2
+														response.write gProductos(ix,iPro)
+													end if
 												response.write "</td>"
 											
 												'Contador = Contador + 1
@@ -3475,6 +3479,10 @@
 													if sRan <> "" then
 														ix = ix + 2
 														iRan = gProductos(ix,iPro)
+													end if
+													if sTam <> "" then
+														ix = ix + 2
+														iTam = gProductos(ix,iPro)
 													end if
 													'response.write "<br>Ind = " & Indicador
 													for iMes = 0 to  ubound(gMeses,2) 
@@ -5318,9 +5326,9 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
+						if iAre = 0 then
 							sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
@@ -5460,9 +5468,9 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Fabricante =  0 "  
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
@@ -5588,9 +5596,9 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Fabricante =  0 "  
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 

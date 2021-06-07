@@ -134,7 +134,7 @@
 	end if
 	if idCliente = 1 then
 		iMesDes = 24253
-		iMesHas = 24256
+		iMesHas = 24257
 	end if
 	'response.write "<br>310 Semana iMesDes:= " &  iMesDes
 	'response.write "<br>310 Semana iMesHas:= " &  iMesHas
@@ -161,31 +161,52 @@
 	end if
 	'if idCliente = 10 then
 	
+	' Cat = 106 Gel Antibacterial
+	' Cat = 72 Edulcorantes
+	' Cat = 27 Ambientadores
+	' Cat = 29 Insecticidas
+	' Cat = 30 Limpiadores
+	' Cat = 31 Cuidado del Baño
+	' Cat = 73 Cloros
+	' Cat = 35 Helados
+	' Cat = 8 Sopas Deshidratadas
+	' Cat = 14  Compotas
+	' Cat = 19 Toallas Húmedas para Bebes
+	' Cat = 38 Cuidado Corporal
 	'Categorias Trimestrales Feb-Mar-Abr 2021
 	if (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 8) or (sCat = 14) or (sCat = 19) or (sCat = 38)  then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
-		redim gMeses(2,0)
+		redim gMeses(2,1)
 		gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
 		gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+		gMeses(1,1) = "Trim. Mar-Abr-May/2021"
+		gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
 		if (sCat = 27) or (sCat = 30) or (sCat = 29) or (sCat = 31) or (sCat = 73) or (sCat = 35) then 
 			erase gMeses
-			redim gMeses(2,1)
+			redim gMeses(2,2)
 			gMeses(1,0) = "Trim. Ene-Feb-Mar/2021"
 			gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28"
 			gMeses(1,1) = "Trim. Feb-Mar-Abr/2021"
 			gMeses(2,1) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+			gMeses(1,2) = "Trim. Mar-Abr-May/2021"
+			gMeses(2,2) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
 			'response.write "paso"
 			'response.end
 		end if
 	end if
+	' Cat = 6 Alim Gatos
+	' Cat = 5 Alim Perros
+	' Cat = 11 Formulas Infantiles
+	' Cat = 57 Jamon Endiablado
+	' Cat = 10 Salsa para Pastas
 	'Categorias Semestrales Ene-Feb-Mar-Abr/2021
 	if (sCat = 6) or (sCat = 5) or (sCat = 11) or (sCat = 57) or (sCat = 10) then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,0)
-		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr/2021"
-		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32"
+		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr-May/2021"
+		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
 	end if
 	'response.write "<br>pasoooo"
 	'response.end 
@@ -448,8 +469,8 @@
 								<table>
 									<thead>
 										<tr class="row100 head">
-											<th class="cell100 column1 text-left">Área</th>
-											<th class="cell100 column2 text-left">Fabricante</th>
+											<th class="cell100 column1 text-center">Área</th>
+											<th class="cell100 column2 text-center">Fabricante</th>
 											<th class="cell100 column3 text-center">Marca</th>
 											<th class="cell100 column4 text-center">Segmento</th>
 											<th class="cell100 column5 text-center">Rango Tamaño</th>
@@ -498,16 +519,17 @@
 								<table border=0>
 									<thead>
 										<tr class="row100 head">
-											<th class="cell100 column1 text-left">Área</th>
-											<th class="cell100 column2 text-left">Fabricante</th>
+											<th class="cell100 column1 text-center">Area</th>
+											<th class="cell100 column2 text-center">Fabricante</th>
 											<th class="cell100 column3 text-center">Marca</th>
 											<th class="cell100 column4 text-center">Segmento</th>
-											<th class="cell100 column5 text-center">Rango Tamaño</th>
-											<th class="cell100 column6 text-center">Tamaño</th>
+											<th class="cell100 column5 text-center">Rango Tamano</th>
+											<th class="cell100 column6 text-center">Tamano</th>
 											<th class="cell100 column7 text-center">Indicador</th>
 											<th class="cell100 column8 text-center">UniMed</th>
 											<%	
 												for iMes = 0 to  ubound(gMeses,2) 
+													'response.write "paso"
 													sx = gMeses(1,iMes) 
 													%>
 													<th class="cell100 column9 text-center"><%=sx%></th>
@@ -564,6 +586,7 @@
 													response.write "<td width=10% class='cell100 column6 text-center'>"
 
 													response.write "</td>"
+													
 
 													response.write "<td width=10% class='cell100 column7 text-center'>"
 													response.write "</td>"
@@ -859,11 +882,11 @@
 													response.write "<td width=10% class='cell100 column1'>"
 														response.write gProductosTotalNacional(1,iPro)
 													response.write "</td>"
-													
-													'Fabricante
-													response.write "<td width=10% class='cell100 column2'>"
-													response.write "</td>"
 
+													'Fabricante
+													response.write "<td width=10% class='cell100 column3 text-center'>"
+													response.write "</td>"
+													
 													'Marca
 													response.write "<td width=10% class='cell100 column3 text-center'>"
 													response.write "</td>"
@@ -3578,7 +3601,7 @@
 										
 										if sFab = "" and sMar = "" and sRan = "" and sTam = "" then
 										else
-										if iMostrar = 1 then response.write "<br>1 PasoLR5"
+										if iMostrar = 1 then response.write "<br>1 PasoLR5" ': response.write "<br>sql:="  & sql
 										icontador = 0
 										for iPro = 0 to  ubound(gProductos,2)
 											
@@ -3591,59 +3614,61 @@
 											'response.write "<br>579 Paso"
 											response.write "<tr class='row100 body'>"
 												'Area
-												response.write "<td width=10% class='cell100 column1'>"
+												response.write "<td width='8%' class='cell100 column1'>"
 													response.write gProductos(1,iPro)
 												response.write "</td>"
 												ix = 1
 												'Fabricante
-												response.write "<td width=10% class='cell100 column2'>"
+												response.write "<td width='8%' class='cell100 column2'>"
 													if sFab <> "" then
 														ix = ix + 2
 														response.write gProductos(ix,iPro)
 													end if
 												response.write "</td>"
 												'Marca
-												response.write "<td width=10% class='cell100 column3'>"
+												response.write "<td width='8%' class='cell100 column3'>"
 													if sMar <> "" then
 														ix = ix + 2
 														response.write gProductos(ix,iPro)
 													end if
 												response.write "</td>"
 												'Segmento
-												response.write "<td width=10% class='cell100 column4 text-center'>"
+												response.write "<td width='8%' class='cell100 column4 text-center'>"
 													if sSeg <> "" then
 														ix = ix + 2
 														response.write gProductos(ix,iPro)
 													end if
 												response.write "</td>"
 												'Rango
-												response.write "<td width=10% class='cell100 column5 text-center'>"
+												response.write "<td width='8%' class='cell100 column5'>"
 													if sRan <> "" then
 														ix = ix + 2
 														response.write gProductos(ix,iPro)
 													end if
 												response.write "</td>"
 												'Tamaño
-												response.write "<td width=10% class='cell100 column6 text-center'>"
+												response.write "<td width='8%' class='cell100 column6'>"
+													if sTam <> "" then
+														ix = ix + 2
+														response.write gProductos(ix,iPro)
+													end if
 												response.write "</td>"
 											response.write "</tr>"
-											response.write "<td colspan=4  class='cell100'>"
-											response.write "</td>"
 											
 											for iInd = 0 to  ubound(gIndicadores,2)
 												'Contador = Contador + 1
 												'response.write "<br>965:= " & Contador
 
 												response.write "<tr class='row100 body'>"
-													response.write "<td width=60% colspan=6 >"
+													response.write "<td  colspan=6 >"
 													response.write "</td>"
-													response.write "<td width=10% class='cell100 column7 text-center'>"
+													response.write "<td width='5%' class='cell100 column7 text-center'>"
 														response.write "<b>"
 														'response.write gIndicadores(0,iInd) & ".-" & gIndicadores(1,iInd)
 														response.write gIndicadores(1,iInd) 
 														response.write "</b>"
 													response.write "</td>"
-													response.write "<td width=10%  class='text-center'>"
+													response.write "<td width='5%' class='text-center'>"
 														response.write "<b>"
 														response.write gIndicadores(2,iInd)
 														response.write "</b>"
@@ -3667,20 +3692,24 @@
 														ix = ix + 2
 														iRan = gProductos(ix,iPro)
 													end if
+													if sTam <> "" then
+														ix = ix + 2
+														iTam = gProductos(ix,iPro)
+													end if
 													'response.write "<br>Ind = " & Indicador
 													for iMes = 0 to  ubound(gMeses,2) 
 														'idSemana = "16,17,18,19"
 														idSemana = gMeses(2,iMes)
 														TotalDias = 28
 														CalcularIndicador
-														response.write "<td width=10% class='cell100 column9 text-right'>"
+														response.write "<td width='5%'  class='cell100 column9 text-right'>"
 															response.write Valor
 														response.write "</td>"
 													next 
 													'response.write "<br>1395 iAre:= " & iAre
 													'response.write "<br>1395 iFab:= " & iFab
 													if ubound(gMeses,2) = 0 then
-														response.write "<td width=10% class='cell100 column9 text-right'>"
+														response.write "<td width='5%'  class='cell100 column9 text-right'>"
 														response.write "</td>"
 													end if
 												response.write "</tr>"
@@ -4051,7 +4080,7 @@ Sub CalcularIndicador
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
 				sql = sql & " PH_DataCrudaMensual.Id_Hogar "
-				'response.write "<br>1013 sql:=" & sql & "<br>"
+				'response.write "<br>4062 sql:=" & sql & "<br>"
 				'response.end
 				rsx1.Open sql ,conexion
 				if rsx1.eof then
@@ -5509,22 +5538,22 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
+						if iAre = 0 then
 							sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Marca = 0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Marca = 0 "  
+						end if
 					end if
 					if sSeg <> "" then 
 						sql = sql & " And Id_Segmento = " & iSeg 
 					else
 						'if iAre = 0 then
-						'	sql = sql & " And Id_Segmento = 0 "  
+							sql = sql & " And Id_Segmento = 0 "  
 						'end if
 					end if
 					if sRan <> "" then 
@@ -5651,16 +5680,16 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Fabricante =  0 "  
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Marca = 0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Marca = 0 "  
+						end if
 					end if
 					if sSeg <> "" then 
 						sql = sql & " And Id_Segmento = " & iSeg 
@@ -5779,16 +5808,16 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Fabricante =  0 "  
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Marca = 0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Marca = 0 "  
+						end if
 					end if
 					if sSeg <> "" then 
 						sql = sql & " And Id_Segmento = " & iSeg 
@@ -6091,6 +6120,11 @@ Sub CalcularIndicador
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
 				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -6297,6 +6331,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
+				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6506,6 +6545,11 @@ Sub CalcularIndicador
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
 				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -6712,6 +6756,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
+				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
