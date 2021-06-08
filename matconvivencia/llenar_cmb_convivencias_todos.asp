@@ -19,11 +19,7 @@ Dim idCat, idFab, idMar, idSeg, idTam
 'idQuery = Cint(Request.Querystring("id"))
 '
 opcion  = Request.Form("opcion")
-idCat = Request.Form("id1")
-idFab = Request.Form("id2")
-idMar = Request.Form("id3")
-idSeg = Request.Form("id4")
-idTam = Request.Form("id5")
+idCat = Request.Form("idCat")
 '
 'Response.write(opcion) & "<br>"
 'Response.write(id)  & "<br>"
@@ -90,14 +86,14 @@ IF (Cint(opcion) = 1) THEN
 	'
 ELSEIF (Cint(opcion) = 2) THEN
 	'
-	'Fill combo Fabricante A y B
+	' Fill combo Fabricante A y B
 	'
 	Dim rsFabricante, arrFabricante
 	'
 	' Buscar Datos de todos los Fabricantes segun la categoria
 	'
 	QrySql = vbnullstring
-	QrySql = " SELECT Id_Fabricante AS id, Fabricante AS nombre FROM PH_CB_Fabricante WHERE Ind_Activo = 1 AND id_Categoria = " & idCat & _
+	QrySql = " SELECT DISTINCT Id_Fabricante AS id, Fabricante AS nombre FROM PH_DataCrudaMensual WHERE Id_Fabricante <> 0 AND id_Categoria = " & idCat & _
 	" ORDER BY Fabricante ASC"
 	'
 	'Response.Write QrySql & "<BR><BR>"
@@ -156,9 +152,7 @@ ELSEIF (Cint(opcion) = 3) THEN
 	' Buscar Datos de todos los Marcas segun la categoria y Fabricante
 	'
 	QrySql = vbnullstring
-	QrySql = " SELECT Id_Marca AS id, Marca AS nombre FROM PH_CB_Marca WHERE Ind_Activo = 1" & _
-	" AND id_Categoria  = " & idCat & _
-	" AND id_Fabricante = " & idFab & _
+	QrySql = " SELECT DISTINCT Id_Marca AS id, Marca AS nombre FROM PH_DataCrudaMensual WHERE id_Categoria  = " & idCat & _
 	" ORDER BY Marca ASC"
 	'
 	'Response.Write QrySql & "<BR><BR>"
@@ -217,7 +211,7 @@ ELSEIF (Cint(opcion) = 4) THEN
 	' Buscar Datos de todos los Segmentos segun la categoria
 	'
 	QrySql = vbnullstring
-	QrySql = " SELECT Id_Segmento AS id, Segmento AS nombre FROM PH_CB_Segmento WHERE Ind_Activo = 1 AND id_Categoria = " & idCat & _
+	QrySql = " SELECT DISTINCT Id_Segmento AS id, Segmento AS nombre FROM PH_DataCrudaMensual WHERE id_Categoria  = " & idCat & _
 	" ORDER BY Segmento ASC"
 	'
 	'Response.Write QrySql & "<BR><BR>"
@@ -267,7 +261,64 @@ ELSEIF (Cint(opcion) = 4) THEN
 	'	
 	conexion.close : set conexion = nothing
 	'	
-ELSEIF (opcion=5) THEN
+ELSEIF (Cint(opcion) = 5) THEN
+	'
+	'Fill combo Rango Tamaño A y B
+	'
+	Dim rsRangTamano, arrRangTamano
+	'
+	' Buscar Datos de todos los RangTamanos segun la categoria
+	'
+	QrySql = vbnullstring
+	QrySql = " SELECT DISTINCT Id_rangotamano AS id, rangotamano AS nombre FROM PH_DataCrudaMensual WHERE Id_rangotamano <> 0 AND id_Categoria = " & idCat & _  
+	"ORDER BY rangotamano ASC"
+	'
+	'Response.Write QrySql & "<BR><BR>"
+	'Response.end
+	'
+	Set rsRangTamano = Server.CreateObject("ADODB.recordset")
+	rsRangTamano.Open QrySql, conexion
+	'
+	if not rsRangTamano.EOF then
+		arrRangTamano = rsRangTamano.GetRows()  ' Convert recordset to 2D Array
+	end if
+	'
+	rsRangTamano.Close : Set rsRangTamano = Nothing
+	'
+	'Response.ContentType = "application/json"
+	''
+	'Crear Archivo Array Json
+	''
+	sTabla = vbnullstring
+
+	if IsArray(arrRangTamano) then
+
+		For i = 0 to ubound(arrRangTamano, 2)
+			'
+			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrRangTamano(0,i) & chr(34) & chr(44)
+			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrRangTamano(1,i) & chr(34) & chr(125) &chr(44)
+			sTablaJson = sTablaJson & sTabla
+			sTabla = vbnullstring
+			'
+		Next
+
+	else
+		'Eof()
+		sTabla  =   chr(123) &  chr(34) & "id" 		 & chr(34)& ":" & chr(34)  & "0" 		 & chr(34) & chr(44)
+		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
+		''
+		sTablaJson = sTablaJson & sTabla
+		sTabla = vbnullstring
+
+	end if
+	''
+	sTabla  = Left(sTablaJson, Len(sTablaJson) - 1) 'Devuelve "Cadena"
+	JsonData=chr(123) & chr(34)& "data" & chr(34)& ":" & chr(91) & sTabla & chr(93) & chr(125)
+	Response.Write(JsonData)
+	'
+	' Cerrar conexiones
+	'	
+	conexion.close : set conexion = nothing
 	'	
 ELSE
 	' de lo Contrario

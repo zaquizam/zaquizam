@@ -16,7 +16,7 @@
 </head>
 <body topmargin="0">
 	
-	<!--#include file="estiloscss.asp"-->
+	<!--#include file="../estiloscss.asp"-->
 	<!--#include file="meta.asp"-->
 	<!--#include file="encabezado.asp"-->
 	<!--#include file="nn_subN.asp"-->

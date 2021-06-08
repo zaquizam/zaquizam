@@ -65,7 +65,7 @@
 				</div>
 				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
 				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboTamano_A" class="form-control input-sm">
+					<select id="cboRangTamanoA" class="form-control input-sm">
 					  <option value="0" selected disabled >-- Seleccione -- </option>
 					</select> 
 				</div>  
@@ -106,7 +106,7 @@
 				</div>		   				
 				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
 				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboTamano_B" class="form-control input-sm">
+					<select id="cboRangTamano_B" class="form-control input-sm">
 					  <option>-- Seleccione --</option>					  
 					</select> 
 				</div>		   			  
@@ -206,7 +206,7 @@
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/sweetalert.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="matconvivencia/js/funcionesV1.js"></script>
+<script src="matconvivencia/js/funcionesV2.js"></script>
 
 <script>
 	
