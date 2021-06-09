@@ -207,9 +207,16 @@
 	if sInd <> "" then
 		sql = sql & " And Id_Indicador in (" & sInd & ")"
 	end if
-	if cint(sCat) = 56  or cint(sCat) = 42 or cint(sCat) = 28 or cint(sCat) = 42 or cint(sCat) = 40 or cint(sCat) = 19 or cint(sCat) = 41 or cint(sCat) = 18 then
+	if cint(sCat) = 56  or cint(sCat) = 29 or cint(sCat) = 28 or cint(sCat) = 19  then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32) "
 	end if
+	if (cint(sCat) = 40 or cint(sCat) = 42  or cint(sCat) = 41 or cint(sCat) = 18) and idCliente = 8 then
+		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
+	end if
+	if (cint(sCat) = 40) and idCliente = 16 then
+		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
+	end if
+
 	sql = sql & " ORDER BY "
 	sql = sql & " Id_Indicador "
 	'response.write "<br>372 Combo1:=" & sql
@@ -3665,6 +3672,10 @@
 												response.write "</td>"
 												'Tamaño
 												response.write "<td width=10% class='cell100 column6 text-center'>"
+													if sTam <> "" then
+														ix = ix + 2
+														response.write gProductos(ix,iPro)
+													end if
 												response.write "</td>"
 											response.write "</tr>"
 											response.write "<td colspan=4  class='cell100'>"
@@ -3706,6 +3717,10 @@
 													if sRan <> "" then
 														ix = ix + 2
 														iRan = gProductos(ix,iPro)
+													end if
+													if sTam <> "" then
+														ix = ix + 2
+														iTam = gProductos(ix,iPro)
 													end if
 													'response.write "<br>Ind = " & Indicador
 													for iMes = 0 to  ubound(gMeses,2) 
@@ -5549,16 +5564,16 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
+						if iAre = 0 then
 							sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Marca = 0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Marca = 0 "  
+						end if
 					end if
 					if sSeg <> "" then 
 						sql = sql & " And Id_Segmento = " & iSeg 
@@ -5691,16 +5706,16 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Fabricante =  0 "  
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Marca = 0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Marca = 0 "  
+						end if
 					end if
 					if sSeg <> "" then 
 						sql = sql & " And Id_Segmento = " & iSeg 
@@ -5819,16 +5834,16 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Fabricante =  0 "  
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Marca = 0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Marca = 0 "  
+						end if
 					end if
 					if sSeg <> "" then 
 						sql = sql & " And Id_Segmento = " & iSeg 

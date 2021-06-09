@@ -36,10 +36,8 @@
 }
 
 .barrabotones {
-  background-color: #DcDcDc;
-  
-  vertical-align: middle;
-  
+  background-color: #DcDcDc;  
+  vertical-align: middle;  
 }
 
 /*
@@ -67,13 +65,16 @@
   outline:none;
 }
 
+
+
+/*
 .form-control {
   border-radius: 40px !important;
 }
 .form-control[multiple] {
   border-radius: 20px !important;
 }
-
+*/
 /* centrar imagen */
 .separa{
 	margin:0 auto;
@@ -86,9 +87,9 @@
     text-align: left;
     font-Size: 14px;
     font-weight: bold;
-    color: navy;
+    color: #5787C2;
     font-family: Verdana;
-	text-shadow: 1px 1px #828282;
+	text-shadow: 2px 0.5px #A9A9A9;
 }
 
 .img-responsive {

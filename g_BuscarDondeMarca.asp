@@ -186,6 +186,7 @@ Session.LCID = 8202
 	response.write "<center>"
 	response.write "Total Hogares Mes Anterior = " & ubound(gDatosSol,2) + 1
 	response.write "</center>"
+	HogaresMesAnteriorCuadro1 = ubound(gDatosSol,2) + 1
 
 	'Buscar Los Hogares en mes Actual
 	sql = ""
@@ -224,6 +225,9 @@ Session.LCID = 8202
 		gDatosSol = rsx1.GetRows
 		rsx1.close
 		iExiste = 1
+		response.write "<center>"
+		response.write "Total Hogares Mes Actual = " & ubound(gDatosSol,2) + 1
+		response.write "</center>"
 	end if
 	for iReg = 1 to 40000
 		Data(iReg,1) = 0
@@ -252,7 +256,7 @@ Session.LCID = 8202
 			TotalReg = TotalReg + 1
 		end if
 	next
-	RsCuadro2.Sort = "Porcentaje Desc" 
+	RsCuadro2.Sort = "Porcentaje Desc, Marca" 
 	RsCuadro2.movefirst
 	
 	%>
@@ -285,7 +289,7 @@ Session.LCID = 8202
 								response.write cint(RsCuadro2("Hogares"))
 							response.write "</td>"
 							response.write "<td style='color:#FF0000'>"
-								Valor = (RsCuadro2("Hogares") * 100) / Total
+								Valor = (RsCuadro2("Hogares") * 100) / HogaresMesAnteriorCuadro1
 								response.write formatnumber(Valor,2)
 							response.write "</td>"
 						else
@@ -299,7 +303,7 @@ Session.LCID = 8202
 								response.write cint(RsCuadro2("Hogares"))
 							response.write "</td>"
 							response.write "<td>"
-								Valor = (RsCuadro2("Hogares") * 100) / Total
+								Valor = (RsCuadro2("Hogares") * 100) / HogaresMesAnteriorCuadro1
 								response.write formatnumber(Valor,2)
 							response.write "</td>"
 						end if

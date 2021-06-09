@@ -134,7 +134,7 @@
 	end if
 	if idCliente = 1 then
 		iMesDes = 24253
-		iMesHas = 24256
+		iMesHas = 24257
 	end if
 	'response.write "<br>310 Semana iMesDes:= " &  iMesDes
 	'response.write "<br>310 Semana iMesHas:= " &  iMesHas
@@ -160,32 +160,53 @@
 		rsx1.close
 	end if
 	'if idCliente = 10 then
-	
+
+	' Cat = 106 Gel Antibacterial
+	' Cat = 72 Edulcorantes
+	' Cat = 27 Ambientadores
+	' Cat = 29 Insecticidas
+	' Cat = 30 Limpiadores
+	' Cat = 31 Cuidado del Baño
+	' Cat = 73 Cloros
+	' Cat = 35 Helados
+	' Cat = 8 Sopas Deshidratadas
+	' Cat = 14  Compotas
+	' Cat = 19 Toallas Húmedas para Bebes
+	' Cat = 38 Cuidado Corporal
 	'Categorias Trimestrales Feb-Mar-Abr 2021
 	if (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 8) or (sCat = 14) or (sCat = 19) or (sCat = 38)  then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
-		redim gMeses(2,0)
+		redim gMeses(2,1)
 		gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
 		gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+		gMeses(1,1) = "Trim. Mar-Abr-May/2021"
+		gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
 		if (sCat = 27) or (sCat = 30) or (sCat = 29) or (sCat = 31) or (sCat = 73) or (sCat = 35) then 
 			erase gMeses
-			redim gMeses(2,1)
+			redim gMeses(2,2)
 			gMeses(1,0) = "Trim. Ene-Feb-Mar/2021"
 			gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28"
 			gMeses(1,1) = "Trim. Feb-Mar-Abr/2021"
 			gMeses(2,1) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+			gMeses(1,2) = "Trim. Mar-Abr-May/2021"
+			gMeses(2,2) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
 			'response.write "paso"
 			'response.end
 		end if
 	end if
+	' Cat = 6 Alim Gatos
+	' Cat = 5 Alim Perros
+	' Cat = 11 Formulas Infantiles
+	' Cat = 57 Jamon Endiablado
+	' Cat = 10 Salsa para Pastas
 	'Categorias Semestrales Ene-Feb-Mar-Abr/2021
 	if (sCat = 6) or (sCat = 5) or (sCat = 11) or (sCat = 57) or (sCat = 10) then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,0)
-		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr/2021"
-		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32"
+		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr-May/2021"
+		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
 	end if
 	'response.write "<br>pasoooo"
 	'response.end 
@@ -3406,6 +3427,10 @@
 												response.write "</td>"
 												'Tamaño
 												response.write "<td width=10% class='cell100 column6 text-center'>"
+													if sTam <> "" then
+														ix = ix + 2
+														response.write gProductos(ix,iPro)
+													end if
 												response.write "</td>"
 													response.write "<td width=10% class='cell100 column7 text-center'>"
 														response.write "<b>"
@@ -3436,6 +3461,10 @@
 													if sRan <> "" then
 														ix = ix + 2
 														iRan = gProductos(ix,iPro)
+													end if
+													if sTam <> "" then
+														ix = ix + 2
+														iTam = gProductos(ix,iPro)
 													end if
 													'response.write "<br>Ind = " & Indicador
 													for iMes = 0 to  ubound(gMeses,2) 
@@ -5279,9 +5308,9 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
+						if iAre = 0 then
 							sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
@@ -5421,9 +5450,9 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Fabricante =  0 "  
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
@@ -5549,9 +5578,9 @@ Sub CalcularIndicador
 					if sFab <> "" then 
 						sql = sql & " And Id_Fabricante = " & iFab 
 					else
-						'if iAre = 0 then
-						'	sql = sql & " And Id_Fabricante =  0 "  
-						'end if
+						if iAre = 0 then
+							sql = sql & " And Id_Fabricante =  0 "  
+						end if
 					end if
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
@@ -5861,6 +5890,11 @@ Sub CalcularIndicador
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
 				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -6067,6 +6101,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
+				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6276,6 +6315,11 @@ Sub CalcularIndicador
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
 				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -6482,6 +6526,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
+				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana

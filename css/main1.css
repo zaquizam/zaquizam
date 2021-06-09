@@ -181,7 +181,7 @@ th, td {
 
 .column1 {
   width: 8%;
-  padding-left: 40px;
+  
 }
 
 .column2 {
@@ -207,17 +207,25 @@ th, td {
   width: 8%;
 }
 .column8 {
-  width: 8%;
+  width: 5%;
 }
 .column9 {
-  width: 8%;
+  width: 5%;
 }
 .column10 {
-  width: 8%;
+  width: 5%;
 }
 
 .column11 {
-  width: 8%;
+  width: 5%;
+}
+
+.column12 {
+  width: 5%;
+}
+
+.column13 {
+  width: 5%;
 }
 
 

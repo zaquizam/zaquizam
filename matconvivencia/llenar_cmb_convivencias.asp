@@ -1,7 +1,7 @@
 <!--#include file="../Conexion.asp" -->
 <%
 '
-' llenar_cmb_convivencias.asp - 24may21 - 24may21
+' llenar_cmb_convivencias.asp - 24may21 - 08jun21
 '
 Session.lcid = 1034
 Response.CodePage = 65001
@@ -12,18 +12,13 @@ if conexion.errors.count <> 0 Then
   Response.End
 end if
 
-Dim opcion, id, QrySql
-Dim idCat, idFab, idMar, idSeg, idTam
+Dim opcion, QrySql
 '
 'opcion  = Cint(Request.Querystring("opcion"))
 'idQuery = Cint(Request.Querystring("id"))
 '
 opcion  = Request.Form("opcion")
-idCat = Request.Form("id1")
-idFab = Request.Form("id2")
-idMar = Request.Form("id3")
-idSeg = Request.Form("id4")
-idTam = Request.Form("id5")
+
 '
 'Response.write(opcion) & "<br>"
 'Response.write(id)  & "<br>"
@@ -37,8 +32,8 @@ IF (Cint(opcion) = 1) THEN
 	' Buscar Datos de todas las Categorias
 	'
 	QrySql = vbnullstring
-	QrySql = " SELECT Id_categoria AS id, categoria AS nombre" & _
-	" FROM PH_CB_Categoria WHERE Ind_Activo = 1" & _
+	QrySql = " SELECT DISTINCT Id_categoria AS id, categoria AS nombre" & _
+	" FROM PH_DataCrudaMensual" & _
 	" ORDER BY Categoria ASC"
 	'
 	'Response.Write QrySql & "<BR><BR>"
@@ -89,28 +84,29 @@ IF (Cint(opcion) = 1) THEN
 	conexion.close : set conexion = nothing
 	'
 ELSEIF (Cint(opcion) = 2) THEN
+'
+	'Fill combo Areas
+	'			
+	Dim rsArea, arrArea
 	'
-	'Fill combo Fabricante A y B
-	'
-	Dim rsFabricante, arrFabricante
-	'
-	' Buscar Datos de todos los Fabricantes segun la categoria
+	' Buscar Datos de todas las Areas
 	'
 	QrySql = vbnullstring
-	QrySql = " SELECT Id_Fabricante AS id, Fabricante AS nombre FROM PH_CB_Fabricante WHERE Ind_Activo = 1 AND id_Categoria = " & idCat & _
-	" ORDER BY Fabricante ASC"
+	QrySql = " SELECT DISTINCT Id_Area AS id, Area AS nombre " & _
+	" FROM PH_DataCrudaMensual WHERE id_area <> 0" & _
+	" ORDER BY Area ASC"
 	'
 	'Response.Write QrySql & "<BR><BR>"
 	'Response.end
 	'
-	Set rsFabricante = Server.CreateObject("ADODB.recordset")
-	rsFabricante.Open QrySql, conexion
+	Set rsArea = Server.CreateObject("ADODB.recordset")
+	rsArea.Open QrySql, conexion
 	'
-	if not rsFabricante.EOF then
-		arrFabricante = rsFabricante.GetRows()  ' Convert recordset to 2D Array
+	if not rsArea.EOF then
+		arrArea = rsArea.GetRows()  ' Convert recordset to 2D Array
 	end if
 	'
-	rsFabricante.Close : Set rsFabricante = Nothing
+	rsArea.Close : Set rsArea = Nothing
 	'
 	'Response.ContentType = "application/json"
 	''
@@ -118,132 +114,12 @@ ELSEIF (Cint(opcion) = 2) THEN
 	''
 	sTabla = vbnullstring
 
-	if IsArray(arrFabricante) then
+	if IsArray(arrArea) then
 
-		For i = 0 to ubound(arrFabricante, 2)
+		For i = 0 to ubound(arrArea, 2)
 			'
-			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrFabricante(0,i) & chr(34) & chr(44)
-			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrFabricante(1,i) & chr(34) & chr(125) &chr(44)
-			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
-			'
-		Next
-
-	else
-		'Eof()
-		sTabla  =   chr(123) &  chr(34) & "id" 		& chr(34)& ":" & chr(34)  & "0" 		& chr(34) & chr(44)
-		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
-		''
-		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
-
-	end if
-	''
-	sTabla  = Left(sTablaJson, Len(sTablaJson) - 1) 'Devuelve "Cadena"
-	JsonData=chr(123) & chr(34)& "data" & chr(34)& ":" & chr(91) & sTabla & chr(93) & chr(125)
-	Response.Write(JsonData)
-	'
-	' Cerrar conexiones
-	'	
-	conexion.close : set conexion = nothing
-	'
-ELSEIF (Cint(opcion) = 3) THEN 	
-	'
-	'Fill combo Marca A y B
-	'
-	Dim rsMarca, arrMarca
-	'
-	' Buscar Datos de todos los Marcas segun la categoria y Fabricante
-	'
-	QrySql = vbnullstring
-	QrySql = " SELECT Id_Marca AS id, Marca AS nombre FROM PH_CB_Marca WHERE Ind_Activo = 1" & _
-	" AND id_Categoria  = " & idCat & _
-	" AND id_Fabricante = " & idFab & _
-	" ORDER BY Marca ASC"
-	'
-	'Response.Write QrySql & "<BR><BR>"
-	'Response.end
-	'
-	Set rsMarca = Server.CreateObject("ADODB.recordset")
-	rsMarca.Open QrySql, conexion
-	'
-	if not rsMarca.EOF then
-		arrMarca = rsMarca.GetRows()  ' Convert recordset to 2D Array
-	end if
-	'
-	rsMarca.Close : Set rsMarca = Nothing
-	'
-	'Response.ContentType = "application/json"
-	''
-	'Crear Archivo Array Json
-	''
-	sTabla = vbnullstring
-
-	if IsArray(arrMarca) then
-
-		For i = 0 to ubound(arrMarca, 2)
-			'
-			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrMarca(0,i) & chr(34) & chr(44)
-			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrMarca(1,i) & chr(34) & chr(125) &chr(44)
-			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
-			'
-		Next
-
-	else
-		'Eof()
-		sTabla  =   chr(123) &  chr(34) & "id" 		& chr(34)& ":" & chr(34)  & "0" 		& chr(34) & chr(44)
-		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
-		''
-		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
-
-	end if
-	''
-	sTabla  = Left(sTablaJson, Len(sTablaJson) - 1) 'Devuelve "Cadena"
-	JsonData=chr(123) & chr(34)& "data" & chr(34)& ":" & chr(91) & sTabla & chr(93) & chr(125)
-	Response.Write(JsonData)
-	'
-	' Cerrar conexiones
-	'	
-	conexion.close : set conexion = nothing
-	'
-ELSEIF (Cint(opcion) = 4) THEN
-	'
-	'Fill combo Segmento A y B
-	'
-	Dim rsSegmento, arrSegmento
-	'
-	' Buscar Datos de todos los Segmentos segun la categoria
-	'
-	QrySql = vbnullstring
-	QrySql = " SELECT Id_Segmento AS id, Segmento AS nombre FROM PH_CB_Segmento WHERE Ind_Activo = 1 AND id_Categoria = " & idCat & _
-	" ORDER BY Segmento ASC"
-	'
-	'Response.Write QrySql & "<BR><BR>"
-	'Response.end
-	'
-	Set rsSegmento = Server.CreateObject("ADODB.recordset")
-	rsSegmento.Open QrySql, conexion
-	'
-	if not rsSegmento.EOF then
-		arrSegmento = rsSegmento.GetRows()  ' Convert recordset to 2D Array
-	end if
-	'
-	rsSegmento.Close : Set rsSegmento = Nothing
-	'
-	'Response.ContentType = "application/json"
-	''
-	'Crear Archivo Array Json
-	''
-	sTabla = vbnullstring
-
-	if IsArray(arrSegmento) then
-
-		For i = 0 to ubound(arrSegmento, 2)
-			'
-			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrSegmento(0,i) & chr(34) & chr(44)
-			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrSegmento(1,i) & chr(34) & chr(125) &chr(44)
+			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrArea(0,i) & chr(34) & chr(44)
+			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrArea(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
 			sTabla = vbnullstring
 			'
@@ -267,8 +143,71 @@ ELSEIF (Cint(opcion) = 4) THEN
 	'	
 	conexion.close : set conexion = nothing
 	'	
-ELSEIF (opcion=5) THEN
+ELSEIF (Cint(opcion) = 3) THEN
+	'
+	'Fill combo Periodo
+	'			
+	Dim rsPeriodo, arrPeriodo
+	'
+	' Buscar Datos de todas las Periodos
+	'
+	QrySql = vbnullstring
+	QrySql = " SELECT ss_Periodo.Semanas, ss_Periodo.Periodo" & _
+	" FROM" & _
+	" (PH_DataCrudaMensual INNER JOIN ss_Semana ON PH_DataCrudaMensual.Id_Semana = ss_Semana.IdSemana)" & _
+	" INNER JOIN ss_Periodo ON ss_Semana.Id_Periodo = ss_Periodo.IdPeriodo" & _
+	" GROUP BY" & _
+	" ss_Periodo.Semanas, ss_Periodo.Periodo, ss_Periodo.IdPeriodo" & _
+	" ORDER BY" & _
+	" ss_Periodo.IdPeriodo DESC;"
+	'
+	'Response.Write QrySql & "<BR><BR>"
+	'Response.end
+	'
+	Set rsPeriodo = Server.CreateObject("ADODB.recordset")
+	rsPeriodo.Open QrySql, conexion
+	'
+	if not rsPeriodo.EOF then
+		arrPeriodo = rsPeriodo.GetRows()  ' Convert recordset to 2D Array
+	end if
+	'
+	rsPeriodo.Close : Set rsPeriodo = Nothing
+	'
+	'Response.ContentType = "application/json"
+	''
+	'Crear Archivo Array Json
+	''
+	sTabla = vbnullstring
+
+	if IsArray(arrPeriodo) then
+
+		For i = 0 to ubound(arrPeriodo, 2)
+			'
+			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrPeriodo(0,i) & chr(34) & chr(44)
+			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrPeriodo(1,i) & chr(34) & chr(125) &chr(44)
+			sTablaJson = sTablaJson & sTabla
+			sTabla = vbnullstring
+			'
+		Next
+
+	else
+		'Eof()
+		sTabla  =   chr(123) &  chr(34) & "id" 		& chr(34)& ":" & chr(34)  & "0" 		& chr(34) & chr(44)
+		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
+		''
+		sTablaJson = sTablaJson & sTabla
+		sTabla = vbnullstring
+
+	end if
+	''
+	sTabla  = Left(sTablaJson, Len(sTablaJson) - 1) 'Devuelve "Cadena"
+	JsonData=chr(123) & chr(34)& "data" & chr(34)& ":" & chr(91) & sTabla & chr(93) & chr(125)
+	Response.Write(JsonData)
+	'
+	' Cerrar conexiones
 	'	
+	conexion.close : set conexion = nothing
+	'
 ELSE
 	' de lo Contrario
 	Response.write "error"

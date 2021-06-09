@@ -1,5 +1,5 @@
 <!Doctype html>
-<!-- PH_Cte_HomePantryConvivencia - 09abr21 - 11abr21 -->
+<!-- PH_Cte_HomePantryConvivencia - 09abr21 - 08jun21 -->
 <html >
 <head>
 	<title>| Convivencia Categoria |</title>
@@ -10,9 +10,11 @@
     <link href="de.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="w3.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="favicon.ico" rel="icon" type="image/x-icon">
-	<link href="css/sweetalert.css"  rel="stylesheet" type="text/css" />
-	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />	
-	<link href="matconvivencia/css/convivencia2.css"  rel="stylesheet" type="text/css" />			
+	<link href="css/sweetalert.css"  rel="stylesheet" type="text/css" />	
+	<!--<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
+	<link href="matconvivencia/css/convivencia2.css"  rel="stylesheet" type="text/css" />	
+	<!-- MultiSelect CSS & JS library -->
+	<link rel="stylesheet" href="matconvivencia/css/bootstrap-multiselect-0915.css">	    	   
 </head>
 <body topmargin="0">
 	
@@ -65,7 +67,7 @@
 				</div>
 				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
 				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboTamano_A" class="form-control input-sm">
+					<select id="cboRangTamanoA" class="form-control input-sm">
 					  <option value="0" selected disabled >-- Seleccione -- </option>
 					</select> 
 				</div>  
@@ -106,7 +108,7 @@
 				</div>		   				
 				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
 				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboTamano_B" class="form-control input-sm">
+					<select id="cboRangTamanoB" class="form-control input-sm">
 					  <option>-- Seleccione --</option>					  
 					</select> 
 				</div>		   			  
@@ -123,9 +125,9 @@
 		<div class="col-sm-4">						
 			<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Area</label>
 			<div class="col-sm-6 col-md-6 separa">
-				<select class="form-control input-sm" id="cboArea" name="cboArea" >				  		
-					<option value="0" selected disabled >-- Seleccione -- </option>
-				</select> 
+				 <select id="cboArea" multiple="">
+					 <!-- Combo -->
+				</select>
 			</div>			  				
 		</div>
 		
@@ -133,8 +135,8 @@
 		<div class="col-sm-4">									
 			<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Periodo</label>
 			<div class="col-sm-6 col-md-6 separa">
-				<select class="form-control input-sm" id="cboPeriodo" name="cboPeriodo" >				  		
-					<option value="0" selected disabled >-- Seleccione -- </option>
+				<select id="cboPeriodo" name="cboPeriodo" multiple="">				  		
+					<!-- Combo -->
 				</select> 
 			</div>			  				
 		</div>
@@ -206,18 +208,41 @@
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/sweetalert.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="matconvivencia/js/funcionesV1.js"></script>
+<script src="matconvivencia/js/funcionesV2.js"></script>
+<!-- MultiSelect CSS & JS library -->
+<script src="matconvivencia/js/bootstrap-multiselect-0915.js"></script>
 
 <script>
-	
+	$(document).ready(function() {						
+	 	$("#cboArea").multiselect({	buttonWidth:'auto', disableIfEmpty: true, });							
+		$("#cboPeriodo").multiselect({	buttonWidth:'auto', disableIfEmpty: true, });
+		//$("#cboCategoria_A").multiselect({	buttonWidth:'350px', disableIfEmpty: true, });
+	});		
+</script>
+
+
+<script>
 	$(document).ready(function() {				
+		//	
 		$(function() {
 			//debugger;
-			LlenarCombos();
-		});					
+			LlenarCombos();			
+		});		
 	});	
-	
-	sessionStorage.setItem("idCliente", <%=Session("idCliente")%>);
-	
+	sessionStorage.setItem("idCliente", <%=Session("idCliente")%>);			
+</script>
+
+<script>
+	function getSelectedValues() {
+	  var selectedVal = $("#multiselect").val();
+		for(var i=0; i<selectedVal.length; i++){
+			function innerFunc(i) {
+				setTimeout(function() {
+					location.href = selectedVal[i];
+				}, i*2000);
+			}
+			innerFunc(i);
+		}
+	}	
 </script>
 

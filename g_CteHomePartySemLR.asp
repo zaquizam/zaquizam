@@ -112,11 +112,13 @@
 	'strSemana1 = "(12) Del 22 Mar 2021 al 28 Mar 2021"
 	'strSemana1 = "(13) Del 29 Mar 2021 al 04 Abr 2021"
 	'strSemana1 = "(14) Del 05 Abr 2021 al 11 Abr 2021"
-	strSemana1 = "(15) Del 12 Abr 2021 al 18 Abr 2021"
-	strSemana2 = "(16) Del 19 Abr 2021 al 25 Abr 2021"
-	strSemana3 = "(17) Del 26 Abr 2021 al 02 May 2021"
-	strSemana4 = "(18) Del 03 May 2021 al 09 May 2021"
-	strSemana5 = "(19) Del 10 May 2021 al 16 May 2021"
+	'strSemana1 = "(15) Del 12 Abr 2021 al 18 Abr 2021"
+	'strSemana1 = "(16) Del 19 Abr 2021 al 25 Abr 2021"
+	strSemana1 = "(17) Del 26 Abr 2021 al 02 May 2021"
+	strSemana2 = "(18) Del 03 May 2021 al 09 May 2021"
+	strSemana3 = "(19) Del 10 May 2021 al 16 May 2021"
+	strSemana4 = "(20) Del 17 May 2021 al 23 May 2021"
+	strSemana5 = "(21) Del 24 May 2021 al 30 May 2021"
 	
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
@@ -403,22 +405,10 @@
 														iMar = gProductosTotal(2,iPro)
 														iSeg = gProductosTotal(4,iPro)
 														'response.write "<br>Ind = " & Indicador
-														idSemana = 30
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='cell100 column8 text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 31
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
 														idSemana = 32
 														TotalDias = 7
 														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
+														response.write "<td width=10% class='cell100 column8 text-right'>"
 															response.write Valor
 														response.write "</td>"
 														idSemana = 33
@@ -428,6 +418,18 @@
 															response.write Valor
 														response.write "</td>"
 														idSemana = 34
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 35
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 36
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
@@ -508,23 +510,10 @@
 														iX = IX + 2
 													end if
 													'response.write "<br>Ind = " & Indicador
-													idSemana = 30
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='cell100 column8 text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 31
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
 													idSemana = 32
 													TotalDias = 7
 													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														'Valor = ""
+													response.write "<td width=10% class='cell100 column8 text-right'>"
 														response.write Valor
 													response.write "</td>"
 													idSemana = 33
@@ -534,6 +523,19 @@
 														response.write Valor
 													response.write "</td>"
 													idSemana = 34
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														'Valor = ""
+														response.write Valor
+													response.write "</td>"
+													idSemana = 35
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 36
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"

@@ -1,0 +1,70 @@
+	sql = vbnullstring
+    sql = sql & " SELECT "
+	sql = sql & " Id_Hogar "
+
+	sql = sql & " FROM PH_DataCrudaMensual "
+
+	sql = sql & " WHERE "
+	sql = sql & " Id_Categoria = " & sCat
+	sql = sql & " and Id_Area in (" & Are & ")"
+	sql = sql & " and semana in (" & Sem & ")"
+	if sFab <> "" then
+		sql = sql & " and Id_Fabricante = "	& Fab
+	end if
+	if sMar <> "" then
+		sql = sql & " and Id_Marca = " & Mar
+	end if
+	if sSeg <> "" then
+		sql = sql & " and Id_Segmento = " & seg
+	end if
+	if sRan <> "" then
+		sql = sql & " and Id_RangoTamano =  " & ran
+	end if
+
+	sql = sql & " GROUP BY "
+	sql = sql & " Id_Hogar "
+
+	sql = sql & " ORDER BY "
+	sql = sql & " Id_Hogar "
+
+
+// $("#cboCategoria_A").on("change", function() {
+    // // Fill combo Fabricante
+	// var id=0;
+	// var optCat= $("#cboCategoria_A option:selected").val();
+	// debugger;
+	// //
+	// $("#cboFabricante_A").prop("disabled", true);
+	// let ajax = { opcion: 2,	id1: optCat, id2: id, id3: id, id4: id, id5: id, };
+	// //	
+	// $.ajax({
+		// url: "matconvivencia/llenar_cmb_convivencias.asp",
+		// type: "POST", 
+		// dataType: 'json',   
+		// data:  ajax,		
+		// beforeSend: function(){			
+			// $("#cargando").css("display", "block");
+		// }		
+	// })
+	// .done (function(response, textStatus, jqXHR) { 
+		// console.log(response);
+		// debugger;
+		// var len = response.data.length;
+		// $("#cboFabricante_A").empty();				
+		// $("#cboFabricante_A").append("<option selected disabled value='0'>-- Seleccione --</option>");
+		// for( var i = 0; i < len; i++){
+			// var id = response.data[i]['id'];
+			// var nombre = response.data[i]['nombre'];
+			// $("#cboFabricante_A").append("<option value='"+id+"'>"+nombre+"</option>");
+		// }		
+	// })
+	// .fail (function(jqXHR, textStatus, errorThrown) { 
+		// swal("Algo salio mal.!",errorThrown, "error");
+	// })
+	// .always (function(jqXHROrData, textStatus, jqXHROrErrorThrown) { 
+		// //alert("complete"); 
+		// $("#cargando").css("display", "none");
+		// $("#cboFabricante_A").prop("disabled", false);		
+	// });		
+	// //
+// });

@@ -60,7 +60,7 @@
 						$('#loader2').html('');
 						console.log(data); 
 						$('#DivData').html(data);
-						swal("Busque Culminada","Proceso Cilminado","success");
+						swal("Busqueda Realizada","Proceso Culminado","success");
 						//window.location.reload();
 					}
 				})
@@ -215,7 +215,7 @@ End Sub
 		<input type="hidden" name="Mes" id="Mes" value="<%=idMes%>" align="right" size=10>
 		<input type="hidden" name="Categoria" id="Categoria" value="<%=idCategoria%>" align="right" size=10>
 		<input type="hidden" name="Marca" id="Marca" value="<%=idMarca%>" align="right" size=10>
-		<input type="text" name="Programa" id="Programa" value="" align="right" size=50>
+		<input type="hidden" name="Programa" id="Programa" value="" align="right" size=50>
 		</br>
 		</br>
 			<center>
