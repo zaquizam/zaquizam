@@ -1,0 +1,4 @@
+cboCategoria_A=1
+&cboCategoria_B=86
+&cboArea=1,7
+&cboPeriodo=29,30,31,32,24,25,26,27,28

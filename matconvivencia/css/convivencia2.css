@@ -40,12 +40,17 @@
   vertical-align: middle;  
 }
 
-/*
+
 .coolBackground {
-  background-image: url("css/versus6.png");
+  background-image: url("ab2.jpg");
   background-size: cover;
 }
-*/
+
+#image img {
+    min-width: 100%;
+    width: 100%;
+    height: auto;
+}
 
 /* centrar imagen */
 .img-center {margin:0 auto;}
