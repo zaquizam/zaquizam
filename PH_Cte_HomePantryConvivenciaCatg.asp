@@ -1,5 +1,5 @@
 <!Doctype html>
-<!-- PH_Cte_HomePantryConvivencia - 09abr21 - 08jun21 -->
+<!-- PH_Cte_HomePantryConvivencia - 09abr21 - 11jun21 -->
 <html >
 <head>
 	<title>| Convivencia Categoria |</title>
@@ -33,127 +33,127 @@
 		end if    	
 		'	
 	%>
-
-	<div class="container-fluid" id="grad1" >  
-					
-		<div class="form-group">
-		
-			<!-- CATEGORIA A -->			
-			<div class="col-sm-5">			
-						
-			  	<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Categoria</label>
-			  	<div class="col-sm-6 col-md-6 separa">
-					<select class="form-control input-sm" id="cboCategoria_A" name="cboCategoria_A" >				  		
-				  		<option value="0" selected disabled >-- Seleccione -- </option>
-					</select> 
-			  	</div>			  
-				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Fabricante</label>
-				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboFabricante_A" class="form-control input-sm">
-					  <option value="0" selected disabled >-- Seleccione -- </option>
-					</select> 
-				</div>				  
-				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Marca</label>
-				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboMarca_A" class="form-control input-sm">
-					  <option value="0" selected disabled >-- Seleccione -- </option>
-					</select> 
-				</div>				  
-				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Segmento</label>
-				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboSegmento_A" class="form-control input-sm">
-					  <option value="0" selected disabled >-- Seleccione -- </option>
-					</select> 
-				</div>
-				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
-				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboRangTamanoA" class="form-control input-sm">
-					  <option value="0" selected disabled >-- Seleccione -- </option>
-					</select> 
-				</div>  
-			</div>
+	<form id="frmConvivencia">
+	
+		<div class="container-fluid" id="grad1" >  
 			
-			<!-- Imagen -->
-			<div class="col-sm-2 coolBackground">
+				<div class="form-group">
 				
-    		    <img src="images/versus6.png" class="img-responsive  img-center" />	
-  			</div>			
+					<!-- CATEGORIA A -->								
+					<div class="col-sm-5">														
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Categoria</label>						
+						<div class="col-sm-6 col-md-6 separa">
+							<select class="form-control input-sm" id="cboCategoria_A" name="cboCategoria_A" >				  		
+								<option value="0" selected disabled >-- Seleccione -- </option>
+							</select> 
+						</div>			  
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Fabricante</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select class="form-control input-sm" id="cboFabricante_A" name="cboFabricante_A">
+							  <option value="0" selected disabled >-- Seleccione -- </option>
+							</select> 
+						</div>				  
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Marca</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboMarca_A" name="cboMarca_A" class="form-control input-sm">
+							  <option value="0" selected disabled >-- Seleccione -- </option>
+							</select> 
+						</div>				  
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Segmento</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboSegmento_A" name="cboSegmento_A" class="form-control input-sm">
+							  <option value="0" selected disabled >-- Seleccione -- </option>
+							</select> 
+						</div>
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboRangTamanoA" name="cboRangTamanoA" class="form-control input-sm">
+							  <option value="0" selected disabled >-- Seleccione -- </option>
+							</select> 
+						</div>  
+					</div>
+					
+					<!-- Imagen -->
+					<div class="col-sm-2 id="image">						
+						<img src="images/convivencia/ab2.jpg" class="img-responsive img-center" />	
+					</div>			
+					
+					<!-- CATEGORIA B -->	
+					
+					<div class="col-sm-5">								
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Categoria</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboCategoria_B" name="cboCategoria_B" class="form-control input-sm">
+								<option>-- Seleccione --</option>				  		
+							</select> 
+						</div>			  
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Fabricante</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboFabricante_B" name="cboFabricante_B" class="form-control input-sm">
+							  <option>-- Seleccione --</option>					  
+							</select> 
+						</div>				  
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Marca</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboMarca_B" name="cboMarca_B" class="form-control input-sm">
+							  <option>-- Seleccione --</option>					  
+							</select> 
+						</div>				  
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Segmento</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboSegmento_B" name="cboSegmento_B" class="form-control input-sm">
+							  <option>-- Seleccione --</option>					  
+							</select> 
+						</div>		   				
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboRangTamanoB" name="cboRangTamanoB" class="form-control input-sm">
+							  <option>-- Seleccione --</option>					  
+							</select> 
+						</div>		   			  
+					</div>
+			  
+				</div>
+				<!-- < / class="form-group" -->	
 			
-			<!-- CATEGORIA B -->						
-			<div class="col-sm-5">			
-							
-			  	<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Categoria</label>
-			  	<div class="col-sm-6 col-md-6 separa">
-					<select id="cboCategoria_B" class="form-control input-sm">
-				  		<option>-- Seleccione --</option>				  		
-					</select> 
-			  	</div>			  
-				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Fabricante</label>
+			
+		</div>        
+		<!-- < / class="container-fluid" id="grad1" -->
+		
+		<div class="container-fluid barrabotones">		
+			<!-- AREA -->			
+			<div class="col-sm-4">						
+				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Area</label>
 				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboFabricante_B" class="form-control input-sm">
-					  <option>-- Seleccione --</option>					  
-					</select> 
-				</div>				  
-				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Marca</label>
-				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboMarca_B" class="form-control input-sm">
-					  <option>-- Seleccione --</option>					  
-					</select> 
-				</div>				  
-				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Segmento</label>
-				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboSegmento_B" class="form-control input-sm">
-					  <option>-- Seleccione --</option>					  
-					</select> 
-				</div>		   				
-				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
-				<div class="col-sm-6 col-md-6 separa">
-					<select id="cboRangTamanoB" class="form-control input-sm">
-					  <option>-- Seleccione --</option>					  
-					</select> 
-				</div>		   			  
+					 <select id="cboArea" multiple="">
+						 <!-- Combo -->
+					</select>
+				</div>			  				
 			</div>
-	  
+			
+			<!-- PERIODO -->			
+			<div class="col-sm-4">									
+				<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Periodo</label>
+				<div class="col-sm-6 col-md-6 separa">
+					<select id="cboPeriodo" multiple="">				  		
+						<!-- Combo -->
+					</select> 
+				</div>			  				
+			</div>
+			
+			<!-- BOTONES -->			
+			<div class="col-sm-4">			
+				<div class="col-sm-6 col-md-6 separa">
+					<button id="BtnValidarProceso"  title="Procesar" type="submit" class="btn btn-block btn-xs btn-success" onclick="Procesar();"><i class="fas fa-check fa-2x"></i></button>
+				</div>	
+				<div class="col-sm-6 col-md-6 separa">
+					<button id="BtnBorrar"  title="Borrar filtros" type="submit" class="btn btn-block btn-xs btn-danger" onclick="Reset();"><i class="fas fa-recycle fa-2x"></i></button>
+				</div>
+			</div>
+				
 		</div>
 		<!-- < / class="form-group" -->	
-	
-	</div>        
-	<!-- < / class="container-fluid" id="grad1" -->
-	
-	<div class="container-fluid barrabotones">		
-		<!-- AREA -->			
-		<div class="col-sm-4">						
-			<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Area</label>
-			<div class="col-sm-6 col-md-6 separa">
-				 <select id="cboArea" multiple="">
-					 <!-- Combo -->
-				</select>
-			</div>			  				
-		</div>
-		
-		<!-- PERIODO -->			
-		<div class="col-sm-4">									
-			<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Periodo</label>
-			<div class="col-sm-6 col-md-6 separa">
-				<select id="cboPeriodo" name="cboPeriodo" multiple="">				  		
-					<!-- Combo -->
-				</select> 
-			</div>			  				
-		</div>
-		
-		<!-- BOTONES -->			
-		<div class="col-sm-4">			
-			<div class="col-sm-6 col-md-6 separa">
-				<button id="BtnProcesar"  title="Procesar" type="submit" class="btn btn-block btn-xs btn-success" onclick="Procesar();"><i class="fas fa-check fa-2x"></i></button>
-			</div>	
-			<div class="col-sm-6 col-md-6 separa">
-				<button id="BtnBorrar"  title="Borrar filtros" type="submit" class="btn btn-block btn-xs btn-danger" onclick="Reset();"><i class="fas fa-recycle fa-2x"></i></button>
-			</div>
-		</div>
-			
-	</div>
-	<!-- < / class="form-group" -->	
-	
+	</form>
 	<div class="container-fluid text-center text-primary" id="cargando" style="display:none;">
 		<br>
 		<span ><img src="images/ajax-loader8.gif"><strong>&nbsp;Espere, Procesando...!</strong></span>
@@ -209,6 +209,7 @@
 <script src="js/sweetalert.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="matconvivencia/js/funcionesV2.js"></script>
+<script src="matconvivencia/js/procesar.js"></script>
 <!-- MultiSelect CSS & JS library -->
 <script src="matconvivencia/js/bootstrap-multiselect-0915.js"></script>
 

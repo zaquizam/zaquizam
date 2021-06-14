@@ -34,13 +34,12 @@ function clear() {
 	$("#detallesMaestro").css("display", "none");	
 }
 //
-
 function LlenarCombos() {			
 	LlenarCategoria()
 	LlenarArea();
 	LlenarPeriodo();	
 }
-
+//
 function LlenarCategoria() {		
 	//
 	//debugger;
@@ -364,7 +363,7 @@ $("#cboMarca_B").on("change", function() {
 //
 $("#cboSegmento_B").on("change", function() {
     // Fill combo Segmento
-	debugger;
+	//debugger;
 	var opcion = 0;
 	var optCat = $("#cboCategoria_B option:selected").val();
 	var optFab = $("#cboFabricante_B option:selected").val();		
@@ -394,7 +393,7 @@ function fillAllCombos1(opc,idcat,cmb) {
 		}		
 	})
 	.done (function(response, textStatus, jqXHR) { 
-		console.log(response);
+		//console.log(response);
 		//debugger;
 		var len = response.data.length;
 		$(cmb).empty();				
@@ -430,7 +429,7 @@ function fillAllCombos2(opc, idcat, idfab, cmb) {
 		}		
 	})
 	.done (function(response, textStatus, jqXHR) { 
-		console.log(response);
+		//console.log(response);
 		//debugger;
 		var len = response.data.length;
 		$(cmb).empty();				
@@ -466,7 +465,7 @@ function fillAllCombos3(opc, idcat, idfab, idmar, cmb) {
 		}		
 	})
 	.done (function(response, textStatus, jqXHR) { 
-		console.log(response);
+		//console.log(response);
 		//debugger;
 		var len = response.data.length;
 		$(cmb).empty();				
@@ -502,7 +501,7 @@ function fillAllCombos4(opc, idcat, idfab, idmar, idseg, cmb) {
 		}		
 	})
 	.done (function(response, textStatus, jqXHR) { 
-		console.log(response);
+		//console.log(response);
 		//debugger;
 		var len = response.data.length;
 		$(cmb).empty();				
@@ -525,5 +524,9 @@ function fillAllCombos4(opc, idcat, idfab, idmar, idseg, cmb) {
 }
 //
 
-
+// $('#cboArea').multiselect({
+	// onChange: function(option, checked, select) {
+		// alert('Changed option ' + $(option).val() + '.');
+	// }
+// });
 
