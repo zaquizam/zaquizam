@@ -3,6 +3,12 @@
 //
 function Reset() {
 	$("#detallesMaestro").css("display", "none");
+	$("#detalleTotalHogares").css("display", "none");
+	$("#tablaResultados").css("display", "none");
+	//
+	$("#totalHogaresA").html("");
+	$("#totalHogaresB").html("");
+	$("#totalHogaresAB").html("");	
 	//
 	$("#cboCategoria_A").prop("selectedIndex", 0);
 	$("#cboFabricante_A").find('option:not(:first)').remove();
@@ -25,6 +31,7 @@ function Reset() {
 	$("#cboRangTamanoB").prop("selectedIndex", 0);
 	//
 	LlenarCombos();
+	sessionStorage.clear();
 	//
 	$("#cboCategoria_A").prop("selectedIndex", 0);
 	$("#cboCategoria_A").focus();
@@ -50,7 +57,7 @@ function LlenarCategoria() {
 	//
 	$.ajax({
 		url: "matconvivencia/llenar_cmb_convivencias.asp",
-		type: "POST", //Use "PUT" for HTTP PUT methods
+		type: "POST",
 		dataType: 'json',
 		data:  ajax,
 		beforeSend: function(){
@@ -69,7 +76,7 @@ function LlenarCategoria() {
 			var nombre = response.data[i]['nombre'];
 			$("#cboCategoria_A").append("<option value='"+id+"'>"+nombre+"</option>");
 		}
-		//		
+		//
 		$("#cboCategoria_B").empty();
 		$("#cboCategoria_A").find("option").clone().appendTo("#cboCategoria_B");
 	})
@@ -515,10 +522,3 @@ function fillAllCombos4(opc, idcat, idfab, idmar, idseg, cmb) {
 	//
 }
 //
-
-// $('#cboArea').multiselect({
-	// onChange: function(option, checked, select) {
-		// alert('Changed option ' + $(option).val() + '.');
-	// }
-// });
-

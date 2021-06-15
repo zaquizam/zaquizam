@@ -1,5 +1,5 @@
 <!Doctype html>
-<!-- PH_Cte_HomePantryConvivencia - 09abr21 - 15jun21 -->
+<!-- PH_Cte_HomePantryConvivencia - 09abr21 - 14jun21 -->
 <html >
 <head>
 	<title>| Convivencia Categoria |</title>
@@ -34,87 +34,87 @@
 		'
 	%>
 
+
 		<div class="container-fluid" id="grad1" >
 
-			<div class="form-group">
+				<div class="form-group">
 
-				<!-- CATEGORIA A -->
-				<div class="col-sm-5">
-					<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Categoria</label>
-					<div class="col-sm-6 col-md-6 separa">
-						<select class="form-control input-sm" id="cboCategoria_A" name="cboCategoria_A" >
-							<option value="0" selected disabled >-- Seleccione -- </option>
-						</select>
+					<!-- CATEGORIA A -->
+					<div class="col-sm-5">
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Categoria</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select class="form-control input-sm" id="cboCategoria_A" name="cboCategoria_A" >
+								<option value="0" selected disabled >-- Seleccione -- </option>
+							</select>
+						</div>
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Fabricante</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select class="form-control input-sm" id="cboFabricante_A" name="cboFabricante_A">
+							  <option value="0" selected disabled >-- Seleccione -- </option>
+							</select>
+						</div>
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Marca</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboMarca_A" name="cboMarca_A" class="form-control input-sm">
+							  <option value="0" selected disabled >-- Seleccione -- </option>
+							</select>
+						</div>
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Segmento</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboSegmento_A" name="cboSegmento_A" class="form-control input-sm">
+							  <option value="0" selected disabled >-- Seleccione -- </option>
+							</select>
+						</div>
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboRangTamanoA" name="cboRangTamanoA" class="form-control input-sm">
+							  <option value="0" selected disabled >-- Seleccione -- </option>
+							</select>
+						</div>
 					</div>
-					<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Fabricante</label>
-					<div class="col-sm-6 col-md-6 separa">
-						<select class="form-control input-sm" id="cboFabricante_A" name="cboFabricante_A">
-						  <option value="0" selected disabled >-- Seleccione -- </option>
-						</select>
+
+					<!-- Imagen -->
+					<div class="col-sm-2 id="image">
+						<img src="images/convivencia/ab2.jpg" class="img-responsive img-center" />
 					</div>
-					<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Marca</label>
-					<div class="col-sm-6 col-md-6 separa">
-						<select id="cboMarca_A" name="cboMarca_A" class="form-control input-sm">
-						  <option value="0" selected disabled >-- Seleccione -- </option>
-						</select>
+
+					<!-- CATEGORIA B -->
+
+					<div class="col-sm-5">
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Categoria</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboCategoria_B" name="cboCategoria_B" class="form-control input-sm">
+								<option>-- Seleccione --</option>
+							</select>
+						</div>
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Fabricante</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboFabricante_B" name="cboFabricante_B" class="form-control input-sm">
+							  <option>-- Seleccione --</option>
+							</select>
+						</div>
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Marca</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboMarca_B" name="cboMarca_B" class="form-control input-sm">
+							  <option>-- Seleccione --</option>
+							</select>
+						</div>
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Segmento</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboSegmento_B" name="cboSegmento_B" class="form-control input-sm">
+							  <option>-- Seleccione --</option>
+							</select>
+						</div>
+						<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
+						<div class="col-sm-6 col-md-6 separa">
+							<select id="cboRangTamanoB" name="cboRangTamanoB" class="form-control input-sm">
+							  <option>-- Seleccione --</option>
+							</select>
+						</div>
 					</div>
-					<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Segmento</label>
-					<div class="col-sm-6 col-md-6 separa">
-						<select id="cboSegmento_A" name="cboSegmento_A" class="form-control input-sm">
-						  <option value="0" selected disabled >-- Seleccione -- </option>
-						</select>
-					</div>
-					<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
-					<div class="col-sm-6 col-md-6 separa">
-						<select id="cboRangTamanoA" name="cboRangTamanoA" class="form-control input-sm">
-						  <option value="0" selected disabled >-- Seleccione -- </option>
-						</select>
-					</div>
-					
+
 				</div>
-
-				<!-- Imagen -->
-				<div class="col-sm-2 id="image">
-					<img src="images/convivencia/ab2.jpg" class="img-responsive img-center" />
-				</div>
-
-				<!-- CATEGORIA B -->
-
-				<div class="col-sm-5">
-					<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Categoria</label>
-					<div class="col-sm-6 col-md-6 separa">
-						<select id="cboCategoria_B" name="cboCategoria_B" class="form-control input-sm">
-							<option>-- Seleccione --</option>
-						</select>
-					</div>
-					<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Fabricante</label>
-					<div class="col-sm-6 col-md-6 separa">
-						<select id="cboFabricante_B" name="cboFabricante_B" class="form-control input-sm">
-						  <option>-- Seleccione --</option>
-						</select>
-					</div>
-					<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Marca</label>
-					<div class="col-sm-6 col-md-6 separa">
-						<select id="cboMarca_B" name="cboMarca_B" class="form-control input-sm">
-						  <option>-- Seleccione --</option>
-						</select>
-					</div>
-					<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Segmento</label>
-					<div class="col-sm-6 col-md-6 separa">
-						<select id="cboSegmento_B" name="cboSegmento_B" class="form-control input-sm">
-						  <option>-- Seleccione --</option>
-						</select>
-					</div>
-					<label class="control-label col-sm-offset-2 col-sm-2 lb" for="company">Tamaño</label>
-					<div class="col-sm-6 col-md-6 separa">
-						<select id="cboRangTamanoB" name="cboRangTamanoB" class="form-control input-sm">
-						  <option>-- Seleccione --</option>
-						</select>
-					</div>
-				</div>
-
-			</div>
-			<!-- < / class="form-group" -->
+				<!-- < / class="form-group" -->
 
 
 		</div>
@@ -206,13 +206,13 @@
 				<tbody>
 				  <tr>
 					<td class="text-center lb">A</td>
-					<td id="total_AA">0%</td>
-					<td id="total_AB">0%</td>
+					<td id="total_AA">100%</td>
+					<td id="total_AB">15%</td>
 				  </tr>
 				  <tr>
 					<td class="text-center lb">B</td>
-					<td id="total_BA">0%</td>
-					<td id="total_BB">0%</td>
+					<td id="total_BA">17%</td>
+					<td id="total_BB">100%</td>
 				  </tr>
 				</tbody>
 			</table>
@@ -229,19 +229,19 @@
 				<tbody>
 				  <tr>
 					<td class="text-center lb">PENETRACION A-B:</td>
-					<td class="text-left" id="penetracion_AB">0</td>					
+					<td class="text-left">26</td>					
 				  </tr>
 				  <tr>
 					<td class="text-center lb">PENETRACION (A):</td>
-					<td class="text-left" id="penetracion_A">0</td>					
+					<td class="text-center">13</td>					
 				  </tr>
 				  <tr>
 					<td class="text-center lb">PENETRACION (B):</td>
-					<td class="text-left" id="penetracion_B">0</td>					
+					<td class="text-center">16</td>					
 				  </tr>
 				  <tr>
 					<td class="text-center lb">CONVIVENCIA:</td>
-					<td class="text-left" id="totalConvivencia">0</td>					
+					<td class="text-center">72</td>					
 				  </tr>
 				</tbody>
 			</table>

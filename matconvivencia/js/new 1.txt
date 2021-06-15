@@ -1,4 +1,76 @@
-cboCategoria_A=1
-&cboCategoria_B=86
-&cboArea=1,7
-&cboPeriodo=29,30,31,32,24,25,26,27,28
+<table class='table table-borderless table-hover table-condensed' style=' margin: auto; width: 65% !important;'>
+		
+		<thead>
+		
+			<tr>
+				<th colspan='11' class='text-center text-primary'><i class='fas fa-check-double'></i>&nbsp;MATRIZ DE CONVIVENCIA TAMA&Ntilde;OS&nbsp;</th>	  
+			</tr>
+			
+			<tr>
+				<td class='text-center'></td><td class='text-center'>250 ml</td><td class='text-center'>320 ml</td><td class='text-center'>350 ml</td><td class='text-center'>355 ml</td><td class='text-center'>500 ml</td>
+				<td class='text-center'>600 ml</td><td class='text-center'>1000 ml</td><td class='text-center'>1250 ml</td><td class='text-center'>1500 ml</td><td class='text-center'>2000 ml</td><td class='text-center'>2500 ml</td>
+			</tr>				
+			
+	   </thead>
+	   
+	   <tbody>
+	   
+			'250
+			<tr>
+				<td>250 ml</td>
+				<td class='text-center text-danger'>  & FormatNumber(tRefresco250_250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco320_250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco350_250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco355_250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco500_250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco600_250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1000_250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1250_250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1500_250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2000_250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2500_250,2) &  %</td>
+			</tr>
+			'320
+			<tr>
+				<td>320 ml</td>
+				<td class='text-center text-primary'> & FormatNumber(tRefresco250_320,2) &  %</td><td class='text-center text-danger'> & FormatNumber(tRefresco320_320,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco350_320,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco355_320,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco500_320,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco600_320,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1000_320,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1250_320,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1500_320,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2000_320,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2500_320,2) &  %</td>
+			</tr>
+			'350
+			<tr>
+				<td>350 ml</td>
+				<td class='text-center text-primary'> & FormatNumber(tRefresco250_350,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco320_350,2) &  %</td><td class='text-center text-danger'> & FormatNumber(tRefresco350_350,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco355_350,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco500_350,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco600_350,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1000_350,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1250_350,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1500_350,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2000_350,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2500_350,2) &  %</td>
+			</tr>
+			'355
+			<tr>
+				<td>355 ml</td>
+				<td class='text-center text-primary'> & FormatNumber(tRefresco250_355,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco320_355,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco350_355,2) &  %</td><td class='text-center text-danger'> & FormatNumber(tRefresco355_355,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco500_355,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco600_355,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1000_355,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1250_355,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1500_355,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2000_355,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2500_355,2) &  %</td>
+			</tr>
+			'500
+			<tr>
+				<td>500 ml</td>
+				<td class='text-center text-primary'> & FormatNumber(tRefresco250_500,2) &  %</td><td class='text-center text-primary'>  & FormatNumber(tRefresco320_500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco350_500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco355_500,2) &  %</td><td class='text-center text-danger'> & FormatNumber(tRefresco500_500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco600_500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1000_500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1250_500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1500_500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2000_500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2500_500,2) &  %</td>
+			</tr>
+			'600
+			<tr>
+				<td>600 ml</td>
+				<td class='text-center text-primary'> & FormatNumber(tRefresco250_600,2) &  %</td><td class='text-center text-primary'>  & FormatNumber(tRefresco320_600,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco350_600,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco355_600,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco500_600,2) &  %</td><td class='text-center text-danger'> & FormatNumber(tRefresco600_600,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1000_600,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1250_600,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1500_600,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2000_600,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2500_600,2) &  %</td>
+			</tr>
+			'1000
+			<tr>
+				<td>1000 ml</td>
+				<td class='text-center text-primary'> & FormatNumber(tRefresco250_1000,2) &  %</td><td class='text-center text-primary'>  & FormatNumber(tRefresco320_1000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco350_1000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco355_1000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco500_1000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco600_1000,2) &  %</td><td class='text-center text-danger'> & FormatNumber(tRefresco1000_1000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1250_1000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1500_1000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2000_1000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2500_1000,2) &  %</td>
+			</tr>
+			'1250
+			<tr>
+				<td>1250 ml</td>
+				<td class='text-center text-primary'> & FormatNumber(tRefresco250_1250,2) &  %</td><td class='text-center text-primary'>  & FormatNumber(tRefresco320_1250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco350_1250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco355_1250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco500_1250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco600_1250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1000_1250,2) &  %</td><td class='text-center text-danger'> & FormatNumber(tRefresco1250_1250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1500_1250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2000_1250,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2500_1250,2) &  %</td>
+			</tr>
+			'1500
+			<tr>
+				<td>1500 ml</td>
+				<td class='text-center text-primary'> & FormatNumber(tRefresco250_1500,2) &  %</td><td class='text-center text-primary'>  & FormatNumber(tRefresco320_1500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco350_1500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco355_1500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco500_1500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco600_1500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1000_1500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1250_1500,2) &  %</td><td class='text-center text-danger'> & FormatNumber(tRefresco1500_1500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2000_1500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2500_1500,2) &  %</td>
+			</tr>
+			'2000
+			<tr>
+				<td>2000 ml</td>
+				<td class='text-center text-primary'> & FormatNumber(tRefresco250_2000,2) &  %</td><td class='text-center text-primary'>  & FormatNumber(tRefresco320_2000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco350_2000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco355_2000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco500_2000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco600_2000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1000_2000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1250_2000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1500_2000,2) &  %</td><td class='text-center text-danger'> & FormatNumber(tRefresco2000_2000,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2500_2000,2) &  %</td>
+			</tr>
+			'2500
+			<tr>
+				<td>2500 ml</td>
+				<td class='text-center text-primary'> & FormatNumber(tRefresco250_2500,2) &  %</td><td class='text-center text-primary'>  & FormatNumber(tRefresco320_2500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco350_2500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco355_2500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco500_2500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco600_2500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1000_2500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1250_2500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco1500_2500,2) &  %</td><td class='text-center text-primary'> & FormatNumber(tRefresco2000_2500,2) &  %</td><td class='text-center text-danger'> & FormatNumber(tRefresco2500_2500,2) &  %</td>
+			</tr>					
+			
+	   </tbody>
+	   
+	</table></strong>

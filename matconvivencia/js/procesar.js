@@ -1,8 +1,10 @@
 // funcion procesar.js - 14jun21
 //
 $("#BtnValidarProceso").click(function() {
-	event.preventDefault();
-	debugger;
+	event.preventDefault();	
+	//	
+	var arrayCatA = Array[0]; 
+	var arrayCatB = Array[0]; 
 	//
 	var cboCategoria_A = $("#cboCategoria_A :selected").map((_,e) => e.value).get();
 	if (cboCategoria_A == null || cboCategoria_A == undefined || cboCategoria_A.length== 0 || cboCategoria_A == 0) {
@@ -28,57 +30,145 @@ $("#BtnValidarProceso").click(function() {
 	}
 	//
 	var categoria_A = $("#cboCategoria_A").val();
-	var fabricante_A = ($("#cboFabricante_A").val() == null) ?  0 : $("#cboFabricante_A").val();
-	var marca_A = ($("#cboMarca_A").val() == null) ?  0 : $("#cboMarca_A").val();
-	var segmento_A = ($("#cboSegmento_A").val() == null) ?  0 : $("#cboSegmento_A").val();
-	var rangotam_A = ($("#cboRangTamanoA").val() == null) ?  0 : $("#cboRangTamanoA").val();
+	var fabricante_A = ($("#cboFabricante_A").val() == null) ? 0 : $("#cboFabricante_A").val();
+	var marca_A = ($("#cboMarca_A").val() == null) ? 0 : $("#cboMarca_A").val();
+	var segmento_A = ($("#cboSegmento_A").val() == null) ? 0 : $("#cboSegmento_A").val();
+	var rangotam_A = ($("#cboRangTamanoA").val() == null) ? 0 : $("#cboRangTamanoA").val();
 	//
 	var categoria_B = $("#cboCategoria_B").val();
-	var fabricante_B = ($("#cboFabricante_B").val() == null) ?  0 : $("#cboFabricante_B").val();
-	var marca_B = ($("#cboMarca_B").val() == null) ?  0 : $("#cboMarca_B").val();
-	var segmento_B = ($("#cboSegmento_B").val() == null) ?  0 : $("#cboSegmento_B").val();
-	var rangotam_B = ($("#cboRangTamanoB").val() == null) ?  0 : $("#cboRangTamanoB").val();
-	//
-	var formData = $('#frmConvivencia').serialize();
-	formData = formData + "&" + 'cboArea=' + cboArea + "&" + 'cboPeriodo=' + cboPeriodo;
-    //
-	$.ajax({
-		url: "matconvivencia/llenar_cmb_convivencias.asp",
-		type: "POST", //Use "PUT" for HTTP PUT methods
-		dataType: 'json',
-		data:  ajax,
-		beforeSend: function(){
-			$("#cargando").css("display", "block");
-		}
-	})
-	.done (function(response, textStatus, jqXHR) {
-		// console.log(response);
-		// debugger;
-		var len = response.data.length;
-		//$("#cboCategoria_A").multiselect('destroy');
-		$("#cboCategoria_A").empty();
-		$("#cboCategoria_A").append("<option selected disabled value='0'>-- Seleccione --</option>");
-		for( var i = 0; i < len; i++){
-			var id = response.data[i]['id'];
-			var nombre = response.data[i]['nombre'];
-			$("#cboCategoria_A").append("<option value='"+id+"'>"+nombre+"</option>");
-		}
-		//
-		$("#cboCategoria_B").empty();
-		$("#cboCategoria_A").find("option").clone().appendTo("#cboCategoria_B");
-	})
-	.fail (function(jqXHR, textStatus, errorThrown) {
-		//alert("Error " + errorThrown);
-		swal("Algo salio mal.!",errorThrown, "error");
-	})
-	.always (function(jqXHROrData, textStatus, jqXHROrErrorThrown) {
-		//alert("complete");
-		$("#cargando").css("display", "none");
-		$("#cboCategoria_A").prop("disabled", false);
-		$("#cboCategoria_B").prop("disabled", false);
-	});
-	//
-
-
+	var fabricante_B = ($("#cboFabricante_B").val() == null) ? 0 : $("#cboFabricante_B").val();
+	var marca_B = ($("#cboMarca_B").val() == null) ? 0 : $("#cboMarca_B").val();
+	var segmento_B = ($("#cboSegmento_B").val() == null) ? 0 : $("#cboSegmento_B").val();
+	var rangotam_B = ($("#cboRangTamanoB").val() == null) ? 0 : $("#cboRangTamanoB").val();
+	//debugger;
+		
+	Promise.all([totalHogares(cboPeriodo), ejecutar_A(categoria_A,fabricante_A,marca_A,segmento_A,rangotam_A,cboArea,cboPeriodo), ejecutar_B(categoria_B,fabricante_B,marca_B,segmento_B,rangotam_B,cboArea,cboPeriodo)]).then(() => { // try removing ajax 1 or replacing with ajax2
+    	//alert('All Ajax done with success!');
+		console.log('All Ajax done with success!');
+		Totalizar();
+  	}).catch((response) => {
+    	alert('All Ajax done: some failed!')
+		console.log('All Ajax some failed!');
+  	})	
+	//	
 });
+//
+function totalHogares(cboPeriodo) {
+    return $.ajax({
+      url: "http://localhost:3000/api/getTotalHogaresPeriodo/"+cboPeriodo+"",
+      type: 'get',
+      success: function(response) {
+        console.log("totalHogares ok");
+		sessionStorage.setItem("totalHogares", parseInt(response.recordsTotal));			
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert("error 1");
+      }
+    });
+}
+//
+function ejecutar_A(categoria_A,fabricante_A,marca_A,segmento_A,rangotam_A,cboArea,cboPeriodo){
+	//	
+	debugger;	
+    return $.ajax({
+      url: "http://localhost:3000/api/getTotalConvivencia/"+categoria_A+"/"+fabricante_A+"/"+marca_A+"/"+segmento_A+"/"+rangotam_A+"/"+cboArea+"/"+cboPeriodo+"",
+      type: 'get',
+      success: function(response) {
+        console.log("totalHogares A ok");
+		$("#totalHogaresA").html(parseInt(response.recordsTotal).toLocaleString("es-ES", { minimumFractionDigits: 0 }));
+		sessionStorage.setItem("totalHogaresA", parseInt(response.recordsTotal));			
+		let arrayCatA = new Array(parseInt(response.recordsTotal)); 
+		//
+		for (let i = 0; i < response.data.length; i++) {
+			arrayCatA[i] = response.data[i].id_hogar;				
+		}
+		sessionStorage.setItem("arrayCatA", arrayCatA);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert("error 1");
+      }
+    });
+}
+//
+function ejecutar_B(categoria_B,fabricante_B,marca_B,segmento_B,rangotam_B,cboArea,cboPeriodo){
+	//
+	return $.ajax({
+      url: "http://localhost:3000/api/getTotalConvivencia/"+categoria_B+"/"+fabricante_B+"/"+marca_B+"/"+segmento_B+"/"+rangotam_B+"/"+cboArea+"/"+cboPeriodo+"",
+      type: 'get',
+      success: function(response) {        
+		//
+		debugger;
+		console.log("totalHogares B ok");
+		totalHogaresB = response.recordsTotal;
+		sessionStorage.setItem("totalHogaresB", parseInt(response.recordsTotal));			
+		$("#totalHogaresB").html(parseInt(totalHogaresB).toLocaleString("es-ES", { minimumFractionDigits: 0 }));
+		//
+		let arrayCatB = new Array(parseInt(response.recordsTotal)); 			
+		for (let i = 0; i < response.data.length; i++) {
+			arrayCatB[i] = response.data[i].id_hogar;				
+		}
+		sessionStorage.setItem("arrayCatB", arrayCatB);
+		//						
+		var categ_A  = sessionStorage.getItem("arrayCatA").split(',') ;
+		var categ_B  = sessionStorage.getItem("arrayCatB").split(',') ;
+		//
+		var conviven = categ_A.filter(x => categ_B.indexOf(x) !== -1);
+		sessionStorage.setItem("totalConviven", conviven.length);
+		//			
+		console.log("los hogares conviven son are: " + conviven);
+		console.log("total hogares conviven son: " + conviven.length );		
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert("error 1");
+      }
+    });
+	
+
+}
+//
+function Totalizar(){
+	debugger;
+	// Totalizando Matriz	
+	console.log("Totalizar ok");
+	total=parseInt(sessionStorage.getItem("totalHogaresA")) + parseInt(totalHogaresB);
+	$("#totalHogaresAB").html(parseInt(total).toLocaleString("es-ES", { minimumFractionDigits: 0 }));
+	//
+	total = ( parseInt(sessionStorage.getItem("totalHogaresA")) / parseInt(sessionStorage.getItem("totalHogaresA")) ) * 100;		
+	total = (parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) );
+	$("#total_AA").html(total+" %");
+	total = ( parseInt(sessionStorage.getItem("totalConviven")) / parseInt(sessionStorage.getItem("totalHogaresB")) ) * 100;
+	total = (parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) );
+	$("#total_AB").html(total+" %");
+	//
+	total = ( parseInt(sessionStorage.getItem("totalConviven")) / parseInt(sessionStorage.getItem("totalHogaresA")) ) * 100 ;
+	total = ( parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) ) ;
+	$("#total_BA").html(total+" %");
+	total = ( parseInt(sessionStorage.getItem("totalHogaresB")) / parseInt(sessionStorage.getItem("totalHogaresB")) ) * 100 ;
+	total = ( parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) );
+	$("#total_BB").html(total+" %");
+	//Penetracion		
+	var total =0;
+	total = (( parseInt(sessionStorage.getItem("totalHogaresA")) + parseInt(sessionStorage.getItem("totalHogaresA")) ) / parseInt(sessionStorage.getItem("totalHogares")))  * 100;	
+	$("#penetracion_AB").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+	//Penetracion A
+	total = ( parseInt(sessionStorage.getItem("totalHogaresA")) / parseInt(sessionStorage.getItem("totalHogares")) ) * 100;	
+	$("#penetracion_A").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+	//Penetracion B
+	total = ( parseInt(sessionStorage.getItem("totalHogaresB")) / parseInt(sessionStorage.getItem("totalHogares")) ) * 100;	
+	$("#penetracion_B").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }));	
+	//Convivencia
+	$("#totalConvivencia").html(parseInt(sessionStorage.getItem("totalConviven")).toLocaleString("es-ES", { minimumFractionDigits: 0 }));
+	//
+	$("#detalleTotalHogares").css("display", "block");
+	$("#tablaResultados").css("display", "block");
+	//
+	if( parseInt(sessionStorage.getItem("totalHogaresA")) <= 30 ){
+		swal("Total Hogares A","No son validos para muestra","info");
+	}
+	if(parseInt(sessionStorage.getItem("totalHogaresB"))<=30){
+		swal("Total Hogares B","No son validos para muestra","error");
+	}
+	
+	
+}
 
