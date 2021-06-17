@@ -63,6 +63,10 @@ if not isnull(Session("linkjvg") ) then sLinkCli = Session("linkjvg") & "?edpas=
 			sLogo = "LogoBotalon.png"
 		case 28
 			sLogo = "Alimex.jpg"
+		case 29
+			sLogo = "Capri.PNG"
+		case 30
+			sLogo = "Munchy.png"
 			
 			
 			

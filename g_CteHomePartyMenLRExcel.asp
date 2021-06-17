@@ -174,7 +174,7 @@
 	' Cat = 19 Toallas Húmedas para Bebes
 	' Cat = 38 Cuidado Corporal
 	'Categorias Trimestrales Feb-Mar-Abr 2021
-	if (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 8) or (sCat = 14) or (sCat = 19) or (sCat = 38)  then 
+	if (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 8) or (sCat = 14) or (sCat = 19) or (sCat = 38) or (sCat = 97) then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,1)
@@ -199,9 +199,10 @@
 	' Cat = 5 Alim Perros
 	' Cat = 11 Formulas Infantiles
 	' Cat = 57 Jamon Endiablado
-	' Cat = 10 Salsa para Pastas
+	' Cat = 10 Salsa para Pastas (NO)
 	'Categorias Semestrales Ene-Feb-Mar-Abr/2021
-	if (sCat = 6) or (sCat = 5) or (sCat = 11) or (sCat = 57) or (sCat = 10) then 
+	'if (sCat = 6) or (sCat = 5) or (sCat = 11) or (sCat = 57) or (sCat = 10) then 
+	if (sCat = 6) or (sCat = 5) or (sCat = 11) or (sCat = 57) then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,0)
@@ -2136,9 +2137,9 @@
 												sql = sql & " PH_DataCrudaMensual.Id_Segmento, "
 												sql = sql & " PH_DataCrudaMensual.Segmento, "
 												sql = sql & " PH_DataCrudaMensual.Id_RangoTamano, "
-												sql = sql & " PH_DataCrudaMensual.RangoTamano, "
-												sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
-												sql = sql & " PH_DataCrudaMensual.Tamano "
+												sql = sql & " PH_DataCrudaMensual.RangoTamano "
+												'sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
+												'sql = sql & " PH_DataCrudaMensual.Tamano "
 												sql = sql & " FROM PH_DataCrudaMensual "
 												sql = sql & " WHERE "
 												sql = sql & " PH_DataCrudaMensual.Id_Categoria = " & sCat
@@ -2151,9 +2152,9 @@
 												sql = sql & " PH_DataCrudaMensual.Id_Segmento, "
 												sql = sql & " PH_DataCrudaMensual.Segmento, "
 												sql = sql & " PH_DataCrudaMensual.Id_RangoTamano, "
-												sql = sql & " PH_DataCrudaMensual.RangoTamano, "
-												sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
-												sql = sql & " PH_DataCrudaMensual.Tamano "
+												sql = sql & " PH_DataCrudaMensual.RangoTamano "
+												'sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
+												'sql = sql & " PH_DataCrudaMensual.Tamano "
 												sql = sql & " HAVING "
 												sql = sql & " PH_DataCrudaMensual.Id_Area = 0 "
 												sql = sql & " AND PH_DataCrudaMensual.Id_Fabricante in (" & sFab & ")"
@@ -5243,7 +5244,11 @@ Sub CalcularIndicador
 			sql = sql & " Id_Categoria = " & sCat
 			'20May2021
 			'sql = sql & " and Id_Area = 0" '& iAre
-			sql = sql & " and Id_Area = " & iAre
+			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
+				sql = sql & " and Id_Area = 0 "
+			else
+				sql = sql & " and Id_Area = " & iAre
+			end if
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0"
 			sql = sql & " And Id_Segmento = 0"
@@ -5284,7 +5289,9 @@ Sub CalcularIndicador
 						sql = sql & " And Id_Marca = 0 "  
 						sql = sql & " And Id_Segmento = " & iSeg 
 						'sql = sql & " And Id_RangoTamano =  0 "   
-						'response.write "<br>3243 LLEGO1" 
+						'response.write "<br>3243 LLEGO" 
+					else
+						sql = sql & " And Id_Segmento = " & iSeg 
 					end if
 				else
 				if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
@@ -5381,8 +5388,12 @@ Sub CalcularIndicador
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			'20May2021
-			'sql = sql & " and Id_Area = 0 " '& iAre
-			sql = sql & " and Id_Area =  " & iAre
+			'sql = sql & " and Id_Area = 0" '& iAre
+			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
+				sql = sql & " and Id_Area = 0 "
+			else
+				sql = sql & " and Id_Area = " & iAre
+			end if
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0 "
 			sql = sql & " And Id_Segmento = 0 "
@@ -5427,6 +5438,8 @@ Sub CalcularIndicador
 						sql = sql & " And Id_Segmento = " & iSeg 
 						'sql = sql & " And Id_RangoTamano =  0 "   
 						'response.write "<br>3243 LLEGO" 
+					else
+						sql = sql & " And Id_Segmento = " & iSeg 
 					end if
 				else
 				if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
@@ -5514,8 +5527,12 @@ Sub CalcularIndicador
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			'20May2021
-			'sql = sql & " and Id_Area = 0 " '& iAre
-			sql = sql & " and Id_Area = " & iAre
+			'sql = sql & " and Id_Area = 0" '& iAre
+			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
+				sql = sql & " and Id_Area = 0 "
+			else
+				sql = sql & " and Id_Area = " & iAre
+			end if
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0 "
 			sql = sql & " And Id_Segmento = 0 "
@@ -5555,6 +5572,8 @@ Sub CalcularIndicador
 						sql = sql & " And Id_Segmento = " & iSeg 
 						'sql = sql & " And Id_RangoTamano =  0 "   
 						'response.write "<br>3243 LLEGO" 
+					else
+						sql = sql & " And Id_Segmento = " & iSeg 
 					end if
 				else
 				if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
@@ -5869,7 +5888,9 @@ Sub CalcularIndicador
 			end if
 			
 		Case 35 'HogRecomp
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" then
+			response.write "llego"
+			response.end
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6081,7 +6102,7 @@ Sub CalcularIndicador
 			end if
 		
 		Case 36 'HogNuevos
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" then
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6294,7 +6315,7 @@ Sub CalcularIndicador
 			end if
 
 		Case 37 'HogNoRecomp
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" then
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6506,7 +6527,7 @@ Sub CalcularIndicador
 			end if
 
 		Case 39 'HogRecompAnt
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" then
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 

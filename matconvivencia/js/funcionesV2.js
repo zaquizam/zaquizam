@@ -1,5 +1,5 @@
 //
-// funcionesV1.js // 24may21 - 14jun21
+// funcionesV2.js // 24may21 - 16jun21
 //
 function Reset() {
 	$("#detallesMaestro").css("display", "none");
@@ -56,7 +56,7 @@ function LlenarCategoria() {
 	let ajax = { opcion: 1,	id1: id, id2: id, id3: id, id4: id, id5: id, };
 	//
 	$.ajax({
-		url: "matconvivencia/llenar_cmb_convivencias.asp",
+		url: "mConv_llenar_cmb_Cat_Area_Periodo.asp",
 		type: "POST",
 		dataType: 'json',
 		data:  ajax,
@@ -65,8 +65,8 @@ function LlenarCategoria() {
 		}
 	})
 	.done (function(response, textStatus, jqXHR) {
-		// console.log(response);
-		// debugger;
+		console.log(response);
+		//debugger;
 		var len = response.data.length;
 		//$("#cboCategoria_A").multiselect('destroy');
 		$("#cboCategoria_A").empty();
@@ -82,7 +82,7 @@ function LlenarCategoria() {
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
 		//alert("Error " + errorThrown);
-		swal("Algo salio mal.!",errorThrown, "error");
+		swal("Algo salio mal.!","LlenarCategoria()", "error");
 	})
 	.always (function(jqXHROrData, textStatus, jqXHROrErrorThrown) {
 		//alert("complete");
@@ -99,10 +99,10 @@ function LlenarArea() {
 	var id=0;
 	$("#cboArea").prop("disabled", true);
 
-	let ajax = { opcion: 2, };
+	let ajax = { opcion: 2 };
 	//
 	$.ajax({
-		url: "matconvivencia/llenar_cmb_convivencias.asp",
+		url: "mConv_llenar_cmb_Cat_Area_Periodo.asp",
 		type: "POST", //Use "PUT" for HTTP PUT methods
 		dataType: 'json',
 		data:  ajax,
@@ -133,7 +133,7 @@ function LlenarArea() {
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
 		//alert("Error " + errorThrown);
-		swal("Algo salio mal.!",errorThrown, "error");
+		swal("Algo salio mal.!","LlenarArea()", "error");
 	})
 	.always (function(jqXHROrData, textStatus, jqXHROrErrorThrown) {
 		//alert("complete");
@@ -151,10 +151,10 @@ function LlenarPeriodo() {
 	var id=0;
 	$("#cboPeriodo").prop("disabled", true);
 
-	let ajax = { opcion: 3, };
+	let ajax = { opcion: 3 };
 	//
 	$.ajax({
-		url: "matconvivencia/llenar_cmb_convivencias.asp",
+		url: "mConv_llenar_cmb_Cat_Area_Periodo.asp",
 		type: "POST", //Use "PUT" for HTTP PUT methods
 		dataType: 'json',
 		data:  ajax,
@@ -185,7 +185,7 @@ function LlenarPeriodo() {
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
 		//alert("Error " + errorThrown);
-		swal("Algo salio mal.!",errorThrown, "error");
+		swal("Algo salio mal.!","LlenarPeriodo()", "error");
 	})
 	.always (function(jqXHROrData, textStatus, jqXHROrErrorThrown) {
 		//alert("complete");
@@ -383,7 +383,7 @@ function fillAllCombos1(opc,idcat,cmb) {
 	let ajax = { opcion: opc, idCat: idcat, };
 	//
 	$.ajax({
-		url: "matconvivencia/llenar_cmb_x_cat.asp",
+		url: "mConv_llenar_cmb_x_cat.asp",
 		type: "POST",
 		dataType: 'json',
 		data:  ajax,
@@ -419,7 +419,7 @@ function fillAllCombos2(opc, idcat, idfab, cmb) {
 	let ajax = { opcion: opc, idCat: idcat, idFab: idfab, };
 	//
 	$.ajax({
-		url: "matconvivencia/llenar_cmb_x_Cat-Fab.asp",
+		url: "mConv_llenar_cmb_x_Cat-Fab.asp",
 		type: "POST",
 		dataType: 'json',
 		data:  ajax,
@@ -455,7 +455,7 @@ function fillAllCombos3(opc, idcat, idfab, idmar, cmb) {
 	let ajax = { opcion: opc, idCat: idcat, idFab: idfab, idMar: idmar, };
 	//
 	$.ajax({
-		url: "matconvivencia/llenar_cmb_x_Cat-Fab-Mar.asp",
+		url: "mConv_llenar_cmb_x_Cat-Fab-Mar.asp",
 		type: "POST",
 		dataType: 'json',
 		data:  ajax,
@@ -491,7 +491,7 @@ function fillAllCombos4(opc, idcat, idfab, idmar, idseg, cmb) {
 	let ajax = { opcion: opc, idCat: idcat, idFab: idfab, idMar: idmar, idSeg: idseg, };
 	//
 	$.ajax({
-		url: "matconvivencia/llenar_cmb_x_Cat-Fab-Mar-Seg.asp",
+		url: "mConv_llenar_cmb_x_Cat-Fab-Mar-Seg.asp",
 		type: "POST",
 		dataType: 'json',
 		data:  ajax,

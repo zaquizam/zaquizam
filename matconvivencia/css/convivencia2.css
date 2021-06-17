@@ -70,8 +70,6 @@
   outline:none;
 }
 
-
-
 /*
 .form-control {
   border-radius: 40px !important;
@@ -90,14 +88,92 @@
 	margin:0 auto;
 	padding :3px;
     text-align: left;
+    font-Size: 12px;
+    font-weight: bold;
+    /*color: #5787C2;*/
+	color: #2EA3F2;
+    font-family: Verdana;
+	/* text-shadow: 2px 0.2px #A9A9A9; */
+}
+
+.lb1 {
+	margin:0 auto;
+	padding :3px;
+    text-align: left;
+    font-Size: 13px;
+    font-weight: bold;
+    /*color: #5787C2;*/
+	color: #2EA3F2;
+    font-family: Verdana;
+	/* text-shadow: 2px 0.2px #A9A9A9; */
+}
+
+.lb2 {
+	margin:0 auto;
+	padding :3px;
+    text-align: left;
     font-Size: 14px;
     font-weight: bold;
     color: #5787C2;
     font-family: Verdana;
-	text-shadow: 2px 0.5px #A9A9A9;
+	/* text-shadow: 2px 0.2px #A9A9A9; */
+}
+
+.lb3 {
+	margin:0 auto;
+	padding :3px;
+    text-align: CENTER;
+    font-Size: 12px;
+    font-weight: bold;
+    color: #fff;
+    font-family: Verdana;
+	/* text-shadow: 2px 0.2px #A9A9A9; */
+}
+
+.lb4 {
+	margin:0 auto;
+	padding :3px;
+    text-align: CENTER;
+    font-Size: 12px;
+    font-weight: bold;
+    color: #2EA3F2;
+    font-family: Verdana;	
+	margin-top: 6px;
 }
 
 .img-responsive {
     max-width: 100%;
     height: auto;
+}
+
+/*  Added Rounded Corner Tables */
+.table-curved {
+    border-collapse: separate;
+}
+.table-curved {
+    border: solid #ccc 1px;
+    border-radius: 6px;
+    border-left:0px;
+}
+.table-curved td, .table-curved th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+.table-curved th {
+    border-top: none;
+}
+.table-curved th:first-child {
+    border-radius: 6px 0 0 0;
+}
+.table-curved th:last-child {
+    border-radius: 0 6px 0 0;
+}
+.table-curved th:only-child{
+    border-radius: 6px 6px 0 0;
+}
+.table-curved tr:last-child td:first-child {
+    border-radius: 0 0 0 6px;
+}
+.table-curved tr:last-child td:last-child {
+    border-radius: 0 0 6px 0;
 }

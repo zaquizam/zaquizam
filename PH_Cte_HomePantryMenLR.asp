@@ -1297,6 +1297,7 @@ end sub
 			//return;
 			//alert(indicadores);
 			//var stodo = "cat=" + categoria;
+			//
 			var stodo = "cat=" + categ;
 			stodo = stodo + "&are=" + area;
 			stodo = stodo + "&fab=" + fabricante;

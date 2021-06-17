@@ -1,7 +1,7 @@
 <%@language=vbscript%>
 <!--#include file="conexion.asp"-->
 <%
-	' g_MC_ValBuscarDetallesxProductosxFactura.asp - 26feb21 - 01mar21
+	' g_MC_ValBuscarDetallesxProductosxFactura.asp - 26feb21 - 11jun21
 	'
 	Session.lcid = 1034
 	Response.CodePage = 65001
@@ -120,7 +120,8 @@
 							if(arrDetalleProductos(13,i)="" or isNull(arrDetalleProductos(14,i))) then
 								Total  	= 0
 							else							
-								if (idCategoria =9) then
+								'if (idCategoria =9) then
+								if( idCategoria =9 or idCategoria = 10 or idCategoria = 11 or idCategoria = 12 or idCategoria = 13 or idCategoria = 14) then
 									'Queso
 									Total	= precioUnitario					
 								else

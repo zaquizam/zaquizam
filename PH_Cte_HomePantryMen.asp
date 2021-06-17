@@ -1067,7 +1067,11 @@ Sub DataCombos
 	if (cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 42  or cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 18) and idCliente = 8 then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
 	end if
-	if (cint(ed_sPar(1,0)) = 40 ) and idCliente = 16 then
+	if cint(ed_sPar(1,0)) = 41 and idCliente = 19 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32) "
+	end if
+	if (cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 42) and idCliente = 16 then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
 	end if
 	sql = sql & " ORDER BY "

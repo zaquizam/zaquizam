@@ -1,7 +1,7 @@
 <%@language=vbscript%>
 <!--#include file="conexion.asp"-->
 <%
-	' g_ValBuscarDetallesxProductosxFactura.asp // 02ENE21  - 01mar21
+	' g_ValBuscarDetallesxProductosxFactura.asp // 02ENE21  - 09jun21
 	'
 	Session.lcid = 1034
 	Response.CodePage = 65001
@@ -128,13 +128,13 @@
 							if(arrDetalleProductos(13,i)="" or isNull(arrDetalleProductos(14,i))) then
 								Total  	= 0
 							else							
-								if( idCategoria =9) then
-									'Queso
-									if( idMoneda = 2) then
-										Total	= precioUnitario					
-									else
+								if( idCategoria =9 or idCategoria = 10 or idCategoria = 11 or idCategoria = 12 or idCategoria = 13 or idCategoria = 14) then
+									'Queso - charcuteria - perro - gato - limpiadores
+									'if( idMoneda = 2) then
+									'	Total	= precioUnitario					
+									'else
 										Total	= tasaCambio * precioUnitario
-									end if
+									'end if
 								else
 									Total	= FormatNumber(arrDetalleProductos(14,i),2)										
 								end if

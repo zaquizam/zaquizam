@@ -145,13 +145,13 @@ Sub ParDat
   '  ed_sCampo(3,8)=2
     
 	
-	ed_sQue(1,0)=  " SELECT Id_Categoria, Categoria FROM  PH_CB_Categoria WHERE Fec_Inactivo is Null and id_Categoria = " & ed_sPar(1,0)
-	ed_sQue(4,0)=  " SELECT Id_Segmento, Segmento FROM  PH_CB_Segmento WHERE Fec_Inactivo is Null and id_categoria = " & ed_sPar(1,0) & " Order by Segmento "
-	ed_sQue(5,0)=  " SELECT Id_Fabricante, Fabricante FROM  PH_CB_Fabricante WHERE Fec_Inactivo is Null and id_categoria = " & ed_sPar(1,0) & " Order by Fabricante "
-	ed_sQue(6,0)=  " SELECT Id_Marca, Marca FROM  PH_CB_Marca WHERE Fec_Inactivo is Null and id_categoria = " & ed_sPar(1,0) & " Order by Marca "
-	ed_sQue(7,0)=  " SELECT Id_Tamano, Tamano FROM  PH_CB_Tamano WHERE Fec_Inactivo is Null and id_categoria = " & ed_sPar(1,0) & " Order by Tamano "
-	ed_sQue(8,0)=  " SELECT Id_TamanoRango, TamanoRango FROM  PH_CB_TamanoRango WHERE Fec_Inactivo is Null and id_categoria = " & ed_sPar(1,0) & " Order by TamanoRango "
-	ed_sQue(9,0)=  " SELECT Id_UnidadMedida, UnidadMedida FROM  PH_CB_UnidadMedida WHERE Fec_Inactivo is Null and id_categoria = " & cint(ed_sPar(1,0))
+	ed_sQue(1,0)=  " SELECT Id_Categoria, Categoria FROM  PH_CB_Categoria WHERE Fec_Inactivo is Null and ind_activo = 1 and id_Categoria = " & ed_sPar(1,0)
+	ed_sQue(4,0)=  " SELECT Id_Segmento, Segmento FROM  PH_CB_Segmento WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by Segmento "
+	ed_sQue(5,0)=  " SELECT Id_Fabricante, Fabricante FROM  PH_CB_Fabricante WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by Fabricante "
+	ed_sQue(6,0)=  " SELECT Id_Marca, Marca FROM  PH_CB_Marca WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by Marca "
+	ed_sQue(7,0)=  " SELECT Id_Tamano, Tamano FROM  PH_CB_Tamano WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by Tamano "
+	ed_sQue(8,0)=  " SELECT Id_TamanoRango, TamanoRango FROM  PH_CB_TamanoRango WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by TamanoRango "
+	ed_sQue(9,0)=  " SELECT Id_UnidadMedida, UnidadMedida FROM  PH_CB_UnidadMedida WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & cint(ed_sPar(1,0))
 
 	ed_Formato(00,0)="w3-col l1  w3-left w3-padding "
 	ed_Formato(01,0)="w3-col l2  w3-left w3-padding "

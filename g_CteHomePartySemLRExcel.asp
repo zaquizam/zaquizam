@@ -117,6 +117,7 @@
 	strSemana19 = "(19) Del 10 May 2021 al 16 May 2021"
 	strSemana20 = "(20) Del 17 May 2021 al 23 May 2021"
 	strSemana21 = "(21) Del 24 May 2021 al 30 May 2021"
+	strSemana22 = "(22) Del 31 May 2021 al 06 Jun 2021"
 	
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
@@ -336,6 +337,7 @@
 											<th class="cell100 column10 text-center"><%=strSemana19%></th>
 											<th class="cell100 column10 text-center"><%=strSemana20%></th>
 											<th class="cell100 column10 text-center"><%=strSemana21%></th>
+											<th class="cell100 column10 text-center"><%=strSemana22%></th>
 										</tr>
 									</thead>
 								</table>
@@ -394,6 +396,7 @@
 											<th class="cell100 column10 text-center"><%=strSemana19%></th>
 											<th class="cell100 column10 text-center"><%=strSemana20%></th>
 											<th class="cell100 column10 text-center"><%=strSemana21%></th>
+											<th class="cell100 column10 text-center"><%=strSemana22%></th>
 										</tr>
 									</thead>
 								</table>
@@ -562,6 +565,12 @@
 															response.write Valor
 														response.write "</td>"
 														idSemana = 36
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 37
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
@@ -751,6 +760,12 @@
 														response.write Valor
 													response.write "</td>"
 													idSemana = 36
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 37
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"

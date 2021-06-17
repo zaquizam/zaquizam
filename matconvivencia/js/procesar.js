@@ -1,4 +1,4 @@
-// funcion procesar.js - 14jun21
+// funcion procesar.js - 16jun21
 //
 $("#BtnValidarProceso").click(function() {
 	event.preventDefault();	
@@ -47,31 +47,32 @@ $("#BtnValidarProceso").click(function() {
 		console.log('All Ajax done with success!');
 		Totalizar();
   	}).catch((response) => {
-    	alert('All Ajax done: some failed!')
+    	alert('All Ajax done: some failed!');
 		console.log('All Ajax some failed!');
   	})	
 	//	
 });
 //
 function totalHogares(cboPeriodo) {
+	
     return $.ajax({
-      url: "http://localhost:3000/api/getTotalHogaresPeriodo/"+cboPeriodo+"",
+      //url: "http://localhost:3000/api/getTotalHogaresPeriodo/"+cboPeriodo+"",
+	  url: sessionStorage.getItem("urlApi")+"getTotalHogaresPeriodo/"+cboPeriodo+"",
       type: 'get',
       success: function(response) {
         console.log("totalHogares ok");
 		sessionStorage.setItem("totalHogares", parseInt(response.recordsTotal));			
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert("error 1");
+        alert("Fallo () TotalHogares");
       }
     });
 }
 //
 function ejecutar_A(categoria_A,fabricante_A,marca_A,segmento_A,rangotam_A,cboArea,cboPeriodo){
 	//	
-	debugger;	
     return $.ajax({
-      url: "http://localhost:3000/api/getTotalConvivencia/"+categoria_A+"/"+fabricante_A+"/"+marca_A+"/"+segmento_A+"/"+rangotam_A+"/"+cboArea+"/"+cboPeriodo+"",
+	  url: sessionStorage.getItem("urlApi")+"getTotalConvivencia/"+categoria_A+"/"+fabricante_A+"/"+marca_A+"/"+segmento_A+"/"+rangotam_A+"/"+cboArea+"/"+cboPeriodo+"",
       type: 'get',
       success: function(response) {
         console.log("totalHogares A ok");
@@ -85,7 +86,7 @@ function ejecutar_A(categoria_A,fabricante_A,marca_A,segmento_A,rangotam_A,cboAr
 		sessionStorage.setItem("arrayCatA", arrayCatA);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert("error 1");
+        alert("Fallo () Run-A");
       }
     });
 }
@@ -93,7 +94,7 @@ function ejecutar_A(categoria_A,fabricante_A,marca_A,segmento_A,rangotam_A,cboAr
 function ejecutar_B(categoria_B,fabricante_B,marca_B,segmento_B,rangotam_B,cboArea,cboPeriodo){
 	//
 	return $.ajax({
-      url: "http://localhost:3000/api/getTotalConvivencia/"+categoria_B+"/"+fabricante_B+"/"+marca_B+"/"+segmento_B+"/"+rangotam_B+"/"+cboArea+"/"+cboPeriodo+"",
+	  url: sessionStorage.getItem("urlApi")+"getTotalConvivencia/"+categoria_B+"/"+fabricante_B+"/"+marca_B+"/"+segmento_B+"/"+rangotam_B+"/"+cboArea+"/"+cboPeriodo+"",	  
       type: 'get',
       success: function(response) {        
 		//
@@ -111,27 +112,40 @@ function ejecutar_B(categoria_B,fabricante_B,marca_B,segmento_B,rangotam_B,cboAr
 		//						
 		var categ_A  = sessionStorage.getItem("arrayCatA").split(',') ;
 		var categ_B  = sessionStorage.getItem("arrayCatB").split(',') ;
-		//
+		//		
 		var conviven = categ_A.filter(x => categ_B.indexOf(x) !== -1);
+		//		
 		sessionStorage.setItem("totalConviven", conviven.length);
-		//			
 		console.log("los hogares conviven son are: " + conviven);
 		console.log("total hogares conviven son: " + conviven.length );		
+		//
+		//let arrayDifference = arr1.filter(x => arr2.indexOf(x) === -1);
+		
+		let exclusivo_categ_A = categ_A.filter(x => !categ_B.includes(x));
+		
+		let exclusivo_categ_B = categ_B.filter(x => !categ_A.includes(x));
+		
+		
+		console.log("Hogares Exclusivos A: " + exclusivo_categ_A);
+		console.log("total Hogares Exclusivos A: " + exclusivo_categ_A.length );
+		sessionStorage.setItem("totalExcl_A", exclusivo_categ_A.length);		
+		console.log("Hogares Exclusivos B: " + exclusivo_categ_B);
+		console.log("total Hogares Exclusivos B: " + exclusivo_categ_B.length );		
+		sessionStorage.setItem("totalExcl_B", exclusivo_categ_B.length);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert("error 1");
+        alert("Fallo () Run-B");
       }
     });
 	
-
 }
 //
 function Totalizar(){
 	debugger;
-	// Totalizando Matriz	
-	console.log("Totalizar ok");
+	// Totalizando Hogares	
 	total=parseInt(sessionStorage.getItem("totalHogaresA")) + parseInt(totalHogaresB);
 	$("#totalHogaresAB").html(parseInt(total).toLocaleString("es-ES", { minimumFractionDigits: 0 }));
+	console.log("Totalizando Hogares ok");
 	//
 	total = ( parseInt(sessionStorage.getItem("totalHogaresA")) / parseInt(sessionStorage.getItem("totalHogaresA")) ) * 100;		
 	total = (parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) );
@@ -139,6 +153,7 @@ function Totalizar(){
 	total = ( parseInt(sessionStorage.getItem("totalConviven")) / parseInt(sessionStorage.getItem("totalHogaresB")) ) * 100;
 	total = (parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) );
 	$("#total_AB").html(total+" %");
+	console.log("Totalizando Hogares A ok");
 	//
 	total = ( parseInt(sessionStorage.getItem("totalConviven")) / parseInt(sessionStorage.getItem("totalHogaresA")) ) * 100 ;
 	total = ( parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) ) ;
@@ -146,29 +161,35 @@ function Totalizar(){
 	total = ( parseInt(sessionStorage.getItem("totalHogaresB")) / parseInt(sessionStorage.getItem("totalHogaresB")) ) * 100 ;
 	total = ( parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) );
 	$("#total_BB").html(total+" %");
+	console.log("Totalizando Hogares B ok");
 	//Penetracion		
 	var total =0;
 	total = (( parseInt(sessionStorage.getItem("totalHogaresA")) + parseInt(sessionStorage.getItem("totalHogaresA")) ) / parseInt(sessionStorage.getItem("totalHogares")))  * 100;	
-	$("#penetracion_AB").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+	$("#penetracion_AB").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + " %");
 	//Penetracion A
 	total = ( parseInt(sessionStorage.getItem("totalHogaresA")) / parseInt(sessionStorage.getItem("totalHogares")) ) * 100;	
-	$("#penetracion_A").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+	$("#penetracion_A").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + " %");
 	//Penetracion B
 	total = ( parseInt(sessionStorage.getItem("totalHogaresB")) / parseInt(sessionStorage.getItem("totalHogares")) ) * 100;	
-	$("#penetracion_B").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }));	
+	$("#penetracion_B").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + " %");	
 	//Convivencia
 	$("#totalConvivencia").html(parseInt(sessionStorage.getItem("totalConviven")).toLocaleString("es-ES", { minimumFractionDigits: 0 }));
+	//exclusividad
+	total = ( (parseInt(sessionStorage.getItem("totalExcl_A")) - parseInt(sessionStorage.getItem("totalConviven")) ) / parseInt(sessionStorage.getItem("totalHogaresA")) ) * 100;	
+	$("#exclusivo_A").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }));	
+	total = ( parseInt(sessionStorage.getItem("totalExcl_B")) / parseInt(sessionStorage.getItem("totalHogares")) ) * 100;	
+	$("#exclusivo_B").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }));		
 	//
+	//Show
 	$("#detalleTotalHogares").css("display", "block");
 	$("#tablaResultados").css("display", "block");
-	//
+	//Alerta
 	if( parseInt(sessionStorage.getItem("totalHogaresA")) <= 30 ){
 		swal("Total Hogares A","No son validos para muestra","info");
 	}
 	if(parseInt(sessionStorage.getItem("totalHogaresB"))<=30){
 		swal("Total Hogares B","No son validos para muestra","error");
 	}
-	
-	
+		
 }
 

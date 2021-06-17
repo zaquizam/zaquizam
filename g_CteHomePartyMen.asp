@@ -160,25 +160,106 @@
 	'if idCliente = 10 then
 	
 	'Categorias Trimestrales Feb-Mar-Abr 2021
-	if (sCat = 12 and idCliente = 21) or (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 8) or (sCat = 14) or (sCat = 19) or (sCat = 38) or (sCat = 41) then 
+	if ((sCat = 12 and idCliente = 21) or (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 19) or (sCat = 38) or (sCat = 41) or sCat = 97 or sCat = 10)  then 
+		if idCliente <> 8 then 
+			'response.write "<br>pasoooooooooooooooo"
+			erase gMeses
+			redim gMeses(2,0)
+			gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
+			gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+			'Central el Palmar
+			if (sCat = 97 or sCat = 106 or sCat = 72) and idCliente = 20 then 
+				'response.write "<br>pasoooooooooooooooo"
+				erase gMeses
+				redim gMeses(2,0)
+				gMeses(1,0) = "Trim. Mar-Abr-May/2021"
+				gMeses(2,0) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+			end if
+			'Capri
+			if (sCat = 10) and idCliente = 29 then 
+				'response.write "<br>pasoooooooooooooooo"
+				erase gMeses
+				redim gMeses(2,0)
+				gMeses(1,0) = "Trim. Mar-Abr-May/2021"
+				gMeses(2,0) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+			end if
+			'El Tunal
+			if (sCat = 12 and idCliente = 21) then 
+				'response.write "<br>pasoooooooooooooooo"
+				erase gMeses
+				redim gMeses(2,1)
+				gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
+				gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+				gMeses(1,1) = "Trim. Mar-Abr-May/2021"
+				gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+			end if
+			'Baron
+			if ((sCat = 19 or sCat = 38 or sCat = 41) and idCliente = 19)  then 
+				'response.write "<br>pasoooooooooooooooo"
+				erase gMeses
+				redim gMeses(2,1)
+				gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
+				gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+				gMeses(1,1) = "Trim. Mar-Abr-May/2021"
+				gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+			end if
+			'SC Johnson
+			if (sCat = 27) or (sCat = 30) or (sCat = 29) or (sCat = 31) or (sCat = 73) then 
+				erase gMeses
+				redim gMeses(2,2)
+				gMeses(1,0) = "Trim. Ene-Feb-Mar/2021"
+				gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28"
+				gMeses(1,1) = "Trim. Feb-Mar-Abr/2021"
+				gMeses(2,1) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+				gMeses(1,2) = "Trim. Mar-Abr-May/2021"
+				gMeses(2,2) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+				'response.write "paso"
+				'response.end
+			end if
+			' Pepsico Alimento
+			if (sCat = 35) then 
+				erase gMeses
+				redim gMeses(2,2)
+				gMeses(1,0) = "Trim. Ene-Feb-Mar/2021"
+				gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28"
+				gMeses(1,1) = "Trim. Feb-Mar-Abr/2021"
+				gMeses(2,1) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+				gMeses(1,2) = "Trim. Mar-Abr-May/2021"
+				gMeses(2,2) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+				'response.write "paso"
+				'response.end
+			end if
+		end if
+	end if
+	'Nestle
+	if (sCat = 14) then 
+		'response.write "<br>pasoooooooooooooooo"
+		erase gMeses
+		redim gMeses(2,1)
+		gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
+		gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+		gMeses(1,1) = "Trim. Mar-Abr-May/2021"
+		gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+	end if
+	if (sCat = 8)then 
+		'response.write "<br>pasoooooooooooooooo"
+		erase gMeses
+		redim gMeses(2,1)
+		gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
+		gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+		gMeses(1,1) = "Trim. Mar-Abr-May/2021"
+		gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+	end if
+
+	'Categorias Semestrales Ene-Feb-Mar-Abr/2021
+	if (sCat = 6) or (sCat = 5) then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,0)
-		gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
-		gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
-		if (sCat = 27) or (sCat = 30) or (sCat = 29) or (sCat = 31) or (sCat = 73) or (sCat = 35) then 
-			erase gMeses
-			redim gMeses(2,1)
-			gMeses(1,0) = "Trim. Ene-Feb-Mar/2021"
-			gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28"
-			gMeses(1,1) = "Trim. Feb-Mar-Abr/2021"
-			gMeses(2,1) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
-			'response.write "paso"
-			'response.end
-		end if
+		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr-May/2021"
+		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
 	end if
-	'Categorias Semestrales Ene-Feb-Mar-Abr/2021
-	if (sCat = 6) or (sCat = 5) or (sCat = 11) or (sCat = 57) or (sCat = 10) then 
+	if (sCat = 11) or (sCat = 57) then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,0)
@@ -190,8 +271,8 @@
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,0)
-		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr/2021"
-		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32"
+		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr-May/2021"
+		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
 	end if
 	
 
@@ -213,7 +294,11 @@
 	if (cint(sCat) = 40 or cint(sCat) = 42  or cint(sCat) = 41 or cint(sCat) = 18) and idCliente = 8 then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
 	end if
-	if (cint(sCat) = 40) and idCliente = 16 then
+	if (cint(sCat) = 41) and idCliente = 19 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32) "
+	end if
+	if (cint(sCat) = 40 or cint(sCat) = 42) and idCliente = 16 then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
 	end if
 
@@ -2301,9 +2386,9 @@
 												sql = sql & " PH_DataCrudaMensual.Id_Segmento, "
 												sql = sql & " PH_DataCrudaMensual.Segmento, "
 												sql = sql & " PH_DataCrudaMensual.Id_RangoTamano, "
-												sql = sql & " PH_DataCrudaMensual.RangoTamano, "
-												sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
-												sql = sql & " PH_DataCrudaMensual.Tamano "
+												sql = sql & " PH_DataCrudaMensual.RangoTamano "
+												'sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
+												'sql = sql & " PH_DataCrudaMensual.Tamano "
 												sql = sql & " FROM PH_DataCrudaMensual "
 												sql = sql & " WHERE "
 												sql = sql & " PH_DataCrudaMensual.Id_Categoria = " & sCat
@@ -2316,9 +2401,9 @@
 												sql = sql & " PH_DataCrudaMensual.Id_Segmento, "
 												sql = sql & " PH_DataCrudaMensual.Segmento, "
 												sql = sql & " PH_DataCrudaMensual.Id_RangoTamano, "
-												sql = sql & " PH_DataCrudaMensual.RangoTamano, "
-												sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
-												sql = sql & " PH_DataCrudaMensual.Tamano "
+												sql = sql & " PH_DataCrudaMensual.RangoTamano "
+												'sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
+												'sql = sql & " PH_DataCrudaMensual.Tamano "
 												sql = sql & " HAVING "
 												sql = sql & " PH_DataCrudaMensual.Id_Area = 0 "
 												sql = sql & " AND PH_DataCrudaMensual.Id_Fabricante in (" & sFab & ")"
@@ -5499,7 +5584,11 @@ Sub CalcularIndicador
 			sql = sql & " Id_Categoria = " & sCat
 			'20May2021
 			'sql = sql & " and Id_Area = 0" '& iAre
-			sql = sql & " and Id_Area = " & iAre
+			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
+				sql = sql & " and Id_Area = 0 "
+			else
+				sql = sql & " and Id_Area = " & iAre
+			end if
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0"
 			sql = sql & " And Id_Segmento = 0"
@@ -5540,7 +5629,9 @@ Sub CalcularIndicador
 						sql = sql & " And Id_Marca = 0 "  
 						sql = sql & " And Id_Segmento = " & iSeg 
 						'sql = sql & " And Id_RangoTamano =  0 "   
-						'response.write "<br>3243 LLEGO1" 
+						'response.write "<br>3243 LLEGO" 
+					else
+						sql = sql & " And Id_Segmento = " & iSeg 
 					end if
 				else
 				if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
@@ -5571,9 +5662,9 @@ Sub CalcularIndicador
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
 					else
-						if iAre = 0 then
-							sql = sql & " And Id_Marca = 0 "  
-						end if
+						'if iAre = 0 then
+						'	sql = sql & " And Id_Marca = 0 "  
+						'end if
 					end if
 					if sSeg <> "" then 
 						sql = sql & " And Id_Segmento = " & iSeg 
@@ -5637,15 +5728,19 @@ Sub CalcularIndicador
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			'20May2021
-			'sql = sql & " and Id_Area = 0 " '& iAre
-			sql = sql & " and Id_Area =  " & iAre
+			'sql = sql & " and Id_Area = 0" '& iAre
+			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
+				sql = sql & " and Id_Area = 0 "
+			else
+				sql = sql & " and Id_Area = " & iAre
+			end if
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0 "
 			sql = sql & " And Id_Segmento = 0 "
 			sql = sql & " And Id_RangoTamano = 0 "
 			'sql = sql & " And Id_Tamano = 0 "
 			sql = sql & " And id_Semana in( " & idSemana & ")"
-			'response.write "<br><br>4935 sql:=" & sql
+			'response.write "<br>36 sql:=" & sql
 			'response.end
 			rsx1.Open sql ,conexion
 			'response.write "<br>257 LLEGO" 
@@ -5683,6 +5778,8 @@ Sub CalcularIndicador
 						sql = sql & " And Id_Segmento = " & iSeg 
 						'sql = sql & " And Id_RangoTamano =  0 "   
 						'response.write "<br>3243 LLEGO" 
+					else
+						sql = sql & " And Id_Segmento = " & iSeg 
 					end if
 				else
 				if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
@@ -5713,9 +5810,9 @@ Sub CalcularIndicador
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
 					else
-						if iAre = 0 then
-							sql = sql & " And Id_Marca = 0 "  
-						end if
+						'if iAre = 0 then
+						'	sql = sql & " And Id_Marca = 0 "  
+						'end if
 					end if
 					if sSeg <> "" then 
 						sql = sql & " And Id_Segmento = " & iSeg 
@@ -5732,7 +5829,7 @@ Sub CalcularIndicador
 					sql = sql & " And Id_Tamano = " & iTam
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
-				'response.write "<br>5022 sql:=" & sql
+				'response.write "<br>36 sql:=" & sql
 				'response.end
 				rsx1.Open sql ,conexion
 				'response.write "<br>257 LLEGO" 
@@ -5770,14 +5867,18 @@ Sub CalcularIndicador
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			'20May2021
-			'sql = sql & " and Id_Area = 0 " '& iAre
-			sql = sql & " and Id_Area =  " & iAre
+			'sql = sql & " and Id_Area = 0" '& iAre
+			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
+				sql = sql & " and Id_Area = 0 "
+			else
+				sql = sql & " and Id_Area = " & iAre
+			end if
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0 "
 			sql = sql & " And Id_Segmento = 0 "
 			sql = sql & " And Id_RangoTamano = 0 "
 			sql = sql & " And id_Semana in( " & idSemana & ")"
-			'response.write "<br><br>5065 sql:=" & sql
+			'response.write "<br>36 sql:=" & sql
 			'response.end
 			rsx1.Open sql ,conexion
 			'response.write "<br>257 LLEGO" 
@@ -5811,6 +5912,8 @@ Sub CalcularIndicador
 						sql = sql & " And Id_Segmento = " & iSeg 
 						'sql = sql & " And Id_RangoTamano =  0 "   
 						'response.write "<br>3243 LLEGO" 
+					else
+						sql = sql & " And Id_Segmento = " & iSeg 
 					end if
 				else
 				if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
@@ -5819,7 +5922,7 @@ Sub CalcularIndicador
 						sql = sql & " And Id_Marca = 0 "  
 						sql = sql & " And Id_Segmento = 0 "
 						sql = sql & " And Id_RangoTamano =  0 "   
-						'response.write "<br>5106 LLEGO" 
+						'response.write "<br>3243 LLEGO" 
 					'end if
 				end if
 				if sFab = "" and sMar = "" and sSeg = "" and sRan <> "" then
@@ -5841,9 +5944,9 @@ Sub CalcularIndicador
 					if sMar <> "" then 
 						sql = sql & " And Id_Marca = " & iMar 
 					else
-						if iAre = 0 then
-							sql = sql & " And Id_Marca = 0 "  
-						end if
+						'if iAre = 0 then
+						'	sql = sql & " And Id_Marca = 0 "  
+						'end if
 					end if
 					if sSeg <> "" then 
 						sql = sql & " And Id_Segmento = " & iSeg 
@@ -5858,7 +5961,7 @@ Sub CalcularIndicador
 					sql = sql & " And Id_Tamano = " & iTam
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
-				'response.write "<br>5146 sql:=" & sql
+				'response.write "<br>36 sql:=" & sql
 				'response.end
 				rsx1.Open sql ,conexion
 				'response.write "<br>257 LLEGO" 
@@ -5882,7 +5985,6 @@ Sub CalcularIndicador
 					Valor = FormatNumber(Valor,2)
 				end if
 			end if
-
 
 		Case 31 'CuoMerAct
 			sql = ""
@@ -6127,7 +6229,8 @@ Sub CalcularIndicador
 		Case 35 'HogRecomp
 			'response.write idSemana
 			'response.end
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" then
+			'			   Ene         Feb         Mar                            Feb         Mar            Abr                         Ene         Feb         Mar            Abr              			Ene         Feb         Mar            Abr         May                         Mar            Abr         May
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6147,6 +6250,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
+				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6334,7 +6442,7 @@ Sub CalcularIndicador
 			end if
 		
 		Case 36 'HogNuevos
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" then
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6354,6 +6462,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
+				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6542,7 +6655,7 @@ Sub CalcularIndicador
 			end if
 
 		Case 37 'HogNoRecomp
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" then
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6562,6 +6675,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
+				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6749,7 +6867,7 @@ Sub CalcularIndicador
 			end if
 
 		Case 39 'HogRecompAnt
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" then
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6757,7 +6875,7 @@ Sub CalcularIndicador
 				end if 
 				if idSemana = "20,21,22,23" then 
 					isw = 1
-					idSemana1 = "16,17,18,19" 
+					idSemana1 = "16,17,18,19"
 					idSemana2 = "20,21,22,23"
 				end if 
 				if idSemana = "24,25,26,27,28" then 
@@ -6769,6 +6887,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "24,25,26,27,28"
 					idSemana2 = "29,30,31,32"
+				end if 
+				if idSemana = "33,34,35,36" then 
+					isw = 2
+					idSemana1 = "29,30,31,32"
+					idSemana2 = "33,34,35,36"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana

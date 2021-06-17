@@ -37,10 +37,11 @@
 	dim gDatosSol45
 	dim gDatosSol46
 	dim gDatosSol47
+	dim gDatosSol48
 	dim rsx44
 	dim rsx45
 	dim rsx46
-	dim rsx47
+	dim rsx48
 
 	dim IdArea
 
@@ -72,7 +73,7 @@ sub VerData
 	sql = sql & " PH_GArea ON PH_GAreaEstado.Id_Area = PH_GArea.Id_Area "
 	sql = sql & " WHERE "
 	sql = sql & " PH_PanelHogar.Ind_Activo = 1 "
-	'sql = sql & " and PH_PanelHogar.Id_PanelHogar = 1322 "
+	'sql = sql & " and PH_PanelHogar.Id_PanelHogar = 706 "
 	sql = sql & " and PH_GArea.Id_Area  = " & IdArea
 	if ed_sPar(2,0) <> "Seleccionar" and ed_sPar(2,0) <> "" then
 		idEstado = cint(ed_sPar(2,0))
@@ -94,8 +95,8 @@ sub VerData
 	if rsx1.eof then
 	else
 		if IdArea <> 2 then 
-			'Response.ContentType = "application/vnd.ms-excel"
-			'Response.AddHeader "Content-disposition","attachment; filename=tem.xls"
+			Response.ContentType = "application/vnd.ms-excel"
+			Response.AddHeader "Content-disposition","attachment; filename=tem.xls"
 		end if
 		gDatosSol = rsx1.GetRows
 		rsx1.close
@@ -114,6 +115,7 @@ sub VerData
 				Response.write "<td>Gasto Feb21</td>"
 				Response.write "<td>Gasto Mar21</td>"
 				Response.write "<td>Gasto Abr21</td>" 
+				Response.write "<td>Gasto May21</td>" 
 			Response.write "</tr>"
 		
 		for iReg = 0 to ubound(gDatosSol,2)
@@ -187,10 +189,10 @@ sub VerData
 					Response.write "<td>" & formatnumber(TotGasto,2) & "</td>"
 				end if
 				set rsx44 = nothing
+				'Gastos Febrero
 				set rsx45 = CreateObject("ADODB.Recordset")
 				rsx45.CursorType = adOpenKeyset 
 				rsx45.LockType = 2 'adLockOptimistic 
-				'Gastos Febrero
 				sql = ""
 				sql = sql & " SELECT "
 				sql = sql & " PH_Consumo.Id_Semana, "
@@ -317,7 +319,7 @@ sub VerData
 					gDatosSol47 = rsx47.GetRows
 					rsx47.close
 					TotGasto = 0
-					for iReg44 = 0 to ubound(gDatosSol47,2)
+					for iReg47 = 0 to ubound(gDatosSol47,2)
 						idMoneda = cint(gDatosSol47(2,iReg47))
 						idCompra = cdbl(gDatosSol47(4,iReg47))
 						idDolar = cdbl(gDatosSol47(5,iReg47))
@@ -341,6 +343,58 @@ sub VerData
 					Response.write "<td>" & formatnumber(TotGasto,2) & "</td>"
 				end if
 				set rsx47 = nothing
+				'Gastos Mayo
+				set rsx48 = CreateObject("ADODB.Recordset")
+				rsx48.CursorType = adOpenKeyset 
+				rsx48.LockType = 2 'adLockOptimistic 
+				sql = ""
+				sql = sql & " SELECT "
+				sql = sql & " PH_Consumo.Id_Semana, "
+				sql = sql & " PH_Consumo.Id_Hogar, "
+				sql = sql & " PH_Consumo.Id_Moneda, "
+				sql = sql & " PH_Consumo.fecha_consumo, "
+				sql = sql & " PH_Consumo.Total_Compra, "
+				sql = sql & " ss_Semana_1.Dolar, "
+				sql = sql & " ss_Semana_1.Euro, "
+				sql = sql & " ss_Semana_1.Petro, "
+				sql = sql & " ss_Semana_1.Peso "
+				sql = sql & " FROM (ss_Semana INNER JOIN PH_Consumo ON ss_Semana.IdSemana = PH_Consumo.Id_Semana) INNER JOIN ss_Semana AS ss_Semana_1 ON PH_Consumo.Id_Semana = ss_Semana_1.IdSemana "
+				sql = sql & " WHERE "
+				sql = sql & " PH_Consumo.Id_Semana in(33,34,35,36) "
+				sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
+				'response.write "<br>36 sql:=" & sql
+				'response.end
+				rsx48.Open sql ,conexion
+				if rsx48.eof then
+					Response.write "<td></td>"
+				else
+					gDatosSol48 = rsx48.GetRows
+					rsx48.close
+					TotGasto = 0
+					for iReg48 = 0 to ubound(gDatosSol48,2)
+						idMoneda = cint(gDatosSol48(2,iReg48))
+						idCompra = cdbl(gDatosSol48(4,iReg48))
+						idDolar = cdbl(gDatosSol48(5,iReg48))
+						idEuro = cdbl(gDatosSol48(6,iReg48))
+						idPetro = cdbl(gDatosSol48(7,iReg48))
+						idPeso = cdbl(gDatosSol48(8,iReg48))
+						select case idMoneda
+							case 1 'Dolar
+								TotGasto = TotGasto + idCompra
+							case 2 'Bs
+								TotGasto = TotGasto + (idCompra/idDolar)
+							case 3 'Petro
+								TotGasto = TotGasto + (idCompra/idPetro)
+							case 4 'Euro
+								TotGasto = TotGasto + (idCompra/idEuro)
+							case 5 'Peso
+								TotGasto = TotGasto + (idCompra/idPeso)
+						end select 
+					next
+					'Response.write "<td>" & icontador & "-" & formatnumber(TotGasto,2) & "</td>"
+					Response.write "<td>" & formatnumber(TotGasto,2) & "</td>"
+				end if
+				set rsx48 = nothing
 			Response.write "</tr>"
 			icontador = icontador + 1
 			if icontador > 100 then
