@@ -75,7 +75,7 @@
 
 				<!-- Imagen -->
 				<div class="col-sm-2 id="image">
-					<img src="images/convivencia/ab2.jpg" class="img-responsive img-center" />
+					<img src="images/convivencia/equiposAB.png" class="img-responsive img-center" />
 				</div>
 
 				<!-- CATEGORIA B -->

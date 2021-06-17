@@ -55,8 +55,7 @@ $("#BtnValidarProceso").click(function() {
 //
 function totalHogares(cboPeriodo) {
 	
-    return $.ajax({
-      //url: "http://localhost:3000/api/getTotalHogaresPeriodo/"+cboPeriodo+"",
+    return $.ajax({      
 	  url: sessionStorage.getItem("urlApi")+"getTotalHogaresPeriodo/"+cboPeriodo+"",
       type: 'get',
       success: function(response) {
