@@ -5345,6 +5345,31 @@ Sub CalcularIndicador
 				if sTam <> "" then 
 					sql = sql & " And Id_Tamano = " & iTam
 				end if
+				'if aAre = "" and sFab = "" and sMar = "" and sSeg <> "" and sRan <> "" and sTam = "" then
+				'	'response.write "<br>5596 Pasoooooo"
+				'	sql = ""
+				'	sql = sql & " SELECT "
+				'	sql = sql & " Tamano, "
+				'	sql = sql & " Cantidad "
+				'	sql = sql & " FROM "
+				'	sql = sql & " PH_DataCrudaMensual "
+				'	sql = sql & " GROUP BY "
+				'	sql = sql & " Tamano, "
+				'	sql = sql & " Cantidad, "
+				'	sql = sql & " Id_Consumo, "
+				'	sql = sql & " Id_Categoria, "
+				'	sql = sql & " Id_Area, "
+				'	sql = sql & " Id_Fabricante, "
+				'	sql = sql & " Id_Segmento, "
+				'	sql = sql & " Id_RangoTamano, "
+				'	sql = sql & " id_Semana "
+				'	sql = sql & " HAVING "
+				'	sql = sql & " Id_Categoria = " & sCat
+				'	sql = sql & " AND Id_Area = 0 "
+				'	sql = sql & " AND Id_Fabricante = 0 "
+				'	sql = sql & " AND Id_Segmento = " & iSeg
+				'	sql = sql & " AND Id_RangoTamano = " & iRan
+				'end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				'response.write "<br>5577 sql:=" & sql & "<br>"
 				'response.end

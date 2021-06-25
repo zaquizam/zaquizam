@@ -24,6 +24,60 @@
 			swal("Atenas Grupo Consultor","Servicio No Contratado","info");
 			return;
 		}	
+
+	//**Inicio Buscar Fabricante
+	function buscar_fabricante(){
+		//return;
+		//alert("Llego Fabricante");
+		$("#Fabricante").prop("selectedIndex", 0);
+		categoria = document.getElementById("Cat").value;
+		marca = document.getElementById("Mar").value;
+		var stodo = "cat=" + categoria;
+		stodo = stodo + "&mar=" + marca;
+		
+		$.ajax({
+			url:'g_CteFabricantes.asp?'+stodo,
+			beforeSend: function(objeto){
+				$('#loader2').html('<img src="./images/ajax-loader2.gif"> cargando...!');
+				
+			},
+			success:function(data){
+				//debugger;
+				$('#loader2').html('');
+				console.log(data);
+				$('#DivFabricante').html(data);
+			}
+		})
+	}	
+	//**Fin Buscar Fabricante
+
+	//**Inicio Buscar Marca
+	function buscar_marca(){
+		//return;
+		//alert("Llego Marca");
+		$("#Marca").prop("selectedIndex", 0);
+		categoria = document.getElementById("Cat").value;
+		fabricante = document.getElementById("Fab").value;
+		var stodo = "cat=" + categoria;
+		stodo = stodo + "&fab=" + fabricante;
+		//alert("stodo"+stodo);
+		$.ajax({
+			url:'g_CteMarca.asp?'+stodo,
+			beforeSend: function(objeto){
+				$('#loader2').html('<img src="./images/ajax-loader2.gif"> cargando...!');
+				
+			},
+			success:function(data){
+				//debugger;
+				$('#loader2').html('');
+				console.log(data);
+				$('#DivMarca').html(data);
+			}
+		})
+	}	
+	//**Fin Buscar Marca
+
+
 </script>
 	
 <body topmargin="0">
@@ -1091,13 +1145,9 @@ end sub
 	
 	<input type="hidden" name="Filtro" id="Filtro" align="right" size=200>
 	<input type="hidden" name="Cliente" id="Cliente" align="right" size=4 value="<%=Session("idCliente")%>">
-	<input type="text" name="Cat" id="Cat" align="right" size=4 value="<%=ed_sPar(1,0)%>">
-	fab
-	<input type="text" name="Fab1" id="Fab1" align="right" size=20 value="">
-	mar
-	<input type="text" name="Mar1" id="Mar1" align="right" size=20 value="">
-	Ajax1
-	<input type="text" name="Ajax1" id="Ajax1" align="right" size=20 value="">
+	<input type="hidden" name="Cat" id="Cat" align="right" size=4 value="<%=ed_sPar(1,0)%>">
+	<input type="text" name="Fab" id="Fab" align="right" size=20 value="">	
+	<input type="text" name="Mar" id="Mar" align="right" size=20 value="">
 	
 	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -1115,7 +1165,7 @@ end sub
 	
 	<div class="container-fluid" id="grad1">  
 			
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 											
 				<div class="form-group">
 					<!--Categoria-->	
@@ -1135,6 +1185,7 @@ end sub
 						<% next %>
 					 </select>							                              					
 				</div>
+
 				<div class="form-group">
 					<!--Fabricante-->	
 					 <label for="fabricante"><i class="fas fa-industry"></i>&nbsp;Fabricante:</label>
@@ -1145,39 +1196,14 @@ end sub
 						<% next %>
 					 </select>							                              					
 				</div>
-				<div class="form-group">
-					<!--Fabricante1-->	
-					 <label for="fabricante1"><i class="fas fa-industry"></i>&nbsp;Fabricante1:</label>
-					 <select id="Fabricante1" multiple="multiple">
-						<!--<option value="0">TOTAL CATEGORIA</option>-->
-						<% for iFra = 0 to  ubound(gFabricante,2) %>
-							<option value="<%=gFabricante(0,iFra)%>"><%=gFabricante(1,iFra)%></option>
-						<% next %>
-					 </select>							                              					
-				</div>
 				
-				<div class="form-group">
-					<!--Marca-->
-					 <label for="marca"><i class="fas fa-registered"></i>&nbsp;Marca:</label>
-					 <select id="Marca" multiple="multiple">
-						<!--<option value="0">TOTAL MARCA</option>-->
-						<% for iMar = 0 to  ubound(gMarca,2) %>
-							<option value="<%=gMarca(0,iMar)%>"><%=gMarca(1,iMar)%></option>
-						<% next %>
-					</select>					 
-				</div>
 
-				<div class="form-group">
-					<!--Marca1-->
-					 <label for="marca1"><i class="fas fa-registered"></i>&nbsp;Marca1:</label>
-					 <select id="Marca1" multiple="multiple">
-						<!--<option value="0">TOTAL MARCA</option>-->
-						<% for iMar = 0 to  ubound(gMarca,2) %>
-							<option value="<%=gMarca(0,iMar)%>"><%=gMarca(1,iMar)%></option>
-						<% next %>
-					</select>					 
+				<!--NUEVA MARCA-->
+				<div id="DivMarca">
+					<div class="form-group">
+						<script>buscar_marca()</script>
+					</div>	
 				</div>
-
 												
 			</div>  <!-- class="col-sm-6"> -->
 			
@@ -1259,6 +1285,9 @@ end sub
 				</div>
 							
 			</div>  <!-- class="col-sm-6"> -->
+			<div class="col-sm-2">
+				<img alt="Logo de la Empresa" src="images/logo/LogoHomePantry.png" style = "width:128px;  " class="img-responsive center-block" >
+			</div>
 	
 	</div> <!-- class="container-fluid" id=grad1 --> 
 	
@@ -1294,21 +1323,22 @@ end sub
 		//debugger;
 		//$('#Categoria').multiselect();
 		$('#Area').multiselect();
-		$('#Fabricante').multiselect();
-		$('#Fabricante1').multiselect
+		//$('#Fabricante').multiselect();
+		$("#Fabricante").multiselect('destroy');
+		$('#Fabricante').multiselect
 			(
 				{
 				onChange: function(element, checked) 
 					{
-						var fabricante1 = $("#Fabricante1 :selected").map((_,e) => e.value).get();
-						document.getElementById("Fab1").value = fabricante1;
-						//alert("fabricante1:" + fabricante1);
+						var fabricante = $("#Fabricante :selected").map((_,e) => e.value).get();
+						document.getElementById("Fab").value = fabricante;
+						//alert("fabricante:" + fabricante);
 						buscar_marca();
 					}
 				}
-			);
+			);		
+		$("#Marca").multiselect('destroy');
 		$('#Marca').multiselect();
-		$('#Marca1').multiselect();
 		$('#Segmento').multiselect();
 		$('#Rango').multiselect();
 		$('#Tamano').multiselect();
@@ -1323,9 +1353,7 @@ end sub
 			var area = $("#Area :selected").map((_,e) => e.value).get();
 			//var categoria = $("#Categoria :selected").map((_,e) => e.value).get();
 			var fabricante = $("#Fabricante :selected").map((_,e) => e.value).get();
-			var fabricante1 = $("#Fabricante1 :selected").map((_,e) => e.value).get();
 			var marca = $("#Marca :selected").map((_,e) => e.value).get();
-			var marca1 = $("#Marca1 :selected").map((_,e) => e.value).get();
 			var segmento = $("#Segmento :selected").map((_,e) => e.value).get();
 			var rango = $("#Rango :selected").map((_,e) => e.value).get();
 			var tamano = $("#Tamano :selected").map((_,e) => e.value).get();
@@ -1339,6 +1367,7 @@ end sub
 			//return;
 			//alert(indicadores);
 			//var stodo = "cat=" + categoria;
+			//
 			var stodo = "cat=" + categ;
 			stodo = stodo + "&are=" + area;
 			stodo = stodo + "&fab=" + fabricante;
@@ -1370,33 +1399,6 @@ end sub
 
 		});
 	});
-	
-	//**Inicio Buscar Marca
-	function buscar_marca(){
-		//alert("Llego Marca");
-		//return;
-		$("#Marca1").prop("selectedIndex", 0);
-		categoria = document.getElementById("Cat").value;
-		fabricante = document.getElementById("Fab1").value
-		var stodo = "cat=" + categoria;
-		stodo = stodo + "&fab=" + fabricante;
-		document.getElementById("Ajax1").value = 'g_CteMarca.asp?' + stodo;
-		$.ajax({
-			url:'g_CteMarca.asp?'+stodo,
-			beforeSend: function(objeto){
-				$('#loader2').html('<img src="./images/ajax-loader2.gif"> cargando...!');
-				
-			},
-			success:function(data){
-				//debugger;
-				$('#loader2').html('');
-				console.log(data);
-				alert("Llego Marcaaaaaaaaaaaaaaa");
-				//$('#DivMarca').html(data);
-			}
-		})
-	}	
-	//**Fin Buscar Marca
 	
 	function BorrarFiltros() {
 		swal({

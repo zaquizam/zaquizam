@@ -22,6 +22,7 @@ LCID = 1034
 	dim gCategoriasMar
 	dim gCategoriasAbr
 	dim gCategoriasMay
+	dim gCategoriasJun
 	dim gCategoriasAcu
 	
 	dim gHogaresTotalEne
@@ -29,6 +30,7 @@ LCID = 1034
 	dim gHogaresTotalMar
 	dim gHogaresTotalAbr
 	dim gHogaresTotalMay
+	dim gHogaresTotalJun
 	dim gHogaresTotalAcu
 	
 	dim gHogaresCategoriaEne
@@ -36,6 +38,7 @@ LCID = 1034
 	dim gHogaresCategoriaMar
 	dim gHogaresCategoriaAbr
 	dim gHogaresCategoriaMay
+	dim gHogaresCategoriaJun
 	dim gHogaresCategoriaAcu
 	
 	Dim TotalHogaresEne
@@ -43,6 +46,7 @@ LCID = 1034
 	Dim TotalHogaresMar
 	Dim TotalHogaresAbr
 	Dim TotalHogaresMay
+	Dim TotalHogaresJun
 	Dim TotalHogaresAcu
 	
 	Dim TotalHogaresCatEne
@@ -50,6 +54,7 @@ LCID = 1034
 	Dim TotalHogaresCatMar
 	Dim TotalHogaresCatAbr
 	Dim TotalHogaresCatMay
+	Dim TotalHogaresCatJun
 	Dim TotalHogaresCatAcu
 	
 	TotalHogaresEne = 0
@@ -57,6 +62,7 @@ LCID = 1034
 	TotalHogaresMar = 0
 	TotalHogaresAbr = 0
 	TotalHogaresMay = 0
+	TotalHogaresJun = 0
 	TotalHogaresAcu = 0
 	
 	'TotalHogaresEne
@@ -194,6 +200,33 @@ LCID = 1034
 		rsx1.close
 		TotalHogaresMay = ubound(gHogaresTotalMay,2) + 1
 	end if
+
+	'TotalHogaresJun
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno "
+	sql = sql & " FROM ss_Semana INNER JOIN PH_DataCruda ON ss_Semana.IdSemana = PH_DataCruda.Id_Semana "
+	sql = sql & " WHERE "
+	sql = sql & " PH_DataCruda.Id_Fabricante <> 0 "
+	sql = sql & " GROUP BY "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno, "
+	sql = sql & " PH_DataCruda.Id_Hogar "
+	sql = sql & " HAVING "
+	sql = sql & " ss_Semana.IdMes = 6 "
+	sql = sql & " AND ss_Semana.IdAno=2021 "
+	'response.write "<br>75 sql:=" & sql
+	'response.end
+	rsx1.Open sql ,conexion
+	if rsx1.eof then
+		rsx1.close
+		TotalHogaresJun = 0
+	else
+		gHogaresTotalJun = rsx1.GetRows
+		rsx1.close
+		TotalHogaresJun = ubound(gHogaresTotalJun,2) + 1
+	end if
 	
 	'TotalHogaresAcu
 	sql = ""
@@ -257,6 +290,8 @@ LCID = 1034
 			<td>Hogares Abril 2021</td>
 			<td>Penetracion Mayo 2021</td>
 			<td>Hogares Mayo 2021</td>
+			<td>Penetracion Jun 2021</td>
+			<td>Hogares Jun 2021</td>
 			<td>Acumulado 2021</td>
 			<td>Hogares Acumulado 2021</td>
 		</tr>
@@ -448,6 +483,42 @@ LCID = 1034
 					PenetracionMay = (TotalHogaresCatMay * 100) / TotalHogaresMay
 					PenetracionMay = FormatNumber(PenetracionMay,2)
 					response.write "<br>(" & TotalHogaresCatMay & "-" & TotalHogaresMay & ")"
+				response.write "</td>"
+
+				'Penetración Junio
+				sql = ""
+				sql = sql & " SELECT "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " FROM PH_DataCruda INNER JOIN ss_Semana ON PH_DataCruda.Id_Semana = ss_Semana.IdSemana "
+				sql = sql & " WHERE "
+				sql = sql & " ss_Semana.IdMes = 6 "
+				sql = sql & " AND ss_Semana.IdAno = 2021 "
+				sql = sql & " AND PH_DataCruda.Id_Categoria = " & iCat
+				sql = sql & " GROUP BY "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				'response.write "<br>190 sql:=" & sql
+				'response.end
+				rsx1.Open sql ,conexion
+				if rsx1.eof then
+					rsx1.close
+					TotalHogaresCatJun = 0
+				else
+					gHogaresCategoriaJun = rsx1.GetRows
+					rsx1.close
+					TotalHogaresCatJun = ubound(gHogaresCategoriaJun,2) + 1
+				end if
+				PenetracionJun = 0
+				response.write "<td>"
+					PenetracionJun = (TotalHogaresCatJun * 100) / TotalHogaresJun
+					PenetracionJun = FormatNumber(PenetracionJun,2)
+					'PenetracionJun = cStr(PenetracionJun)
+					'PenetracionJun = replace(PenetracionJun,",",".")
+					response.write PenetracionJun
+				response.write "</td>"
+				response.write "<td>"
+					PenetracionJun = (TotalHogaresCatJun * 100) / TotalHogaresJun
+					PenetracionJun = FormatNumber(PenetracionJun,2)
+					response.write "<br>(" & TotalHogaresCatJun & "-" & TotalHogaresJun & ")"
 				response.write "</td>"
 
 				'Penetración Acumulado

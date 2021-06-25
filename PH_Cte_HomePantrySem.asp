@@ -408,7 +408,7 @@ end sub
 	
 	<div class="container-fluid" id="grad1">  
 			
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 											
 				<div class="form-group">
 					<!--Categoria-->	
@@ -440,11 +440,6 @@ end sub
 						<% next %>
 					</select>					 
 				</div>
-												
-			</div>  <!-- class="col-sm-6"> -->
-			
-			<div class="col-sm-6">
-			
 				<div class="form-group">
 					<!--Segmento-->
 				 	<label for="segmento"><i class="fas fa-project-diagram"></i>&nbsp;Segmento:</label>
@@ -454,6 +449,11 @@ end sub
 						<% next %>
 					</select>			 
 				</div>
+												
+			</div>  <!-- class="col-sm-6"> -->
+			
+			<div class="col-sm-6">
+			
 				
 				<div class="form-group">
 					<!--Indicadores-->
@@ -519,6 +519,9 @@ end sub
 				</div>
 							
 			</div>  <!-- class="col-sm-6"> -->
+			<div class="col-sm-2">
+				<img alt="Logo de la Empresa" src="images/logo/LogoHomePantry.png" style = "width:128px;  " class="img-responsive center-block" >
+			</div>
 	
 	</div> <!-- class="container-fluid" id=grad1 --> 
 	

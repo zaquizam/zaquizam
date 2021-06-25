@@ -895,7 +895,7 @@ Sub DataCombos
 	sql = sql & " GROUP BY "
 	sql = sql & " Id_Area, "
 	sql = sql & " Area "
-	if idCliente <> 16 and idCliente <> 19 and idCliente <> 17 and idCliente <> 28 then
+	if idCliente <> 16 and idCliente <> 19 and idCliente <> 17 and idCliente <> 28 and idCliente <> 21 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Area <> 0 "
 	else
@@ -907,7 +907,7 @@ Sub DataCombos
 				sql = sql & " HAVING "
 				sql = sql & " Id_Area in(2,3)"
 			else
-				if (idCliente = 17 and (cint(ed_sPar(1,0)) = 6 or cint(ed_sPar(1,0)) = 5 or cint(ed_sPar(1,0)) = 11 )) or (idCliente = 28 and (cint(ed_sPar(1,0)) = 93 )) then 
+				if (idCliente = 17 and (cint(ed_sPar(1,0)) = 6 or cint(ed_sPar(1,0)) = 5 or cint(ed_sPar(1,0)) = 11 )) or (idCliente = 28 and (cint(ed_sPar(1,0)) = 93 )) or (idCliente = 21 and (cint(ed_sPar(1,0)) = 93 )) then 
 					'sql = sql & " Id_Area in(99)"
 					iSoloNacional = 1
 					'response.write "<br>913 Solo Nacional" 
@@ -1074,6 +1074,12 @@ Sub DataCombos
 	if (cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 42) and idCliente = 16 then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
 	end if
+	'Pharsana
+	if (cint(ed_sPar(1,0)) = 19 or cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 18) and idCliente = 27 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
+	end if
+	
 	sql = sql & " ORDER BY "
 	sql = sql & " Id_Indicador "
 	'response.write "<br>372 sql5:=" & sql
@@ -1146,7 +1152,7 @@ end sub
 	
 	<div class="container-fluid" id="grad1">  
 			
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 											
 				<div class="form-group">
 					<!--Categoria-->	
@@ -1273,7 +1279,10 @@ end sub
 				</div>
 							
 			</div>  <!-- class="col-sm-6"> -->
-	
+				<div class="col-sm-2">
+				<img alt="Logo de la Empresa" src="images/logo/LogoHomePantry.png" style = "width:128px;  " class="img-responsive center-block" >
+			</div>
+
 	</div> <!-- class="container-fluid" id=grad1 --> 
 	
 	<div class="container-fluid text-center text-primary" id="cargando" style="display:none;" >

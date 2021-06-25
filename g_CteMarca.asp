@@ -54,7 +54,7 @@ Session.LCID = 8202
 	
 		<!--Marca-->	
 		<label for="marca"><i class="fas fa-industry"></i>&nbsp;Marca:</label>
-		<select id="Marca2" multiple="multiple">				
+		<select id="Marca" multiple="multiple">				
 			<% for iMar = 0 to  ubound(gDatosSol,2) %>
 				<option value="<%=gDatosSol(0,iMar)%>"<%=Seleccionado%>  ><%=gDatosSol(1,iMar)%></option>
 			<% next %>
@@ -67,5 +67,7 @@ Session.LCID = 8202
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#Marca2').multiselect();
+		$("#Marca").multiselect('destroy');
+		$('#Marca').multiselect();
+	});
 </script>

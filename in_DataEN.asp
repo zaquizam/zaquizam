@@ -2322,21 +2322,25 @@ Sub ed_GraDat(gData, SqlInp)
 						if sGra(i) = "True" then sGra(i)=True
 						if sGra(i) ="Falso" then sGra(i)= False
 						if sGra(i) ="False" then sGra(i)= False
-						
+					case "8"
+						'response.write "<br>pasooooooooooooooooo1"
+						'response.Write ("<br>954 i:=" & i & "  name:="  & ed_rs1.fields(i).name & "..." & sGra(i)) & "... len=" & len(sGra(i)) &   "  TipCam:=" & TipCam(i,1) & " Precision:=" & ed_rs1.fields(i).Precision
 					case else
 
 				end select
 			'response.Write ("<br>954 i:=" & i & "  name:="  & ed_rs1.fields(i).name & "..." & sGra(i)) & "... len=" & len(sGra(i)) &   "  TipCam:=" & TipCam(i,1) & " Precision:=" & ed_rs1.fields(i).Precision
 			    select case ed_rs1.fields(i).Precision
-
-				case 23   
-	                sd=cDate(sGra(i))			 
-				    rsg(ed_rs1.fields(i).name)=sD
-				case 7,19
-				    sx=replace(sGra(i),",",".")
-				    rsg(ed_rs1.fields(i).name)=sx
-			    case else
-				    rsg(ed_rs1.fields(i).name)=sGra(i)				    
+					case 23   
+						sd=cDate(sGra(i))			 
+						rsg(ed_rs1.fields(i).name)=sD
+					case 7,19
+						sx=replace(sGra(i),",",".")
+						rsg(ed_rs1.fields(i).name)=sx
+					case 8
+						'response.write "<br>pasooooooooooooooooo2"
+					case else
+						rsg(ed_rs1.fields(i).name)=sGra(i)		
+						'response.write "<br>pasooooooooooooooooo3"
 				end select
 			else 
 			'response.Write ("<br>b...........	" & ed_rs1.fields(i).name & "..." & sGra(i)) 

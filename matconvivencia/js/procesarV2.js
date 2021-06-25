@@ -1,4 +1,4 @@
-// funcion procesar.js - 16jun21
+// funcion procesar.js - 25jun21
 //
 $("#BtnValidarProceso").click(function() {
 	event.preventDefault();	
@@ -138,7 +138,7 @@ function ejecutar_B(categoria_B,fabricante_B,marca_B,segmento_B,rangotam_B,cboAr
 function Totalizar(){
 	debugger;
 	// Totalizando Hogares	
-	total=parseInt(sessionStorage.getItem("totalHogaresA")) + parseInt(totalHogaresB);
+	total= parseInt(sessionStorage.getItem("totalExcl_A")) + parseInt(sessionStorage.getItem("totalExcl_B")) + parseInt(sessionStorage.getItem("totalConviven"));
 	$("#totalHogaresAB").html(parseInt(total).toLocaleString("es-ES", { minimumFractionDigits: 0 }));
 	console.log("Totalizando Hogares ok");
 	//
@@ -159,7 +159,7 @@ function Totalizar(){
 	console.log("Totalizando Hogares B ok");
 	//Penetracion		
 	var total =0;
-	total = (( parseInt(sessionStorage.getItem("totalHogaresA")) + parseInt(sessionStorage.getItem("totalHogaresB")) ) / parseInt(sessionStorage.getItem("totalHogares")))  * 100;	
+	total = (( parseInt(sessionStorage.getItem("totalExcl_A")) + parseInt(sessionStorage.getItem("totalExcl_B")) + + parseInt(sessionStorage.getItem("totalConviven")) ) / parseInt(sessionStorage.getItem("totalHogares")))  * 100;	
 	$("#penetracion_AB").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + " %");
 	//Penetracion A
 	total = ( parseInt(sessionStorage.getItem("totalHogaresA")) / parseInt(sessionStorage.getItem("totalHogares")) ) * 100;	
@@ -167,13 +167,13 @@ function Totalizar(){
 	//Penetracion B
 	total = ( parseInt(sessionStorage.getItem("totalHogaresB")) / parseInt(sessionStorage.getItem("totalHogares")) ) * 100;	
 	$("#penetracion_B").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + " %");	
-	//Convivencia
-	$("#totalConvivencia").html(parseInt(sessionStorage.getItem("totalConviven")).toLocaleString("es-ES", { minimumFractionDigits: 0 }));
-	//exclusividad
+	//Convivencia	
+	$("#totalConvivencia").html(( parseInt(sessionStorage.getItem("totalConviven")) / parseInt(sessionStorage.getItem("totalHogares")) * 100 ).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + " %");
+	//Penetracion Exclusividad
 	total = ( parseInt(sessionStorage.getItem("totalExcl_A")) / parseInt(sessionStorage.getItem("totalHogares")) ) * 100;	
-	$("#exclusivo_A").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }));	
+	$("#penetracionExc_A").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + " %");	
 	total = ( parseInt(sessionStorage.getItem("totalExcl_B")) / parseInt(sessionStorage.getItem("totalHogares")) ) * 100;	
-	$("#exclusivo_B").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }));		
+	$("#penetracionExc_B").html(parseFloat(total).toLocaleString("es-ES", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + " %" );		
 	//
 	//Show
 	$("#detalleTotalHogares").css("display", "block");

@@ -1109,7 +1109,7 @@ end sub
 	
 	<div class="container-fluid" id="grad1">  
 			
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 											
 				<div class="form-group">
 					<!--Categoria-->	
@@ -1232,6 +1232,9 @@ end sub
 				</div>
 							
 			</div>  <!-- class="col-sm-6"> -->
+			<div class="col-sm-2">
+				<img alt="Logo de la Empresa" src="images/logo/LogoHomePantry.png" style = "width:128px;  " class="img-responsive center-block" >
+			</div>
 	
 	</div> <!-- class="container-fluid" id=grad1 --> 
 	

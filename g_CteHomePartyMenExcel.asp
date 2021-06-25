@@ -299,6 +299,10 @@
 	if (cint(sCat) = 40 or cint(sCat) = 42) and idCliente = 16 then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
 	end if
+	'Pharsana
+	if (cint(sCat) = 19 or cint(sCat) = 41 or cint(sCat) = 18) and idCliente = 27 then
+		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
+	end if
 
 	sql = sql & " ORDER BY "
 	sql = sql & " Id_Indicador "

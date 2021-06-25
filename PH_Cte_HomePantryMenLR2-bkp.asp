@@ -12,7 +12,6 @@
 
 </head>
 <script type="text/javascript">
-
 	function GenerarExcel()
 	{
 		//alert("Generar Excel");
@@ -810,6 +809,7 @@ body.stop-scrolling {
   transition: max-height 0.2s ease-out;
 }
 </style>
+
 <%
 '==========================================================================================
 ' Variables y Constantes
@@ -1328,7 +1328,6 @@ end sub
 		})
 	});	
 </script>
-
 <script src="js/main.js"></script>
 <!--===============================================================================================-->
 
@@ -1336,7 +1335,7 @@ end sub
 <script type="text/javascript">
 	$(document).ready(function() {
 		//
-		debugger;
+		//debugger;
 		//$('#Categoria').multiselect();
 		$('#Area').multiselect();
 		$('#Fabricante').multiselect
@@ -1350,12 +1349,9 @@ end sub
 						buscar_marca();
 					}
 				}
-			);		
-		$("#Fabricante2").multiselect('destroy');
+			);
 		$('#Fabricante2').multiselect();
-		$("#Marca2").multiselect('destroy');
 		$('#Marca2').multiselect();
-		$("#Marca").multiselect('destroy');
 		$('#Marca').multiselect
 			(
 				{
