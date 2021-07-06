@@ -19,7 +19,7 @@
 	<!--#include file="nn_subN.asp"-->
 	<!--#include file="in_DataEN.asp"-->
 	<%
-		' ph_pProductosPendientes.asp - 02mar21 - 17mar21
+		' ph_pProductosPendientes.asp - 02mar21 - 01jul21
 		
 		Apertura
 		
@@ -38,50 +38,25 @@
 		Dim rsProductosPendientes, arrProductosPendientes
 		'	
 		' Buscar Los Productos Pendientes por informacion completa del codigo de Barras
-		'	
-		' QrySql = vbnullstring
-		' QrySql = QrySql & " SELECT TOP (100)  PERCENT"
-		' QrySql = QrySql & " PH_Consumo_Detalle_Productos.Numero_codigo_barras,"
-		' QrySql = QrySql & " COUNT ( PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos ) AS Total"
-		' QrySql = QrySql & " FROM"
-		' QrySql = QrySql & " PH_Consumo_Detalle_Productos"
-		' QrySql = QrySql & " LEFT OUTER JOIN PH_CB_Producto"
-		' QrySql = QrySql & " ON PH_Consumo_Detalle_Productos.Numero_codigo_barras = PH_CB_Producto.CodigoBarra"
-		' QrySql = QrySql & " WHERE"
-		' QrySql = QrySql & " ( PH_Consumo_Detalle_Productos.Id_Hogar > 1 )"
-		' QrySql = QrySql & " AND"
-		' QrySql = QrySql & " ( PH_Consumo_Detalle_Productos.Pendiente = 0 )"
-		' QrySql = QrySql & " AND"
-		' QrySql = QrySql & " ( PH_Consumo_Detalle_Productos.id_categoria = 0 )"
-		' QrySql = QrySql & " AND"
-		' QrySql = QrySql & " ( PH_Consumo_Detalle_Productos.Status_registro='G')"
-		' QrySql = QrySql & " AND"
-		' QrySql = QrySql & "  ( PH_Consumo_Detalle_Productos.Numero_codigo_barras <> '0' )"
-		' QrySql = QrySql & " AND"
-		' QrySql = QrySql & " ( PH_CB_Producto.Id_Producto IS NULL )"
-		' QrySql = QrySql & " GROUP BY"
-		' QrySql = QrySql & " PH_Consumo_Detalle_Productos.Numero_codigo_barras"
-		' QrySql = QrySql & " ORDER BY"
-		' QrySql = QrySql & " COUNT ( PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos ) DESC"
+		'					
+		'01jul21 - Medicinas
 		'
-		'22mar21
 		QrySql = vbnullstring
-		QrySql = QrySql & " ( SELECT PH_Consumo_Detalle_Productos.Numero_codigo_barras,"
-		QrySql = QrySql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS Total, '' as Estatus"
+		QrySql = QrySql & " (SELECT PH_Consumo_Detalle_Productos.Numero_codigo_barras,"
+		QrySql = QrySql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS Total, '' as Estatus,'' as TipMed"
 		QrySql = QrySql & " FROM PH_Consumo_Detalle_Productos LEFT JOIN PH_CB_Producto ON PH_Consumo_Detalle_Productos.Numero_codigo_barras = PH_CB_Producto.CodigoBarra"
 		QrySql = QrySql & " WHERE PH_Consumo_Detalle_Productos.Id_Hogar>1 AND PH_Consumo_Detalle_Productos.Pendiente=0 AND PH_Consumo_Detalle_Productos.Status_registro='G' AND PH_CB_Producto.Id_Producto Is Null"
 		QrySql = QrySql & " GROUP BY PH_Consumo_Detalle_Productos.Numero_codigo_barras"
 		QrySql = QrySql & " HAVING PH_Consumo_Detalle_Productos.Numero_codigo_barras<>'0' And PH_Consumo_Detalle_Productos.Numero_codigo_barras<>'00000000')"
 		QrySql = QrySql & " UNION"
-		QrySql = QrySql & " ( SELECT PH_Consumo_Detalle_Productos.Numero_codigo_barras, Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS Total, 'P' as Estatus"
-		QrySql = QrySql & " FROM PH_Consumo_Detalle_Productos LEFT JOIN PH_CB_Producto ON PH_Consumo_Detalle_Productos.Numero_codigo_barras = PH_CB_Producto.CodigoBarra"
+		QrySql = QrySql & " ( SELECT PH_Consumo_Detalle_Productos.Numero_codigo_barras, Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS Total, 'P' as Estatus, PH_CB_Categoria.Ind_Medicina as TipMed"
+		QrySql = QrySql & " FROM (PH_Consumo_Detalle_Productos LEFT JOIN PH_CB_Producto ON PH_Consumo_Detalle_Productos.Numero_codigo_barras = PH_CB_Producto.CodigoBarra) LEFT JOIN PH_CB_Categoria ON PH_CB_Producto.Id_Categoria = PH_CB_Categoria.id_Categoria"
 		QrySql = QrySql & " WHERE PH_Consumo_Detalle_Productos.Id_Hogar>1 AND PH_Consumo_Detalle_Productos.Pendiente=0 AND PH_Consumo_Detalle_Productos.Status_registro='G' AND PH_CB_Producto.Ind_Pendiente=1"
-		QrySql = QrySql & " GROUP BY PH_Consumo_Detalle_Productos.Numero_codigo_barras"
+		QrySql = QrySql & " GROUP BY PH_Consumo_Detalle_Productos.Numero_codigo_barras, PH_CB_Categoria.Ind_Medicina"
 		QrySql = QrySql & " HAVING PH_Consumo_Detalle_Productos.Numero_codigo_barras<>'0' And PH_Consumo_Detalle_Productos.Numero_codigo_barras<>'00000000')"
 		QrySql = QrySql & " ORDER BY 2 desc"
-		'
 		'response.write QrySql
-		'response.end
+		' response.end		
 		'
 		Set rsProductosPendientes = Server.CreateObject("ADODB.recordset")
 		rsProductosPendientes.Open QrySql, conexion
@@ -126,8 +101,13 @@
 						<option value="0" selected disabled >-- Seleccione -- </option>
 						<%if IsArray(arrProductosPendientes) then
 							'Check si es una array
-							For i = 0 to ubound(arrProductosPendientes, 2) %>
-								<option value="<%= arrProductosPendientes(0,i)%>"> <%= uCase(arrProductosPendientes(0,i)) & " - (" & uCase(arrProductosPendientes(1,i)) &")" & " - " & uCase(arrProductosPendientes(2,i)) %> </option>								
+							For i = 0 to ubound(arrProductosPendientes, 2) 
+							
+							if(arrProductosPendientes(3,i)=true) then TipoMed="Med" else TipoMed=""
+							
+							
+						%>
+								<option value="<%= arrProductosPendientes(0,i)%>"> <%= uCase(arrProductosPendientes(0,i)) & " - (" & uCase(arrProductosPendientes(1,i)) &")" & " - " & uCase(arrProductosPendientes(2,i)) & " - " & TipoMed   %> </option>								
 							<% next %>
 						<% else %>
 								<option value="0" disabled>-- No hay Datos -- </option>

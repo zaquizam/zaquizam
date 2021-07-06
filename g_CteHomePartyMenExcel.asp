@@ -272,6 +272,23 @@
 		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr-May/2021"
 		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
 	end if
+
+	'Categorias Semestrales Ene-Feb-Mar-Abr/2021
+	'Del Monte
+	if (sCat = 105 or sCat = 70 or sCat = 10 or sCat = 22 ) and idCliente = 33 then 
+		'response.write "<br>pasoooooooooooooooo"
+		erase gMeses
+		redim gMeses(2,0)
+		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr-May/2021"
+		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
+	end if
+	if (sCat = 55 ) and idCliente = 35 then 
+		'response.write "<br>pasoooooooooooooooo"
+		erase gMeses
+		redim gMeses(2,0)
+		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr-May/2021"
+		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
+	end if
 	
 
 	sql = ""

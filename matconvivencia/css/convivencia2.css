@@ -1,37 +1,9 @@
 #grad1{ 
-
-    /*
-	background: rgb(243,243,243);
-    background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgba(198,198,217,1) 62%, rgba(68,202,230,1) 100%);
-	*/
-	/*background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgba(198,198,217,1) 62%, rgba(243,243,243,1) 100%);  */
-	
-	/* background-image: url(../images/fondos/fondoazul.png); */
-	/* background-repeat: no-repeat; */
-	/* /* background-size: contain; */
-	/* /* background-position: 50% 50%; */ 
-	/* max-width: 100%; */
-	/* background-size:cover; */
-	
 	background-color: #f3f3f3;
-
 }
 
 #grad2{ 
 
-    /*
-	background: rgb(243,243,243);
-    background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgba(198,198,217,1) 62%, rgba(68,202,230,1) 100%);
-	*/
-	/*background: linear-gradient(90deg, rgba(243,243,243,1) 29%, rgba(198,198,217,1) 62%, rgba(243,243,243,1) 100%);  */
-	
-	/* background-image: url(../images/fondos/fondoazul.png); */
-	/* background-repeat: no-repeat; */
-	/* /* background-size: contain; */
-	/* /* background-position: 50% 50%; */ 
-	/* max-width: 100%; */
-	/* background-size:cover; */
-	
 	background-color: #1a52c6;
 }
 
@@ -71,15 +43,6 @@
 }
 
 
-
-/*
-.form-control {
-  border-radius: 40px !important;
-}
-.form-control[multiple] {
-  border-radius: 20px !important;
-}
-*/
 /* centrar imagen */
 .separa{
 	margin:0 auto;
@@ -112,4 +75,11 @@
 .img-responsive {
     max-width: 100%;
     height: auto;
+}
+
+.borderless table {
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
 }

@@ -134,7 +134,7 @@
 	end if
 	if idCliente = 1 then
 		iMesDes = 24253
-		iMesHas = 24257
+		iMesHas = 24258
 	end if
 	'response.write "<br>310 Semana iMesDes:= " &  iMesDes
 	'response.write "<br>310 Semana iMesHas:= " &  iMesHas
@@ -6185,6 +6185,11 @@ Sub CalcularIndicador
 					idSemana1 = "29,30,31,32"
 					idSemana2 = "33,34,35,36"
 				end if 
+				if idSemana = "37,38,39,40" then 
+					isw = 2
+					idSemana1 = "33,34,35,36"
+					idSemana2 = "37,38,39,40"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -6396,6 +6401,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "29,30,31,32"
 					idSemana2 = "33,34,35,36"
+				end if 
+				if idSemana = "37,38,39,40" then 
+					isw = 2
+					idSemana1 = "33,34,35,36"
+					idSemana2 = "37,38,39,40"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6610,6 +6620,11 @@ Sub CalcularIndicador
 					idSemana1 = "29,30,31,32"
 					idSemana2 = "33,34,35,36"
 				end if 
+				if idSemana = "37,38,39,40" then 
+					isw = 2
+					idSemana1 = "33,34,35,36"
+					idSemana2 = "37,38,39,40"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -6821,6 +6836,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "29,30,31,32"
 					idSemana2 = "33,34,35,36"
+				end if 
+				if idSemana = "37,38,39,40" then 
+					isw = 2
+					idSemana1 = "33,34,35,36"
+					idSemana2 = "37,38,39,40"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana

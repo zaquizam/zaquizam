@@ -1,5 +1,5 @@
 <!Doctype html>
-<!-- PH_Cte_HomePantryConvivenciaCatg - 09abr21 - 25jun21 -->
+<!-- PH_Cte_HomePantryConvivenciaCatg - 09abr21 - 29jun21 -->
 <html >
 <head>
 	<title>| Convivencia Categoria |</title>
@@ -192,7 +192,7 @@
 	<div class="container-fluid" id="tablaResultados" style="display:none;" >
 
 		<div class="col-sm-6">
-			<table class="table table-borderless table-striped table-condensed text-center" style=" margin: auto; width: 65% !important; ">
+			<table class="table table-condensed text-center" style=" margin: auto; width: 65% !important; ">
 				<thead>
 				<tr>
 					<th colspan='3' class='text-center lb'><i class='fas fa-handshake'></i>&nbsp;MATRIZ DE CONVIVENCIA (A - B)</th>
@@ -227,7 +227,7 @@
 		</div>
 		
 		<div class="col-sm-6" >
-			<table class="table table-striped table-condensed text-center" style=" margin: auto; width: 65% !important; ">
+			<table class="table  table-condensed text-center" style=" margin: auto; width: 65% !important; ">
 				<thead>
 				<tr>
 					<th colspan='3' class='text-center lb'><i class='fas fa-sign-in-alt'></i>&nbsp;PENETRACION</th>
@@ -277,7 +277,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="matconvivencia/js/url.js"></script>
 <script src="matconvivencia/js/funcionesV2.js"></script>
-<script src="matconvivencia/js/procesarV2.js"></script>
+<script src="matconvivencia/js/procesarV6.js"></script>
 <!-- MultiSelect CSS & JS library -->
 <script src="matconvivencia/js/bootstrap-multiselect-0915.js"></script>
 

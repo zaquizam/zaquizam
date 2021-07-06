@@ -269,8 +269,9 @@ Sub Combos
 	sql = sql & " Categoria "
 	sql = sql & " HAVING "
 	sql = sql & " Id_Categoria Is Not Null "
+	sql = sql & " and Categoria Is Not Null "
 	sql = sql & " Order by Categoria "
-	'response.write "<br>372 Combo1:=" & sql
+	'response.write "<br>372 Combo2:=" & sql
     ed_sCombo(2,0)="Categoria"
     ed_sCombo(2,1)=sql 
     ed_sCombo(2,2)="Seleccionar"
@@ -288,9 +289,10 @@ Sub Combos
 	sql = sql & " GROUP BY "
 	sql = sql & " PH_CB_Producto.Id_Producto, "
 	sql = sql & " PH_DataValidacion.Producto "
+	sql = sql & " HAVING (((PH_DataValidacion.Producto) Is Not Null)) "
 	sql = sql & " ORDER BY "
 	sql = sql & " PH_DataValidacion.Producto "
-	'response.write "<br>372 Combo1:=" & sql
+	'response.write "<br>372 Combo3:=" & sql
     ed_sCombo(3,0)="Producto"
     ed_sCombo(3,1)=sql 
     ed_sCombo(3,2)="Seleccionar"
@@ -310,6 +312,7 @@ End Sub
 	'response.end
 	'if ed_sPar(1,0) = "" or ed_sPar(1,0) = "Seleccionar" then ed_sPar(1,0) = 17
     Combos
+	'response.end
 %>		
 	<br>
 	<div style="width:98%">
@@ -327,6 +330,7 @@ End Sub
 	</br>
 	</br>
 	<%
+	'response.end
 	idSemana = ed_sPar(1,0)
 	idCategoria = ed_sPar(2,0)
 	idProducto = ed_sPar(3,0)

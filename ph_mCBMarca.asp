@@ -105,6 +105,7 @@ Sub ParDat
 			'ed_sCampo(06,4)=1
 		end if
 	end if
+	ed_sCampo(07,0)="Medicina?"
 	'ed_sCampo(06,4)=1
 	'ed_sCampo(08,4)=1
 	

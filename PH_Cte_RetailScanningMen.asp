@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html >
 <head>
-	<title>Retail Scanning Semanal</title>
+	<title>Retail Scanning Mensual</title>
     <meta name="Robots" content="noindex" >
     <meta name="Robots" content="none" >
     <meta name="Robots" content="nofollow" >
@@ -11,21 +11,6 @@
 	<link href="css/sweetalert.css" rel="stylesheet" type="text/css" media="screen" />	
 
 </head>
-<script type="text/javascript">
-	function GenerarExcel()
-	{
-		//alert("Generar Excel");
-		num = document.getElementById("Excel").value;
-		//alert("Generar Excel:="+ num);
-		window.open("PH_Cte_RetailScanningExcel.asp?" + num,"_blank");
-	}
-
-		function Mensaje(){
-			swal("Atenas Grupo Consultor","Servicio No Contratado","info");
-			return;
-		}	
-</script>
-
 <body topmargin="0">
 <!--#include file="estiloscss.asp"-->
 <!--#include file="encabezado.asp"-->
@@ -46,8 +31,6 @@
 	conexionRS.mode = 3
 	conexionRS.Open
 	
-	dim Mostrar
-	Mostrar = 0
 	Dim idCliente
 	dim idCategoria
 	dim idFabricante
@@ -86,7 +69,7 @@
 	rsx2.LockType = 1 'adLockOptimistic 
 
 	idCliente = Session("idCliente")
-
+	'response.write "<br>idCliente:= " & idCliente
     
 %>
 	<script>
@@ -204,7 +187,7 @@ End sub
 
 sub VerificarData
 	
-	if idCliente <> 1 and idCliente <> 17 and idCliente <> 30 and idCliente <> 7 then
+	if idCliente <> 1 and idCliente <> 17 and idCliente <> 30 and idCliente <>34 then
 		%>
 		<script language="JavaScript" type="text/javascript">
 			Mensaje()
@@ -239,9 +222,9 @@ Sub Combos
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (33)"
 	end if
-	if idCliente = 7 then
+	if idCliente = 34 then
 		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (21,55,24,23,20,25)"
+		sql = sql & " Id_Categoria In (2,10,22)"
 	end if
 	sql = sql & " ORDER BY "
 	sql = sql & " Categoria "
@@ -275,6 +258,10 @@ Sub DataCombos
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (21,55,24,23,20,25)"
 	end if
+	if idCliente = 34 then
+		sql = sql & " HAVING "
+		sql = sql & " Id_Categoria In (2,10,22)"
+	end if
 	sql = sql & " ORDER BY "
 	sql = sql & " Categoria "
 	'response.write "<br>372 Combo1:=" & sql
@@ -285,9 +272,10 @@ Sub DataCombos
 		gCategoria = rsx1.GetRows
 		rsx1.close
 	end if
-	if ed_sPar(1,0) = "" then ed_sPar(1,0) = gCategoria(0,0)
 	
-	'response.write "<br>273 ed_sPar(1,0):=" & ed_sPar(1,0)
+	
+	if ed_sPar(1,0) = "" then ed_sPar(1,0) = gCategoria(0,0)
+
 	sql = ""
 	sql = sql & " SELECT "
 	sql = sql & " Id_Area, "
@@ -333,7 +321,6 @@ Sub DataCombos
 		gFabricante = rsx1.GetRows
 		rsx1.close
 	end if
-	
 
 	sql = ""
 	sql = sql & " SELECT "
@@ -383,11 +370,12 @@ Sub DataCombos
 		rsx1.close
 	end if
 
-	iSemanaDes = 37
-	iSemanaHas = 39
-	if idCliente = 1 then 
+	iSemanaDes = 33
+	iSemanaHas = 36
+
+	if idCliente = 34 then
 		iSemanaDes = 24
-		iSemanaHas = 40
+		iSemanaHas = 36
 	end if
 	
 	'response.write "<br>310 Semana Desde:= " &  iSemanaDes
@@ -465,7 +453,7 @@ Sub DataCombos
 	sql = ""
 	sql = sql & " SELECT "
 	sql = sql & " Id_Tamano, "
-	sql = sql & " CONVERT(DECIMAL(10,2),Tamano) "
+	sql = sql & " rtrim(Tamano) "
 	sql = sql & " FROM "
 	sql = sql & " RS_DataProcSem "
 	sql = sql & " WHERE "
@@ -522,11 +510,7 @@ Sub DataCombos
 	sql = sql & " FROM "
 	sql = sql & " RS_Indicadores "
 	sql = sql & " WHERE "
-	if idCliente = 1 then 
-		sql = sql & " Ind_Atenas = 1 " 
-	else
-		sql = sql & " Ind_Sem = 1 " 
-	end if
+	sql = sql & " Ind_Men = 1 " 
 	sql = sql & " AND Ind_Activo = 1 " 
 	sql = sql & " ORDER BY "
 	sql = sql & " Id_Indicador "
@@ -580,16 +564,11 @@ End Sub
 
 	'response.write "llego1"
 	'response.end
-    if Mostrar = 1 and idCliente = 1 then
-		sVar = "text"
-	else
-		sVar = "hidden"
-	end if
-	
+    
 
 %>
 	<!--hidden-->
-	<input type="<%=sVar%>" name="Filtro" id="Filtro" align="right" size=250>
+	<input type="hidden" name="Filtro" id="Filtro" align="right" size=250>
 	<input type="hidden" name="Cliente" id="Cliente" align="right" size=4 value="<%=Session("idCliente")%>">
 	<input type="hidden" name="Cat" id="Cat" align="right" size=4 value="<%=ed_sPar(1,0)%>">
 	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -870,14 +849,14 @@ End Sub
 			stodo = stodo + "&ind=" + indicadores;
 			stodo = stodo + "&sem=" + semanas;
 			stodo = stodo + "&semacum=" + semanasacumuladas;
-			document.getElementById("Filtro").value = "g_CteRetailScanningSem.asp?" + stodo;
+			document.getElementById("Filtro").value = "g_CteRetailScanningMen.asp?" + stodo;
 			document.getElementById("Excel").value = stodo;
 			//alert("stodo:="+stodo);
 			//return;
 			$('#DivRetailScanningSem').html("");
 			$.ajax({
-				//url:'g_CteRetailScanningSem.asp?'+stodo,
-				url:'g_CteRetailScanningSem.asp',
+				//url:'g_CteRetailScanningMen.asp?'+stodo,
+				url:'g_CteRetailScanningMen.asp',
 				type:'post',
 				data: stodo,
 				beforeSend: function(objeto){

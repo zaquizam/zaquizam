@@ -61,7 +61,9 @@ Sub ParDat
 	sqlcla = sqlcla & " WHERE  (fec_inactivo is null)"
 	if ed_sPar(1,0) <> "" and ed_sPar(1,0) <> "Seleccionar" then
 		sqlcla = sqlcla & " and id_categoria = " & ed_sPar(1,0)
+		'sqlcla = sqlcla & " or id_Categoria = 0 "
 	end if
+	'response.write "<br>65 sqlcla:= " & sqlcla
 	'response.write "<br>47 Perfil:= " & Session("idPerfil")
 	
 
@@ -71,6 +73,7 @@ Sub ParDat
    ed_sCampo(02,0)="Fabricante"
    ed_sCampo(03,0)="Abreviatura"
    ed_sCampo(04,0)="Activo?"
+   ed_sCampo(05,0)="Medicina?"
    'ed_sCampo(04,0)="Desde"
    'ed_sCampo(05,0)="Hasta"
    'ed_sCampo(06,0)="Ano"

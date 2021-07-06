@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html >
 <head>
-	<title>Producto</title>
+	<title>Producto Medicina</title>
     <meta name="Robots" content="noindex" >
     <meta name="Robots" content="none" >
     <meta name="Robots" content="nofollow" >
@@ -24,7 +24,9 @@
 ' Variables y Constantes
 '==========================================================================================
 
-
+	dim idUsuario 
+	idUsuario = Session("idUsu")
+	'response.write "<br>29 idUsuario:= " & idUsuario
     Apertura
 %>
 	<script>
@@ -47,11 +49,11 @@
 '==========================================================================================
 Sub ParDat
 	if ed_sPar(1,0) = "" or ed_sPar(1,0) = "Seleccionar" then
-		ed_sPar(1,0) = 86
+		ed_sPar(1,0) = 127
 	end if
 	ed_Bot(4)="disabled"
 	'ed_Bot(1)="disabled"
-	ed_iNumCam		=18					' Numero de campos en la pantalla principal
+	ed_iNumCam		=14					' Numero de campos en la pantalla principal
 	ed_iRegPag		=25					' Numero de registros por pagina
 	
 	ed_sNomTab		="PH_CB_Producto"
@@ -60,11 +62,13 @@ Sub ParDat
 	ed_cOrd		=0	' Orden 0=ascendente 1=descendente
 	ed_iRan		=0	' Presentar ranking de columnas
 	ed_iRep=0
+	if idUsuario <> 170 then  ed_iRep=1
 'ed_ides=1
 	SqlCla = " SELECT * FROM "  & ed_sNomTab
 	'sqlcla = sqlcla & " WHERE  (fec_inactivo is null)"
 	if ed_sPar(1,0) <> "" and ed_sPar(1,0) <> "Seleccionar" then
 		sqlcla = sqlcla & " WHERE id_categoria = " & ed_sPar(1,0)
+		'sqlcla = sqlcla & " and  ind_medicina =  1 "
 	end if
 	'response.write "<br>65 sqlcla:= " & sqlcla
 	'response.end 
@@ -135,13 +139,11 @@ Sub ParDat
 	'ed_sCampo(10,2)="2"	
 	'ed_sCampo(11,2)="2"
     'ed_sCampo(13,2)="1"
-	ed_sCampo(14,2)="1"
-	ed_sCampo(15,2)="1"
-	ed_sCampo(16,2)="1"
-	ed_sCampo(17,2)="1"
-	ed_sCampo(18,2)="1"
-	ed_sCampo(19,2)="1"
-	ed_sCampo(20,2)="1"
+	'ed_sCampo(14,2)="1"
+	'ed_sCampo(15,2)="1"
+	'ed_sCampo(16,2)="1"
+	'ed_sCampo(17,2)="1"
+	'ed_sCampo(18,2)="1"
   '  ed_sCampo(08,2)="1"
   '  ed_sCampo(10,2)="1"
   '  ed_sCampo(12,2)="1"
@@ -156,8 +158,8 @@ Sub ParDat
 	
 	ed_sQue(1,0)=  " SELECT Id_Categoria, Categoria FROM  PH_CB_Categoria WHERE Fec_Inactivo is Null and ind_activo = 1 and id_Categoria = " & ed_sPar(1,0)
 	ed_sQue(4,0)=  " SELECT Id_Segmento, Segmento FROM  PH_CB_Segmento WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by Segmento "
-	ed_sQue(5,0)=  " SELECT Id_Fabricante, Fabricante FROM  PH_CB_Fabricante WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by Fabricante "
-	ed_sQue(6,0)=  " SELECT Id_Marca, Marca FROM  PH_CB_Marca WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by Marca "
+	ed_sQue(5,0)=  " SELECT Id_Fabricante, Fabricante FROM  PH_CB_Fabricante WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = 0 " & " Order by Fabricante "
+	ed_sQue(6,0)=  " SELECT Id_Marca, Marca FROM  PH_CB_Marca WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = 0 " &  " Order by Marca "
 	ed_sQue(7,0)=  " SELECT Id_Tamano, Tamano FROM  PH_CB_Tamano WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by Tamano "
 	ed_sQue(8,0)=  " SELECT Id_TamanoRango, TamanoRango FROM  PH_CB_TamanoRango WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by TamanoRango "
 	ed_sQue(9,0)=  " SELECT Id_UnidadMedida, UnidadMedida FROM  PH_CB_UnidadMedida WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & cint(ed_sPar(1,0))
@@ -195,7 +197,7 @@ Sub ParDat
 	
 End Sub
 Sub Combos
- 
+	
 	'response.write "<br>372 Combo1:=" & ed_sPar(1,0)
 	'response.write " Combo2:=" & ed_sPar(2,0)
 	'response.write " Combo3:=" & ed_sPar(3,0)
@@ -207,7 +209,7 @@ Sub Combos
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
 	sql = sql & " FROM PH_CB_Categoria "
-	sql = sql & " where ind_medicina = 0 "
+	sql = sql & " where ind_medicina = 1 "
 	sql = sql & " and id_Categoria > 0 "
 	sql = sql & " Order By "
 	sql = sql & " Categoria "
@@ -231,7 +233,7 @@ End Sub
 	'response.end
 	Combos
 	if ed_sPar(1,0) = "" or ed_sPar(1,0) = "Seleccionar" then
-		ed_sPar(1,0) = 86
+		ed_sPar(1,0) = 127
 	end if
     
 
