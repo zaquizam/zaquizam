@@ -266,7 +266,7 @@
 	sql = sql & " And Id_Fabricante in (" & sFab & ")"
 	sql = sql & " And Id_Marca in (" & sMar & ")"
 	sql = sql & " And Id_Segmento in (" & sSeg & ")"
-	if sTam <> 0 then
+	if sTam <> "" and sTam <> "0" then
 		sql = sql & " And Id_Tamano in (" & sTam & ")"
 	else
 		if sPro <> "" then

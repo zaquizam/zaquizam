@@ -20,10 +20,10 @@
 		window.open("PH_Cte_RetailScanningExcel.asp?" + num,"_blank");
 	}
 
-		function Mensaje(){
-			swal("Atenas Grupo Consultor","Servicio No Contratado","info");
-			return;
-		}	
+	function Mensaje(){
+		swal("Atenas Grupo Consultor","Servicio No Contratado","info");
+		return;
+	}	
 </script>
 
 <body topmargin="0">
@@ -259,7 +259,7 @@ Sub DataCombos
 	iSemanaHas = 40
 	if idCliente = 1 then 
 		iSemanaDes = 24
-		iSemanaHas = 41
+		iSemanaHas = 40
 	end if
 
 	sql = ""
@@ -600,6 +600,7 @@ End Sub
 	<input type="<%=sVar%>" name="Filtro" id="Filtro" align="right" size=250>
 	<input type="hidden" name="Cliente" id="Cliente" align="right" size=4 value="<%=Session("idCliente")%>">
 	<input type="hidden" name="Cat" id="Cat" align="right" size=4 value="<%=ed_sPar(1,0)%>">
+	
 	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -626,7 +627,7 @@ End Sub
 				
 				<div class="form-group">
 					<!--area-->	
-					 <label for="area"><i class="	fas fa-globe-americas"></i>&nbsp;Área:</label>
+					 <label for="area"><i class="fas fa-globe-americas"></i>&nbsp;Área:</label>
 					 <select id="Area" multiple="multiple">
 						<% for iAre = 0 to  ubound(gArea,2) %>
 							<option value="<%=gArea(0,iAre)%>"><%=gArea(1,iAre)%></option>

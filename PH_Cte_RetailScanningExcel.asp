@@ -6,6 +6,7 @@
 '==========================================================================================
 	'response.write "<br>84 LLEGO"
 	'response.end
+	Response.Buffer=true
 	dim sCat
 	dim sAre
 	dim sZon
@@ -303,7 +304,7 @@
 		gProductosTotal = rsx1.GetRows
 		rsx1.close
 	end if
-	'response.write "<br>271 Paso" 
+	'response.write "<br>306 Paso" 
 	'response.end
 	Response.ContentType = "application/vnd.ms-excel"
 	Response.AddHeader "Content-disposition","attachment; filename=tem.xls"
@@ -352,7 +353,7 @@
 			
 		<%
 	else
-		'response.write "<br>84 LLEGO"
+		'response.write "<br>354 LLEGO"
 		'response.end
 		
 		%>
@@ -394,13 +395,14 @@
 								<table border=0>
 									<tbody>					
 										<% 
-										'response.write "<br>354 LLEGO:= " & ubound(gProductosTotal,2)
+										'response.write "<br>397 LLEGO:= " & ubound(gProductosTotal,2)
 										'response.end
 										for iPro = 0 to  ubound(gProductosTotal,2)
 											'response.write "<br>354 LLEGO:= " & iPro
 											iPro2 = iPro
 											isw = 0
 											for iInd = 0 to  ubound(gIndicadores,2)
+											'response.write "<br>404 LLEGO:= " & iPro
 											response.write "<tr class='row100 body'>"
 												'Area
 												response.write "<td width=6% class='cell100 column1'>"
@@ -505,6 +507,8 @@
 											iPro = iPro2 + iPro1 - 1
 											iPro = iPro1 - 1
 											'response.write "<br>iPro:=" & iPro & ""
+											'response.write "<br>508 LLEGO:= " & ubound(gProductosTotal,2)
+											'response.end
 										next					
 										
 										%>

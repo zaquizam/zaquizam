@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html >
 <head>
-	<title>Tamanos Rango</title>
+	<title>Atributo03</title>
     <meta name="Robots" content="noindex" >
     <meta name="Robots" content="none" >
     <meta name="Robots" content="nofollow" >
@@ -53,8 +53,8 @@ Sub ParDat
 	ed_iNumCam		=18					' Numero de campos en la pantalla principal
 	ed_iRegPag		=25					' Numero de registros por pagina
 	
-	ed_sNomTab		="PH_CB_TamanoRango"
-	ed_sNomInd		="Id_TamanoRango"
+	ed_sNomTab		="PH_CB_Atributo3"
+	ed_sNomInd		="Id_Atributo3"
 	ed_cCol		=2	' Columna a Ordenar
 	ed_cOrd		=0	' Orden 0=ascendente 1=descendente
 	ed_iRan		=0	' Presentar ranking de columnas
@@ -71,7 +71,7 @@ Sub ParDat
 ' Titulo	
    ed_sCampo(00,0)="#"
    ed_sCampo(01,0)="Categoria"
-   ed_sCampo(02,0)="Tamano Rango"
+   ed_sCampo(02,0)="Atributo3"
    ed_sCampo(03,0)="Abreviatura"
    ed_sCampo(04,0)="Activo?"
    'ed_sCampo(04,0)="Desde"
@@ -153,11 +153,11 @@ Sub Combos
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
 	sql = sql & " FROM PH_CB_Categoria "
-	if idUsuario = 170 then  
-		sql = sql & " Where ind_Medicina = 1 "
-	else
-		sql = sql & " Where ind_Medicina = 0 "
-	end if
+	'if idUsuario = 170 then  
+	'	sql = sql & " Where ind_Medicina = 1 "
+	'else
+	'	sql = sql & " Where ind_Medicina = 0 "
+	'end if
 	sql = sql & " Order By "
 	sql = sql & " Categoria "
 	'response.write "<br>372 Combo1:=" & sql

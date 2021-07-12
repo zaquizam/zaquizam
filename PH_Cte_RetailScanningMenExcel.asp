@@ -35,38 +35,37 @@
 	dim gSemanasAcum
 	dim TotalSemAcum
 
-
-	'sCat=Request.QueryString("cat")
-	sCat=Request.form("cat")
+	sCat=Request.QueryString("cat")
+	'sCat=Request.form("cat")
 	if sCat = "" Then response.end
 
-	' sAre=Request.QueryString("are")
-	' sZon=Request.QueryString("zon")
-	' sCan=Request.QueryString("can")
-	' sFab=Request.QueryString("fab")
-	' sMar=Request.QueryString("mar")
-	' sSeg=Request.QueryString("seg")
-	' sRan=Request.QueryString("ran")
-	' sTam=Request.QueryString("tam")
-	' sPro=Request.QueryString("pro")
-	' sInd=Request.QueryString("ind")
-	' sSem=Request.QueryString("sem")
-	' sSemAcum=Request.QueryString("semacum")
+	 sAre=Request.QueryString("are")
+	 sZon=Request.QueryString("zon")
+	 sCan=Request.QueryString("can")
+	 sFab=Request.QueryString("fab")
+	 sMar=Request.QueryString("mar")
+	 sSeg=Request.QueryString("seg")
+	 sRan=Request.QueryString("ran")
+	 sTam=Request.QueryString("tam")
+	 sPro=Request.QueryString("pro")
+	 sInd=Request.QueryString("ind")
+	 sSem=Request.QueryString("sem")
+	 sSemAcum=Request.QueryString("semacum")
 
-	sAre=Request.form("are")
-	sZon=Request.form("zon")
-	sCan=Request.form("can")
-	sFab=Request.form("fab")
-	sMar=Request.form("mar")
-	sSeg=Request.form("seg")
-	sRan=Request.form("ran")
-	sTam=Request.form("tam")
-	sPro=Request.form("pro")
-	sInd=Request.form("ind")
-	sSemanas=Request.form("sem")
-	sSemAcum=Request.form("semacum")
+	'sAre=Request.form("are")
+	'sZon=Request.form("zon")
+	'sCan=Request.form("can")
+	'sFab=Request.form("fab")
+	'sMar=Request.form("mar")
+	'sSeg=Request.form("seg")
+	'sRan=Request.form("ran")
+	'sTam=Request.form("tam")
+	'sPro=Request.form("pro")
+	'sInd=Request.form("ind")
+	'sSem=Request.form("sem")
+	'sSemAcum=Request.form("semacum")
 
-
+	sSemanas = sSem
 	'response.write "<br>84 Sem:=" & sSem
 	'response.end
 	
@@ -151,8 +150,6 @@
 		if iSem = 3 then strSemana4 = gSemanas(1,iSem)
 		if iSem = 4 then strSemana5 = gSemanas(1,iSem)
 	next
-	'response.write "<br>203 Paso" 
-	'response.end
 	if sSemAcum <> "" then
 		'Semanas Acumuladas
 		sql = ""
@@ -200,8 +197,11 @@
 	sql = sql & " FROM "
 	sql = sql & " RS_Indicadores "
 	sql = sql & " WHERE "
-	sql = sql & " Ind_Men = 1 " 
-	sql = sql & " and Ind_Activo = 1 " 
+	if Session("perusu") = 5 then
+		sql = sql & " Ind_Men = 1 " 
+	else
+		sql = sql & " Ind_Activo = 1 " 
+	end if
 	if sInd <> "" then
 		sql = sql & " And Id_Indicador in (" & sInd & ")"
 	end if
@@ -266,7 +266,7 @@
 	sql = sql & " And Id_Fabricante in (" & sFab & ")"
 	sql = sql & " And Id_Marca in (" & sMar & ")"
 	sql = sql & " And Id_Segmento in (" & sSeg & ")"
-	if sTam <> "" and sTam <> "0" then
+	if sTam <> 0 then
 		sql = sql & " And Id_Tamano in (" & sTam & ")"
 	else
 		if sPro <> "" then
@@ -303,8 +303,10 @@
 		gProductosTotal = rsx1.GetRows
 		rsx1.close
 	end if
-	'response.write "<br>271 Paso" 
+	'response.write "<br>306 Paso" 
 	'response.end
+	Response.ContentType = "application/vnd.ms-excel"
+	Response.AddHeader "Content-disposition","attachment; filename=tem.xls"
 
 	if iExiste = 0 then
 		
@@ -350,7 +352,7 @@
 			
 		<%
 	else
-		'response.write "<br>84 LLEGO"
+		'response.write "<br>354 LLEGO"
 		'response.end
 		
 		%>
@@ -392,10 +394,14 @@
 								<table border=0>
 									<tbody>					
 										<% 
-										'response.write "<br>354 LLEGO:= " & ubound(gProductosTotal,2)
+										'response.write "<br>397 LLEGO:= " & ubound(gProductosTotal,2)
 										'response.end
 										for iPro = 0 to  ubound(gProductosTotal,2)
 											'response.write "<br>354 LLEGO:= " & iPro
+											iPro2 = iPro
+											isw = 0
+											for iInd = 0 to  ubound(gIndicadores,2)
+											'response.write "<br>404 LLEGO:= " & iPro
 											response.write "<tr class='row100 body'>"
 												'Area
 												response.write "<td width=6% class='cell100 column1'>"
@@ -440,17 +446,14 @@
 												'response.write "<td width=6% colspan=7 class='cell100 column9' >"
 												'response.write "</td>"
 											'response.write "</tr>"
-											iPro2 = iPro
-											isw = 0
-											for iInd = 0 to  ubound(gIndicadores,2)
 												iPro1 = iPro
 												'response.write "<br>354 LLEGO:= " & iPro1
 													if isw = 0 then
 														isw = 1
 													else
-														response.write "<tr>"
-														response.write "<td width=6% colspan=8 class='cell100 column9' >"
-														response.write "</td>"
+														'response.write "<tr>"
+														'response.write "<td width=6% colspan=8 class='cell100 column9' >"
+														'response.write "</td>"
 													end if
 													response.write "<td width=6% class='cell100 column9 text-center'>"
 														response.write "<b>"
@@ -503,6 +506,8 @@
 											iPro = iPro2 + iPro1 - 1
 											iPro = iPro1 - 1
 											'response.write "<br>iPro:=" & iPro & ""
+											'response.write "<br>508 LLEGO:= " & ubound(gProductosTotal,2)
+											'response.end
 										next					
 										
 										%>

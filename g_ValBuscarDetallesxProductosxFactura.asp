@@ -49,7 +49,7 @@
 		'sql = sql & " AND"
 		'sql = sql & " PH_CB_Producto.Ind_activo = 1"
 		'
-		 Response.Write sql
+		'Response.Write sql
 		' Response.End
 		'
 		rsDetalleProductos.Open sql, conexion
@@ -128,7 +128,7 @@
 							if(arrDetalleProductos(13,i)="" or isNull(arrDetalleProductos(14,i))) then
 								Total  	= 0
 							else							
-								if( idCategoria =9 or idCategoria = 10 or idCategoria = 11 or idCategoria = 12 or idCategoria = 13 or idCategoria = 14 or idCategoria = 15 or idCategoria = 16 or idCategoria = 17 or idCategoria = 18  ) then
+								if( idCategoria =9 or idCategoria = 10 or idCategoria = 11 or idCategoria = 12 or idCategoria = 13 or idCategoria = 14 or idCategoria = 15 or idCategoria = 16 or idCategoria = 17 or idCategoria = 18) then
 									'Queso - charcuteria - perro - gato - limpiadores
 									'if( idMoneda = 2) then
 									'	Total	= precioUnitario					
@@ -150,7 +150,7 @@
 							'
 							' Calculos Totales
 							'
-							if(idCategoria = 9 or idCategoria = 10 or idCategoria = 11 or idCategoria = 12 or idCategoria = 13 or idCategoria = 14 or idCategoria = 15 or idCategoria = 16 or idCategoria = 17 or idCategoria = 18 ) then
+							if( idCategoria =9 or idCategoria = 10 or idCategoria = 11 or idCategoria = 12 or idCategoria = 13 or idCategoria = 14 or idCategoria = 15 or idCategoria = 16 or idCategoria = 17 or idCategoria = 18) then
 								'Queso
 								TotalCantidad = TotalCantidad + 1
 							else

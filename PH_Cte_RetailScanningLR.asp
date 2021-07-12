@@ -227,7 +227,7 @@ Sub Combos
 	sql = sql & " SELECT "
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
-	sql = sql & " FROM RS_DataProcSem "
+	sql = sql & " FROM RS_DataProcSem08Jul2021 "
 	sql = sql & " GROUP BY "
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
@@ -259,14 +259,14 @@ Sub DataCombos
 	iSemanaHas = 40
 	if idCliente = 1 then 
 		iSemanaDes = 24
-		iSemanaHas = 41
+		iSemanaHas = 40
 	end if
 
 	sql = ""
 	sql = sql & " SELECT "
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
-	sql = sql & " FROM RS_DataProcSem "
+	sql = sql & " FROM RS_DataProcSem08Jul2021 "
 	sql = sql & " GROUP BY "
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
@@ -303,7 +303,7 @@ Sub DataCombos
 	sql = sql & " Id_Area, "
 	sql = sql & " Area "
 	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
+	sql = sql & " RS_DataProcSem08Jul2021 "
 	sql = sql & " WHERE "
 	sql = sql & " Id_Categoria = " & ed_sPar(1,0)
 	sql = sql & " GROUP BY "
@@ -328,7 +328,7 @@ Sub DataCombos
 	sql = sql & " Id_Fabricante, "
 	sql = sql & " Fabricante "
 	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
+	sql = sql & " RS_DataProcSem08Jul2021 "
 	sql = sql & " WHERE "
 	sql = sql & " Id_Categoria = " & ed_sPar(1,0)
 	sql = sql & " GROUP BY "
@@ -353,7 +353,7 @@ Sub DataCombos
 	sql = sql & " Id_Marca, "
 	sql = sql & " Marca "
 	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
+	sql = sql & " RS_DataProcSem08Jul2021 "
 	sql = sql & " WHERE "
 	sql = sql & " Id_Categoria = " & ed_sPar(1,0)
 	sql = sql & " GROUP BY "
@@ -377,7 +377,7 @@ Sub DataCombos
 	sql = sql & " Id_Segmento, "
 	sql = sql & " Segmento "
 	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
+	sql = sql & " RS_DataProcSem08Jul2021 "
 	sql = sql & " WHERE "
 	sql = sql & " Id_Categoria = " & ed_sPar(1,0)
 	sql = sql & " GROUP BY "
@@ -428,7 +428,7 @@ Sub DataCombos
 	sql = sql & " Id_Area, "
 	sql = sql & " rtrim(Area) "
 	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
+	sql = sql & " RS_DataProcSem08Jul2021 "
 	sql = sql & " WHERE "
 	sql = sql & " Id_Categoria = " & ed_sPar(1,0)
 	sql = sql & " GROUP BY "
@@ -451,7 +451,7 @@ Sub DataCombos
 	sql = sql & " Id_Canal, "
 	sql = sql & " rtrim(Canal) "
 	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
+	sql = sql & " RS_DataProcSem08Jul2021 "
 	sql = sql & " WHERE "
 	sql = sql & " Id_Categoria = " & ed_sPar(1,0)
 	sql = sql & " GROUP BY "
@@ -474,7 +474,7 @@ Sub DataCombos
 	sql = sql & " Id_Tamano, "
 	sql = sql & " CONVERT(DECIMAL(10,2),Tamano) "
 	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
+	sql = sql & " RS_DataProcSem08Jul2021 "
 	sql = sql & " WHERE "
 	sql = sql & " Id_Categoria =  " & ed_sPar(1,0)
 	sql = sql & " GROUP BY "
@@ -498,7 +498,7 @@ Sub DataCombos
 	sql = sql & " CodigoBarra, "
 	sql = sql & " Descripcion "
 	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
+	sql = sql & " RS_DataProcSem08Jul2021 "
 	sql = sql & " WHERE  "
 	sql = sql & " Id_Categoria= " &  ed_sPar(1,0)
 	sql = sql & " GROUP BY "
@@ -551,7 +551,7 @@ Sub DataCombos
 	sql = sql & " Id_Zona, "
 	sql = sql & " Zona "
 	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
+	sql = sql & " RS_DataProcSem08Jul2021 "
 	sql = sql & " WHERE  "
 	sql = sql & " Id_Categoria= " &  ed_sPar(1,0)
 	sql = sql & " GROUP BY "
@@ -581,11 +581,11 @@ End Sub
     end if    
 	
 	VerificarData
-	'response.write "<br>576 Paso entro Cat=:" & now()
+	response.write "<br>576 Paso entro Cat=:" & now()
 	Combos
-	'response.write "<br>576 Paso=entro combos:" & now()
+	response.write "<br>576 Paso=entro combos:" & now()
 	DataCombos
-	'response.write "<br>576 Paso=:salio combos" & now()
+	response.write "<br>576 Paso=:salio combos" & now()
 	'response.write "llego1"
 	'response.end
     if Mostrar = 1 and idCliente = 1 then

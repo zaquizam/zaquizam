@@ -11,6 +11,21 @@
 	<link href="css/sweetalert.css" rel="stylesheet" type="text/css" media="screen" />	
 
 </head>
+<script type="text/javascript">
+	function GenerarExcel()
+	{
+		//alert("Generar Excel");
+		num = document.getElementById("Excel").value;
+		//alert("Generar Excel:="+ num);
+		window.open("PH_Cte_RetailScanningMenExcel.asp?" + num,"_blank");
+	}
+
+		function Mensaje(){
+			swal("Atenas Grupo Consultor","Servicio No Contratado","info");
+			return;
+		}	
+</script>
+
 <body topmargin="0">
 <!--#include file="estiloscss.asp"-->
 <!--#include file="encabezado.asp"-->
@@ -453,7 +468,7 @@ Sub DataCombos
 	sql = ""
 	sql = sql & " SELECT "
 	sql = sql & " Id_Tamano, "
-	sql = sql & " rtrim(Tamano) "
+	sql = sql & " CONVERT(DECIMAL(10,2),Tamano) "
 	sql = sql & " FROM "
 	sql = sql & " RS_DataProcSem "
 	sql = sql & " WHERE "
@@ -464,7 +479,7 @@ Sub DataCombos
 	sql = sql & " HAVING "
 	sql = sql & " Id_Tamano <> 0 "
 	sql = sql & " ORDER BY "
-	sql = sql & " Tamano "
+	sql = sql & " CONVERT(DECIMAL(10,2),Tamano) "
 	'response.write "<br>372 sql4:=" & sql
 	rsx1.Open sql ,conexionRS
 	if rsx1.eof then
@@ -559,9 +574,11 @@ End Sub
     end if    
 	
 	VerificarData
+	'response.write "<br>576 Paso entro Cat=:" & now()
 	Combos
+	'response.write "<br>576 Paso=entro combos:" & now()
 	DataCombos
-
+	'response.write "<br>576 Paso=:salio combos" & now()
 	'response.write "llego1"
 	'response.end
     

@@ -7,6 +7,7 @@
 	'response.write "<br>84 LLEGO"
 	'response.end
 	dim sCat
+	dim Mostrar
 	dim sAre
 	dim sFab
 	dim sMar
@@ -25,6 +26,7 @@
 	dim TotalRan
 	dim idSemana
 	dim TotalDias
+	Mostrar = 0
 	'26Ene2021-2
 	dim TotalFabricante 
 	dim gProductosTotal
@@ -55,7 +57,6 @@
 		sFab = "0"
 		sMar = "0"
 	end if
-	
 	
 	
 	'response.write "<br>84 LLEGO" & sFab
@@ -96,32 +97,32 @@
 		rsx1.close
 		strSemana = gDatos1(1,0)
 	end if
-	strSemana1 = "(01) Del 04 Ene 2021 al 10 Ene 2021"
-	strSemana2 = "(02) Del 11 Ene 2021 al 17 Ene 2021"
-	strSemana3 = "(03) Del 18 Ene 2021 al 24 Ene 2021"
-	strSemana4 = "(04) Del 25 Ene 2021 al 31 Ene 2021"
-	strSemana5 = "(05) Del 01 Feb 2021 al 07 Feb 2021"
-	strSemana6 = "(06) Del 08 Feb 2021 al 14 Feb 2021"
-	strSemana7 = "(07) Del 15 Feb 2021 al 21 Feb 2021"
-	strSemana8 = "(08) Del 22 Feb 2021 al 28 Feb 2021"
-	strSemana9 = "(09) Del 01 Mar 2021 al 07 Mar 2021"
-	strSemana10 = "(10) Del 08 Mar 2021 al 14 Mar 2021"
-	strSemana11 = "(11) Del 15 Mar 2021 al 21 Mar 2021"
-	strSemana12 = "(12) Del 22 Mar 2021 al 28 Mar 2021"
-	strSemana13 = "(13) Del 29 Mar 2021 al 04 Abr 2021"
-	strSemana14 = "(14) Del 05 Abr 2021 al 11 Abr 2021"
-	strSemana15 = "(15) Del 12 Abr 2021 al 18 Abr 2021"
-	strSemana16 = "(16) Del 19 Abr 2021 al 25 Abr 2021"
-	strSemana17 = "(17) Del 26 Abr 2021 al 02 May 2021"
-	strSemana18 = "(18) Del 03 May 2021 al 09 May 2021"
-	strSemana19 = "(19) Del 10 May 2021 al 16 May 2021"
-	strSemana20 = "(20) Del 17 May 2021 al 23 May 2021"
-	strSemana21 = "(21) Del 24 May 2021 al 30 May 2021"
-	strSemana22 = "(22) Del 31 May 2021 al 06 Jun 2021"
-	strSemana23 = "(23) Del 07 Jun 2021 al 13 Jun 2021"
-	strSemana24 = "(24) Del 14 Jun 2021 al 20 Jun 2021"
-	strSemana25 = "(25) Del 21 Jun 2021 al 27 Jun 2021"
-	strSemana26 = "(26) Del 28 Jun 2021 al 04 Jul 2021"
+	'strSemana1 = "(01) Del 04 Ene 2021 al 10 Ene 2021"
+	'strSemana1 = "(02) Del 11 Ene 2021 al 17 Ene 2021"
+	'strSemana1 = "(03) Del 18 Ene 2021 al 24 Ene 2021"
+	'strSemana1 = "(04) Del 25 Ene 2021 al 31 Ene 2021"
+	'strSemana1 = "(05) Del 01 Feb 2021 al 07 Feb 2021"
+	'strSemana1 = "(06) Del 08 Feb 2021 al 14 Feb 2021"
+	'strSemana1 = "(07) Del 15 Feb 2021 al 21 Feb 2021"
+	'strSemana1 = "(08) Del 22 Feb 2021 al 28 Feb 2021"
+	'strSemana1 = "(09) Del 01 Mar 2021 al 07 Mar 2021"
+	'strSemana1 = "(10) Del 08 Mar 2021 al 14 Mar 2021"
+	'strSemana1 = "(11) Del 15 Mar 2021 al 21 Mar 2021"
+	'strSemana1 = "(12) Del 22 Mar 2021 al 28 Mar 2021"
+	'strSemana1 = "(13) Del 29 Mar 2021 al 04 Abr 2021"
+	'strSemana1 = "(14) Del 05 Abr 2021 al 11 Abr 2021"
+	'strSemana1 = "(15) Del 12 Abr 2021 al 18 Abr 2021"
+	'strSemana1 = "(16) Del 19 Abr 2021 al 25 Abr 2021"
+	'strSemana1 = "(17) Del 26 Abr 2021 al 02 May 2021"
+	'strSemana1 = "(18) Del 03 May 2021 al 09 May 2021"
+	'strSemana1 = "(19) Del 10 May 2021 al 16 May 2021"
+	'strSemana1 = "(20) Del 17 May 2021 al 23 May 2021"
+	'strSemana1 = "(21) Del 24 May 2021 al 30 May 2021"
+	strSemana1 = ""
+	strSemana2 = ""
+	strSemana3 = ""
+	strSemana4 = ""
+	strSemana5 = "(26) Del 28 Jun 2021 al 04 Jul 2021"
 	
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
@@ -167,7 +168,7 @@
 	sql = sql & " Id_Segmento, "
 	sql = sql & " Segmento "
 	sql = sql & " FROM "
-	sql = sql & " PH_DataCruda "
+	sql = sql & " PH_DataCrudaMed "
 	sql = sql & " WHERE "
 	sql = sql & " Id_Categoria = " & sCat
 	sql = sql & " GROUP BY "
@@ -214,7 +215,7 @@
 		sql = sql & " ,RangoTamano "
 	end if
 
-	sql = sql & " FROM PH_DataCruda "
+	sql = sql & " FROM PH_DataCrudaMed "
 
 	sql = sql & " WHERE "
 	sql = sql & " Id_Categoria = " & sCat
@@ -317,35 +318,13 @@
 											<th class="cell100 column1 text-left">Fabricante</th>
 											<th class="cell100 column2 text-center">Marca</th>
 											<th class="cell100 column3 text-center">Segmento</th>
-											<th class="cell100 column4 text-center"></th>
-											<th class="cell100 column5 text-center">Indicador</th>
-											<th class="cell100 column6 text-center">UniMed</th>
-											<th class="cell100 column7 text-center"><%=strSemana1%></th>
-											<th class="cell100 column8 text-center"><%=strSemana2%></th>									
-											<th class="cell100 column9 text-center"><%=strSemana3%></th>									
-											<th class="cell100 column10 text-center"><%=strSemana4%></th>
-											<th class="cell100 column10 text-center"><%=strSemana5%></th>
-											<th class="cell100 column10 text-center"><%=strSemana6%></th>
-											<th class="cell100 column10 text-center"><%=strSemana7%></th>
-											<th class="cell100 column10 text-center"><%=strSemana8%></th>
-											<th class="cell100 column10 text-center"><%=strSemana9%></th>
-											<th class="cell100 column10 text-center"><%=strSemana10%></th>
-											<th class="cell100 column10 text-center"><%=strSemana11%></th>
-											<th class="cell100 column10 text-center"><%=strSemana12%></th>
-											<th class="cell100 column10 text-center"><%=strSemana13%></th>
-											<th class="cell100 column10 text-center"><%=strSemana14%></th>
-											<th class="cell100 column10 text-center"><%=strSemana15%></th>
-											<th class="cell100 column10 text-center"><%=strSemana16%></th>
-											<th class="cell100 column10 text-center"><%=strSemana17%></th>
-											<th class="cell100 column10 text-center"><%=strSemana18%></th>
-											<th class="cell100 column10 text-center"><%=strSemana19%></th>
-											<th class="cell100 column10 text-center"><%=strSemana20%></th>
-											<th class="cell100 column10 text-center"><%=strSemana21%></th>
-											<th class="cell100 column10 text-center"><%=strSemana22%></th>
-											<th class="cell100 column10 text-center"><%=strSemana23%></th>
-											<th class="cell100 column10 text-center"><%=strSemana24%></th>
-											<th class="cell100 column10 text-center"><%=strSemana25%></th>
-											<th class="cell100 column10 text-center"><%=strSemana26%></th>
+											<th class="cell100 column4 text-center">Indicador</th>
+											<th class="cell100 column5 text-center">UniMed</th>
+											<th class="cell100 column6 text-center"><%=strSemana1%></th>
+											<th class="cell100 column7 text-center"><%=strSemana2%></th>									
+											<th class="cell100 column8 text-center"><%=strSemana3%></th>									
+											<th class="cell100 column9 text-center"><%=strSemana4%></th>
+											<th class="cell100 column9 text-center"><%=strSemana5%></th>
 										</tr>
 									</thead>
 								</table>
@@ -361,8 +340,6 @@
 		'response.end
 		gProductos = rsx1.GetRows
 		rsx1.close
-	Response.AddHeader "Content-disposition","attachment; filename=tem.xls"
-	Response.ContentType = "application/vnd.ms-excel"
 		%>
 		<div class="limiter">
 			
@@ -380,35 +357,13 @@
 											<th class="cell100 column1 text-left">Fabricante</th>
 											<th class="cell100 column2 text-center">Marca</th>
 											<th class="cell100 column3 text-center">Segmento</th>
-											<th class="cell100 column4 text-center"></th>
-											<th class="cell100 column5 text-center">Indicador</th>
-											<th class="cell100 column6 text-center">UniMed</th>
-											<th class="cell100 column7 text-center"><%=strSemana1%></th>
-											<th class="cell100 column8 text-center"><%=strSemana2%></th>									
-											<th class="cell100 column9 text-center"><%=strSemana3%></th>									
-											<th class="cell100 column10 text-center"><%=strSemana4%></th>
-											<th class="cell100 column10 text-center"><%=strSemana5%></th>
-											<th class="cell100 column10 text-center"><%=strSemana6%></th>
-											<th class="cell100 column10 text-center"><%=strSemana7%></th>
-											<th class="cell100 column10 text-center"><%=strSemana8%></th>
-											<th class="cell100 column10 text-center"><%=strSemana9%></th>
-											<th class="cell100 column10 text-center"><%=strSemana10%></th>
-											<th class="cell100 column10 text-center"><%=strSemana11%></th>
-											<th class="cell100 column10 text-center"><%=strSemana12%></th>
-											<th class="cell100 column10 text-center"><%=strSemana13%></th>
-											<th class="cell100 column10 text-center"><%=strSemana14%></th>
-											<th class="cell100 column10 text-center"><%=strSemana15%></th>
-											<th class="cell100 column10 text-center"><%=strSemana16%></th>
-											<th class="cell100 column10 text-center"><%=strSemana17%></th>
-											<th class="cell100 column10 text-center"><%=strSemana18%></th>
-											<th class="cell100 column10 text-center"><%=strSemana19%></th>
-											<th class="cell100 column10 text-center"><%=strSemana20%></th>
-											<th class="cell100 column10 text-center"><%=strSemana21%></th>
-											<th class="cell100 column10 text-center"><%=strSemana22%></th>
-											<th class="cell100 column10 text-center"><%=strSemana23%></th>
-											<th class="cell100 column10 text-center"><%=strSemana24%></th>
-											<th class="cell100 column10 text-center"><%=strSemana25%></th>
-											<th class="cell100 column10 text-center"><%=strSemana26%></th>
+											<th class="cell100 column4 text-center">Indicador</th>
+											<th class="cell100 column5 text-center">UniMed</th>
+											<th class="cell100 column6 text-center"><%=strSemana1%></th>
+											<th class="cell100 column7 text-center"><%=strSemana2%></th>									
+											<th class="cell100 column8 text-center"><%=strSemana3%></th>									
+											<th class="cell100 column9 text-center"><%=strSemana4%></th>
+											<th class="cell100 column9 text-center"><%=strSemana5%></th>
 										</tr>
 									</thead>
 								</table>
@@ -421,25 +376,23 @@
 										<% 
 										'26Ene2021-Todo el IF
 										if TotalFabricante = "SI" then 
+											if Mostrar = 1 then response.write "<br> Paso1"
 											for iPro = 0 to  ubound(gProductosTotal,2)
 												'Response.flush
-												for iInd = 0 to  ubound(gIndicadores,2)
 												response.write "<tr class='row100 body'>"
 													'Fabricante
 													response.write "<td width=15% class='cell100 column1'>"
 														response.write gProductosTotal(1,iPro) 
 													response.write "</td>"
-													'Marca
-													response.write "<td width=15% class='cell100 column1'>"
-													response.write "</td>"
-													'Segmento
-													response.write "<td width=15% class='cell100 column1'>"
-													response.write "</td>"
-													'Rango
-													response.write "<td width=15% class='cell100 column1'>"
-													response.write "</td>"
 
 													response.write "</td>"
+													response.write "<td colspan=9  class='cell100 column5'>"
+													response.write "</td>"
+												response.write "</tr>"
+												for iInd = 0 to  ubound(gIndicadores,2)
+													response.write "<tr class='row100 body'>"
+														response.write "<td width=40% colspan=3 >"
+														response.write "</td>"
 														response.write "<td width=5% class='cell100 column5 text-center'>"
 															response.write "<b>"
 															'response.write gIndicadores(0,iInd) & ".-" & gIndicadores(1,iInd)
@@ -456,157 +409,15 @@
 														iMar = gProductosTotal(2,iPro)
 														iSeg = gProductosTotal(4,iPro)
 														'response.write "<br>Ind = " & Indicador
-														idSemana = 16
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='cell100 column8 text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 17
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 18
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 19
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 20
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 21
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='cell100 column8 text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 22
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 23
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 24
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 25
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 26
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='cell100 column8 text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 27
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 28
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 29
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 30
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 31
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 32
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 33
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 34
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 35
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 36
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 37
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 38
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 39
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
-														idSemana = 40
-														TotalDias = 7
-														CalcularIndicador
-														response.write "<td width=10% class='text-right'>"
-															response.write Valor
-														response.write "</td>"
 														idSemana = 41
+														response.write "<td width=10% class='text-right'>"
+														response.write "</td>"
+														response.write "<td width=10% class='text-right'>"
+														response.write "</td>"
+														response.write "<td width=10% class='text-right'>"
+														response.write "</td>"
+														response.write "<td width=10% class='text-right'>"
+														response.write "</td>"
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
@@ -617,11 +428,11 @@
 											next					
 										end if
 										if sFab = "" and sMar = "" and sRan = "" then
-										
+											if Mostrar = 1 then response.write "<br> Paso2"
 										else
+											if Mostrar = 1 then response.write "<br> Paso3"
 										for iPro = 0 to  ubound(gProductos,2)
 											'Response.flush
-											for iInd = 0 to  ubound(gIndicadores,2)
 											response.write "<tr class='row100 body'>"
 												'Fabricante
 												response.write "<td width=15% class='cell100 column1'>"
@@ -629,10 +440,12 @@
 												response.write "</td>"
 												'Marca
 												response.write "<td width=15% class='cell100 column2 text-center'>"
+													iX = 3
 													if sMar <> "" then
 														'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
 														'else
-															response.write gProductos(3,iPro)
+															response.write gProductos(iX,iPro)
+															iX = IX + 2
 														'end if
 													end if
 												response.write "</td>"
@@ -641,17 +454,23 @@
 													if sSeg <> "" then
 														'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
 														'else
-															response.write gProductos(5,iPro)
+															response.write gProductos(iX,iPro)
 														'end if
 													end if
 												response.write "</td>"
 												'Rango
-												response.write "<td width=5% class='cell100 column4 text-center'>"
-													if sRan <> "" then
-														response.write gProductos(7,iPro)
-													end if
+												'response.write "<td width=5% class='cell100 column4 text-center'>"
+												'	if sRan <> "" then
+												'		response.write gProductos(7,iPro)
+												'	end if
+												'response.write "</td>"
+												response.write "<td colspan=6  class='cell100 column5'>"
 												response.write "</td>"
-											
+											response.write "</tr>"
+											for iInd = 0 to  ubound(gIndicadores,2)
+												response.write "<tr class='row100 body'>"
+													response.write "<td width=40% colspan=3 >"
+													response.write "</td>"
 													response.write "<td width=5% class='cell100 column5 text-center'>"
 														response.write "<b>"
 														'response.write gIndicadores(0,iInd) & ".-" & gIndicadores(1,iInd)
@@ -665,166 +484,20 @@
 													response.write "</td>"
 													Indicador = gIndicadores(0,iInd)
 													iFab = gProductos(0,iPro)
+													iX = 2
 													if sMar <> "" then
-														iMar = gProductos(2,iPro)
+														iMar = gProductos(iX,iPro)
+														iX = IX + 2
 													end if
 													if sSeg <> "" then
-														iSeg = gProductos(4,iPro)
+														iSeg = gProductos(iX,iPro)
+														iX = IX + 2
 													end if
 													if sRan <> "" then
-														iRan = gProductos(6,iPro)
+														iRan = gProductos(iX,iPro)
+														iX = IX + 2
 													end if
 													'response.write "<br>Ind = " & Indicador
-													idSemana = 16
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='cell100 column8 text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 17
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 18
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 19
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 20
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 21
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='cell100 column8 text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 22
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 23
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 24
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 25
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 26
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='cell100 column8 text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 27
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 28
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 29
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 30
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 31
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 32
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 33
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 34
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 35
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 36
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 37
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 38
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 39
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
-													idSemana = 40
-													TotalDias = 7
-													CalcularIndicador
-													response.write "<td width=10% class='text-right'>"
-														response.write Valor
-													response.write "</td>"
 													idSemana = 41
 													TotalDias = 7
 													CalcularIndicador
@@ -858,7 +531,7 @@ Sub CalcularIndicador
 				sql = sql & " Tamano, "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -878,7 +551,7 @@ Sub CalcularIndicador
 				sql = sql & " Tamano, "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = 0 "
@@ -918,7 +591,7 @@ Sub CalcularIndicador
 				sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 				sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -941,7 +614,7 @@ Sub CalcularIndicador
 				sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 				sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria =  " & sCat
 				sql = sql & " And Id_Fabricante = 0 "
@@ -977,7 +650,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria =  " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -996,7 +669,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria =  " & sCat
 				sql = sql & " And Id_Fabricante = 0 "
@@ -1033,7 +706,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
-				sql = sql & " FROM PH_DataCruda "
+				sql = sql & " FROM PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria =  " & sCat
 				sql = sql & " AND Id_Fabricante = " & iFab
@@ -1055,7 +728,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
-				sql = sql & " FROM PH_DataCruda "
+				sql = sql & " FROM PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria =  " & sCat
 				sql = sql & " AND Id_Fabricante = 0 "
@@ -1096,7 +769,7 @@ Sub CalcularIndicador
 			sql = sql & " SELECT "
 			sql = sql & " Id_Hogar AS Total "
 			sql = sql & " FROM "
-			sql = sql & " PH_DataCruda "
+			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria =  " & sCat
 			sql = sql & " And Id_Fabricante = " & iFab
@@ -1111,7 +784,7 @@ Sub CalcularIndicador
 			end if
 			sql = sql & " And id_Semana in( " & idSemana & ")"
 			sql = sql & " GROUP BY "
-			sql = sql & " PH_DataCruda.Id_Hogar "
+			sql = sql & " PH_DataCrudaMed.Id_Hogar "
 			'response.write "<br>36 sql:=" & sql
 			'response.end
 			rsx1.Open sql ,conexion
@@ -1141,12 +814,12 @@ Sub CalcularIndicador
 			sql = sql & " SELECT "
 			sql = sql & " Id_Hogar AS Total "
 			sql = sql & " FROM "
-			sql = sql & " PH_DataCruda "
+			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			'sql = sql & " Id_Categoria =  " & sCat
 			sql = sql & " id_Semana in( " & idSemana & ")"
 			sql = sql & " GROUP BY "
-			sql = sql & " PH_DataCruda.Id_Hogar "
+			sql = sql & " PH_DataCrudaMed.Id_Hogar "
 			'response.write "<br>36 sql:=" & sql
 			'response.end
 			rsx1.Open sql ,conexion
@@ -1171,7 +844,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Id_Hogar AS Total "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Fabricante = " & iFab
 				if sMar <> "" then 
@@ -1186,7 +859,7 @@ Sub CalcularIndicador
 				sql = sql & " and Id_Categoria = " & sCat
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " PH_DataCrudaMed.Id_Hogar "
 				'response.write "<br>36 sql:=" & sql & "<br>"
 				'response.end
 				rsx1.Open sql ,conexion
@@ -1223,7 +896,7 @@ Sub CalcularIndicador
 				sql = sql & " Tamano, "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -1245,7 +918,7 @@ Sub CalcularIndicador
 					sql = sql & " Tamano, "
 					sql = sql & " Cantidad "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -1258,7 +931,7 @@ Sub CalcularIndicador
 					sql = sql & " Tamano, "
 					sql = sql & " Cantidad "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -1292,7 +965,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Id_Hogar AS Total "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab
@@ -1307,7 +980,7 @@ Sub CalcularIndicador
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " PH_DataCrudaMed.Id_Hogar "
 				'response.write "<br>36 sql:=" & sql
 				'response.end
 				rsx1.Open sql ,conexion
@@ -1344,7 +1017,7 @@ Sub CalcularIndicador
 				sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 				sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -1368,7 +1041,7 @@ Sub CalcularIndicador
 					sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 					sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -1384,7 +1057,7 @@ Sub CalcularIndicador
 					sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 					sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -1417,7 +1090,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Id_Hogar AS Total "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab
@@ -1432,7 +1105,7 @@ Sub CalcularIndicador
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " PH_DataCrudaMed.Id_Hogar "
 				'response.write "<br>36 sql:=" & sql
 				'response.end
 				rsx1.Open sql ,conexion
@@ -1463,7 +1136,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -1483,7 +1156,7 @@ Sub CalcularIndicador
 					sql = sql & " SELECT "
 					sql = sql & " Cantidad "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -1495,7 +1168,7 @@ Sub CalcularIndicador
 					sql = sql & " SELECT "
 					sql = sql & " Cantidad "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -1528,7 +1201,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Id_Hogar AS Total "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab
@@ -1543,7 +1216,7 @@ Sub CalcularIndicador
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " PH_DataCrudaMed.Id_Hogar "
 				'response.write "<br>36 sql:=" & sql
 				'response.end
 				rsx1.Open sql ,conexion
@@ -1573,7 +1246,7 @@ Sub CalcularIndicador
 			sql = sql & " SELECT "
 			sql = sql & " Cantidad, "
 			sql = sql & " Id_Consumo "
-			sql = sql & " FROM PH_DataCruda "
+			sql = sql & " FROM PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " AND Id_Fabricante = " & iFab
@@ -1613,7 +1286,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Id_Hogar AS Total "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab
@@ -1628,7 +1301,7 @@ Sub CalcularIndicador
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " PH_DataCrudaMed.Id_Hogar "
 				'response.write "<br>36 sql:=" & sql
 				'response.end
 				rsx1.Open sql ,conexion
@@ -1658,7 +1331,7 @@ Sub CalcularIndicador
 			sql = sql & " SELECT "
 			sql = sql & " Cantidad, "
 			sql = sql & " Id_Consumo "
-			sql = sql & " FROM PH_DataCruda "
+			sql = sql & " FROM PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " AND Id_Fabricante = " & iFab
@@ -1698,7 +1371,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Id_Hogar AS Total "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab
@@ -1713,7 +1386,7 @@ Sub CalcularIndicador
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " PH_DataCrudaMed.Id_Hogar "
 				'response.write "<br>36 sql:=" & sql
 				'response.end
 				rsx1.Open sql ,conexion
@@ -1746,7 +1419,7 @@ Sub CalcularIndicador
 				sql = sql & " Tamano, "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -1767,7 +1440,7 @@ Sub CalcularIndicador
 					sql = sql & " Tamano, "
 					sql = sql & " Cantidad "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -1780,7 +1453,7 @@ Sub CalcularIndicador
 					sql = sql & " Tamano, "
 					sql = sql & " Cantidad "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -1815,7 +1488,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
-				sql = sql & " FROM PH_DataCruda "
+				sql = sql & " FROM PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " AND Id_Fabricante = " & iFab
@@ -1866,7 +1539,7 @@ Sub CalcularIndicador
 				sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 				sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -1890,7 +1563,7 @@ Sub CalcularIndicador
 					sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 					sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -1906,7 +1579,7 @@ Sub CalcularIndicador
 					sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 					sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -1939,7 +1612,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
-				sql = sql & " FROM PH_DataCruda "
+				sql = sql & " FROM PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " AND Id_Fabricante = " & iFab
@@ -1985,7 +1658,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -2005,7 +1678,7 @@ Sub CalcularIndicador
 					sql = sql & " SELECT "
 					sql = sql & " Cantidad "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -2017,7 +1690,7 @@ Sub CalcularIndicador
 					sql = sql & " SELECT "
 					sql = sql & " Cantidad "
 					sql = sql & " FROM "
-					sql = sql & " PH_DataCruda "
+					sql = sql & " PH_DataCrudaMed "
 					sql = sql & " WHERE "
 					sql = sql & " Id_Categoria = " & sCat
 					sql = sql & " And Id_Fabricante = 0 "
@@ -2052,7 +1725,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
-				sql = sql & " FROM PH_DataCruda "
+				sql = sql & " FROM PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " AND Id_Fabricante = " & iFab
@@ -2116,7 +1789,7 @@ Sub CalcularIndicador
 			sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 			sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 			sql = sql & " FROM "
-			sql = sql & " PH_DataCruda "
+			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " And Id_Fabricante = " & iFab 
@@ -2154,7 +1827,7 @@ Sub CalcularIndicador
 				sql = sql & " Tamano, "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -2200,7 +1873,7 @@ Sub CalcularIndicador
 			sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 			sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 			sql = sql & " FROM "
-			sql = sql & " PH_DataCruda "
+			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " And Id_Fabricante = " & iFab 
@@ -2237,7 +1910,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " and Id_Fabricante = " & iFab 
@@ -2279,7 +1952,7 @@ Sub CalcularIndicador
 			sql = sql & " SELECT "
 			sql = sql & " Id_Hogar AS Total "
 			sql = sql & " FROM "
-			sql = sql & " PH_DataCruda "
+			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " And Id_Fabricante = " & iFab
@@ -2294,7 +1967,7 @@ Sub CalcularIndicador
 			end if
 			sql = sql & " And id_Semana in( " & idSemana & ")"
 			sql = sql & " GROUP BY "
-			sql = sql & " PH_DataCruda.Id_Hogar "
+			sql = sql & " PH_DataCrudaMed.Id_Hogar "
 			'response.write "<br>36 sql:=" & sql
 			'response.end
 			rsx1.Open sql ,conexion
@@ -2319,7 +1992,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Id_Hogar AS Total "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Fabricante = " & iFab
 				if sMar <> "" then 
@@ -2333,7 +2006,7 @@ Sub CalcularIndicador
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " PH_DataCrudaMed.Id_Hogar "
 				'response.write "<br>36 sql:=" & sql
 				'response.end
 				rsx1.Open sql ,conexion
@@ -2356,7 +2029,7 @@ Sub CalcularIndicador
 				sql = sql & " Marca, "
 				sql = sql & " Id_Hogar AS Total "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " AND Id_Marca <> 0 "
@@ -2409,7 +2082,7 @@ Sub CalcularIndicador
 			sql = sql & " Tamano, "
 			sql = sql & " Cantidad "
 			sql = sql & " FROM "
-			sql = sql & " PH_DataCruda "
+			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " And Id_Fabricante = 0 "
@@ -2417,7 +2090,7 @@ Sub CalcularIndicador
 			sql = sql & " And Id_Segmento = 0"
 			sql = sql & " And Id_RangoTamano = 0"
 			sql = sql & " And id_Semana in( " & idSemana & ")"
-			'response.write "<br>36 sql:=" & sql
+			'response.write "<br>2114 sql:=" & sql
 			'response.end
 			rsx1.Open sql ,conexion
 			'response.write "<br>257 LLEGO" 
@@ -2442,7 +2115,7 @@ Sub CalcularIndicador
 				sql = sql & " Tamano, "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -2456,7 +2129,7 @@ Sub CalcularIndicador
 					sql = sql & " And Id_RangoTamano = " & iRan
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
-				'response.write "<br>36 sql:=" & sql
+				'response.write "<br>2153 sql:=" & sql
 				'response.end
 				rsx1.Open sql ,conexion
 				'response.write "<br>257 LLEGO" 
@@ -2492,7 +2165,7 @@ Sub CalcularIndicador
 			sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 			sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 			sql = sql & " FROM "
-			sql = sql & " PH_DataCruda "
+			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " And Id_Fabricante = 0 "
@@ -2527,7 +2200,7 @@ Sub CalcularIndicador
 				sql = sql & " Precio_producto/Dolar AS PrecioDolar, "
 				sql = sql & " (Precio_producto/Dolar)*Cantidad AS ComprasValor "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -2560,7 +2233,7 @@ Sub CalcularIndicador
 						TotalFiltro = TotalFiltro + cdbl(gDatos1(4,iDat))
 					next
 					
-					if iFab = 0 and iMar = 0 and iSeg = 0 then TotalFiltro = TotalValor
+					if iFab = 0 and iMar = 0 and iSeg = 0 then TotalFiltro=TotalValor
 					Valor = (TotalFiltro/TotalValor)*100
 					Valor = FormatNumber(Valor,2)
 				end if
@@ -2572,7 +2245,7 @@ Sub CalcularIndicador
 			sql = sql & " SELECT "
 			sql = sql & " Cantidad "
 			sql = sql & " FROM "
-			sql = sql & " PH_DataCruda "
+			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " And Id_Fabricante = 0 "
@@ -2603,7 +2276,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " And Id_Fabricante = " & iFab 
@@ -2636,7 +2309,7 @@ Sub CalcularIndicador
 						TotalFiltro = TotalFiltro + gDatos1(0,iDat)
 					next
 					
-					if iFab = 0 and iMar = 0 and iSeg = 0 then TotalFiltro = TotalUnidades
+					if iFab = 0 and iMar = 0 and iSeg = 0 then TotalFiltro=TotalUnidades
 					Valor = (TotalFiltro/TotalUnidades)*100
 					Valor = FormatNumber(Valor,2)
 				end if
@@ -2648,7 +2321,7 @@ Sub CalcularIndicador
 			sql = sql & " SELECT "
 			sql = sql & " Cantidad, "
 			sql = sql & " Id_Consumo "
-			sql = sql & " FROM PH_DataCruda "
+			sql = sql & " FROM PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " AND Id_Fabricante = 0 "
@@ -2683,7 +2356,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
-				sql = sql & " FROM PH_DataCruda "
+				sql = sql & " FROM PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Categoria = " & sCat
 				sql = sql & " AND Id_Fabricante = " & iFab
@@ -2730,12 +2403,12 @@ Sub CalcularIndicador
 			sql = sql & " SELECT "
 			sql = sql & " Id_Hogar AS Total "
 			sql = sql & " FROM "
-			sql = sql & " PH_DataCruda "
+			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " And id_Semana in( " & idSemana & ")"
 			sql = sql & " GROUP BY "
-			sql = sql & " PH_DataCruda.Id_Hogar "
+			sql = sql & " PH_DataCrudaMed.Id_Hogar "
 			'response.write "<br>36 sql:=" & sql
 			'response.end
 			rsx1.Open sql ,conexion
@@ -2759,7 +2432,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Id_Hogar AS Total "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				sql = sql & " Id_Fabricante = " & iFab
 				if sMar <> "" then 
@@ -2774,7 +2447,7 @@ Sub CalcularIndicador
 				sql = sql & " and Id_Categoria = " & sCat
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " PH_DataCrudaMed.Id_Hogar "
 				'response.write "<br>1994 sql:=" & sql & "<br>"
 				'response.end
 				rsx1.Open sql ,conexion
@@ -2805,12 +2478,12 @@ Sub CalcularIndicador
 			sql = sql & " SELECT "
 			sql = sql & " Id_Hogar AS Total "
 			sql = sql & " FROM "
-			sql = sql & " PH_DataCruda "
+			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
 			'sql = sql & " Id_Categoria = " & sCat
 			sql = sql & " id_Semana in( " & idSemana & ")"
 			sql = sql & " GROUP BY "
-			sql = sql & " PH_DataCruda.Id_Hogar "
+			sql = sql & " PH_DataCrudaMed.Id_Hogar "
 			'response.write "<br>36 sql:=" & sql
 			'response.end
 			rsx1.Open sql ,conexion
@@ -2835,7 +2508,7 @@ Sub CalcularIndicador
 				sql = sql & " SELECT "
 				sql = sql & " Id_Hogar AS Total "
 				sql = sql & " FROM "
-				sql = sql & " PH_DataCruda "
+				sql = sql & " PH_DataCrudaMed "
 				sql = sql & " WHERE "
 				
 				sql = sql & " Id_Fabricante = " & iFab
@@ -2851,7 +2524,7 @@ Sub CalcularIndicador
 				sql = sql & " and Id_Categoria = " & sCat
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " PH_DataCrudaMed.Id_Hogar "
 				'response.write "<br>2072 sql:=" & sql & "<br>"
 				'response.end
 				rsx1.Open sql ,conexion

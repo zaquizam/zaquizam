@@ -1,7 +1,7 @@
 <!--#include file="conexion.asp" -->
 <%
 '
-' llenar_cmb_convivencias.asp - 24may21 - 16jun21
+'RetSem_llenar_cmb_retail_semanal.asp - 12jul21 - 
 '
 Session.lcid = 1034
 Response.CodePage = 65001

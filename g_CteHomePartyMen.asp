@@ -160,7 +160,7 @@
 	'if idCliente = 10 then
 	
 	'Categorias Trimestrales Feb-Mar-Abr 2021
-	if ((sCat = 12 and idCliente = 21) or (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 19) or (sCat = 38) or (sCat = 41) or sCat = 97 or sCat = 10)  then 
+	if ((sCat = 12 and idCliente = 21) or (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 19) or (sCat = 38) or (sCat = 41) or sCat = 97 or sCat = 10) then 
 		if idCliente <> 8 then 
 			'response.write "<br>pasoooooooooooooooo"
 			erase gMeses
@@ -197,35 +197,41 @@
 			if ((sCat = 19 or sCat = 38 or sCat = 41) and idCliente = 19)  then 
 				'response.write "<br>pasoooooooooooooooo"
 				erase gMeses
-				redim gMeses(2,1)
+				redim gMeses(2,2)
 				gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
 				gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
 				gMeses(1,1) = "Trim. Mar-Abr-May/2021"
 				gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+				gMeses(1,2) = "Trim. Abr-May-Jun/2021"
+				gMeses(2,2) = "29,30,31,32,33,34,35,36,37,38,39,40"
 			end if
 			'SC Johnson
 			if (sCat = 27) or (sCat = 30) or (sCat = 29) or (sCat = 31) or (sCat = 73) then 
 				erase gMeses
-				redim gMeses(2,2)
+				redim gMeses(2,3)
 				gMeses(1,0) = "Trim. Ene-Feb-Mar/2021"
 				gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28"
 				gMeses(1,1) = "Trim. Feb-Mar-Abr/2021"
 				gMeses(2,1) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
 				gMeses(1,2) = "Trim. Mar-Abr-May/2021"
 				gMeses(2,2) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+				gMeses(1,3) = "Trim. Abr-May-Jun/2021"
+				gMeses(2,3) = "29,30,31,32,33,34,35,36,37,38,39,40"
 				'response.write "paso"
 				'response.end
 			end if
 			' Pepsico Alimento
 			if (sCat = 35) then 
 				erase gMeses
-				redim gMeses(2,2)
+				redim gMeses(2,3)
 				gMeses(1,0) = "Trim. Ene-Feb-Mar/2021"
 				gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28"
 				gMeses(1,1) = "Trim. Feb-Mar-Abr/2021"
 				gMeses(2,1) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
 				gMeses(1,2) = "Trim. Mar-Abr-May/2021"
 				gMeses(2,2) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+				gMeses(1,3) = "Trim. Abr-May-Jun/2021"
+				gMeses(2,3) = "29,30,31,32,33,34,35,36,37,38,39,40"
 				'response.write "paso"
 				'response.end
 			end if
@@ -235,20 +241,24 @@
 	if (sCat = 14) then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
-		redim gMeses(2,1)
+		redim gMeses(2,2)
 		gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
 		gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
 		gMeses(1,1) = "Trim. Mar-Abr-May/2021"
 		gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+		gMeses(1,2) = "Trim. Abr-May-Jun/2021"
+		gMeses(2,2) = "29,30,31,32,33,34,35,36,37,38,39,40"
 	end if
 	if (sCat = 8)then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
-		redim gMeses(2,1)
+		redim gMeses(2,2)
 		gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
 		gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
 		gMeses(1,1) = "Trim. Mar-Abr-May/2021"
 		gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+		gMeses(1,2) = "Trim. Abr-May-Jun/2021"
+		gMeses(2,2) = "29,30,31,32,33,34,35,36,37,38,39,40"
 	end if
 
 	'Categorias Semestrales Ene-Feb-Mar-Abr/2021
@@ -256,8 +266,8 @@
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,0)
-		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr-May/2021"
-		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
+		gMeses(1,0) = "Semes. Ene-Jun/2021"
+		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
 	end if
 	if (sCat = 11) or (sCat = 57) then 
 		'response.write "<br>pasoooooooooooooooo"
@@ -292,6 +302,44 @@
 		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
 	end if
 	
+	'Atenas Agrupado
+	if idCliente = 35 then 
+		if (sCat = 92) and idCliente = 35 then 
+			'response.write "<br>pasoooooooooooooooo"
+			erase gMeses
+			redim gMeses(2,0)
+			gMeses(1,0) = "Trim. Mar-Abr-May/2021"
+			gMeses(2,0) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+		end if
+		if (sCat = 27) or (sCat = 30) or (sCat = 29) or (sCat = 31) or (sCat = 73) or (sCat = 8) or (sCat = 14) or (sCat = 19) or (sCat = 38) or (sCat = 41) or (sCat = 12) or (sCat = 35) then 
+			erase gMeses
+			redim gMeses(2,3)
+			gMeses(1,0) = "Trim. Ene-Feb-Mar/2021"
+			gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28"
+			gMeses(1,1) = "Trim. Feb-Mar-Abr/2021"
+			gMeses(2,1) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
+			gMeses(1,2) = "Trim. Mar-Abr-May/2021"
+			gMeses(2,2) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+			gMeses(1,3) = "Trim. Abr-May-Jun/2021"
+			gMeses(2,3) = "29,30,31,32,33,34,35,36,37,38,39,40"
+			'response.write "paso"
+			'response.end
+		end if
+		if (sCat = 6) or (sCat = 5) then 
+			'response.write "<br>pasoooooooooooooooo"
+			erase gMeses
+			redim gMeses(2,0)
+			gMeses(1,0) = "Semes. Ene - Jun/2021"
+			gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
+		end if
+		if (sCat = 93) then 
+			'response.write "<br>pasoooooooooooooooo"
+			erase gMeses
+			redim gMeses(2,0)
+			gMeses(1,0) = "Trim. Abr-May-Jun/2021"
+			gMeses(2,0) = "29,30,31,32,33,34,35,36,37,38,39,40"
+		end if
+	end if
 
 	sql = ""
 	sql = sql & " SELECT "

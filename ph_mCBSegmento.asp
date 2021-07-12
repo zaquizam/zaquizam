@@ -23,6 +23,9 @@
 ' Variables y Constantes
 '==========================================================================================
 
+	dim idUsuario 
+	idUsuario = Session("idUsu")
+	'response.write "<br>29 idUsuario:= " & idUsuario
 
     Apertura
 %>
@@ -62,6 +65,8 @@ Sub ParDat
 	if ed_sPar(1,0) <> "" and ed_sPar(1,0) <> "Seleccionar" then
 		sqlcla = sqlcla & " and id_categoria = " & ed_sPar(1,0)
 	end if
+	'response.write "<br>73 sqlcla= " & sqlcla
+	
 	'response.write "<br>47 Perfil:= " & Session("idPerfil")
 	
 
@@ -151,6 +156,11 @@ Sub Combos
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
 	sql = sql & " FROM PH_CB_Categoria "
+	if idUsuario = 170 then  
+		sql = sql & " Where ind_Medicina = 1 "
+	else
+		sql = sql & " Where ind_Medicina = 0 "
+	end if
 	sql = sql & " Order By "
 	sql = sql & " Categoria "
 	'response.write "<br>372 Combo1:=" & sql
