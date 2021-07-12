@@ -193,7 +193,7 @@
 		sessionStorage.setItem("idCliente", <%=Session("idCliente")%>);	
 		$("#Cliente").val(<%=Session("idCliente")%>);
 		url();	 			
-		//$("#cboArea").multiselect({	buttonWidth:'auto', disableIfEmpty: true, });
+		$("#cboCategoria").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboArea").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboZona").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboCanal").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
