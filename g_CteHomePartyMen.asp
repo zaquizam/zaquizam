@@ -160,7 +160,7 @@
 	'if idCliente = 10 then
 	
 	'Categorias Trimestrales Feb-Mar-Abr 2021
-	if ((sCat = 12 and idCliente = 21) or (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 19) or (sCat = 38) or (sCat = 41) or sCat = 97 or sCat = 10) then 
+	if ((sCat = 12 and idCliente = 21) or (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 19) or (sCat = 38) or (sCat = 41) or sCat = 97 or sCat = 10 or sCat = 146) then 
 		if idCliente <> 8 then 
 			'response.write "<br>pasoooooooooooooooo"
 			erase gMeses
@@ -187,14 +187,16 @@
 			if (sCat = 12 and idCliente = 21) then 
 				'response.write "<br>pasoooooooooooooooo"
 				erase gMeses
-				redim gMeses(2,1)
+				redim gMeses(2,2)
 				gMeses(1,0) = "Trim. Feb-Mar-Abr/2021"
 				gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
 				gMeses(1,1) = "Trim. Mar-Abr-May/2021"
 				gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
+				gMeses(1,2) = "Trim. Abr-May-Jun/2021"
+				gMeses(2,2) = "29,30,31,32,33,34,35,36,37,38,39,40"
 			end if
 			'Baron
-			if ((sCat = 19 or sCat = 38 or sCat = 41) and idCliente = 19)  then 
+			if ((sCat = 19 or sCat = 38 or sCat = 41 or sCat = 146) and idCliente = 19)  then 
 				'response.write "<br>pasoooooooooooooooo"
 				erase gMeses
 				redim gMeses(2,2)
@@ -285,14 +287,14 @@
 		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
 	end if
 
-	'Categorias Semestrales Ene-Feb-Mar-Abr/2021
+	'Categorias Semestrales Ene-Feb-Mar-Abr-May-JUn/2021
 	'Del Monte
 	if (sCat = 105 or sCat = 70 or sCat = 10 or sCat = 22 ) and idCliente = 33 then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,0)
-		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr-May/2021"
-		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
+		gMeses(1,0) = "Semes. Ene-Jun/2021"
+		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
 	end if
 	if (sCat = 55 ) and idCliente = 35 then 
 		'response.write "<br>pasoooooooooooooooo"
@@ -300,6 +302,16 @@
 		redim gMeses(2,0)
 		gMeses(1,0) = "Semes. Ene-Feb-Mar-Abr-May/2021"
 		gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36"
+	end if
+	'Dimassi
+	if idCliente = 8 then 
+		if (sCat = 41 or sCat = 146) then 
+			'response.write "<br>pasoooooooooooooooo"
+			erase gMeses
+			redim gMeses(2,0)
+			gMeses(1,0) = "Trim. Abr-May-Jun/2021"
+			gMeses(2,0) = "28,29,30,31,32,33,34,35,36,37,38,39,40"
+		end if
 	end if
 	
 	'Atenas Agrupado
@@ -325,7 +337,7 @@
 			'response.write "paso"
 			'response.end
 		end if
-		if (sCat = 6) or (sCat = 5) then 
+		if (sCat = 6) or (sCat = 5) or (sCat = 105) or (sCat = 70) or (sCat = 22)  or (sCat = 10) then 
 			'response.write "<br>pasoooooooooooooooo"
 			erase gMeses
 			redim gMeses(2,0)
@@ -6297,10 +6309,7 @@ Sub CalcularIndicador
 			end if
 			
 		Case 35 'HogRecomp
-			'response.write idSemana
-			'response.end
-			'			   Ene         Feb         Mar                            Feb         Mar            Abr                         Ene         Feb         Mar            Abr              			Ene         Feb         Mar            Abr         May                         Mar            Abr         May
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6325,6 +6334,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "29,30,31,32"
 					idSemana2 = "33,34,35,36"
+				end if 
+				if idSemana = "37,38,39,40" then 
+					isw = 2
+					idSemana1 = "33,34,35,36"
+					idSemana2 = "37,38,39,40"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6512,7 +6526,7 @@ Sub CalcularIndicador
 			end if
 		
 		Case 36 'HogNuevos
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6537,6 +6551,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "29,30,31,32"
 					idSemana2 = "33,34,35,36"
+				end if 
+				if idSemana = "37,38,39,40" then 
+					isw = 2
+					idSemana1 = "33,34,35,36"
+					idSemana2 = "37,38,39,40"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6725,7 +6744,7 @@ Sub CalcularIndicador
 			end if
 
 		Case 37 'HogNoRecomp
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6750,6 +6769,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "29,30,31,32"
 					idSemana2 = "33,34,35,36"
+				end if 
+				if idSemana = "37,38,39,40" then 
+					isw = 2
+					idSemana1 = "33,34,35,36"
+					idSemana2 = "37,38,39,40"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6937,7 +6961,7 @@ Sub CalcularIndicador
 			end if
 
 		Case 39 'HogRecompAnt
-			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
+			if idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28" or idSemana = "20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32" or idSemana = "24,25,26,27,28,29,30,31,32,33,34,35,36" then
 				Valor = "N/A"
 			else
 				if idSemana = "16,17,18,19" then 
@@ -6945,7 +6969,7 @@ Sub CalcularIndicador
 				end if 
 				if idSemana = "20,21,22,23" then 
 					isw = 1
-					idSemana1 = "16,17,18,19"
+					idSemana1 = "16,17,18,19" 
 					idSemana2 = "20,21,22,23"
 				end if 
 				if idSemana = "24,25,26,27,28" then 
@@ -6962,6 +6986,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "29,30,31,32"
 					idSemana2 = "33,34,35,36"
+				end if 
+				if idSemana = "37,38,39,40" then 
+					isw = 2
+					idSemana1 = "33,34,35,36"
+					idSemana2 = "37,38,39,40"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana

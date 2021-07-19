@@ -152,10 +152,9 @@ iframe {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  padding: 33px 30px;
-  
-  padding-top: 5px;
+  flex-wrap: nowrap;
+  padding: 0px 22px;
+    
 }
 
 .wrap-table100 {
@@ -177,7 +176,6 @@ th, td {
   font-weight: unset;
   padding-right: 10px;
 }
-
 
 .column1 {
   width: 6%;
@@ -231,11 +229,11 @@ th, td {
   width: 6%;
 }
 
-
-
 .table100-head th {
+   
   padding-top: 5px;
   padding-bottom: 22px;
+  
 }
 
 .table100-body td {
@@ -391,7 +389,6 @@ th, td {
   line-height: 1.4;
   background-color: #222222;
 }
-
 
 /*---------------------------------------------*/
 

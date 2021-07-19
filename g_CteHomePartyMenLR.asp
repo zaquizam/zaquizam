@@ -4196,7 +4196,7 @@ Sub CalcularIndicador
 				'response.write "<br>1908 sql:=" & sql
 				'response.end
 			end if
-			
+			'response.write "<br>1908 sql:=" & sql
 			'response.end
 			rsx1.Open sql ,conexion
 			'response.write "<br>257 LLEGO" 

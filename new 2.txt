@@ -1,19 +1,76 @@
-MEGA
-D361 	 UNION RADIO EVENTOS - PROMOS 	OSCARCITO VERSION 01	 50SEG
-D362 	 UNION RADIO EVENTOS - PROMOS 	OSCARCITO VERSION 02	 53SEG
-
-EXITOS
-M578 	 UNION RADIO EVENTOS - PROMOS 	OSCARCITO VERSION 01	 50SEG
-M579 	 UNION RADIO EVENTOS - PROMOS 	OSCARCITO VERSION 02	 53SEG
-
-ONDA
-K648 	 UNION RADIO EVENTOS - PROMOS 	OSCARCITO VERSION 01	 50SEG
-K649 	 UNION RADIO EVENTOS - PROMOS 	OSCARCITO VERSION 02	 53SEG
-
-NOTICIAS
-X988 	 UNION RADIO EVENTOS - PROMOS 	OSCARCITO VERSION 01	 50SEG
-X989 	 UNION RADIO EVENTOS - PROMOS 	OSCARCITO VERSION 02	 53SEG
-
-PLAYTOP
-A186 	 UNION RADIO EVENTOS - PROMOS 	OSCARCITO VERSION 01	 50SEG
-A187 	 UNION RADIO EVENTOS - PROMOS 	OSCARCITO VERSION 02	 53SEG 
+SELECT
+	Id_Area,
+	Area,
+	Id_Zona,
+	Zona,
+	Id_Canal,
+	Canal,
+	Id_Fabricante,
+	Fabricante,
+	Id_Marca,
+	Marca,
+	Id_Segmento,
+	Segmento,
+	Id_Tamano,
+	Tamano,
+	CodigoBarra,
+	Descripcion,
+	UnidadMedida,
+	VentasUni,			
+	VentasVal,			
+	VentasUniMed,		
+	VentasNo,			
+	DistribucionNum,	
+	DistribucionPon,	
+	DistribucionEfe,	
+	ShareUni,			
+	ShareVol,			
+	ShareVal,			
+	PrecioPro,			
+	PrecioMax,			
+	PrecioMin,			
+	PrecioUni,			
+	PrecioUniMed,		
+	id_Semana			
+	FROM
+	RS_DataProcSem
+	WHERE
+	Id_Categoria =  sCat
+	And Id_Semana in (  sSemanas )
+	And Id_Area in ( sAre )
+	And Id_Zona in (  sZon )
+	And Id_Canal in ( sCan )
+	And Id_Fabricante in ( sFab )
+	And Id_Marca in ( sMar )
+	And Id_Segmento in ( sSeg )
+	
+	
+	if sTam <> 0 then
+		And Id_Tamano in ( sTam )
+	else
+		if sPro <> "" then
+		
+		else
+			And Id_Tamano = 0
+		end if
+	end if
+	
+	if sPro <>"" then
+		sPro = replace(sPro,",","','")		
+		And CodigoBarra in (' sPro ')"		
+	else
+		And CodigoBarra = ''"
+	end if
+	
+	
+    ORDER BY
+	Id_Area,
+	Id_Zona,
+	Id_Canal,
+	Id_Fabricante,
+	Id_Marca,
+	Id_Segmento,
+	Id_Tamano,
+	CodigoBarra,
+	Descripcion,
+	id_Semana

@@ -305,6 +305,8 @@
 	end if
 	'response.write "<br>271 Paso" 
 	'response.end
+	'response.write "<br>308 sql:= " & sql
+	'response.end
 
 	if iExiste = 0 then
 		
@@ -394,6 +396,7 @@
 										<% 
 										'response.write "<br>354 LLEGO:= " & ubound(gProductosTotal,2)
 										'response.end
+										TotalReg = ubound(gProductosTotal,2)
 										for iPro = 0 to  ubound(gProductosTotal,2)
 											'response.write "<br>354 LLEGO:= " & iPro
 											response.write "<tr class='row100 body'>"
@@ -424,6 +427,7 @@
 												'Tamaño
 												response.write "<td width=6% class='cell100 column7'>"
 													'response.write gProductosTotal(13,iPro) 
+													'response.end
 													if gProductosTotal(12,iPro) <> 0 then
 														Valor = gProductosTotal(13,iPro)
 														Valor = replace(Valor,".",",")
@@ -434,6 +438,7 @@
 													
 												response.write "</td>"
 												'Producto
+												
 												response.write "<td width=6% class='cell100 column8'>"
 													response.write gProductosTotal(14,iPro) & "-" & gProductosTotal(15,iPro)
 												response.write "</td>"
@@ -467,6 +472,7 @@
 													Columna = Indicador + 16
 													Menos = 0
 													'response.write "<br>iPro1:=" & iPro1 & ""
+													sw=0
 													for iSem = 0 to  ubound(gSemanas,2)
 														response.write "<td width=6% class='cell100 column11 text-right'>"
 															'response.write "iPro:=" & iPro & "=>"
@@ -485,21 +491,35 @@
 																Menos = Menos + 1
 															end if
 															response.write Valor
+															if iPro1 > TotalReg then 
+																'response.write "menos: " & Menos
+																sw=sw+1
+																exit for
+															end if
 														response.write "</td>"
+														
 													next					
 													
 													ix = cint(ubound(gSemanas,2))
 													iy = 4 - ix
+													if sw <> 0 then 
+														iy = 4- Menos
+														'response.write "<br>Paso:=" & iy
+													end if
+													
 													Menos = 0
 													if iy <> 0 then  
 														for ia = 1 to iy
 															response.write "<td width=6% class='cell100 column15 text-left'>"
-															
+																'Valor = 0
+																'Valor = FormatNumber(Valor,2)
+																'response.write Valor
 															response.write "</td>"
 														next 
 													end if
 												response.write "</tr>"
 											next
+											'if iPro > TotalReg then response.end
 											iPro = iPro2 + iPro1 - 1
 											iPro = iPro1 - 1
 											'response.write "<br>iPro:=" & iPro & ""

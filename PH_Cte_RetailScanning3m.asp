@@ -1,5 +1,5 @@
 <!Doctype html>
-<!-- PH_Cte_RetailScanning.asp - 12jul21 - 15jul21 -->
+<!-- PH_Cte_RetailScanning.asp - 12jul21 - -->
 <html lang="es" >
 <head>
 	<title>| Retail Scanning Semanal |</title>
@@ -14,12 +14,6 @@
 	<link href="retsemanal/css/convivencia2.css"  rel="stylesheet" type="text/css" />
 	<!-- MultiSelect CSS & JS library -->
 	<link rel="stylesheet" href="retsemanal/css/bootstrap-multiselect-0915.css">
-	<!--===============================================================================================-->	
-	<link rel="stylesheet" href="css/homePantry.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/mainRS.css">	
-	
 </head>
 <body topmargin="0">
 
@@ -30,7 +24,7 @@
 	<!--#include file="in_DataEN.asp"-->
 
 	<%
-		' 12jul21 - 18jul21
+		' 12jul21 - 
 		Apertura
 		LeePar
 		if ed_iPas<>4 then
@@ -51,7 +45,7 @@
 		<input type="hidden" name="Cliente" id="Cliente"  align="right" size=4 value="">
 		<input type="hidden" name="Cat" id="Cat" align="right" size=4 value="">
 		
-		<div class="container-fluid" id="grad3" >
+		<div class="container-fluid" id="grad1" >
 
 			<div class="form-group">
 
@@ -98,7 +92,8 @@
 						<select id="cboMarca" name="cboMarca" class="form-control input-sm" multiple="multiple">
 						  <option value="0" selected disabled >-- Seleccione -- </option>
 						</select>
-					</div>					
+					</div>
+					
 					
 				</div>
 
@@ -142,33 +137,46 @@
 					</div>					
 					<!-- BOTONES -->
 					<div class="col-sm-12 separa">
-						<div class="col-sm-4 separa">
-							<button id="BtnAplicarFiltro"  title="Procesar" type="submit" class="btn btn-block btn-xs btn-success"><i class="fas fa-check "></i>&nbsp;Aplicar Filtro</button>
-						</div>							
-						<div class="col-sm-4 separa">
-							<button id="BtnExcel"  title="Exportar a Excel" type="submit" class="btn btn-block btn-xs btn-primary" onclick="Excel();"><i class="fas fa-download"></i>&nbsp;Exportar Excel</button>
-						</div>
-						<div class="col-sm-4 separa">
-							<button id="BtnBorrar"  title="Borrar filtros" type="submit" class="btn btn-block btn-xs btn-danger" onclick="Reset();"><i class="fas fa-recycle "></i>&nbsp;Borrar Filtro</button>
+							<div class="col-sm-4 separa">
+								<button id="BtnValidarProceso"  title="Procesar" type="submit" class="btn btn-block btn-xs btn-success"><i class="fas fa-check "></i>&nbsp;Aplicar Filtro</button>
+							</div>							
+							<div class="col-sm-4 separa">
+								<button id="BtnExcel"  title="Exportar a Excel" type="submit" class="btn btn-block btn-xs btn-primary" onclick="Excel();"><i class="fas fa-download"></i>&nbsp;Exportar Excel</button>
+							</div>
+							<div class="col-sm-4 separa">
+								<button id="BtnBorrar"  title="Borrar filtros" type="submit" class="btn btn-block btn-xs btn-danger" onclick="Reset();"><i class="fas fa-recycle "></i>&nbsp;Borrar Filtro</button>
+							</div>
 						</div>
 					</div>
-				</div>
 
 			</div>
 			<!-- < / class="form-group" -->
 
+
 		</div>
 		<!-- < / class="container-fluid" id="grad1" -->
-		
+
+		<div class="container-fluid barrabotones">
+			
+			
+
+		</div>
+		<!-- < / class="form-group" -->
+
 		<div class="container-fluid text-center text-primary" id="cargando" style="display:none;">
 			<br>
-			<span ><img src="images/ajax-loader8.gif"><strong>&nbsp;Procesando..., Espere!</strong></span>
+			<span ><img src="images/ajax-loader8.gif"><strong>&nbsp;Procesando, espere...!</strong></span>
 		</div>
+		<br>
+		
 		<hr>
-		<div class="container-fluid text-center text-primary" id="DivRetailScanningSem" style="display:none;" >
+
+		<div class="container-fluid" id="tablaResultados" style="display:none;" >
+
 			<!-- Mostrar la tabla con los resultados -->			
+
 		</div>
-	
+	<!-- </ class="container-fluid" id="detallesMaestro" style="display:block;" > -->
 
 	<%conexion.close%>
 
@@ -179,20 +187,9 @@
 <script src="js/sweetalert.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="retsemanal/js/funcionesV3.js"></script>
-<script src="retsemanal/js/refillCombos.js"></script>
+<script src="retsemanal/js/procesarV6.js"></script>
 <!-- MultiSelect CSS & JS library -->
 <script src="retsemanal/js/bootstrap-multiselect-0915.js"></script>
-
-<script src="js/perfect-scrollbar.min.js"></script>
-<script>
-	$('.js-pscroll').each(function(){
-		var ps = new PerfectScrollbar(this);
-		$(window).on('resize', function(){
-			ps.update();
-		})
-	});	
-</script>
-<script src="js/main.js"></script>
 
 <script>
 	
@@ -203,140 +200,61 @@
 		$("#cboCategoria").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboArea").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboZona").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
-		$("#cboCanal").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });		
-		$("#cboFabricante").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
+		$("#cboCanal").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
+		//$("#cboFabricante").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboMarca").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboSegmento").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboTamano").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboProducto").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboIndicadores").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });
 		$("#cboSemanas").multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '285px', includeSelectAllOption: true, });		           
-    });		
+		
+		
+		$("#cboFabricante").multiselect({ 
+				nonSelectedText: '-- Seleccione --',
+				disableIfEmpty: true,
+  				buttonWidth: '285px',
+				buttonHeight: '30px',
+				includeSelectAllOption: true,
+				enableFiltering: true,
+				filterPlaceholder: 'Buscar...',
+				includeFilterClearBtn: true,
+				enableCaseInsensitiveFiltering: true,
+				maxHeight: 300,
+				onDropdownHide: function(event) {        			
+					FillCmbxFabricante(jQuery("#cboFabricante").val());					
+				}
+		});
+		
+		
+		
+    });
+	
+	
 	
 </script>
 
+
 <script>
-	
 	$(document).ready(function() {
-		$(function() {		
-			ValidarCliente();			
-		});				
-	});
-	
-	$('#BtnAplicarFiltro').click(function() {
-			
-		//debugger;
-		$("#DivRetailScanningSem").css("display", "none");		
-		let categ = $("#cboCategoria").val();
+		//
+		$(function() {			
+			LlenarCategoria();			
+		});
 		
-		if(categ==null){
-			swal("Alerta","Debe seleccionar una Categoria..!","error");
-			return false;
-		}		
-		let area        = $("#cboArea :selected").map((_,e) => e.value).get();
-		if(area.length==0 || area==undefined ){
-			area=0;						
-		}else{
-			area  = area.join(); 
-		}
-		let zona        = $("#cboZona :selected").map((_,e) => e.value).get();
-		if(zona.length==0 || zona==undefined ){
-			zona=0;						
-		}else{
-			zona  = zona.join(); 
-		}
-		let canal       = $("#cboCanal :selected").map((_,e) => e.value).get();
-		if(canal.length==0 || canal==undefined ){
-			canal=0;						
-		}else{
-			canal  = canal.join(); 
-		}
-		let fabricante  = $("#cboFabricante :selected").map((_,e) => e.value).get();
-		if(fabricante.length==0 || fabricante==undefined ){
-			fabricante=0;						
-		}else{
-			fabricante  = fabricante.join(); 
-		}
-		let marca       = $("#cboMarca :selected").map((_,e) => e.value).get();
-		if(marca.length==0 || marca==undefined ){
-			marca=0;						
-		}else{
-			marca  = marca.join(); 
-		}
-		let segmento    = $("#cboSegmento :selected").map((_,e) => e.value).get();
-		if(segmento.length==0 || segmento==undefined ){
-			segmento=0;						
-		}else{
-			segmento  = segmento.join(); 
-		}
-		let tamano      = $("#cboTamano :selected").map((_,e) => e.value).get();
-		if(tamano.length==0 || tamano==undefined ){
-			tamano=0;						
-		}else{
-			tamano  = tamano.join(); 
-		}
-		let producto    = $("#cboProducto :selected").map((_,e) => e.value).get();
-		if(producto.length==0 || producto==undefined ){
-			producto=0;						
-		}else{
-			producto  = producto.join(); 
-		}
-		let indicadores = $("#cboIndicadores :selected").map((_,e) => e.value).get();
-		if(indicadores.length==0 || indicadores==undefined ){
-			indicadores=0;						
-		}else{
-			indicadores  = indicadores.join(); 
-		}
-		let semanas     = $("#cboSemanas :selected").map((_,e) => e.value).get();
-		if (semanas.length == 0 || semanas==undefined) {		
-			swal("Alerta","Seleccionar una Semana","error");
-			return false;		
-		}else{
-			let columnastotal = 5;
-			if (semanas.length > columnastotal){
-				swal("Alerta","Solo se pueden Seleccionar hasta un Maximo de 5 Semanas","error");
-				return false;
-			}		
-			semanas  = semanas.join(); 
-		}				
-		//		
-		let ajax = { 
-			cat : categ,
-			are : area,
-			zon : zona,
-			can : canal,
-			fab : fabricante,
-			mar : marca,
-			seg : segmento,
-			tam : tamano,
-			pro : producto,		
-			ind : indicadores,
-			sem : semanas,			
-		};
-				
-		$('#DivRetailScanningSem').html("");
-		$.ajax({
-			//url:'g_CteRetailScanningSem.asp?'+stodo,
-			url:'RetSem_Excel.asp',
-			type:'POST',
-			data: ajax,
-			beforeSend: function(objeto){
-				$("#cargando").css("display", "block");		
-			}				
-		})
-		/*Si la consulta se realizo con exito*/
-		.done(function(data) {			
-			console.log(data);
-			//debugger;
-			$('#DivRetailScanningSem').html(data);
-			$("#cargando").css("display", "none");		
-			$("#DivRetailScanningSem").css("display", "block");						
-		})
-		/*Si la consulta Fallo*/
-		.fail(function() {
-			$("#cargando").css("display", "none");										
-			swal("Algo salio mal.!","Intente de nuevo", "error");
-		},'html');
+		$(function() {
+			/*
+			$('#cboFabricante').multiselect({
+				enableFiltering: true,
+				onChange: function(option, checked) {
+					alert('onChange!');
+				},
+				onDropdownHide: function(event) {
+					alert('onDropdownHide!');
+				}
+			});
+			*/
+		});
 		
 	});
 	

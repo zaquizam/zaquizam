@@ -18,21 +18,39 @@
 		num = document.getElementById("Excel").value;
 		//alert("Generar Excel:="+ num);
 		window.open("PH_Cte_RetailScanningExcel.asp?" + num,"_blank");
-		//$.ajax({
-		//	url:'PH_Cte_RetailScanningExcel.asp',
-		//	type:'post',
-		//	data: num,
-		//	beforeSend: function(objeto){
-		//		//$('#loader2').html('<img src="./images/ajax-loader2.gif"> cargando...!');						
-		//	}				
-		//})
-
 	}
 
-		function Mensaje(){
-			swal("Atenas Grupo Consultor","Servicio No Contratado","info");
-			return;
-		}	
+	function Mensaje(){
+		swal("Atenas Grupo Consultor","Servicio No Contratado","info");
+		return;
+	}	
+	
+	
+	function GenerarExcel2(){
+		debugger;
+		let ajax = $('#Excel').val();
+		//
+		$.ajax({
+			url: "PH_Cte_RetailScanningExcel.asp",
+			type: "POST",
+			dataType: 'html',
+			data:  ajax,			
+		})
+		.done (function(response, textStatus, jqXHR) {
+			console.log(response);
+			
+			
+			
+		})
+		.fail (function(jqXHR, textStatus, errorThrown) {
+			//alert("Error " + errorThrown);
+			swal("Algo salio mal.!","LlenarCategoria()", "error");
+		})
+		.always (function(jqXHROrData, textStatus, jqXHROrErrorThrown) {
+			//$("#cargando").css("display", "none");		
+		});
+		
+	}
 </script>
 
 <body topmargin="0">
@@ -213,7 +231,7 @@ End sub
 
 sub VerificarData
 	
-	if idCliente <> 1 and idCliente <> 17 and idCliente <> 30 and idCliente <> 7 and idCliente <> 36 and idCliente <> 32 and idCliente <> 33 then
+	if idCliente <> 1 and idCliente <> 17 and idCliente <> 30 and idCliente <> 7 then
 		%>
 		<script language="JavaScript" type="text/javascript">
 			Mensaje()
@@ -240,32 +258,14 @@ Sub Combos
 	sql = sql & " GROUP BY "
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
-	'Mondelez
-	if idCliente = 32 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (21)"
-	end if
-	'Unilever
-	if idCliente = 36 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (36,42,37,35,40)"
-	end if
-	'Del Monte
-	if idCliente = 33 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (10,105,70,22)"
-	end if
-	'NESTLE
 	if idCliente = 17 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (7,8,14,5,6,34,24,21,13,2)"
 	end if
-	'Munchy
 	if idCliente = 30 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (33)"
 	end if
-	'GENICA
 	if idCliente = 7 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (21,55,24,23,20,25)"
@@ -284,40 +284,9 @@ End Sub
 Sub DataCombos
 	iSemanaDes = 37
 	iSemanaHas = 40
-	
 	if idCliente = 1 then 
 		iSemanaDes = 24
 		iSemanaHas = 41
-	end if
-	'NESTLE (listo)
-	if idCliente = 17 then 
-		iSemanaDes = 33
-		iSemanaHas = 41
-	end if
-	'Unilever
-	if idCliente = 36 then 
-		iSemanaDes = 41
-		iSemanaHas = 41
-	end if
-	'Mondelez
-	if idCliente = 32 then 
-		iSemanaDes = 41
-		iSemanaHas = 41
-	end if
-	'Del Monte
-	if idCliente = 33 then 
-		iSemanaDes = 41
-		iSemanaHas = 41
-	end if
-	'Munchy
-	if idCliente = 30 then
-		iSemanaDes = 33
-		iSemanaHas = 41
-	end if
-	'GENICA
-	if idCliente = 7 then
-		iSemanaDes = 37
-		iSemanaHas = 40
 	end if
 
 	sql = ""
@@ -328,32 +297,14 @@ Sub DataCombos
 	sql = sql & " GROUP BY "
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
-	'Mondelez
-	if idCliente = 32 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (21)"
-	end if
-	'Unilever
-	if idCliente = 36 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (36,42,37,35,40)"
-	end if
-	'Del Monte
-	if idCliente = 33 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (10,105,70,22)"
-	end if
-	'NESTLE
 	if idCliente = 17 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (7,8,14,5,6,34,24,21,13,2)"
 	end if
-	'Munchy
 	if idCliente = 30 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (33)"
 	end if
-	'GENICA
 	if idCliente = 7 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (21,55,24,23,20,25)"
@@ -840,9 +791,9 @@ End Sub
 					
 					<div class="col-sm-4">				
 						<!--Exportar-->
-						<button type="button" title="Exportar a Excel" class="btn btn-block btn-sm btn-primary" onclick="GenerarExcel();">EXPORTAR EXCEL&nbsp;&nbsp;<i class="fas fa-download"></i></button>
+						<button type="button" title="Exportar a Excel" class="btn btn-block btn-sm btn-primary" onclick="GenerarExcel2();">EXPORTAR EXCEL&nbsp;&nbsp;<i class="fas fa-download"></i></button>
 						<!--hidden-->
-						<input type="hidden" name="Excel" id="Excel" align="right" size=0 value='<%=sExcel%>'>
+						<input type="text" name="Excel" id="Excel" align="right" size=0 value='<%=sExcel%>'>
 					</div>
 					
 				</div>

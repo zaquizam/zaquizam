@@ -202,7 +202,7 @@ End sub
 
 sub VerificarData
 	
-	if idCliente <> 1 and idCliente <> 17 and idCliente <> 30 and idCliente <>34 then
+	if idCliente <> 1 and idCliente <> 17 and idCliente <> 30 and idCliente <>34 and idCliente <> 7 then
 		%>
 		<script language="JavaScript" type="text/javascript">
 			Mensaje()
@@ -229,17 +229,25 @@ Sub Combos
 	sql = sql & " GROUP BY "
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
+	'NESTLE
 	if idCliente = 17 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (7,8,14,5,6,34,24,21,13,2)"
 	end if
+	'Munchy
 	if idCliente = 30 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (33)"
 	end if
+	'INVERSIONES GOA
 	if idCliente = 34 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (2,10,22)"
+	end if
+	'GENICA
+	if idCliente = 7 then
+		sql = sql & " HAVING "
+		sql = sql & " Id_Categoria In (21,55,24,23,20,25)"
 	end if
 	sql = sql & " ORDER BY "
 	sql = sql & " Categoria "
@@ -261,18 +269,22 @@ Sub DataCombos
 	sql = sql & " GROUP BY "
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
+	'NESTLE
 	if idCliente = 17 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (7,8,14,5,6,34,24,21,13,2)"
 	end if
+	'Munchy
 	if idCliente = 30 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (33)"
 	end if
+	'GENICA
 	if idCliente = 7 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (21,55,24,23,20,25)"
 	end if
+	'INVERSIONES GOA
 	if idCliente = 34 then
 		sql = sql & " HAVING "
 		sql = sql & " Id_Categoria In (2,10,22)"
@@ -388,9 +400,25 @@ Sub DataCombos
 	iSemanaDes = 33
 	iSemanaHas = 36
 
+	'INVERSIONES GOA
 	if idCliente = 34 then
 		iSemanaDes = 24
 		iSemanaHas = 36
+	end if
+	'NESTLE (listo)
+	if idCliente = 17 then
+		iSemanaDes = 33
+		iSemanaHas = 40
+	end if
+	'Munchy
+	if idCliente = 30 then
+		iSemanaDes = 33
+		iSemanaHas = 40
+	end if
+	'Genica
+	if idCliente = 7 then
+		iSemanaDes = 37
+		iSemanaHas = 40
 	end if
 	
 	'response.write "<br>310 Semana Desde:= " &  iSemanaDes

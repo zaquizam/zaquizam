@@ -1,0 +1,195 @@
+let idCli   = sessionStorage.getItem("idCliente");	 
+		let idCatg  = $("#cboCategoria option:selected").val();
+		let idArea  = $("#cboArea option:selected").val();
+		let idZona  = $("#cboZona option:selected").val();
+		let idCanal = $("#cboCanal option:selected").val();
+		let idFabr  = $("#cboFabricante option:selected").val();
+		// Llenar Marca
+		let ajax = { opcion: opc, idCat: idCatg, idFab: idFabr };
+		$.ajax({
+			url: "RetSem_llenar_cmb2.asp",
+			type: "POST",
+			dataType: 'json',
+			data:  ajax,
+			beforeSend: function(){
+				$("#cargando").css("display", "block");
+			}
+		})
+		.done (function(response, textStatus, jqXHR) {
+			console.log(response);
+			//debugger;			
+			$("#cargando").css("display", "none");			
+			let cbo="#cboMarca";
+			$(cbo).multiselect('destroy');
+			var len = response.data.length;
+			$(cbo).empty();			
+			for( var i = 0; i < len; i++){
+				var id = response.data[i]['id'];
+				var nombre = response.data[i]['nombre'];
+				$(cbo).append("<option value='"+id+"'>"+nombre+"</option>");
+			}
+			$(cbo).multiselect({ 
+				nonSelectedText: '-- Seleccione --',
+				disableIfEmpty: true,
+				buttonWidth: '285px',
+				buttonHeight: '30px',
+				includeSelectAllOption: true,
+				enableFiltering: true,
+				filterPlaceholder: 'Buscar...',
+				includeFilterClearBtn: true,
+				enableCaseInsensitiveFiltering: true,
+				maxHeight: 300,
+				onDropdownHide: function(event) {        			
+					GetCambioCombo(6,jQuery(cbo).val());					
+				}
+			});
+			// Llenar Segmento
+			//debugger;	
+			opc++;
+			let ajax = { opcion: opc, idCat: idCatg, idFab: idFabr };
+			$.ajax({
+				url: "RetSem_llenar_cmb2.asp",
+				type: "POST",
+				dataType: 'json',
+				data:  ajax,
+				beforeSend: function(){
+					$("#cargando").css("display", "block");
+				}
+			})
+			.done (function(response, textStatus, jqXHR) {
+				console.log(response);
+				//debugger;			
+				$("#cargando").css("display", "none");
+				let cbo="#cboSegmento";
+				$(cbo).multiselect('destroy');
+				var len = response.data.length;
+				$(cbo).empty();			
+				for( var i = 0; i < len; i++){
+					var id = response.data[i]['id'];
+					var nombre = response.data[i]['nombre'];
+					$(cbo).append("<option value='"+id+"'>"+nombre+"</option>");
+				}
+				$(cbo).multiselect({ 
+					nonSelectedText: '-- Seleccione --',
+					disableIfEmpty: true,
+					buttonWidth: '285px',
+					buttonHeight: '30px',
+					includeSelectAllOption: true,
+					enableFiltering: true,
+					filterPlaceholder: 'Buscar...',
+					includeFilterClearBtn: true,
+					enableCaseInsensitiveFiltering: true,
+					maxHeight: 300,
+					onDropdownHide: function(event) {        			
+						GetCambioCombo(7,jQuery(cbo).val());					
+					}
+				});
+				// Llenar Tamaño
+				opc++;
+				debugger;	
+				let ajax = { opcion: opc, idCat: idCatg, idFab: idFabr };
+				$.ajax({
+					url: "RetSem_llenar_cmb2.asp",
+					type: "POST",
+					dataType: 'json',
+					data:  ajax,
+					beforeSend: function(){
+						$("#cargando").css("display", "block");
+					}
+				})
+				.done (function(response, textStatus, jqXHR) {
+					console.log(response);
+					$("#cargando").css("display", "none");
+					debugger;			
+					let cbo="#cboTamano";
+					$(cbo).multiselect('destroy');
+					var len = response.data.length;
+					$(cbo).empty();			
+					for( var i = 0; i < len; i++){
+						var id = response.data[i]['id'];
+						var nombre = response.data[i]['nombre'];
+						$(cbo).append("<option value='"+id+"'>"+nombre+"</option>");
+					}
+					$(cbo).multiselect({ 
+						nonSelectedText: '-- Seleccione --',
+						disableIfEmpty: true,
+						buttonWidth: '285px',
+						buttonHeight: '30px',
+						includeSelectAllOption: true,
+						enableFiltering: true,
+						filterPlaceholder: 'Buscar...',
+						includeFilterClearBtn: true,
+						enableCaseInsensitiveFiltering: true,
+						maxHeight: 300,
+						onDropdownHide: function(event) {        			
+							GetCambioCombo(8,jQuery(cbo).val());					
+						}
+					});					
+					// Llenar Producto - codigo barras
+					opc++;
+					debugger;	
+					let ajax = { opcion: opc, idCat: idCatg, idFab: idFabr };
+					$.ajax({
+						url: "RetSem_llenar_cmb2.asp",
+						type: "POST",
+						dataType: 'json',
+						data:  ajax,
+						beforeSend: function(){
+							$("#cargando").css("display", "block");
+						}
+					})
+					.done (function(response, textStatus, jqXHR) {
+						console.log(response);
+						debugger;			
+						$("#cargando").css("display", "none");
+						let cbo="#cboProducto";
+						$(cbo).multiselect('destroy');
+						var len = response.data.length;
+						$(cbo).empty();			
+						for( var i = 0; i < len; i++){
+							var id = response.data[i]['id'];
+							var nombre = response.data[i]['nombre'];
+							$(cbo).append("<option value='"+id+"'>"+nombre+"</option>");
+						}
+						$(cbo).multiselect({ 
+							nonSelectedText: '-- Seleccione --',
+							disableIfEmpty: true,
+							buttonWidth: '285px',
+							buttonHeight: '30px',
+							includeSelectAllOption: true,
+							enableFiltering: true,
+							filterPlaceholder: 'Buscar...',
+							includeFilterClearBtn: true,
+							enableCaseInsensitiveFiltering: true,
+							maxHeight: 300,
+							onDropdownHide: function(event) {        			
+								GetCambioCombo(9,jQuery(cbo).val());					
+							}
+						});
+						
+					})
+					.fail (function(jqXHR, textStatus, errorThrown) {
+						console.log('Error GCC-Marca opc-5');
+						swal("Algo salio mal.!","GCC-Marca opc-5", "error");
+					});
+										
+				})
+				.fail (function(jqXHR, textStatus, errorThrown) {
+					console.log('Error GCC-Marca opc-5');
+					swal("Algo salio mal.!","GCC-Marca opc-5", "error");
+				});
+
+				
+			})
+			.fail (function(jqXHR, textStatus, errorThrown) {
+				console.log('Error GCC-Marca opc-5');
+				swal("Algo salio mal.!","GCC-Marca opc-5", "error");
+			});
+
+			
+			//**
+		})
+		.fail (function(jqXHR, textStatus, errorThrown) {
+			console.log('Error GCC-Marca opc-5');
+			swal("Algo salio mal.!","GCC-Marca opc-5", "error");
+		});

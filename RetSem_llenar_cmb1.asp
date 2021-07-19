@@ -1,7 +1,7 @@
 <!--#include file="conexionRS.asp" -->
 <%
 '
-'RetSem_llenar_cmb.asp - 12jul21 - 
+'RetSem_llenar_cmb1.asp - 12jul21 - 
 '
 Session.lcid = 1034
 Response.CodePage = 65001
@@ -13,8 +13,6 @@ if conexionRS.errors.count <> 0 Then
 end if
 
 Dim opcion, QrySql, idCat, idCliente
-
-
 '
 'opcion  = Cint(Request.Querystring("opcion"))
 'idQuery = Cint(Request.Querystring("id"))
@@ -636,7 +634,7 @@ ELSEIF (Cint(opcion) = 9) THEN
 		For i = 0 to ubound(arrProducto, 2)
 			'
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrProducto(0,i) & chr(34) & chr(44)
-			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrProducto(1,i) & chr(34) & chr(125) &chr(44)
+			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrProducto(0,i) & " " & arrProducto(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
 			sTabla = vbnullstring
 			'
@@ -802,39 +800,18 @@ ELSEIF (Cint(opcion) = 11) THEN
 	'	
 	conexionRS.close : set conexionRS = nothing
 	'		
-' ELSEIF (Cint(opcion) = 12) THEN
-	' '
-	' ' Verificar cliente contrato el servicio
-	' '			
-	' if idCliente = 1 or idCliente = 17 or idCliente = 30 or idCliente  = 7 then
-		' Response.write true
-	' else
-		' Response.write false
-	' end if
-	' '
-	' ' Cerrar conexiones
-	' '	
-	' conexionRS.close : set conexionRS = nothing
-	' '
-	
+ ELSEIF (Cint(opcion) = 12) THEN	
+	'Verificar cliente contrato el servicio				
+	if idCliente = 1 or idCliente = 17 or idCliente = 30 or idCliente  = 7 then
+		Response.write true
+	else
+		Response.write false
+	end if	
+	'Cerrar conexiones		
+	conexionRS.close : set conexionRS = nothing	
 ELSE
 	' de lo Contrario
 	Response.write "error"
 END IF
 '
-
-FUNCTION RemoverSaltodeLinea(byval str)
-	IF isNull(str) THEN str = "" END IF
-	str = REPLACE(str,vbCr,"")			'Chr(13)
-	str = REPLACE(str,vbLf,"")			'Chr(10)
-	str = REPLACE(str,VbCrlf,"")		'Chr(13)+Chr(10)
-	str = REPLACE(str,vbNewLine,"")		'vbNewLine
-	str = REPLACE(str,vbFormFeed,"")	'Chr(12)
-	str = REPLACE(str,vbTab,"")			'Chr(9)
-	str = REPLACE(str,vbTab,"")			'Chr(11)
-	''
-	RemoverSaltodeLinea = TRIM(str)
-
-END FUNCTION
-
 %>

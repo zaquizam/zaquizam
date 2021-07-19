@@ -1,0 +1,15 @@
+$("#cboFabricante").multiselect({ 
+				nonSelectedText: '-- Seleccione --',
+				disableIfEmpty: true,
+  				buttonWidth: '285px',
+				buttonHeight: '30px',
+				includeSelectAllOption: true,
+				enableFiltering: true,
+				filterPlaceholder: 'Buscar...',
+				includeFilterClearBtn: true,
+				enableCaseInsensitiveFiltering: true,
+				maxHeight: 300,
+				onDropdownHide: function(event) {        			
+					FillCmbxFabricante(jQuery("#cboFabricante").val());					
+				}
+		});

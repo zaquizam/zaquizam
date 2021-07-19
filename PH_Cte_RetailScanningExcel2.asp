@@ -36,22 +36,22 @@
 	dim gSemanasAcum
 	dim TotalSemAcum
 
-	sCat=Request.QueryString("cat")
+	sCat=Request.Form("cat")
 	'sCat=Request.form("cat")
 	if sCat = "" Then response.end
 
-	 sAre=Request.QueryString("are")
-	 sZon=Request.QueryString("zon")
-	 sCan=Request.QueryString("can")
-	 sFab=Request.QueryString("fab")
-	 sMar=Request.QueryString("mar")
-	 sSeg=Request.QueryString("seg")
-	 sRan=Request.QueryString("ran")
-	 sTam=Request.QueryString("tam")
-	 sPro=Request.QueryString("pro")
-	 sInd=Request.QueryString("ind")
-	 sSem=Request.QueryString("sem")
-	 sSemAcum=Request.QueryString("semacum")
+	 sAre=Request.Form("are")
+	 sZon=Request.Form("zon")
+	 sCan=Request.Form("can")
+	 sFab=Request.Form("fab")
+	 sMar=Request.Form("mar")
+	 sSeg=Request.Form("seg")
+	 sRan=Request.Form("ran")
+	 sTam=Request.Form("tam")
+	 sPro=Request.Form("pro")
+	 sInd=Request.Form("ind")
+	 sSem=Request.Form("sem")
+	 sSemAcum=Request.Form("semacum")
 
 	'sAre=Request.form("are")
 	'sZon=Request.form("zon")
@@ -267,7 +267,7 @@
 	sql = sql & " And Id_Fabricante in (" & sFab & ")"
 	sql = sql & " And Id_Marca in (" & sMar & ")"
 	sql = sql & " And Id_Segmento in (" & sSeg & ")"
-	if sTam <> "" and sTam <> "0" then
+	if sTam <> 0 then
 		sql = sql & " And Id_Tamano in (" & sTam & ")"
 	else
 		if sPro <> "" then
