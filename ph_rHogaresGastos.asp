@@ -66,7 +66,7 @@ sub VerData
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType = 2 'adLockOptimistic 
+	rsx1.LockType = 1 'adLockOptimistic 
 
 	sql = ""
     sql = sql & " SELECT "
@@ -135,7 +135,7 @@ sub VerData
 				'Gastos Enero
 				set rsx44 = CreateObject("ADODB.Recordset")
 				rsx44.CursorType = adOpenKeyset 
-				rsx44.LockType = 2 'adLockOptimistic 
+				rsx44.LockType = 1 'adLockOptimistic 
 				sql = ""
 				sql = sql & " SELECT "
 				sql = sql & " PH_Consumo.Id_Semana, "
@@ -185,7 +185,7 @@ sub VerData
 				set rsx44 = nothing
 				set rsx45 = CreateObject("ADODB.Recordset")
 				rsx45.CursorType = adOpenKeyset 
-				rsx45.LockType = 2 'adLockOptimistic 
+				rsx45.LockType = 1 'adLockOptimistic 
 				'Gastos Febrero
 				sql = ""
 				sql = sql & " SELECT "
@@ -237,7 +237,7 @@ sub VerData
 				'Gastos Marzo
 				set rsx46 = CreateObject("ADODB.Recordset")
 				rsx46.CursorType = adOpenKeyset 
-				rsx46.LockType = 2 'adLockOptimistic 
+				rsx46.LockType = 1 'adLockOptimistic 
 				sql = ""
 				sql = sql & " SELECT "
 				sql = sql & " PH_Consumo.Id_Semana, "
@@ -288,7 +288,7 @@ sub VerData
 				'Gastos Abril
 				set rsx47 = CreateObject("ADODB.Recordset")
 				rsx47.CursorType = adOpenKeyset 
-				rsx47.LockType = 2 'adLockOptimistic 
+				rsx47.LockType = 1 'adLockOptimistic 
 				sql = ""
 				sql = sql & " SELECT "
 				sql = sql & " PH_Consumo.Id_Semana, "

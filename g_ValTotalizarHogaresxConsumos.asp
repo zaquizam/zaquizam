@@ -41,7 +41,7 @@
 		Response.write 0
 	End If
 	'
-	rsscroll.close : set rsscroll = nothing 
+	rsscroll.close : Set rsscroll = Nothing 
 	conexion.Close : Set conexion = Nothing
 	'
 %>

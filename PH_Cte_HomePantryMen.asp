@@ -907,7 +907,9 @@ Sub DataCombos
 				sql = sql & " HAVING "
 				sql = sql & " Id_Area in(2,3)"
 			else
-				if (idCliente = 17 and (cint(ed_sPar(1,0)) = 6 or cint(ed_sPar(1,0)) = 5 or cint(ed_sPar(1,0)) = 11 )) or (idCliente = 28 and (cint(ed_sPar(1,0)) = 93 )) or (idCliente = 21 and (cint(ed_sPar(1,0)) = 93 )) then 
+				'if (idCliente = 17 and (cint(ed_sPar(1,0)) = 6 or cint(ed_sPar(1,0)) = 5 or cint(ed_sPar(1,0)) = 11 )) or (idCliente = 28 and (cint(ed_sPar(1,0)) = 93 )) or (idCliente = 21 and (cint(ed_sPar(1,0)) = 93 )) then 
+				'if  (idCliente = 28 and (cint(ed_sPar(1,0)) = 93 )) or (idCliente = 21 and (cint(ed_sPar(1,0)) = 93 )) then 
+				if  (idCliente = 28 and (cint(ed_sPar(1,0)) = 93 )) then 
 					'sql = sql & " Id_Area in(99)"
 					iSoloNacional = 1
 					'response.write "<br>913 Solo Nacional" 
@@ -1064,20 +1066,67 @@ Sub DataCombos
 	if cint(ed_sPar(1,0)) = 29 or cint(ed_sPar(1,0)) = 56  or cint(ed_sPar(1,0)) = 28 or cint(ed_sPar(1,0)) = 19  then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32) "
 	end if
-	if (cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 42  or cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 18) and idCliente = 8 then
+	if (cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 42  or cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 146 or cint(ed_sPar(1,0)) = 18) and idCliente = 8 then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
 	end if
-	if cint(ed_sPar(1,0)) = 41 and idCliente = 19 then
+	if (cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 42) and idCliente = 36 then
+		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32) "
+	end if
+	if (cint(ed_sPar(1,0)) = 37 or cint(ed_sPar(1,0)) = 35 or cint(ed_sPar(1,0)) = 36) and idCliente = 36 then
+		sql = sql & " and Id_Indicador in(6,9,10,11,12,14,15,16,24,25,26,28,29,30,32) "
+	end if
+	'Baron
+	if (cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 146) and idCliente = 19 then
 		'response.write "<br>pasoooooooooooooooo"
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32) "
+	end if
+	'Baron
+	if (cint(ed_sPar(1,0)) = 38) and idCliente = 19 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,9,10,11,12,14,15,16,24,25,26,28,29,30,32) "
 	end if
 	if (cint(ed_sPar(1,0)) = 40 or cint(ed_sPar(1,0)) = 42) and idCliente = 16 then
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
 	end if
 	'Pharsana
-	if (cint(ed_sPar(1,0)) = 19 or cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 18) and idCliente = 27 then
+	if (cint(ed_sPar(1,0)) = 19 or cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 146 or cint(ed_sPar(1,0)) = 18) and idCliente = 27 then
 		'response.write "<br>pasoooooooooooooooo"
 		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32,35,36,37,39) "
+	end if
+	'Central
+	if (cint(ed_sPar(1,0)) = 72 or cint(ed_sPar(1,0)) = 106 or cint(ed_sPar(1,0)) = 97) and idCliente = 20 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,9,10,11,12,14,15,16,24,25,26,28,29,30,32) "
+	end if
+	'Tunal
+	if (cint(ed_sPar(1,0)) = 12) and idCliente = 21 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,9,10,11,12,14,15,16,24,25,26,28,29,30,32) "
+	end if
+	'Pepsico Alimento
+	if (cint(ed_sPar(1,0)) = 35) and idCliente = 11 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,9,10,11,12,14,15,16,24,25,26,28,29,30,32) "
+	end if
+	'Dimassi
+	if (cint(ed_sPar(1,0)) = 41 or cint(ed_sPar(1,0)) = 146) and idCliente = 8 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,9,10,11,12,14,15,16,24,25,26,28,29,30,32) "
+	end if
+	'Nestle
+	if (cint(ed_sPar(1,0)) = 9 or cint(ed_sPar(1,0)) = 8 or cint(ed_sPar(1,0)) = 5 or cint(ed_sPar(1,0)) = 6 or cint(ed_sPar(1,0)) = 14) and idCliente = 17 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,9,10,11,12,14,15,16,24,25,26,28,29,30,32) "
+	end if
+	'Tunal
+	if (cint(ed_sPar(1,0)) = 93)  and idCliente = 21 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,9,10,12,14,15,24,26,28,29,32) "
+	end if
+	'Alimex
+	if (cint(ed_sPar(1,0)) = 93)  and idCliente = 28 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,9,10,12,14,15,24,26,28,29,32,35,36,37,39) "
 	end if
 	
 	sql = sql & " ORDER BY "
@@ -1225,7 +1274,7 @@ end sub
 				
 				'idCliente = Session("idCliente")
 				'response.write  idCliente
-				if (cint(idCliente) = 3 or cint(idCliente) = 1 or cint(idCliente) = 12 ) and ed_sPar(1,0) = 1 then
+				if (cint(idCliente) = 3 or cint(idCliente) = 1 or cint(idCliente) = 12 or cint(idCliente) = 35) and ed_sPar(1,0) = 1 then
 					
 				%>
 

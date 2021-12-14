@@ -789,13 +789,13 @@ body.stop-scrolling {
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType = 2 'adLockOptimistic 
+	rsx1.LockType = 1 'adLockOptimistic 
 
 	dim gDatos2
 	dim rsx2
 	set rsx2 = CreateObject("ADODB.Recordset")
 	rsx2.CursorType = adOpenKeyset 
-	rsx2.LockType = 2 'adLockOptimistic 
+	rsx2.LockType = 1 'adLockOptimistic 
 
 Sub Combos
  

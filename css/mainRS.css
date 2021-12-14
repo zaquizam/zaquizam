@@ -136,7 +136,7 @@ iframe {
 
 .limiter {
   /*width: 1366px;*/
-  width: 98%
+  width: 100%
   margin: 0 auto;
 }
 
@@ -159,7 +159,7 @@ iframe {
 
 .wrap-table100 {
   /*width: 1170px;*/
-  width: 98%;
+  width: 100%;
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -205,7 +205,7 @@ th, td {
   width: 6%;
 }
 .column8 {
-  width: 6%;
+  width: 16%;
 }
 .column9 {
   width: 6%;
@@ -245,7 +245,7 @@ th, td {
 [ Fix header ]*/
 .table100 {
   position: relative;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 .table100-head {
@@ -436,7 +436,7 @@ th, td {
 }
 
 .table100.ver4 .column1 {
-  padding-left: 7px;
+  /*padding-left: 7px*/;
 }
 
 .table100.ver4 td {

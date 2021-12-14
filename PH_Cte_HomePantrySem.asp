@@ -287,7 +287,7 @@ Sub DataCombos
 	sql = sql & " FROM "
 	sql = sql & " PH_Indicadores "
 	sql = sql & " WHERE "
-	if Session("perusu") = 5 then
+	if Session("perusu") = 5 or Session("perusu") = 8 or Session("perusu") = 7 then
 		sql = sql & " Ind_Sem = 1 " 
 	else
 		sql = sql & " Ind_Activo = 1 " 

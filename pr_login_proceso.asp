@@ -1,7 +1,6 @@
 <%
 '-- Creado: 18abr17 
-'-- Actualizado: 01jun17 
-'-- Actualizado: 19sep17 / se agrego la publicacion abierta y id cliente en session.- 
+
 '
 Session.TimeOut = 60 
 Dim iUsu

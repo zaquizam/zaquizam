@@ -1,7 +1,5 @@
-
-
 <%
-
+'27jul21 - 
 Dim ed_iSession
 ed_iSession=Request.Cookies("idsession")
 'response.write "<br>" & ed_iSession
@@ -2314,6 +2312,21 @@ Sub ed_GraDat(gData, SqlInp)
 	
 		for i = 1 to rsg.fields.count-6
 		'response.Write ("<br> 944 " & ed_rs1.fields(i).name) & " Grabar..." & sGra(i)
+		if ed_rs1.fields(i).name = "Fec_Alta" then
+			sxxLr = sGra(i)
+			if sxxLr = "" then
+				'response.Write "<br>2316 Dia:= " 
+				'response.Write day(sxxLr)
+				'response.Write "<br>2316 Mes:= " 
+				'response.Write month(sxxLr)
+				'response.Write "<br>2316 year:= " 
+				'response.Write year(sxxLr)
+				sGra(i) = null
+				
+			else
+				sGra(i) = month(sxxLr) & "/" & day(sxxLr) & "/" & year(sxxLr)
+			end if
+		end if
 			if sGra(i)<> ""  then 
 				'response.Write ("<br>a" & ed_rs1.fields(i).name & "..." & sGra(i))
 				select case TipCam(i,1)

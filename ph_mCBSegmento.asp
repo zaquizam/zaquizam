@@ -156,11 +156,11 @@ Sub Combos
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
 	sql = sql & " FROM PH_CB_Categoria "
-	if idUsuario = 170 then  
-		sql = sql & " Where ind_Medicina = 1 "
-	else
-		sql = sql & " Where ind_Medicina = 0 "
-	end if
+	'if idUsuario = 170 then  
+	'	sql = sql & " Where ind_Medicina = 1 "
+	'else
+	'	sql = sql & " Where ind_Medicina = 0 "
+	'end if
 	sql = sql & " Order By "
 	sql = sql & " Categoria "
 	'response.write "<br>372 Combo1:=" & sql

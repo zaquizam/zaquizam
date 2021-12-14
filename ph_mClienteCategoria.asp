@@ -45,6 +45,7 @@
 ' Parámetros del Manteniemiento
 '==========================================================================================
 Sub ParDat
+	if ed_sPar(1,0) = "" then ed_sPar(1,0) = 0
 	ed_Bot(4)="disabled"
 	ed_Bot(1)="disabled"
 	ed_iNumCam		=18					' Numero de campos en la pantalla principal
@@ -59,6 +60,7 @@ Sub ParDat
 'ed_ides=1
 	SqlCla = " SELECT * FROM "  & ed_sNomTab
 	sqlcla = sqlcla & " WHERE  (fec_inactivo is null)"
+	sqlcla = sqlcla & " And id_Cliente = " & int(ed_sPar(1,0))	
 	'response.write "<br>47 Perfil:= " & Session("idPerfil")
 	
 
@@ -74,7 +76,8 @@ Sub ParDat
    ed_sCampo(08,0)="Mes Desde"
    ed_sCampo(09,0)="Mes Hasta"
    ed_sCampo(10,0)="Mes Publicado"
-   ed_sCampo(11,0)="Activa?"
+   ed_sCampo(11,0)="Correo Notificacion"
+   ed_sCampo(12,0)="Activa?"
    
 
    ' Tools Tip
@@ -107,7 +110,7 @@ Sub ParDat
 	'ed_sCampo(08,2)="1"
 	'ed_sCampo(09,2)="1"
 	'ed_sCampo(10,2)="1"
-	'ed_sCampo(11,2)="1"	
+	ed_sCampo(11,2)="2"	
 	'ed_sCampo(12,2)="1"
     'ed_sCampo(13,2)="1"
 	'ed_sCampo(14,2)="1"
@@ -126,7 +129,7 @@ Sub ParDat
     'ed_sCampo(3,8)=2
     
 	
-	ed_sQue(1,0)=  " SELECT Id_Cliente, Cliente FROM  ss_Cliente WHERE Fec_Inactivo is Null order by Cliente "
+	ed_sQue(1,0)=  " SELECT Id_Cliente, Cliente FROM  ss_Cliente WHERE Fec_Inactivo is Null " & " And id_Cliente = " & int(ed_sPar(1,0)) & " order by Cliente "
 	ed_sQue(2,0)=  " SELECT Id_Categoria, Categoria FROM  PH_CB_Categoria WHERE Fec_Inactivo is Null order by Categoria"
 	ed_sQue(5,0)=  " SELECT idSemana, Semana FROM ss_Semana WHERE Fec_Inactivo is Null order by idSemana desc"
 	ed_sQue(6,0)=  " SELECT idSemana, Semana FROM ss_Semana WHERE Fec_Inactivo is Null order by idSemana desc"
@@ -146,8 +149,36 @@ Sub ParDat
 	ed_Formato(08,0)="w3-col l2  w3-left w3-padding "
 	ed_Formato(09,0)="w3-col l2  w3-left w3-padding "
 	ed_Formato(10,0)="w3-col l2  w3-left w3-padding "
-	ed_Formato(11,0)="w3-col l1  w3-left w3-padding "
+	ed_Formato(11,0)="w3-col l10  w3-left w3-padding "
+	ed_Formato(12,0)="w3-col l1  w3-left w3-padding "
 End Sub
+
+Sub Combos
+ 
+	'response.write "<br>372 Combo1:=" & ed_sPar(1,0)
+	'response.write " Combo2:=" & ed_sPar(2,0)
+	'response.write " Combo3:=" & ed_sPar(3,0)
+	'response.write " Combo3:=" & ed_sPar(4,0)
+	'response.write " Combo3:=" & ed_sPar(5,0)
+    ed_iCombo = 1
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " ss_Cliente.Id_Cliente, "
+	sql = sql & " ss_Cliente.Cliente "
+	sql = sql & " FROM ss_ClienteCategoria RIGHT JOIN ss_Cliente ON ss_ClienteCategoria.Id_Cliente = ss_Cliente.Id_Cliente "
+	sql = sql & " GROUP BY "
+	sql = sql & " ss_Cliente.Id_Cliente, "
+	sql = sql & " ss_Cliente.Cliente "
+	sql = sql & " ORDER BY "
+	sql = sql & " ss_Cliente.Cliente "
+	'response.write "<br>372 Combo1:=" & sql
+    ed_sCombo(1,0)="Cliente"
+    ed_sCombo(1,1)=sql 
+    ed_sCombo(1,2)="Seleccionar"
+	
+End Sub
+
+
     LeePar
   
     ParDat
@@ -157,8 +188,26 @@ End Sub
     end if    
 	sExcel = request.Form("bus")
 
+	'if ed_sPar(1,0) = "" then ed_sPar(1,0) = ""
 	'response.write "llego1"
 	'response.end
+	Combos
+	'response.write "paso"
+
+%>
+
+	<table border="0" align="right">
+		<tr>
+			<td>
+				<%
+				ed_vCombo
+				%>
+			</td>
+		</tr>
+	</table>
+	</br>
+
+<%
     
 
 %>

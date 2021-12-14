@@ -1,5 +1,6 @@
+<!-- PH_Cte_HomePantryConvivencia - 09abr21 - 04ago21 -->
 <!Doctype html>
-<!-- PH_Cte_HomePantryConvivencia - 09abr21 - 11abr21 -->
+
 <html >
 <head>
 	<title>| Convivencia |</title>
@@ -52,7 +53,9 @@
 					<label>Seleccione Trimestre:</label>
 					<select class="form-control input-sm" title="Seleccionar Semana" name="cboProcesarTrimestre" id="cboProcesarTrimestre" onchange="procesarTrimestre();"  />
 						<option value="0" select>-- Seleccione --</option> 					
-						<option value="16,17,18,19,20,21,22,23,24,25,26,27,28" select>1er Trimestre 2021</option>
+						<option value="16,17,18,19,20,21,22,23,24,25,26,27,28" >1er Trimestre 2021(Ene-Feb-Mar)</option>
+						<option value="29,30,31,32,33,34,35,36,37,38,39,40">2do Trimestre 2021(Abr-May-Jun)</option>						
+						<option value="41,42,43,44,45,46,47,48,49,50,51,52,53,54">3er Trimestre 2021(Jul-Ago-Sep)</option>						
 					</select>
 				</div>
 			</div>

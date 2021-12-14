@@ -1,7 +1,7 @@
 <%@language=vbscript%>
 <!--#include file="Conexion.asp"-->
 <%
-	' g_ValUpdateDetallesxProductosxUnico.asp // 03ene21 - 13ene21
+	' g_ValUpdateDetallesxProductosxUnico.asp // 03ene21 - 26oct21
 	'
 	Dim updSql	
 	'
@@ -33,6 +33,7 @@
 	moneda			= Request.QueryString("moneda")
 	tasaCambio		= Request.QueryString("tasa")
 	TotalCompra     = Request.QueryString("total")
+	unidades	    = Request.QueryString("unidades")
     '
     ' Actualizar Datos Validando....
     '
@@ -47,7 +48,7 @@
 	updSql = updSql & " id_moneda=" & idMoneda & ","
 	updSql = updSql & " Total_Compra=" & TotalCompra & ","
 	updSql = updSql & " Tasa_de_Cambio=" & tasaCambio & ","
-    'updSql = updSql & " Fec_Inactivo='" & sUpdate  & "',"
+    updSql = updSql & " Unidad_empaque=" & unidades  & ","
     updSql = updSql & " Validado='1'"
 	'
     updSql = updSql & " WHERE"

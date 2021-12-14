@@ -627,7 +627,6 @@ function actualizarPrecioMasivo(){
 	  );
 }	
 //
-
 function actualizarCambioMasivoPrecio(){
 	//
 	//debugger;	

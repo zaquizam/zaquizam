@@ -24,6 +24,7 @@ Session.LCID = 8202
 	sql = sql & " FROM PH_OperadoraCableCiudad INNER JOIN PH_OperadoraCable ON PH_OperadoraCableCiudad.Id_OperadoraCable = PH_OperadoraCable.Id_OperadoraCable "
 	sql = sql & " WHERE "
 	sql = sql & " PH_OperadoraCableCiudad.Id_Ciudad = " & yciu 
+	sql = sql & " order by PH_OperadoraCable.OperadoraCable "
 	'response.write "<br>220 sql:=" & sql
 	'response.end
     rsx1.Open sql ,conexion

@@ -66,8 +66,8 @@ Sub ParDat
    ed_sCampo(00,0)="#"
    ed_sCampo(01,0)="Aseo Urbano"
    ed_sCampo(02,0)="Abreviatura"
-   ed_sCampo(04,0)="Peso"
-   ed_sCampo(03,0)="Activo?"
+   ed_sCampo(03,0)="Peso"
+   ed_sCampo(04,0)="Activo?"
    'ed_sCampo(04,0)="Desde"
    'ed_sCampo(05,0)="Hasta"
    'ed_sCampo(06,0)="Ano"
@@ -128,9 +128,10 @@ Sub ParDat
 	'ed_sQue(6,0)=  " SELECT id_Cliente, Cliente FROM  Syn_Cliente WHERE Fec_Inactivo is Null"
 
 	ed_Formato(00,0)="w3-col l1  w3-left w3-padding "
-	ed_Formato(01,0)="w3-col l3  w3-left w3-padding "
+	ed_Formato(01,0)="w3-col l2  w3-left w3-padding "
 	ed_Formato(02,0)="w3-col l1  w3-left w3-padding "
 	ed_Formato(03,0)="w3-col l1  w3-left w3-padding "
+	ed_Formato(04,0)="w3-col l1  w3-left w3-padding "
 	
 End Sub
     LeePar

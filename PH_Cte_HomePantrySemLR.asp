@@ -248,7 +248,7 @@ Sub DataCombos
 	if Session("perusu") = 5 then
 		sql = sql & " Ind_Sem = 1 " 
 	else
-		sql = sql & " Ind_Activo = 1 " 
+		sql = sql & " Ind_Sem = 1 " 
 	end if
 	sql = sql & " ORDER BY "
 	sql = sql & " Id_Indicador "

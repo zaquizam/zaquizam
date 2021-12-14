@@ -76,7 +76,7 @@
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType = 2 'adLockOptimistic 
+	rsx1.LockType = 1 'adLockOptimistic 
 
 	
 	idSemana = 16
@@ -120,11 +120,32 @@
 	'strSemana1 = "(20) Del 17 May 2021 al 23 May 2021"
 	'strSemana1 = "(21) Del 24 May 2021 al 30 May 2021"
 	'strSemana1 = "(22) Del 31 May 2021 al 06 Jun 2021"
-	strSemana1 = "(23) Del 07 Jun 2021 al 13 Jun 2021"
-	strSemana2 = "(24) Del 14 Jun 2021 al 20 Jun 2021"
-	strSemana3 = "(25) Del 21 Jun 2021 al 27 Jun 2021"
-	strSemana4 = "(26) Del 28 Jun 2021 al 04 Jul 2021"
-	strSemana5 = "(27) Del 05 Jul 2021 al 11 Jul 2021"
+	'strSemana1 = "(23) Del 07 Jun 2021 al 13 Jun 2021"
+	'strSemana1 = "(24) Del 14 Jun 2021 al 20 Jun 2021"
+	'strSemana1 = "(25) Del 21 Jun 2021 al 27 Jun 2021"
+	'strSemana1 = "(26) Del 28 Jun 2021 al 04 Jul 2021"
+	'strSemana1 = "(27) Del 05 Jul 2021 al 11 Jul 2021"
+	'strSemana1 = "(28) Del 12 Jul 2021 al 18 Jul 2021"
+	'strSemana1 = "(29) Del 19 Jul 2021 al 25 Jul 2021"
+	'strSemana1 = "(30) Del 26 Jul 2021 al 01 Ago 2021"
+	'strSemana1 = "(31) Del 02 Ago 2021 al 08 Ago 2021"
+	'strSemana1 = "(32) Del 09 Ago 2021 al 15 Ago 2021"
+	'strSemana1 = "(33) Del 16 Ago 2021 al 22 Ago 2021"
+	'strSemana1 = "(34) Del 23 Ago 2021 al 29 Ago 2021"
+	'strSemana1 = "(35) Del 30 Ago 2021 al 05 Sep 2021"
+	'strSemana1 = "(36) Del 06 Sep 2021 al 12 Sep 2021"
+	'strSemana1 = "(37) Del 13 Sep 2021 al 19 Sep 2021"
+	'strSemana1 = "(38) Del 20 Sep 2021 al 26 Sep 2021"
+	'strSemana1 = "(39) Del 27 Sep 2021 al 03 Oct 2021"
+	'strSemana1 = "(40) Del 04 Oct 2021 al 10 Oct 2021"
+	'strSemana1 = "(41) Del 11 Oct 2021 al 17 Oct 2021"
+	'strSemana1 = "(42) Del 18 Oct 2021 al 24 Oct 2021"
+	'strSemana1 = "(43) Del 25 Oct 2021 al 31 Oct 2021"
+	strSemana1 = "(44) Del 01 Nov 2021 al 07 Nov 2021"
+	strSemana2 = "(45) Del 08 Nov 2021 al 14 Nov 2021"
+	strSemana3 = "(46) Del 15 Nov 2021 al 21 Nov 2021"
+	strSemana4 = "(47) Del 22 Nov 2021 al 28 Nov 2021"
+	strSemana5 = "(48) Del 29 Nov 2021 al 05 Dic 2021"
 	
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
@@ -411,31 +432,31 @@
 														iMar = gProductosTotal(2,iPro)
 														iSeg = gProductosTotal(4,iPro)
 														'response.write "<br>Ind = " & Indicador
-														idSemana = 38
+														idSemana = 59
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='cell100 column8 text-right'>"
 															response.write Valor
 														response.write "</td>"
-														idSemana = 39
+														idSemana = 60
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
 															response.write Valor
 														response.write "</td>"
-														idSemana = 40
+														idSemana = 61
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
 															response.write Valor
 														response.write "</td>"
-														idSemana = 41
+														idSemana = 62
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
 															response.write Valor
 														response.write "</td>"
-														idSemana = 42
+														idSemana = 63
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
@@ -516,32 +537,32 @@
 														iX = IX + 2
 													end if
 													'response.write "<br>Ind = " & Indicador
-													idSemana = 38
+													idSemana = 59
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='cell100 column8 text-right'>"
 														response.write Valor
 													response.write "</td>"
-													idSemana = 39
+													idSemana = 60
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
 														response.write Valor
 													response.write "</td>"
-													idSemana = 40
+													idSemana = 61
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
 														'Valor = ""
 														response.write Valor
 													response.write "</td>"
-													idSemana = 41
+													idSemana = 62
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
 														response.write Valor
 													response.write "</td>"
-													idSemana = 42
+													idSemana = 63
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
@@ -1043,8 +1064,8 @@ Sub CalcularIndicador
 					Indicador5 = Indicador5 + 1
 				next
 				Valor = (cdbl(Indicador1) / cdbl(Indicador5))
-				'response.write "<br>772 Indicador1=" & Indicador1
-				'response.write "<br>773 Indicador5=" & Indicador5
+				'response.write "<br>772 Indicador1=" & Indicador1 & "Sem:" & idSemana 
+				'response.write "<br>773 Indicador5=" & Indicador5 & "Sem:" & idSemana 
 				Valor = FormatNumber(Valor,2)
 			end if
 
@@ -1231,15 +1252,15 @@ Sub CalcularIndicador
 				Valor = 0
 				Valor = FormatNumber(Valor,2)
 			else
-				'response.write "<br>84 LLEGO"
+				'response.write "<br>1248 LLEGO"
 				'response.end
 				gDatos1 = rsx1.GetRows
 				rsx1.close
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
-				
+				'response.write "<br>1257 LLEGO"
 				sql = ""
 				sql = sql & " SELECT "
 				sql = sql & " Id_Hogar AS Total "
@@ -1284,7 +1305,7 @@ Sub CalcularIndicador
 				Valor = FormatNumber(Valor,2)
 			end if
 
-		Case 12 'ActComp
+		Case 12 'ActCompHog 
 			sql = ""
 			sql = sql & " SELECT "
 			sql = sql & " Cantidad, "
@@ -1761,7 +1782,7 @@ Sub CalcularIndicador
 				Valor = FormatNumber(Valor,2)
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 
 				sql = ""
@@ -1983,7 +2004,7 @@ Sub CalcularIndicador
 				Valor = 0
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 				
 				Valor = cdbl(Indicador2)/cdbl(Indicador3)
@@ -2312,7 +2333,7 @@ Sub CalcularIndicador
 				rsx1.close
 				TotalUnidades = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					TotalUnidades = TotalUnidades + gDatos1(0,iDat)
+					TotalUnidades = TotalUnidades + cdbl(gDatos1(0,iDat))
 				next
 				
 				sql = ""
@@ -2349,7 +2370,7 @@ Sub CalcularIndicador
 					rsx1.close
 					TotalFiltro = 0
 					for iDat = 0 to ubound(gDatos1,2)
-						TotalFiltro = TotalFiltro + gDatos1(0,iDat)
+						TotalFiltro = TotalFiltro + cdbl(gDatos1(0,iDat))
 					next
 					
 					if iFab = 0 and iMar = 0 and iSeg = 0 then TotalFiltro=TotalUnidades

@@ -1,7 +1,7 @@
 <%@language=vbscript%>
 <!--#include file="conexion.asp"-->
 <%
-	' g_ValBuscarDetallesxProductosxFacturaResuelto.asp // 02ENE21  - 29ene21
+	' g_ValBuscarDetallesxProductosxFacturaResuelto.asp // 02ENE21  - 22sep21
 	'
 	Session.lcid = 1034
 	Response.CodePage = 65001
@@ -31,7 +31,7 @@
 		'		
 		set rsDetalleProductos			=	CreateObject("ADODB.Recordset")
 		rsDetalleProductos.CursorType	=	adOpenKeyset 
-		rsDetalleProductos.LockType		=	2 'adLockOptimistic 	
+		rsDetalleProductos.LockType		=	1 'adLockOptimistic 	
 		'
 		sql = vbnullstring	
 		sql = sql & " SELECT"
@@ -118,6 +118,7 @@
 							nroCodigoBarras		= arrDetalleProductos(3,i)
 							cAntidad			= arrDetalleProductos(4,i)
 							precioUnitario		= FormatNumber(arrDetalleProductos(5,i),2)
+							idCategoria 		= CInt(arrDetalleProductos(13,i))
 							''
 							if(arrDetalleProductos(6,i)="" or isNull(arrDetalleProductos(6,i))) then
 								monedaCambio	= "Sin Moneda"
@@ -129,13 +130,36 @@
 								tasaCambio  	= "Sin Tasa"
 							else
 								tasaCambio		= FormatNumber(arrDetalleProductos(8,i),2)						
-							end if						
-							''
+							end if	
+							
+							''22SEP21
+							'if(arrDetalleProductos(13,i)="" or isNull(arrDetalleProductos(14,i))) then
+							''	Total  	= 0
+							'else
+							''	Total	= FormatNumber(arrDetalleProductos(14,i),2)						
+							'end if	
+							'
+							
 							if(arrDetalleProductos(13,i)="" or isNull(arrDetalleProductos(14,i))) then
 								Total  	= 0
-							else
-								Total	= FormatNumber(arrDetalleProductos(14,i),2)						
-							end if						
+							else							
+								if( idCategoria = 9 or idCategoria = 10 or idCategoria = 11 or idCategoria = 12 or idCategoria = 13 or idCategoria = 14 or idCategoria = 15 or idCategoria = 16 or idCategoria = 17 or idCategoria = 18) then
+									'Queso - charcuteria - perro - gato - limpiadores
+									'if( idMoneda = 2) then
+									'	Total	= precioUnitario					
+									'else
+										Total	= tasaCambio * precioUnitario
+									'end if
+								else
+									Total	= FormatNumber(arrDetalleProductos(14,i),2)										
+								end if
+																								
+							end if	
+
+
+
+
+							
 							'monedaCambio		= arrDetalleProductos(6,i)						
 							'tasaCambio			= FormatNumber(arrDetalleProductos(8,i),2)
 							dEscripcion 		= arrDetalleProductos(9,i)						
@@ -240,7 +264,7 @@ ELSE
 	'
 	set rsDetalleProductos			=	CreateObject("ADODB.Recordset")
 	rsDetalleProductos.CursorType	=	adOpenKeyset 
-	rsDetalleProductos.LockType		=	2 'adLockOptimistic 	
+	rsDetalleProductos.LockType		=	1 'adLockOptimistic 	
 	'
 	sql = vbnullstring	
 	sql = sql & " SELECT"

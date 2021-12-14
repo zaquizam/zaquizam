@@ -72,8 +72,7 @@ function GetCambioCombo( opc ){
 			})
 			.done (function(response, textStatus, jqXHR) {
 				console.log(response);
-				////debugger;
-				$("#cargando").css("display", "none");
+				////debugger;				
 				let cbo="#cboCanal";
 				$(cbo).multiselect('destroy');
 				var len = response.data.length;

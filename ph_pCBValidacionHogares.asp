@@ -1,5 +1,5 @@
 <!Doctype html>
-<!-- ph_pCBValidacionHogares - 28dic20 - 26abr21 -->
+<!-- ph_pCBValidacionHogares - 28dic20 - 26oct21 -->
 <html >
 <head>
 	<title>Validaci&oacute;n Hogares</title>
@@ -360,6 +360,12 @@
 						 <input type="text" class="form-control input-sm text-right" id="txtTasa" placeholder="...." readonly />							 
 					</div>											
 					
+					<div class="form-group" id="showUnidades" style="display: none;">
+						<label class="control-label" for="cantidad">Unidades por Empaque:</label>						
+						<input type="number" id="unidades" name="unidades" class="form-control input-sm" placeholder="Unidades por empaque" min="1" max="30" step="1" />
+						<input type="hidden" id="tipocat" name="tipocat" readonly />
+                    </div>
+												
 					<div class="form-group">
 						 <label>Cantidad:</label>
 						 <input type="text" class="form-control input-sm text-right" id="txtCantidad" step="0.1" placeholder="...." onblur="ActualizarCalculoTotales();" required />
@@ -663,8 +669,8 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="validacion/autoNumeric-1.9.18.js"></script>
 <script src="validacion/utilitariosV2.js"></script>
-<script src="validacion/crudV42.js"></script>
-<script src="validacion/funcionesV43.js"></script>
+<script src="validacion/crudV43.js"></script>
+<script src="validacion/funcionesV44.js"></script>
 <script src="validacion/funResueltoV36.js"></script>
 <script src="validacion/funcionesOpV1.js"></script>
 

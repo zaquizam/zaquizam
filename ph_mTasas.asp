@@ -114,7 +114,7 @@ Sub ParDat
 '	ed_sCampo(14,2)="1"
 
 ' ReadOnly
-	ed_sCampo(02,3)=1
+	'ed_sCampo(02,3)=1
 	ed_sCampo(03,3)=1
 	ed_sCampo(04,3)=1
 	ed_sCampo(08,3)=1

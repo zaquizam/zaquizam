@@ -1276,7 +1276,7 @@ Sub CalcularIndicador
 				rsx1.close
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 				
 				sql = ""
@@ -1800,7 +1800,7 @@ Sub CalcularIndicador
 				Valor = FormatNumber(Valor,2)
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 
 				sql = ""
@@ -2022,7 +2022,7 @@ Sub CalcularIndicador
 				Valor = 0
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 				
 				Valor = cdbl(Indicador2)/cdbl(Indicador3)
@@ -2351,7 +2351,7 @@ Sub CalcularIndicador
 				rsx1.close
 				TotalUnidades = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					TotalUnidades = TotalUnidades + gDatos1(0,iDat)
+					TotalUnidades = TotalUnidades + cdbl(gDatos1(0,iDat))
 				next
 				
 				sql = ""
@@ -2388,7 +2388,7 @@ Sub CalcularIndicador
 					rsx1.close
 					TotalFiltro = 0
 					for iDat = 0 to ubound(gDatos1,2)
-						TotalFiltro = TotalFiltro + gDatos1(0,iDat)
+						TotalFiltro = TotalFiltro + cdbl(gDatos1(0,iDat))
 					next
 					
 					if iFab = 0 and iMar = 0 and iSeg = 0 then TotalFiltro = TotalUnidades

@@ -1,0 +1,9 @@
+SELECT
+      ss_Cliente.Id_Cliente AS id,
+      ss_Cliente.Cliente AS nombre
+      FROM ss_ClienteCategoria
+      LEFT JOIN ss_Cliente ON
+      ss_ClienteCategoria.Id_Cliente = ss_Cliente.Id_Cliente
+      GROUP BY
+      ss_Cliente.Id_Cliente,
+      ss_Cliente.Cliente;

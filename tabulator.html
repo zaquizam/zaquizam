@@ -1,0 +1,93 @@
+<html lang="en" itemscope itemtype="http://schema.org/WebSite">
+
+  <head>
+    
+    <link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
+    
+    <script type="text/javascript" src="https://oss.sheetjs.com/sheetjs/xlsx.full.min.js"></script>
+       
+  </head>
+
+    
+  <body>
+
+    <div>
+        <button id="download-xlsx">Download XLSX</button>
+    </div>
+
+    <p> The table: </p>
+    <div id="my-table"></div> 
+
+    <script>
+
+        var tableData = [
+          {id:1, name:"Oliver", gender:"male", age :"32", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas asdñljfaskdlfj"},
+          {id:2, name:"Jack", gender:"male", age :"25", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas df asdñljfaskdlfj"},
+          {id:3, name:"Charlie", gender:"female", age :"25", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas asdñljfaskdlfj"},
+          {id:4, name:"Amelia", gender:"male", age :"25", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjasddf asdñljfaskdlfj"},
+          {id:5, name:"Olivia", gender:"male", age :"36", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas dfdf asdñljfaskdlfj"},
+          {id:6, name:"Amelia", gender:"male", age :"23", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas dfd asdñljfaskdlfj"},
+          {id:7, name:"Charlie", gender:"male", age :"25", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas dfd asdñljfaskdlfj"},
+          {id:8, name:"Evie", gender:"male", age :"44", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas dfdf asdñljfaskdlfj"},
+          {id:9, name:"Bob", gender:"female", age :"25", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas dfdfdf asdñljfaskdlfj"},
+          {id:10, name:"Evie", gender:"female", age :"34", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas asdñljfaskdlfj"},
+          {id:11, name:"Chloe", gender:"female", age :"25", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas zcxvzasdñljfaskdlfj"},
+          {id:12, name:"Oli Bob", gender:"male", age :"25", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas zxcvasdñljfaskdlfj"},
+          {id:13, name:"Oli Bob", gender:"another", age :"42", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas awr asdñljfaskdlfj"},
+          {id:14, name:"Chloeb", gender:"another", age :"18", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas zvzxvc asdñljfaskdlfj"},
+          {id:15, name:"Lucy", gender:"female", age :"25", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas  zxvz Xv asdñljfaskdlfj"},
+          {id:16, name:"Chloe", gender:"female", age :"67", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas  zxvdz asdñljfaskdlfj"},
+          {id:17, name:"Lucy", gender:"male", age :"56", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas zxgzfgzfxg asdñljfaskdlfj"},
+          {id:18, name:"Oli Bob", gender:"male", age :"25", lorem:"adslfñasdflañsjdfkasdjf asdkfljaskldfjas zxdgzx  asdñljfaskdlfj"},      
+        ];
+
+
+        //Build Tabulator
+        var table = new Tabulator("#my-table",
+         {
+            layout:"fitColumns",
+            columns:[
+                {title:"Id", field:"id"},
+                {title:"Name", field:"name"},
+                {title:"Gender", field:"gender"},
+                {title:"Age", field:"age"},
+                {title:"Description", field:"lorem"},
+            ],
+
+
+          downloadReady:function(fileContents, blob){
+                //fileContents - the unencoded contents of the file
+                //blob - the blob object for the download
+                //custom action to send blob to server could be included here
+                /* XLSX content */
+                const jsonContent = JSON.parse(fileContents);
+                const ws = XLSX.utils.book_new();
+
+                //Starting in the second row to avoid overriding and skipping headers
+                jsonContent.unshift({name :"Name",gender :"Gender",age :"Age",lorem :"Description"});
+
+                const filename = 'Data';
+                const dataSheet = XLSX.utils.json_to_sheet(jsonContent, {  skipHeader: true });
+
+                XLSX.utils.book_append_sheet(ws, dataSheet, filename.replace('/', ''));
+                XLSX.writeFile(ws, "data.xlsx",{ bookSST: true, compression: true, bookType: 'xlsx' });
+                return null;
+                //return blob; //must return a blob to proceed with the download, return false to abort download
+              }
+
+
+        });
+
+        table.setData(tableData);
+
+       document.getElementById("download-xlsx").addEventListener("click", function(){
+            table.download("json", "data.xlsx", {sheetName:"My Data"});
+        });
+
+    </script>
+
+  </body>
+
+</html>

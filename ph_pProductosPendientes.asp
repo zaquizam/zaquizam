@@ -1,7 +1,8 @@
+<%@Language="VBScript"%>
 <!DOCTYPE HTML>
 <html >
 <head>
-	<title>Productos Pendientes</title>
+	<title>|Productos Pendientes|</title>
     <meta name="Robots" content="noindex" >
     <meta name="Robots" content="none" >
     <meta name="Robots" content="nofollow" >
@@ -19,7 +20,7 @@
 	<!--#include file="nn_subN.asp"-->
 	<!--#include file="in_DataEN.asp"-->
 	<%
-		' ph_pProductosPendientes.asp - 02mar21 - 01jul21
+		' ph_pProductosPendientes.asp - 02mar21 - 15oct21
 		
 		Apertura
 		
@@ -31,9 +32,12 @@
 			Encabezado
 		end if    	
 		'
+		'Response.write "<br>34 llego"
+		'Response.end
 		Session.lcid		= 1034
 		Response.CodePage 	= 65001
-		Response.CharSet 	= "utf-8"	
+		Response.CharSet 	= "utf-8"
+		'Response.buffer 	= false		
 		'
 		Dim rsProductosPendientes, arrProductosPendientes
 		'	
@@ -47,7 +51,7 @@
 		QrySql = QrySql & " FROM PH_Consumo_Detalle_Productos LEFT JOIN PH_CB_Producto ON PH_Consumo_Detalle_Productos.Numero_codigo_barras = PH_CB_Producto.CodigoBarra"
 		QrySql = QrySql & " WHERE PH_Consumo_Detalle_Productos.Id_Hogar>1 AND PH_Consumo_Detalle_Productos.Pendiente=0 AND PH_Consumo_Detalle_Productos.Status_registro='G' AND PH_CB_Producto.Id_Producto Is Null"
 		QrySql = QrySql & " GROUP BY PH_Consumo_Detalle_Productos.Numero_codigo_barras"
-		QrySql = QrySql & " HAVING PH_Consumo_Detalle_Productos.Numero_codigo_barras<>'0' And PH_Consumo_Detalle_Productos.Numero_codigo_barras<>'00000000')"
+		QrySql = QrySql & " HAVING PH_Consumo_Detalle_Productos.Numero_codigo_barras<>'0' And PH_Consumo_Detalle_Productos.Numero_codigo_barras<>'00000000' And PH_Consumo_Detalle_Productos.Numero_codigo_barras is Not Null)"
 		QrySql = QrySql & " UNION"
 		QrySql = QrySql & " ( SELECT PH_Consumo_Detalle_Productos.Numero_codigo_barras, Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS Total, 'P' as Estatus, PH_CB_Categoria.Ind_Medicina as TipMed"
 		QrySql = QrySql & " FROM (PH_Consumo_Detalle_Productos LEFT JOIN PH_CB_Producto ON PH_Consumo_Detalle_Productos.Numero_codigo_barras = PH_CB_Producto.CodigoBarra) LEFT JOIN PH_CB_Categoria ON PH_CB_Producto.Id_Categoria = PH_CB_Categoria.id_Categoria"
@@ -56,7 +60,7 @@
 		QrySql = QrySql & " HAVING PH_Consumo_Detalle_Productos.Numero_codigo_barras<>'0' And PH_Consumo_Detalle_Productos.Numero_codigo_barras<>'00000000')"
 		QrySql = QrySql & " ORDER BY 2 desc"
 		'response.write QrySql
-		' response.end		
+		'response.end		
 		'
 		Set rsProductosPendientes = Server.CreateObject("ADODB.recordset")
 		rsProductosPendientes.Open QrySql, conexion
@@ -65,6 +69,9 @@
 			arrProductosPendientes = rsProductosPendientes.GetRows()  ' Convert recordset to 2D Array
 		end if
 		rsProductosPendientes.Close : Set rsProductosPendientes = Nothing 
+		total = ubound(arrProductosPendientes, 2)
+		'Response.write "<br> Total: " & total
+		'Response.end		
 		'		
 	%>
 	
@@ -93,19 +100,22 @@
 					<button title="Crear un Productos" type="submit" class="btn btn-block btn-sm btn-info"  onclick="showMostrarMasivoPrecios();"><i class="fas fa-check-double"></i>&nbsp;PROCESAR</button>							
 				</div>
 			</div>
-						
+			
 			<div class="col-sm-3">
 				<div class="form-group">				
 					<label>Seleccione C&oacute;digo de Barra:</label>&nbsp;&nbsp;<a href="#" onClick="Reset(); return false;" title="Borrar Pantalla" class="label label-danger badge-pill">RESET</a>					
 					<select class="form-control input-sm" title="Seleccionar codigo de Barra a Procesar" name="cboProductosPendientes" id="cboProductosPendientes" onchange="ProcesarCodigoBarras();"  />
 						<option value="0" selected disabled >-- Seleccione -- </option>
-						<%if IsArray(arrProductosPendientes) then
-							'Check si es una array
-							For i = 0 to ubound(arrProductosPendientes, 2) 
+						<%
+							if IsArray(arrProductosPendientes) then
+							'Check si es una array						
 							
-							if(arrProductosPendientes(3,i)=true) then TipoMed="Med" else TipoMed=""
+							if total > 44470 then total = 44470
+							Response.flush
+
+							For i = 0 to total 
 							
-							
+								if(arrProductosPendientes(3,i)=true) then TipoMed="Med" else TipoMed=""
 						%>
 								<option value="<%= arrProductosPendientes(0,i)%>"> <%= uCase(arrProductosPendientes(0,i)) & " - (" & uCase(arrProductosPendientes(1,i)) &")" & " - " & uCase(arrProductosPendientes(2,i)) & " - " & TipoMed   %> </option>								
 							<% next %>
@@ -157,6 +167,7 @@
 	
 	<div class="container-fluid text-center text-primary" id="cargando" style="display:none;">
 		<span ><img src="images/ajax-loader7.gif"><strong>&nbsp;Espere, Procesando..!</strong></span>
+		<hr>
 	</div> 
 			
 	<div class="container-fluid" id="tabla-DetalleProductosPendientes" style="display:none;">
@@ -387,7 +398,9 @@
 	</div>
     <!-- /.modal -->
 							
-	<%conexion.close%>
+	<%
+	conexion.close
+	%>
 
 </body>
 </html>

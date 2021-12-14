@@ -60,7 +60,7 @@ Sub ParDat
 	ed_cOrd		=0	' Orden 0=ascendente 1=descendente
 	ed_iRan		=0	' Presentar ranking de columnas
 	ed_iRep=0
-	if idUsuario <> 170 then  ed_iRep=1
+	if idUsuario <> 170 and idUsuario <> 1 and idUsuario <> 76 then  ed_iRep=1
 'ed_ides=1
 	SqlCla = " SELECT * FROM "  & ed_sNomTab
 	sqlcla = sqlcla & " WHERE  (fec_inactivo is null)"
@@ -77,6 +77,7 @@ Sub ParDat
    ed_sCampo(04,0)="Abreviatura"
    ed_sCampo(05,0)="Activo?"
    ed_sCampo(06,0)="Registrar Marca en Consumo"
+   ed_sCampo(08,0)="Marca Propia"
    'ed_sCampo(05,0)="Hasta"
    'ed_sCampo(06,0)="Ano"
    'ed_sCampo(07,0)="Mes"
@@ -121,6 +122,7 @@ Sub ParDat
 	end if
 	'ed_sCampo(04,2)="1"
 	ed_sCampo(06,2)="1"
+	ed_sCampo(08,2)="1"
 	'ed_sCampo(08,2)="1"
 	'ed_sCampo(09,2)="1"
 	'ed_sCampo(10,2)="1"

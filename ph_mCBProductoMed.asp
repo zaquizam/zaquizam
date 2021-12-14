@@ -62,7 +62,7 @@ Sub ParDat
 	ed_cOrd		=0	' Orden 0=ascendente 1=descendente
 	ed_iRan		=0	' Presentar ranking de columnas
 	ed_iRep=0
-	if idUsuario <> 170 then  ed_iRep=1
+	'if idUsuario <> 170 and idUsuario <> 1 and idUsuario <> 76 then  ed_iRep=1
 'ed_ides=1
 	SqlCla = " SELECT * FROM "  & ed_sNomTab
 	'sqlcla = sqlcla & " WHERE  (fec_inactivo is null)"
@@ -159,7 +159,21 @@ Sub ParDat
 	ed_sQue(1,0)=  " SELECT Id_Categoria, Categoria FROM  PH_CB_Categoria WHERE Fec_Inactivo is Null and ind_activo = 1 and id_Categoria = " & ed_sPar(1,0)
 	ed_sQue(4,0)=  " SELECT Id_Segmento, Segmento FROM  PH_CB_Segmento WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by Segmento "
 	ed_sQue(5,0)=  " SELECT Id_Fabricante, Fabricante FROM  PH_CB_Fabricante WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = 0 " & " Order by Fabricante "
-	ed_sQue(6,0)=  " SELECT Id_Marca, Marca FROM  PH_CB_Marca WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = 0 " &  " Order by Marca "
+	
+	sql = " SELECT Id_Marca, Marca FROM  PH_CB_Marca WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = 0 and ind_medicina = 1 " &  " Order by Marca "
+	
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " PH_CB_Marca.Id_Marca, "
+	'sql = sql & " PH_CB_Marca.Marca, "
+	sql = sql & " PH_CB_Marca.Marca+'('+PH_CB_Fabricante.Fabricante+')' as Marca "
+	'sql = sql & " PH_CB_Fabricante.Fabricante "
+	sql = sql & " FROM PH_CB_Marca INNER JOIN PH_CB_Fabricante ON PH_CB_Marca.Id_Fabricante = PH_CB_Fabricante.id_Fabricante "
+	sql = sql & " WHERE (((PH_CB_Marca.Ind_Medicina)=1) AND ((PH_CB_Marca.Fec_Inactivo) Is Null) AND ((PH_CB_Marca.Ind_Activo)=1) AND ((PH_CB_Marca.Id_Categoria)=0)) "
+	sql = sql & " ORDER BY PH_CB_Marca.Marca "
+
+	ed_sQue(6,0)=  sql
+	
 	ed_sQue(7,0)=  " SELECT Id_Tamano, Tamano FROM  PH_CB_Tamano WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by Tamano "
 	ed_sQue(8,0)=  " SELECT Id_TamanoRango, TamanoRango FROM  PH_CB_TamanoRango WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & ed_sPar(1,0) & " Order by TamanoRango "
 	ed_sQue(9,0)=  " SELECT Id_UnidadMedida, UnidadMedida FROM  PH_CB_UnidadMedida WHERE Fec_Inactivo is Null and ind_activo = 1 and id_categoria = " & cint(ed_sPar(1,0))

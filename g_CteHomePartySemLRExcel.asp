@@ -123,6 +123,27 @@
 	strSemana25 = "(25) Del 21 Jun 2021 al 27 Jun 2021"
 	strSemana26 = "(26) Del 28 Jun 2021 al 04 Jul 2021"
 	strSemana27 = "(27) Del 05 Jul 2021 al 11 Jul 2021"
+	strSemana28 = "(28) Del 12 Jul 2021 al 18 Jul 2021"
+	strSemana29 = "(29) Del 19 Jul 2021 al 25 Jul 2021"
+	strSemana30 = "(30) Del 26 Jul 2021 al 01 Ago 2021"
+	strSemana31 = "(31) Del 02 Ago 2021 al 08 Ago 2021"
+	strSemana32 = "(32) Del 09 Ago 2021 al 15 Ago 2021"
+	strSemana33 = "(33) Del 16 Ago 2021 al 22 Ago 2021"
+	strSemana34 = "(34) Del 23 Ago 2021 al 29 Ago 2021"
+	strSemana35 = "(35) Del 30 Ago 2021 al 05 Sep 2021"
+	strSemana36 = "(36) Del 06 Sep 2021 al 12 Sep 2021"
+	strSemana37 = "(37) Del 13 Sep 2021 al 19 Sep 2021"
+	strSemana38 = "(38) Del 20 Sep 2021 al 26 Sep 2021"
+	strSemana39 = "(39) Del 27 Sep 2021 al 03 Oct 2021"
+	strSemana40 = "(40) Del 04 Oct 2021 al 10 Oct 2021"
+	strSemana41 = "(41) Del 11 Oct 2021 al 17 Oct 2021"
+	strSemana42 = "(42) Del 18 Oct 2021 al 24 Oct 2021"
+	strSemana43 = "(43) Del 25 Oct 2021 al 31 Oct 2021"
+	strSemana44 = "(44) Del 01 Nov 2021 al 07 Nov 2021"
+	strSemana45 = "(45) Del 08 Nov 2021 al 14 Nov 2021"
+	strSemana46 = "(46) Del 15 Nov 2021 al 21 Nov 2021"
+	strSemana47 = "(47) Del 22 Nov 2021 al 28 Nov 2021"
+	strSemana48 = "(48) Del 29 Nov 2021 al 05 Dic 2021"
 	
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
@@ -348,6 +369,27 @@
 											<th class="cell100 column10 text-center"><%=strSemana25%></th>
 											<th class="cell100 column10 text-center"><%=strSemana26%></th>
 											<th class="cell100 column10 text-center"><%=strSemana27%></th>
+											<th class="cell100 column10 text-center"><%=strSemana28%></th>
+											<th class="cell100 column10 text-center"><%=strSemana29%></th>
+											<th class="cell100 column10 text-center"><%=strSemana30%></th>
+											<th class="cell100 column10 text-center"><%=strSemana31%></th>
+											<th class="cell100 column10 text-center"><%=strSemana32%></th>
+											<th class="cell100 column10 text-center"><%=strSemana33%></th>
+											<th class="cell100 column10 text-center"><%=strSemana34%></th>
+											<th class="cell100 column10 text-center"><%=strSemana35%></th>
+											<th class="cell100 column10 text-center"><%=strSemana36%></th>
+											<th class="cell100 column10 text-center"><%=strSemana37%></th>
+											<th class="cell100 column10 text-center"><%=strSemana38%></th>
+											<th class="cell100 column10 text-center"><%=strSemana39%></th>
+											<th class="cell100 column10 text-center"><%=strSemana40%></th>
+											<th class="cell100 column10 text-center"><%=strSemana41%></th>
+											<th class="cell100 column10 text-center"><%=strSemana42%></th>
+											<th class="cell100 column10 text-center"><%=strSemana43%></th>
+											<th class="cell100 column10 text-center"><%=strSemana44%></th>
+											<th class="cell100 column10 text-center"><%=strSemana45%></th>
+											<th class="cell100 column10 text-center"><%=strSemana46%></th>
+											<th class="cell100 column10 text-center"><%=strSemana47%></th>
+											<th class="cell100 column10 text-center"><%=strSemana48%></th>
 										</tr>
 									</thead>
 								</table>
@@ -412,6 +454,27 @@
 											<th class="cell100 column10 text-center"><%=strSemana25%></th>
 											<th class="cell100 column10 text-center"><%=strSemana26%></th>
 											<th class="cell100 column10 text-center"><%=strSemana27%></th>
+											<th class="cell100 column10 text-center"><%=strSemana28%></th>
+											<th class="cell100 column10 text-center"><%=strSemana29%></th>
+											<th class="cell100 column10 text-center"><%=strSemana30%></th>
+											<th class="cell100 column10 text-center"><%=strSemana31%></th>
+											<th class="cell100 column10 text-center"><%=strSemana32%></th>
+											<th class="cell100 column10 text-center"><%=strSemana33%></th>
+											<th class="cell100 column10 text-center"><%=strSemana34%></th>
+											<th class="cell100 column10 text-center"><%=strSemana35%></th>
+											<th class="cell100 column10 text-center"><%=strSemana36%></th>
+											<th class="cell100 column10 text-center"><%=strSemana37%></th>
+											<th class="cell100 column10 text-center"><%=strSemana38%></th>
+											<th class="cell100 column10 text-center"><%=strSemana39%></th
+											<th class="cell100 column10 text-center"><%=strSemana40%></th>
+											<th class="cell100 column10 text-center"><%=strSemana41%></th>
+											<th class="cell100 column10 text-center"><%=strSemana42%></th>
+											<th class="cell100 column10 text-center"><%=strSemana43%></th>
+											<th class="cell100 column10 text-center"><%=strSemana44%></th>
+											<th class="cell100 column10 text-center"><%=strSemana45%></th>
+											<th class="cell100 column10 text-center"><%=strSemana46%></th>
+											<th class="cell100 column10 text-center"><%=strSemana47%></th>
+											<th class="cell100 column10 text-center"><%=strSemana48%></th>
 										</tr>
 									</thead>
 								</table>
@@ -616,6 +679,132 @@
 															response.write Valor
 														response.write "</td>"
 														idSemana = 42
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 43
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 44
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 45
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 46
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 47
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 48
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 49
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 50
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 51
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 52
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 53
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 54
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 55
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 56
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 57
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 58
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 59
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 60
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 61
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 62
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 63
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
@@ -841,6 +1030,132 @@
 														response.write Valor
 													response.write "</td>"
 													idSemana = 42
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 43
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 44
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 45
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 46
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 47
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 48
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 49
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 50
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 51
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 52
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 53
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 54
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 55
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 56
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 57
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 58
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 59
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 60
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 61
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 62
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 63
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
@@ -1536,7 +1851,7 @@ Sub CalcularIndicador
 				rsx1.close
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 				
 				sql = ""
@@ -2060,7 +2375,7 @@ Sub CalcularIndicador
 				Valor = FormatNumber(Valor,2)
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 
 				sql = ""
@@ -2282,7 +2597,7 @@ Sub CalcularIndicador
 				Valor = 0
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 				
 				Valor = cdbl(Indicador2)/cdbl(Indicador3)
@@ -2611,7 +2926,7 @@ Sub CalcularIndicador
 				rsx1.close
 				TotalUnidades = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					TotalUnidades = TotalUnidades + gDatos1(0,iDat)
+					TotalUnidades = TotalUnidades + cdbl(gDatos1(0,iDat))
 				next
 				
 				sql = ""
@@ -2648,7 +2963,7 @@ Sub CalcularIndicador
 					rsx1.close
 					TotalFiltro = 0
 					for iDat = 0 to ubound(gDatos1,2)
-						TotalFiltro = TotalFiltro + gDatos1(0,iDat)
+						TotalFiltro = TotalFiltro + cdbl(gDatos1(0,iDat))
 					next
 					
 					if iFab = 0 and iMar = 0 and iSeg = 0 then TotalFiltro = TotalUnidades

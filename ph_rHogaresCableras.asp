@@ -77,6 +77,8 @@ Sub ParDat
 	sqlcla = sqlcla & " PH_PanelHogar.Fec_Inactivo, "
 	sqlcla = sqlcla & " PH_PanelHogar.IdSession "
 	sqlcla = sqlcla & " FROM (((((PH_PanelHogar INNER JOIN ss_Estado ON PH_PanelHogar.Id_Estado = ss_Estado.Id_Estado) INNER JOIN PH_Ciudad ON PH_PanelHogar.Id_Ciudad = PH_Ciudad.Id_Ciudad) LEFT JOIN PH_OperadoraCable ON PH_PanelHogar.Id_Cablera1 = PH_OperadoraCable.Id_OperadoraCable) LEFT JOIN PH_OperadoraCable AS PH_OperadoraCable_1 ON PH_PanelHogar.Id_Cablera2 = PH_OperadoraCable_1.Id_OperadoraCable) LEFT JOIN PH_TelevisionOnline ON PH_PanelHogar.Id_TelevisionOnline1 = PH_TelevisionOnline.Id_TvOnline) LEFT JOIN PH_TelevisionOnline AS PH_TelevisionOnline_1 ON PH_PanelHogar.Id_TelevisionOnline2 = PH_TelevisionOnline_1.Id_TvOnline "
+	sqlcla = sqlcla & " Where "
+	sqlcla = sqlcla & " PH_PanelHogar.Ind_activo  = 1 "
 
 ' Titulo	
 	ed_sCampo(00,0)="#"

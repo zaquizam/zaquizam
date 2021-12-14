@@ -1,7 +1,7 @@
 <!--#include file="conexionRS.asp" -->
 <%
 '
-'RetSem_llenar_cmb.asp - 12jul21 - 
+'RetSem_llenar_cmb.asp - 12jul21 - 02nov21
 '
 Session.lcid = 1034
 Response.CodePage = 65001

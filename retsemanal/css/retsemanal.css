@@ -1,0 +1,112 @@
+#grad3 {
+ /*
+ background-color: #FAFAF9;
+ 
+ 
+ 
+  background-image: url('boxed-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;  
+  background-attachment: fixed;  
+  */
+  
+  background: url('../img/9.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ 
+}
+
+#grad2 {
+  background-color: #1a52c6;
+}
+
+.barrabotones {
+  background-color: #DcDcDc;
+  vertical-align: middle;
+}
+
+
+.coolBackground {
+  background-image: url("ab2.jpg");
+  background-size: cover;
+}
+
+/* redondear select */
+.selectWrapper {
+  border-radius: 36px;
+  display: inline-block;
+  overflow: hidden;
+  background: #cccccc;
+  border: 1px solid #cccccc;
+}
+
+.selectBox {
+  width: 140px;
+  height: 40px;
+  border: 0px;
+  outline: none;
+}
+
+
+/* centrar imagen */
+.separa {
+  margin: 0 auto;
+  padding: 3px;
+}
+
+.lb {
+  margin: 0 auto;
+  padding: 3px;
+  text-align: left;
+  font-Size: 13px;
+  font-weight: bold;
+  /*color: #5787C2;*/
+  color: navy;
+  font-family: Verdana;
+  /* text-shadow: 2px 0.2px #A9A9A9; */
+}
+
+.lb2 {
+  margin: 0 auto;
+  padding: 3px;
+  text-align: left;
+  font-Size: 14px;
+  font-weight: bold;
+  color: #5787C2;
+  font-family: Verdana;
+  /* text-shadow: 2px 0.2px #A9A9A9; */
+}
+
+.recorta {
+  margin-top: 25px;
+  
+}
+
+/*
+.img-responsive .img-rounded {
+  width: 50%;
+  height: 50%;
+}
+#image img {
+  width: 50%;
+  height: 50%;
+  margin: 0 auto;
+}
+
+/* centrar imagen */
+.img-center {
+  margin: 0 auto;
+}
+
+
+*/
+
+.borderless table {
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom-style: none;
+}

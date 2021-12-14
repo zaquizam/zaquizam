@@ -52,7 +52,7 @@ Sub ParDat
 	ed_Bot(4)="disabled"
 	'ed_Bot(1)="disabled"
 	ed_iNumCam		=18					' Numero de campos en la pantalla principal
-	ed_iRegPag		=25					' Numero de registros por pagina
+	ed_iRegPag		=30					' Numero de registros por pagina
 	
 	ed_sNomTab		="PH_CB_Producto"
 	ed_sNomInd		="Id_Producto"

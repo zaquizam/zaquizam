@@ -1,0 +1,12 @@
+Mensaje de Error Nomenclatura del Mensaje Fallo
+
+Codigo bIF()   	=	buscarImagenFactura()
+Codigo bDxPF() 	=	buscarDetallexProductoFactura()
+Codigo bRS()	=	buscarResumenSemanal()
+Codigo bIFR()	=	buscarImagenFacturaResuelto()
+Codigo bDxPF() 	=	buscarDetallexProductoFacturaResuelto()
+Codigo bRSR() 	=	buscarResumenSemanalResuelto()
+Codigo oDxP()	= 	obtener_DetallexProducto(id)
+Codigo vM()		= 	validarMasivo()
+Codigo eCI() 	=	enviarConsumoInvestigar()
+Codigo dM()		=	deshacerMasivo()

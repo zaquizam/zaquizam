@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html >
 <head>
-	<title>OPeradora Cable x Ciudad</title>
+	<title>OPeradora Cable x Estado</title>
     <meta name="Robots" content="noindex" >
     <meta name="Robots" content="none" >
     <meta name="Robots" content="nofollow" >
@@ -64,7 +64,7 @@ Sub ParDat
 
 ' Titulo	
    ed_sCampo(00,0)="#"
-   ed_sCampo(01,0)="Ciudad"
+   ed_sCampo(01,0)="Estado"
    ed_sCampo(02,0)="Operadora Cable"
    ed_sCampo(03,0)="Abreviatura"
    ed_sCampo(04,0)="Activo?"
@@ -123,8 +123,8 @@ Sub ParDat
   '  ed_sCampo(3,8)=2
     
 	
-	ed_sQue(1,0)=  " SELECT Id_Ciudad, Ciudad FROM  PH_Ciudad WHERE Fec_Inactivo is Null "
-	ed_sQue(2,0)=  " SELECT Id_OperadoraCable, OperadoraCable FROM  PH_OperadoraCable WHERE Fec_Inactivo is Null "
+	ed_sQue(1,0)=  " SELECT Id_Estado, Estado FROM  ss_estado WHERE Fec_Inactivo is Null "
+	ed_sQue(2,0)=  " SELECT Id_OperadoraCable, OperadoraCable FROM  PH_OperadoraCable WHERE Fec_Inactivo is Null order by OperadoraCable"
 	'ed_sQue(5,0)=  " SELECT Id_PerfilUsuario, PerfilUsuario FROM  ss_PerfilUsuario WHERE Fec_Inactivo is Null And Id_PerfilUsuario >1"
 	'ed_sQue(6,0)=  " SELECT id_Cliente, Cliente FROM  Syn_Cliente WHERE Fec_Inactivo is Null"
 

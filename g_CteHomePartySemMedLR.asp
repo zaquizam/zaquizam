@@ -118,12 +118,33 @@
 	'strSemana1 = "(19) Del 10 May 2021 al 16 May 2021"
 	'strSemana1 = "(20) Del 17 May 2021 al 23 May 2021"
 	'strSemana1 = "(21) Del 24 May 2021 al 30 May 2021"
-	strSemana1 = ""
-	strSemana2 = ""
-	strSemana3 = ""
-	strSemana4 = ""
-	strSemana5 = "(26) Del 28 Jun 2021 al 04 Jul 2021"
-	
+	'strSemana1 = "(23) Del 07 Jun 2021 al 13 Jun 2021"
+	'strSemana1 = "(24) Del 14 Jun 2021 al 20 Jun 2021"
+	'strSemana1 = "(25) Del 21 Jun 2021 al 27 Jun 2021"
+	'strSemana1 = "(26) Del 28 Jun 2021 al 04 Jul 2021"
+	'strSemana1 = "(27) Del 05 Jul 2021 al 11 Jul 2021"
+	'strSemana2 = "(28) Del 12 Jul 2021 al 18 Jul 2021"
+	'strSemana1 = "(29) Del 19 Jul 2021 al 25 Jul 2021"
+	'strSemana1 = "(30) Del 26 Jul 2021 al 01 Ago 2021"
+	'strSemana1 = "(31) Del 02 Ago 2021 al 08 Ago 2021"
+	'strSemana1 = "(32) Del 09 Ago 2021 al 15 Ago 2021"
+	'strSemana1 = "(33) Del 16 Ago 2021 al 22 Ago 2021"
+	'strSemana1 = "(34) Del 23 Ago 2021 al 29 Ago 2021"
+	'strSemana1 = "(35) Del 30 Ago 2021 al 05 Sep 2021"
+	'strSemana1 = "(36) Del 06 Sep 2021 al 12 Sep 2021"
+	'strSemana1 = "(37) Del 13 Sep 2021 al 19 Sep 2021"
+	'strSemana1 = "(38) Del 20 Sep 2021 al 26 Sep 2021"
+	'strSemana1 = "(39) Del 27 Sep 2021 al 03 Oct 2021"
+	'strSemana1 = "(40) Del 04 Oct 2021 al 10 Oct 2021"
+	'strSemana1 = "(41) Del 11 Oct 2021 al 17 Oct 2021"
+	'strSemana1 = "(42) Del 18 Oct 2021 al 24 Oct 2021"
+	'strSemana1 = "(43) Del 25 Oct 2021 al 31 Oct 2021"
+	strSemana1 = "(44) Del 01 Nov 2021 al 07 Nov 2021"
+	strSemana2 = "(45) Del 08 Nov 2021 al 14 Nov 2021"
+	strSemana3 = "(46) Del 15 Nov 2021 al 21 Nov 2021"
+	strSemana4 = "(47) Del 22 Nov 2021 al 28 Nov 2021"
+	strSemana5 = "(48) Del 29 Nov 2021 al 05 Dic 2021"
+
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
 	'else
@@ -409,19 +430,35 @@
 														iMar = gProductosTotal(2,iPro)
 														iSeg = gProductosTotal(4,iPro)
 														'response.write "<br>Ind = " & Indicador
-														idSemana = 41
-														response.write "<td width=10% class='text-right'>"
+														idSemana = 59
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='cell100 column8 text-right'>"
+															response.write Valor
 														response.write "</td>"
-														response.write "<td width=10% class='text-right'>"
-														response.write "</td>"
-														response.write "<td width=10% class='text-right'>"
-														response.write "</td>"
-														response.write "<td width=10% class='text-right'>"
-														response.write "</td>"
+														idSemana = 60
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
 															response.write Valor
+														response.write "</td>"
+														idSemana = 61
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 62
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 63
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor 
 														response.write "</td>"
 													response.write "</tr>"
 												next
@@ -498,11 +535,35 @@
 														iX = IX + 2
 													end if
 													'response.write "<br>Ind = " & Indicador
-													idSemana = 41
+													idSemana = 59
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='cell100 column8 text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 60
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
 														response.write Valor
+													response.write "</td>"
+													idSemana = 61
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 62
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 63
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor 
 													response.write "</td>"
 												response.write "</tr>"
 											next
@@ -816,10 +877,22 @@ Sub CalcularIndicador
 			sql = sql & " FROM "
 			sql = sql & " PH_DataCrudaMed "
 			sql = sql & " WHERE "
-			'sql = sql & " Id_Categoria =  " & sCat
 			sql = sql & " id_Semana in( " & idSemana & ")"
 			sql = sql & " GROUP BY "
 			sql = sql & " PH_DataCrudaMed.Id_Hogar "
+			
+			sql = sql & "Union"
+
+			sql = ""
+			sql = sql & " SELECT "
+			sql = sql & " Id_Hogar AS Total "
+			sql = sql & " FROM "
+			sql = sql & " PH_DataCruda "
+			sql = sql & " WHERE "
+			sql = sql & " id_Semana in( " & idSemana & ")"
+			sql = sql & " GROUP BY "
+			sql = sql & " PH_DataCruda.Id_Hogar "
+			
 			'response.write "<br>36 sql:=" & sql
 			'response.end
 			rsx1.Open sql ,conexion
@@ -2554,6 +2627,80 @@ Sub CalcularIndicador
 			Valor = 0
 		Case 37 'HogNoRecomp (NO VA - Es Mensual)
 			Valor = 0
+
+		Case 40 'Penetracion Med
+			sql = ""
+			sql = sql & " SELECT "
+			sql = sql & " Id_Hogar AS Total "
+			sql = sql & " FROM "
+			sql = sql & " PH_DataCrudaMed "
+			sql = sql & " WHERE "
+			'sql = sql & " Id_Categoria =  " & sCat
+			sql = sql & " id_Semana in( " & idSemana & ")"
+			sql = sql & " GROUP BY "
+			sql = sql & " PH_DataCrudaMed.Id_Hogar "
+			'response.write "<br>36 sql:=" & sql
+			'response.end
+			rsx1.Open sql ,conexion
+			'response.write "<br>257 LLEGO" 
+			'response.end
+			if rsx1.eof then
+				rsx1.close
+				Valor = 0
+				Valor = FormatNumber(Valor,2)
+			else
+				'response.write "<br>84 LLEGO"
+				'response.end
+				gDatos1 = rsx1.GetRows
+				rsx1.close
+				Valor = 0
+				Cantidad = 0
+				for iDat = 0 to ubound(gDatos1,2)
+					'Cantidad = gDatos1(0,0)
+					Cantidad = Cantidad + 1
+				next
+				sql = ""
+				sql = sql & " SELECT "
+				sql = sql & " Id_Hogar AS Total "
+				sql = sql & " FROM "
+				sql = sql & " PH_DataCrudaMed "
+				sql = sql & " WHERE "
+				sql = sql & " Id_Fabricante = " & iFab
+				if sMar <> "" then 
+					sql = sql & " And Id_Marca = " & iMar 
+				end if
+				if sSeg <> "" then 
+					sql = sql & " And Id_Segmento = " & iSeg 
+				end if
+				if sRan <> "" then 
+					sql = sql & " And Id_RangoTamano = " & iRan
+				end if
+				sql = sql & " and Id_Categoria = " & sCat
+				sql = sql & " And id_Semana in( " & idSemana & ")"
+				sql = sql & " GROUP BY "
+				sql = sql & " PH_DataCrudaMed.Id_Hogar "
+				'response.write "<br>36 sql:=" & sql & "<br>"
+				'response.end
+				rsx1.Open sql ,conexion
+				if rsx1.eof then
+					rsx1.close
+					Total = 0
+					Valor = 0
+					Valor = FormatNumber(Valor,2)
+				else
+					'response.write "<br>84 LLEGO"
+					'response.end
+					gDatos1 = rsx1.GetRows
+					rsx1.close
+					Total = 0
+					for iDat = 0 to ubound(gDatos1,2)
+						Total = Total + 1
+					next
+					'response.write "<br> Cantidad:" & Cantidad
+					'response.write "<br> Total:" & Total & "<br>"
+					Valor = FormatNumber(((Total*100)/Cantidad),2)
+				end if
+			end if
 
 	end select 
 end Sub

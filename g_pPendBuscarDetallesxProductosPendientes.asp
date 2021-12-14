@@ -1,7 +1,7 @@
 <%@language=vbscript%>
 <!--#include file="conexion.asp"-->
 <%
-	' g_pPendBuscarDetallesxProductosPendientes -- 03mar21 - 17abr21
+	' g_pPendBuscarDetallesxProductosPendientes -- 03mar21 - 22oct21
 	'
 	Session.lcid = 1034
 	Response.CodePage = 65001
@@ -129,7 +129,14 @@
 			'
 			Promedio = Promedio + CDbl(arrDetalleProductos(11,i))
 			PromedioCantidad = PromedioCantidad + 1
-			arrDetalleProductos(6,i)="Bolivar Soberano"
+			
+			if arrDetalleProductos(9,i)>=55 then
+				if arrDetalleProductos(10,i)<> 2 then
+					arrDetalleProductos(6,i)="Bolivar Digital"
+				end if
+			else
+				arrDetalleProductos(6,i)="Bolivar Soberano"
+			end if
 			'
 			precio=0
 			precio=Replace(arrDetalleProductos(11,i),",",".")
@@ -245,51 +252,51 @@
 						precioUnitario		= arrDetalleProductos(11,i)
 						'													
 %>
-					<tr class="data">							
-						<!--<td class="text-center"><%=i+1%></td>-->
-						<%if idSemana <> idSemanaDetalle then %>
-							<td class="text-center"><%=i+1%>&nbsp;<input type="checkbox" name="CambioMasivo" id="chkbox_<%=idConsumoDetalle%>" value="<%=idConsumoDetalle%>" checked /></td>
-						<%else %>
-							<td class="text-center"><%=i+1%>&nbsp;<input type="checkbox" name="CambioMasivo" id="chkbox_<%=idConsumoDetalle%>" value="<%=idConsumoDetalle%>" /></td>
-						<%end if%>
-						<td class="text-center"><%=idHogar%></td>
-						<td class="text-center"><%=sArea%></td>
-						<td class="text-center"><%=sEstado%></td>
-						<td class="text-center"><%=sSemana%></td>							
-						<td class="text-center"><%=iCantidad%></td>
-						<td  class="text-right"><%=FormatNumber(precioUnitario,2)%></td>
-						<td class="text-center">
-							<%=sMoneda%>
-							<input type="hidden" id="idMon_<%=idConsumoDetalle%>" disabled value="<%=idMoneda%>" />
-							<input type="hidden" id="tasa_<%=idConsumoDetalle%>"  disabled value="<%=TasadeCambio%>" />							
-							<input type="hidden" id="cant_<%=idConsumoDetalle%>"  disabled value="<%=iCantidad%>" />
-						</td>							
-						<!---->																		
-						<td class="text-center">							
-							<img src="images/Boton01.png"  title="Actualizar precio por Promedio" width="24px" height="24px" onclick="ActualizarPromedio('<%=idConsumoDetalle%>')"/>
-						</td>						
-						<td class="text-center">
-							<img src="images/Boton02.png"  title="Actualizar precio por Moda" width="24px" height="24px" onclick="ActualizarModa('<%=idConsumoDetalle%>')"/>
-						</td>						
-						<td class="text-center" colspan="2">							
-							<input type="text" id="valor_<%=idConsumoDetalle%>" maxlength=15 size=15 >
-							<img src="images/Boton03.png"  title="Actualizar precio manual" width="24px" height="24px" onclick="ActualizarManual('<%=idConsumoDetalle%>')"/>						
-						</td>					
-						<td class="text-center" colspan="2">							
-							<input type="text" id="cantmod_<%=idConsumoDetalle%>" maxlength=8 size=8 >
-							<img src="images/Boton04.png"  title="Actualizar Cantidad manual" width="24px" height="24px" onclick="ActualizarCantidad('<%=idConsumoDetalle%>')"/>						
-						</td>					
-						<td class="text-center">
-							<!--<a href="#" title="Ver Detalle del Registro"  onclick="MostrarDetalleRegistro('<%=idConsumoDetalle%>');" ><i class="fas fa-search"></i></a>-->
-							<img src="images/buscarpend2.png"  title="Ver Detalle del Registro" width="24px" height="24px" onclick="MostrarDetalleRegistro('<%=idConsumoDetalle%>')"/>						
-						</td>
-					</tr> 
+						<tr class="data">							
+							<!--<td class="text-center"><%=i+1%></td>-->
+							<%if idSemana <> idSemanaDetalle then %>
+								<td class="text-center"><%=i+1%>&nbsp;<input type="checkbox" name="CambioMasivo" id="chkbox_<%=idConsumoDetalle%>" value="<%=idConsumoDetalle%>" checked /></td>
+							<%else %>
+								<td class="text-center"><%=i+1%>&nbsp;<input type="checkbox" name="CambioMasivo" id="chkbox_<%=idConsumoDetalle%>" value="<%=idConsumoDetalle%>" /></td>
+							<%end if%>
+							<td class="text-center"><%=idHogar%></td>
+							<td class="text-center"><%=sArea%></td>
+							<td class="text-center"><%=sEstado%></td>
+							<td class="text-center"><%=sSemana%></td>							
+							<td class="text-center"><%=iCantidad%></td>
+							<td  class="text-right"><%=FormatNumber(precioUnitario,2)%></td>
+							<td class="text-center">
+								<%=sMoneda%>
+								<input type="hidden" id="idMon_<%=idConsumoDetalle%>" disabled value="<%=idMoneda%>" />
+								<input type="hidden" id="tasa_<%=idConsumoDetalle%>"  disabled value="<%=TasadeCambio%>" />							
+								<input type="hidden" id="cant_<%=idConsumoDetalle%>"  disabled value="<%=iCantidad%>" />
+							</td>							
+							<!---->																		
+							<td class="text-center">							
+								<img src="images/Boton01.png"  title="Actualizar precio por Promedio" width="24px" height="24px" onclick="ActualizarPromedio('<%=idConsumoDetalle%>')"/>
+							</td>						
+							<td class="text-center">
+								<img src="images/Boton02.png"  title="Actualizar precio por Moda" width="24px" height="24px" onclick="ActualizarModa('<%=idConsumoDetalle%>')"/>
+							</td>						
+							<td class="text-center" colspan="2">							
+								<input type="text" id="valor_<%=idConsumoDetalle%>" maxlength=15 size=15 >
+								<img src="images/Boton03.png"  title="Actualizar precio manual" width="24px" height="24px" onclick="ActualizarManual('<%=idConsumoDetalle%>')"/>						
+							</td>					
+							<td class="text-center" colspan="2">							
+								<input type="text" id="cantmod_<%=idConsumoDetalle%>" maxlength=8 size=8 >
+								<img src="images/Boton04.png"  title="Actualizar Cantidad manual" width="24px" height="24px" onclick="ActualizarCantidad('<%=idConsumoDetalle%>')"/>						
+							</td>					
+							<td class="text-center">
+								<!--<a href="#" title="Ver Detalle del Registro"  onclick="MostrarDetalleRegistro('<%=idConsumoDetalle%>');" ><i class="fas fa-search"></i></a>-->
+								<img src="images/buscarpend2.png"  title="Ver Detalle del Registro" width="24px" height="24px" onclick="MostrarDetalleRegistro('<%=idConsumoDetalle%>')"/>						
+							</td>
+						</tr> 
 					
 <%					next %>
 				</tbody>
 			
-			</table>				
-		
+			</table>	
+			
 	</div>	
 	
 <% else %>
@@ -306,7 +313,7 @@
 						<th class="text-center" title="Estado">Semana</th>
 						<th class="text-center" title="Cantidad">Cantidad</th>
 						<th class="text-right"  title="Precio">Precio Unitario</th>
-						<th class="text-center"  title="Mondea de Pago">Moneda</th>							
+						<th class="text-center" title="Mondea de Pago">Moneda</th>							
 						<th class="text-center" title="Editar">Acci&oacute;nes</th>
 					</tr>
 				</tr>

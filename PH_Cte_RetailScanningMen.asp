@@ -24,6 +24,11 @@
 			swal("Atenas Grupo Consultor","Servicio No Contratado","info");
 			return;
 		}	
+		
+		function Mensaje2(){
+			swal("Atenas Grupo Consultor","Servicio Suspendido","info");
+			return;
+		}
 </script>
 
 <body topmargin="0">
@@ -42,7 +47,7 @@
 	dim conexionRS
 	Set conexionRS = Server.CreateObject("ADODB.Connection")
 	
-	conexionRS.ConnectionString= "Provider=SQLOLEDB.1;Password='PHaa11..**';Persist Security Info=True;User ID=cacevedo_atenas;Initial Catalog=RetailScannig;Data Source=216.198.73.34"
+	conexionRS.ConnectionString= "Provider=SQLOLEDB.1;Password='PHaa11..**';Persist Security Info=True;User ID=cacevedo_atenas;Initial Catalog=RetailScannig;Data Source=104.238.248.34"
 	conexionRS.mode = 3
 	conexionRS.Open
 	
@@ -202,7 +207,7 @@ End sub
 
 sub VerificarData
 	
-	if idCliente <> 1 and idCliente <> 17 and idCliente <> 30 and idCliente <>34 and idCliente <> 7 then
+	if idCliente <> 1 and idCliente <> 17 and idCliente <> 30 and idCliente <>34 and idCliente <> 7 and idCliente <> 31 and idCliente <> 32 and idCliente <> 33 and idCliente <> 20 and idCliente <> 33 and idCliente <> 36 and idCliente <> 8  and idCliente <> 12 then
 		%>
 		<script language="JavaScript" type="text/javascript">
 			Mensaje()
@@ -214,83 +219,239 @@ sub VerificarData
 end sub
 
 Sub Combos
- 
+	todasCat = ""
 	'response.write "<br>372 Combo1:=" & ed_sPar(1,0)
 	'response.write " Combo2:=" & ed_sPar(2,0)
 	'response.write " Combo3:=" & ed_sPar(3,0)
 	'response.write " Combo3:=" & ed_sPar(4,0)
 	'response.write " Combo3:=" & ed_sPar(5,0)
     ed_iCombo = 1
-	sql = ""
-	sql = sql & " SELECT "
-	sql = sql & " Id_Categoria, "
-	sql = sql & " Categoria "
-	sql = sql & " FROM RS_DataProcSem "
-	sql = sql & " GROUP BY "
-	sql = sql & " Id_Categoria, "
-	sql = sql & " Categoria "
-	'NESTLE
-	if idCliente = 17 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (7,8,14,5,6,34,24,21,13,2)"
+	if idCliente <> 1 then
+		sql = ""
+		sql = sql & " SELECT "
+		sql = sql & " RS_DataProcSem.Id_Categoria, "
+		sql = sql & " RS_DataProcSem.Categoria "
+		sql = sql & " FROM RS_DataProcSem INNER JOIN ss_ClienteCategoria ON RS_DataProcSem.Id_Categoria = ss_ClienteCategoria.Id_Categoria "
+		sql = sql & " Where ss_ClienteCategoria.Ind_Activo =  1 "
+		if idCliente <> 1 then
+			sql = sql & " AND ss_ClienteCategoria.Id_Cliente = " & idCliente
+		end if
+		sql = sql & " GROUP BY RS_DataProcSem.Id_Categoria, "
+		sql = sql & " RS_DataProcSem.Categoria "
+		'GOA
+		if idCliente = 34 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (2,10,22)"
+			todasCat = "2,10,22"
+		end if
+		'Mondelez
+		if idCliente = 32 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (2,21,25,47)"
+			todasCat = "2,21,25,47"
+		end if
+		'Unilever
+		if idCliente = 36 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (36,42,37,35,40)"
+			todasCat = "36,42,37,35,40"
+		end if
+		'Del Monte
+		if idCliente = 33 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (10,105,70,22)"
+			todasCat = "10,105,70,22"
+		end if
+		'NESTLE
+		if idCliente = 17 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (7,8,14,5,6,34,24,21,13,2,9)"
+			todasCat = "7,8,14,5,6,34,24,21,13,2,9"
+		end if
+		'Munchy
+		if idCliente = 30 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (33)"
+			todasCat = "33"
+		end if
+		'GENICA
+		if idCliente = 7 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (21,55,24,23,20,25)"
+			todasCat = "21,55,24,23,20,25"
+		end if
+		'Pharmetique
+		if idCliente = 31 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (127,128,138)"
+			todasCat = "127,128,138"
+		end if
+		'Central el Palmar
+		if idCliente = 20 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (72,106)"
+			todasCat = "72,106"
+		end if
+		if idCliente = 8 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (41,18)"
+			todasCat = "41,18"
+		end if
+		if idCliente = 12 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (91)"
+			todasCat = "91"
+		end if
+		sql = sql & " ORDER BY "
+		sql = sql & " RS_DataProcSem.Categoria "
+	else
+		sql = ""
+		sql = sql & " SELECT "
+		sql = sql & " Id_Categoria, "
+		sql = sql & " Categoria "
+		sql = sql & " FROM RS_DataProcSem "
+		sql = sql & " GROUP BY "
+		sql = sql & " Id_Categoria, "
+		sql = sql & " Categoria "
+		sql = sql & " order by "
+		sql = sql & " Categoria "
+	
 	end if
-	'Munchy
-	if idCliente = 30 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (33)"
-	end if
-	'INVERSIONES GOA
-	if idCliente = 34 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (2,10,22)"
-	end if
-	'GENICA
-	if idCliente = 7 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (21,55,24,23,20,25)"
-	end if
-	sql = sql & " ORDER BY "
-	sql = sql & " Categoria "
 	'response.write "<br>372 Combo1:=" & sql
+	'response.end 
     ed_sCombo(1,0)="Categoria"
     ed_sCombo(1,1)=sql 
     'ed_sCombo(1,2)="Sin Selección"
 	'response.write "<br>llego"
 	'response.end
+
+	'Verificar Categorias Activas
+	if idCliente <> 1 then
+		sql = ""
+		sql = sql & " SELECT "
+		sql = sql & " RS_DataProcSem.Id_Categoria, "
+		sql = sql & " ss_ClienteCategoria.Id_Cliente, "
+		sql = sql & " ss_ClienteCategoria.Ind_Activo "
+		sql = sql & " FROM RS_DataProcSem INNER JOIN ss_ClienteCategoria ON RS_DataProcSem.Id_Categoria = ss_ClienteCategoria.Id_Categoria "
+		sql = sql & " GROUP BY RS_DataProcSem.Id_Categoria, "
+		sql = sql & " ss_ClienteCategoria.Id_Cliente, "
+		sql = sql & " ss_ClienteCategoria.Ind_Activo "
+		sql = sql & " HAVING "
+		sql = sql & " RS_DataProcSem.Id_Categoria In (" & todasCat & ")"
+		sql = sql & " AND ss_ClienteCategoria.Id_Cliente = " & idCliente
+		sql = sql & " AND ss_ClienteCategoria.Ind_Activo =  1 "
+	else
+		sql = ""
+		sql = sql & " SELECT "
+		sql = sql & " Id_Categoria, "
+		sql = sql & " Categoria "
+		sql = sql & " FROM RS_DataProcSem "
+		sql = sql & " GROUP BY "
+		sql = sql & " Id_Categoria, "
+		sql = sql & " Categoria "
+		sql = sql & " order by "
+		sql = sql & " Categoria "
+	end if
+	
+	rsx1.Open sql ,conexionRS
+	if rsx1.eof then
+		%>
+		<script language="JavaScript" type="text/javascript">
+			Mensaje2()
+		</script>
+		<%
+		'response.write "paso1"
+		response.end
+	else
+		rsx1.close
+		'response.write "paso2"
+	end if
+
 	
 End Sub
 
 Sub DataCombos
-	sql = ""
-	sql = sql & " SELECT "
-	sql = sql & " Id_Categoria, "
-	sql = sql & " Categoria "
-	sql = sql & " FROM RS_DataProcSem "
-	sql = sql & " GROUP BY "
-	sql = sql & " Id_Categoria, "
-	sql = sql & " Categoria "
-	'NESTLE
-	if idCliente = 17 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (7,8,14,5,6,34,24,21,13,2)"
+	if idCliente <> 1 then
+		sql = ""
+		sql = sql & " SELECT "
+		sql = sql & " RS_DataProcSem.Id_Categoria, "
+		sql = sql & " RS_DataProcSem.Categoria "
+		sql = sql & " FROM RS_DataProcSem INNER JOIN ss_ClienteCategoria ON RS_DataProcSem.Id_Categoria = ss_ClienteCategoria.Id_Categoria "
+		sql = sql & " Where ss_ClienteCategoria.Ind_Activo =  1 "
+		sql = sql & " AND ss_ClienteCategoria.Id_Cliente = " & idCliente
+		sql = sql & " GROUP BY "
+		sql = sql & " RS_DataProcSem.Id_Categoria, "
+		sql = sql & " RS_DataProcSem.Categoria "
+		'NESTLE
+		if idCliente = 17 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (7,8,14,5,6,34,24,21,13,2,9)"
+		end if
+		'Munchy
+		if idCliente = 30 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (33)"
+		end if
+		'GENICA
+		if idCliente = 7 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (21,55,24,23,20,25)"
+		end if
+		'Mondelez
+		if idCliente = 32 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (2,21,25,47)"
+		end if
+
+		'Del Monte
+		if idCliente = 33 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (10,105,70,22)"
+		end if
+		'INVERSIONES GOA
+		if idCliente = 34 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (2,10,22)"
+		end if
+		'Pharmetique
+		if idCliente = 31 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (127,128,138)"
+		end if
+		'Central el Palmar
+		if idCliente = 20 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (72,106)"
+		end if
+		'Unilever
+		if idCliente = 36 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (36,42,37,35,40)"
+		end if
+		'Dimasi
+		if idCliente = 8 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (41,18)"
+		end if
+		'Cocacola
+		if idCliente = 12 then
+			sql = sql & " HAVING "
+			sql = sql & " RS_DataProcSem.Id_Categoria In (91)"
+		end if
+		sql = sql & " ORDER BY "
+		sql = sql & " RS_DataProcSem.Categoria "
+	else
+		sql = ""
+		sql = sql & " SELECT "
+		sql = sql & " Id_Categoria, "
+		sql = sql & " Categoria "
+		sql = sql & " FROM RS_DataProcSem "
+		sql = sql & " GROUP BY "
+		sql = sql & " Id_Categoria, "
+		sql = sql & " Categoria "
+		sql = sql & " order by "
+		sql = sql & " Categoria "
 	end if
-	'Munchy
-	if idCliente = 30 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (33)"
-	end if
-	'GENICA
-	if idCliente = 7 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (21,55,24,23,20,25)"
-	end if
-	'INVERSIONES GOA
-	if idCliente = 34 then
-		sql = sql & " HAVING "
-		sql = sql & " Id_Categoria In (2,10,22)"
-	end if
-	sql = sql & " ORDER BY "
-	sql = sql & " Categoria "
 	'response.write "<br>372 Combo1:=" & sql
 	rsx1.Open sql ,conexionRS
 	if rsx1.eof then
@@ -352,14 +513,23 @@ Sub DataCombos
 	sql = ""
 	sql = sql & " SELECT "
 	sql = sql & " Id_Marca, "
-	sql = sql & " Marca "
+	if ed_sPar(1,0) >= 127 and ed_sPar(1,0) <= 145 then
+		sql = sql & " Marca+'('+Fabricante+')' as Marca "
+	else
+		sql = sql & " Marca "
+	end if
 	sql = sql & " FROM "
 	sql = sql & " RS_DataProcSem "
 	sql = sql & " WHERE "
 	sql = sql & " Id_Categoria = " & ed_sPar(1,0)
+	sql = sql & " and Id_Fabricante <> 0 "
 	sql = sql & " GROUP BY "
 	sql = sql & " Id_Marca, "
-	sql = sql & " Marca "
+	if ed_sPar(1,0) >= 127 And ed_sPar(1,0) <= 145 then
+		sql = sql & " Marca+'('+Fabricante+')'"
+	else
+		sql = sql & " Marca "
+	end if
 	sql = sql & " HAVING "
 	sql = sql & " Id_Marca <> 0 "
 	sql = sql & " ORDER BY "
@@ -398,28 +568,87 @@ Sub DataCombos
 	end if
 
 	iSemanaDes = 33
-	iSemanaHas = 36
+	iSemanaHas = 45
+	iCat = ed_sPar(1,0)
 
+	'24 Buscar Semanas del Cliente Categoria
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " ss_Cliente.Id_Cliente, "
+	sql = sql & " ss_Cliente.Cliente, "
+	sql = sql & " ss_ClienteCategoria.Id_Categoria, "
+	sql = sql & " PH_CB_Categoria.Categoria, "
+	sql = sql & " ss_ClienteCategoria.Id_PeriodoDesde, "
+	sql = sql & " ss_ClienteCategoria.Id_PeriodoPub "
+	sql = sql & " FROM (ss_ClienteCategoria INNER JOIN ss_Cliente ON ss_ClienteCategoria.Id_Cliente = ss_Cliente.Id_Cliente) INNER JOIN PH_CB_Categoria ON ss_ClienteCategoria.Id_Categoria = PH_CB_Categoria.id_Categoria "
+	sql = sql & " WHERE "
+	sql = sql & " ss_Cliente.Id_Cliente = " & idCliente
+	sql = sql & " AND ss_ClienteCategoria.Id_Categoria = " & iCat
+	'response.write "<br>399 sql:=" & sql
+	rsx1.Open sql ,conexionRS
+	if rsx1.eof then
+		rsx1.close
+		'response.write "paso1"
+	else
+		gSemanasCliente = rsx1.GetRows
+		rsx1.close
+		'response.write "paso2"
+		iSemanaDes = gSemanasCliente(4,0)
+		iSemanaHas = gSemanasCliente(5,0)
+		'response.write "<br>597 Des:=" & iSemanaDes
+		'response.write "<br>597 Has:=" & iSemanaHas
+	end if
+
+	'Unilever
+	'if idCliente = 36 then 
+	'	iSemanaDes = 41
+	'	iSemanaHas = 45
+	'end if
+
+	'Mondelez
+	'if idCliente = 32 then 
+	'	iSemanaDes = 41
+	'	iSemanaHas = 45
+	'end if
 	'INVERSIONES GOA
-	if idCliente = 34 then
-		iSemanaDes = 24
-		iSemanaHas = 36
-	end if
+	'if idCliente = 34 then
+	'	iSemanaDes = 24
+	'	iSemanaHas = 36
+	'end if
 	'NESTLE (listo)
-	if idCliente = 17 then
-		iSemanaDes = 33
-		iSemanaHas = 40
-	end if
+	'if idCliente = 17 then
+	'	iSemanaDes = 33
+	'	iSemanaHas = 45
+	'	if cint(ed_sPar(1,0)) = 9 then
+	'		iSemanaDes = 29
+	'		iSemanaHas = 40
+	'	end if
+	'end if
 	'Munchy
-	if idCliente = 30 then
-		iSemanaDes = 33
-		iSemanaHas = 40
-	end if
+	'if idCliente = 30 then
+	'	iSemanaDes = 33
+	'	iSemanaHas = 45
+	'end if
 	'Genica
-	if idCliente = 7 then
-		iSemanaDes = 37
-		iSemanaHas = 40
-	end if
+	'if idCliente = 7 then
+	'	iSemanaDes = 37
+	'	iSemanaHas = 40
+	'end if
+	'Pharmetique
+	'if idCliente = 31 then
+	'	iSemanaDes = 33
+	'	iSemanaHas = 45
+	'end if
+	'Del Monte
+	'if idCliente = 33 then 
+	'	iSemanaDes = 41
+	'	iSemanaHas = 45
+	'end if
+	'Central el Palmar
+	'if idCliente = 20 then 
+	'	iSemanaDes = 33
+	'	iSemanaHas = 45
+	'end if
 	
 	'response.write "<br>310 Semana Desde:= " &  iSemanaDes
 	'response.write "<br>310 Semana Hasta:= " &  iSemanaHas
@@ -517,24 +746,43 @@ Sub DataCombos
 		rsx1.close
 	end if
 	
+	'sql = ""
+	'sql = sql & " SELECT "
+	'sql = sql & " CodigoBarra, "
+	'sql = sql & " Descripcion "
+	'sql = sql & " FROM "
+	'sql = sql & " RS_DataProcSem "
+	'sql = sql & " WHERE  "
+	'sql = sql & " Id_Categoria= " &  ed_sPar(1,0)
+	'sql = sql & " GROUP BY "
+	'sql = sql & " CodigoBarra, "
+	'sql = sql & " Descripcion "
+	'sql = sql & " HAVING "
+	'sql = sql & " (CodigoBarra Is Not Null "
+	'sql = sql & " And CodigoBarra<>'') "
+	'sql = sql & " AND (Descripcion Is Not Null "
+	'sql = sql & " And Descripcion<>'' ) "
+	'sql = sql & " ORDER BY "
+	'sql = sql & " Descripcion "
 	sql = ""
 	sql = sql & " SELECT "
-	sql = sql & " CodigoBarra, "
-	sql = sql & " Descripcion "
-	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
-	sql = sql & " WHERE  "
-	sql = sql & " Id_Categoria= " &  ed_sPar(1,0)
+	sql = sql & " RS_DataProcSem.CodigoBarra, "
+	sql = sql & " RS_DataProcSem.Descripcion "
+	sql = sql & " FROM RS_DataProcSem INNER JOIN PH_CB_Fabricante ON RS_DataProcSem.Id_Fabricante = PH_CB_Fabricante.id_Fabricante "
+	sql = sql & " WHERE "
+	sql = sql & " RS_DataProcSem.Id_Categoria = " & ed_sPAr(1,0)
+	sql = sql & " AND PH_CB_Fabricante.Ind_MarcaPropia = 0 "
 	sql = sql & " GROUP BY "
-	sql = sql & " CodigoBarra, "
-	sql = sql & " Descripcion "
+	sql = sql & " RS_DataProcSem.CodigoBarra, "
+	sql = sql & " RS_DataProcSem.Descripcion "
 	sql = sql & " HAVING "
-	sql = sql & " (CodigoBarra Is Not Null "
-	sql = sql & " And CodigoBarra<>'') "
-	sql = sql & " AND (Descripcion Is Not Null "
-	sql = sql & " And Descripcion<>'' ) "
+	sql = sql & " (RS_DataProcSem.CodigoBarra Is Not Null "
+	sql = sql & " And RS_DataProcSem.CodigoBarra<>'' ) "
+	sql = sql & " AND (RS_DataProcSem.Descripcion Is Not Null "
+	sql = sql & " And RS_DataProcSem.Descripcion<>'') "
 	sql = sql & " ORDER BY "
-	sql = sql & " Descripcion "
+	sql = sql & " RS_DataProcSem.Descripcion "
+
 	'response.write "<br>372 sql4:=" & sql
 	'response.end
 	rsx1.Open sql ,conexionRS
@@ -555,9 +803,15 @@ Sub DataCombos
 	sql = sql & " WHERE "
 	sql = sql & " Ind_Men = 1 " 
 	sql = sql & " AND Ind_Activo = 1 " 
+	'if ed_sPar(1,0) = 127 or ed_sPar(1,0) = 128 or ed_sPar(1,0) = 138 then
+	
+	if (ed_sPar(1,0) >= 127 And ed_sPar(1,0) <= 145) or ed_sPar(1,0) = 41 or ed_sPar(1,0) = 18 then
+		sql = sql & " and (Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9) " 
+	end if
 	sql = sql & " ORDER BY "
 	sql = sql & " Id_Indicador "
 	'response.write "<br>372 Combo1:=" & sql
+	'response.write "<br>372 ed_sPAr(1,0):= " & ed_sPAr(1,0)
 	rsx1.Open sql ,conexionRS
 	if rsx1.eof then
 		rsx1.close

@@ -266,19 +266,18 @@
 	sql = sql & " And Id_Fabricante in (" & sFab & ")"
 	sql = sql & " And Id_Marca in (" & sMar & ")"
 	sql = sql & " And Id_Segmento in (" & sSeg & ")"
-	if sTam <> 0 then
+	if len(sTam) > 1 then
 		sql = sql & " And Id_Tamano in (" & sTam & ")"
 	else
-		if sPro <> "" then
-		else
-			sql = sql & " And Id_Tamano = 0 "
-		end if
+		sql = sql & " And Id_Tamano = 0 "
 	end if
 	if sPro <> "" then
 		sPro = replace(sPro,",","','")
 		sql = sql & " And CodigoBarra in ('" & sPro & "')"
 	else
-		sql = sql & " And CodigoBarra = ''"
+		if sPro = "" then
+			sql = sql & " And CodigoBarra = ''"
+		end if
 	end if
     sql = sql & " ORDER BY "
 	sql = sql & " Id_Area, "
@@ -291,6 +290,10 @@
 	sql = sql & " CodigoBarra, "
 	sql = sql & " Descripcion, "
 	sql = sql & " id_Semana "
+	if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
+		sql = replace(sql,"And Id_Tamano = 0","")
+	else
+	end if
 	'response.write "<br>258 sql:= " & sql
 	'response.end
     rsx1.Open sql ,conexionRS
@@ -398,6 +401,7 @@
 										'response.end
 										for iPro = 0 to  ubound(gProductosTotal,2)
 											'response.write "<br>354 LLEGO:= " & iPro
+											response.flush
 											iPro2 = iPro
 											isw = 0
 											for iInd = 0 to  ubound(gIndicadores,2)

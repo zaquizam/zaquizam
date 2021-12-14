@@ -266,19 +266,18 @@
 	sql = sql & " And Id_Fabricante in (" & sFab & ")"
 	sql = sql & " And Id_Marca in (" & sMar & ")"
 	sql = sql & " And Id_Segmento in (" & sSeg & ")"
-	if sTam <> "" and sTam <> "0" then
+	if len(sTam) > 1 then
 		sql = sql & " And Id_Tamano in (" & sTam & ")"
 	else
-		if sPro <> "" then
-		else
-			sql = sql & " And Id_Tamano = 0 "
-		end if
+		sql = sql & " And Id_Tamano = 0 "
 	end if
 	if sPro <> "" then
 		sPro = replace(sPro,",","','")
 		sql = sql & " And CodigoBarra in ('" & sPro & "')"
 	else
-		sql = sql & " And CodigoBarra = ''"
+		if sPro = "" then
+			sql = sql & " And CodigoBarra = ''"
+		end if
 	end if
     sql = sql & " ORDER BY "
 	sql = sql & " Id_Area, "
@@ -291,6 +290,10 @@
 	sql = sql & " CodigoBarra, "
 	sql = sql & " Descripcion, "
 	sql = sql & " id_Semana "
+	if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
+		sql = replace(sql,"And Id_Tamano = 0","")
+	else
+	end if
 	'response.write "<br>258 sql:= " & sql
 	'response.end
     rsx1.Open sql ,conexionRS
@@ -396,6 +399,7 @@
 										'response.end
 										for iPro = 0 to  ubound(gProductosTotal,2)
 											'response.write "<br>354 LLEGO:= " & iPro
+											response.flush
 											response.write "<tr class='row100 body'>"
 												'Area
 												response.write "<td width=6% class='cell100 column1'>"
@@ -422,7 +426,7 @@
 													response.write gProductosTotal(11,iPro) 
 												response.write "</td>"
 												'Tamaño
-												response.write "<td width=6% class='cell100 column7'>"
+												response.write "<td width=6% class='cell100 column7 text-center'>"
 													'response.write gProductosTotal(13,iPro) 
 													if gProductosTotal(12,iPro) <> 0 then
 														Valor = gProductosTotal(13,iPro)
@@ -435,7 +439,7 @@
 												response.write "</td>"
 												'Producto
 												response.write "<td width=6% class='cell100 column8'>"
-													response.write gProductosTotal(14,iPro) & "-" & gProductosTotal(15,iPro)
+													response.write gProductosTotal(14,iPro) & " " & gProductosTotal(15,iPro)
 												response.write "</td>"
 												'response.write "<td width=6% colspan=7 class='cell100 column9' >"
 												'response.write "</td>"
@@ -493,9 +497,9 @@
 													Menos = 0
 													if iy <> 0 then  
 														for ia = 1 to iy
-															response.write "<td width=6% class='cell100 column15 text-left'>"
+															'response.write "<td width=6% class='cell100 column15 text-left'>"
 															
-															response.write "</td>"
+															'response.write "</td>"
 														next 
 													end if
 												response.write "</tr>"

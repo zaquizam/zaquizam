@@ -74,6 +74,7 @@ Sub ParDat
    ed_sCampo(03,0)="Abreviatura"
    ed_sCampo(04,0)="Activo?"
    ed_sCampo(05,0)="Medicina?"
+   ed_sCampo(06,0)="Marca Propia?"
    'ed_sCampo(04,0)="Desde"
    'ed_sCampo(05,0)="Hasta"
    'ed_sCampo(06,0)="Ano"

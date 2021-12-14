@@ -1,5 +1,5 @@
 //
-// MonedaV1.JS // 07abr21 - 
+// MonedaV1.JS // 07abr21 - 11oct21
 //
 //
 function Reset_Form(){
@@ -60,7 +60,7 @@ function buscarTipoTasadeCambio() {
 	//		
 	if(idMoneda == "2"){
 		tasa = 1
-		$("#txtTasa").val(Number(tasa).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+		$("#txtTasa").val(Number(tasa).toLocaleString("es-ES", {minimumFractionDigits: 5}));
 		ActualizarCalculoTotales();
 		return false;	
 	}
@@ -82,7 +82,7 @@ function buscarTipoTasadeCambio() {
 	.done(function(data) {
 		//debugger;
 		console.log(data);
-		tasa = Number(data).toLocaleString("es-ES", {minimumFractionDigits: 2});	
+		tasa = Number(data).toLocaleString("es-ES", {minimumFractionDigits: 5});	
 		$("#txtTasa").val(tasa);						
 		ActualizarCalculoTotales();
 		$("#txttmonedapagoErr").html("");
@@ -122,7 +122,7 @@ function buscarDetalleProducto(idConsumoDetalle) {
 		var moneda		=	data[0].moneda;
 		//												
 		$("#txtCantidad").val(cantidad);
-		$("#txtTasa").val(Number(tasa).toLocaleString("es-ES", {minimumFractionDigits: 2}));
+		$("#txtTasa").val(Number(tasa).toLocaleString("es-ES", {minimumFractionDigits: 5}));
 		$("#txtPrecio").val(Number(precio).toLocaleString("es-ES", {minimumFractionDigits: 2}));
 		$("#txtTotal").val(Number(total).toLocaleString("es-ES", {minimumFractionDigits: 2}));
 		$("#txtCodigoBar").val(barcode);

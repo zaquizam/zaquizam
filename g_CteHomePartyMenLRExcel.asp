@@ -107,7 +107,7 @@
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType = 2 'adLockOptimistic 
+	rsx1.LockType = 1 'adLockOptimistic 
 
 	sql = ""
 	sql = sql & " SELECT "
@@ -134,7 +134,7 @@
 	end if
 	if idCliente = 1 then
 		iMesDes = 24253
-		iMesHas = 24258
+		iMesHas = 24263
 	end if
 	'response.write "<br>310 Semana iMesDes:= " &  iMesDes
 	'response.write "<br>310 Semana iMesHas:= " &  iMesHas
@@ -174,7 +174,7 @@
 	' Cat = 19 Toallas Húmedas para Bebes
 	' Cat = 38 Cuidado Corporal
 	'Categorias Trimestrales Feb-Mar-Abr 2021
-	if (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 8) or (sCat = 14) or (sCat = 19) or (sCat = 38) or (sCat = 97) then 
+	if (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73)   then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,1)
@@ -182,7 +182,7 @@
 		gMeses(2,0) = "20,21,22,23,24,25,26,27,28,29,30,31,32"
 		gMeses(1,1) = "Trim. Mar-Abr-May/2021"
 		gMeses(2,1) = "24,25,26,27,28,29,30,31,32,33,34,35,36"
-		if (sCat = 27) or (sCat = 30) or (sCat = 29) or (sCat = 31) or (sCat = 73) or (sCat = 35) then 
+		if (sCat = 27) or (sCat = 30) or (sCat = 29) or (sCat = 31) or (sCat = 73)  then 
 			erase gMeses
 			redim gMeses(2,2)
 			gMeses(1,0) = "Trim. Ene-Feb-Mar/2021"
@@ -202,7 +202,8 @@
 	' Cat = 10 Salsa para Pastas (NO)
 	'Categorias Semestrales Ene-Feb-Mar-Abr/2021
 	'if (sCat = 6) or (sCat = 5) or (sCat = 11) or (sCat = 57) or (sCat = 10) then 
-	if (sCat = 6) or (sCat = 5) or (sCat = 11) or (sCat = 57) then 
+	'if (sCat = 6) or (sCat = 5) or (sCat = 11) or (sCat = 57) then 
+	if (sCat = 11) or (sCat = 57) then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,0)
@@ -448,7 +449,7 @@
 	if sTam <> "" then
 		sql = sql & " ,Id_Tamano "
 	end if
-
+	if TotalArea = "SI" then sql = replace(sql,"Id_Area <>0","Id_Area = 0 ")
 	'response.write "<br>313 sql:=" & sql
 	'response.end
     rsx1.Open sql ,conexion
@@ -2503,10 +2504,10 @@
 												sql = sql & " PH_DataCrudaMensual.Fabricante, "
 												sql = sql & " PH_DataCrudaMensual.Id_Marca, "
 												sql = sql & " PH_DataCrudaMensual.Marca, "
-												sql = sql & " PH_DataCrudaMensual.Id_Segmento, "
-												sql = sql & " PH_DataCrudaMensual.Segmento, "
-												sql = sql & " PH_DataCrudaMensual.Id_RangoTamano, "
-												sql = sql & " PH_DataCrudaMensual.RangoTamano, "
+												'sql = sql & " PH_DataCrudaMensual.Id_Segmento, "
+												'sql = sql & " PH_DataCrudaMensual.Segmento, "
+												'sql = sql & " PH_DataCrudaMensual.Id_RangoTamano, "
+												'sql = sql & " PH_DataCrudaMensual.RangoTamano, "
 												sql = sql & " PH_DataCrudaMensual.Id_Tamano, "
 												sql = sql & " PH_DataCrudaMensual.Tamano "
 												sql = sql & " FROM PH_DataCrudaMensual "
@@ -2527,6 +2528,7 @@
 												sql = sql & " HAVING "
 												sql = sql & " PH_DataCrudaMensual.Id_Area = 0 "
 												sql = sql & " AND PH_DataCrudaMensual.Id_Fabricante in (" & sFab & ")"
+												sql = sql & " AND PH_DataCrudaMensual.Id_Marca in (" & sMar & ")"
 												sql = sql & " and PH_DataCrudaMensual.Id_Tamano in (" & sTam & ")"
 												'response.write "<br>1477 sql:=" & sql
 												'response.end
@@ -2544,7 +2546,6 @@
 											for iPro = 0 to  ubound(gProductos,2)
 												'response.write "<br>428 LLEGO"
 												'response.end
-												for iInd = 0 to  ubound(gIndicadores,2)
 												response.write "<tr class='row100 body'>"
 													'Area
 													response.write "<td width=10% class='cell100 column1'>"
@@ -2560,16 +2561,24 @@
 													response.write "</td>"
 													'Segmento
 													response.write "<td width=10% class='cell100 column4 text-center'>"
-														response.write gProductos(7,iPro)
+														'response.write gProductos(7,iPro)
 													response.write "</td>"
 													'Rango
 													response.write "<td width=10% class='cell100 column5 text-center'>"
-														response.write gProductos(9,iPro)
+														'response.write gProductos(9,iPro)
 													response.write "</td>"
 													'Tamaño
 													response.write "<td width=10% class='cell100 column6 text-center'>"
-														response.write gProductos(11,iPro)
+														response.write gProductos(7,iPro)
 													response.write "</td>"
+													response.write "<td colspan=4  class='cell100'>"
+													response.write "</td>"
+												response.write "</tr>"
+												
+												for iInd = 0 to  ubound(gIndicadores,2)
+													response.write "<tr class='row100 body'>"
+														response.write "<td width=60% colspan=6 >"
+														response.write "</td>"
 														response.write "<td width=10% class='cell100 column7 text-center'>"
 															response.write "<b>"
 															'response.write gIndicadores(0,iInd) & ".-" & gIndicadores(1,iInd)
@@ -2586,9 +2595,9 @@
 														iAre = 0
 														iFab = gProductos(2,iPro)
 														iMar = gProductos(4,iPro)
-														iSeg = gProductos(6,iPro)
-														iRan = gProductos(8,iPro)
-														iTam = gProductos(10,iPro)
+														iSeg = 0 'gProductos(6,iPro)
+														iRan = 0 'gProductos(8,iPro)
+														iTam = gProductos(6,iPro)
 														'response.end
 														'response.write "<br>Ind = " & Indicador
 														for iMes = 0 to  ubound(gMeses,2) 
@@ -3238,6 +3247,83 @@
 												next
 											next					
 											
+										else
+										
+										end if
+										
+										if sAre <> "" And sFab = "" and sMar = "" and sSeg <> "" and sRan <> "" and sTam = "" then
+											if iMostrar = 1 then response.write "<br>6070 PasoLR311"
+											'response.end
+											'response.write "<br>770 sAre:= " & sAre
+											for iPro = 0 to  ubound(gProductos,2)
+												'response.write "<br>428 LLEGO"
+												'response.end
+												response.write "<tr class='row100 body'>"
+													'Area
+													response.write "<td width=10% class='cell100 column1'>"
+														response.write gProductos(1,iPro)
+													response.write "</td>"
+													'Fabricante
+													response.write "<td width=10% class='cell100 column2'>"
+														
+													response.write "</td>"
+													'Marca
+													response.write "<td width=10% class='cell100 column3 text-center'>"
+													response.write "</td>"
+													'Segmento
+													response.write "<td width=10% class='cell100 column4 text-center'>"
+														response.write gProductos(3,iPro)
+													response.write "</td>"
+													'Rango
+													response.write "<td width=10% class='cell100 column5 text-center'>"
+														response.write gProductos(5,iPro)
+													response.write "</td>"
+													'Tamaño
+													response.write "<td width=10% class='cell100 column6 text-center'>"
+
+													response.write "</td>"
+													response.write "<td colspan=4  class='cell100'>"
+													response.write "</td>"
+												response.write "</tr>"
+												for iInd = 0 to  ubound(gIndicadores,2)
+													response.write "<tr class='row100 body'>"
+														response.write "<td width=60% colspan=6 >"
+														response.write "</td>"
+														response.write "<td width=10% class='cell100 column7 text-center'>"
+															response.write "<b>"
+															'response.write gIndicadores(0,iInd) & ".-" & gIndicadores(1,iInd)
+															response.write gIndicadores(1,iInd)
+															response.write "</b>"
+														response.write "</td>"
+														response.write "<td width=10% class='cell100 column8 text-center'>"
+															response.write "<b>"
+															response.write gIndicadores(2,iInd)
+															response.write "</b>"
+														response.write "</td>"
+														Indicador = gIndicadores(0,iInd)
+														iAre = gProductos(0,iPro)
+														iFab = 0
+														iMar = 0
+														iSeg = gProductos(2,iPro)
+														iRan = gProductos(4,iPro)
+														'response.write "<br>Ind = " & Indicador
+														for iMes = 0 to  ubound(gMeses,2) 
+															'idSemana = "16,17,18,19"
+															idSemana = gMeses(2,iMes)
+															TotalDias = 28
+															CalcularIndicador
+															response.write "<td width=10% class='cell100 column9 text-right'>"
+																response.write Valor
+															response.write "</td>"
+														next 
+														if ubound(gMeses,2) = 0 then
+															response.write "<td width=10% class='cell100 column9 text-right'>"
+															response.write "</td>"
+														end if
+													response.write "</tr>"
+												next
+											next					
+											response.end
 										else
 										
 										end if
@@ -3976,7 +4062,11 @@ Sub CalcularIndicador
 						Valor = Valor + (cdbl(gDatos1(2,iDat)) *cdbl(gDatos1(3,iDat)))
 					end if
 				next
-				Indicador1 = FormatNumber((Valor)/1000,2)
+				if cint(sCat) <> 124 then
+					Indicador1 = FormatNumber((Valor)/1000,2)
+				else
+					Indicador1 = FormatNumber((Valor),2)
+				end if
 				'response.write "<br>1149 LLEGO"
 				sql = ""
 				sql = sql & " SELECT "
@@ -4198,7 +4288,7 @@ Sub CalcularIndicador
 				rsx1.close
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 				
 				sql = ""
@@ -4497,7 +4587,7 @@ Sub CalcularIndicador
 
 				sql = ""
 				sql = sql & " SELECT "
-				sql = sql & " Cantidad, "
+				'sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
 				sql = sql & " FROM PH_DataCrudaMensual "
 				sql = sql & " WHERE "
@@ -4520,7 +4610,7 @@ Sub CalcularIndicador
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " Cantidad, "
+				'sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
 				'response.write "<br>2434 sql:=" & sql
 				'response.end
@@ -4540,7 +4630,11 @@ Sub CalcularIndicador
 					Indicador4 = Indicador4 + 1
 				next
 				
-				Indicador14 = ((cdbl(Indicador1)/1000) / cdbl(Indicador4))
+				if cint(sCat) <> 124 then
+					Indicador14 = ((cdbl(Indicador1)/1000) / cdbl(Indicador4))
+				else
+					Indicador14 = ((cdbl(Indicador1)) / cdbl(Indicador4))
+				end if
 
 				Valor = FormatNumber(Indicador14,2)
 
@@ -4609,7 +4703,7 @@ Sub CalcularIndicador
 				next
 				sql = ""
 				sql = sql & " SELECT "
-				sql = sql & " Cantidad, "
+				'sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
 				sql = sql & " FROM PH_DataCrudaMensual "
 				sql = sql & " WHERE "
@@ -4633,7 +4727,7 @@ Sub CalcularIndicador
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " Cantidad, "
+				'sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
 				'response.write "<br>36 sql:=" & sql
 				'response.end
@@ -4715,12 +4809,12 @@ Sub CalcularIndicador
 				Valor = FormatNumber(Valor,2)
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 
 				sql = ""
 				sql = sql & " SELECT "
-				sql = sql & " Cantidad, "
+				'sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
 				sql = sql & " FROM PH_DataCrudaMensual "
 				sql = sql & " WHERE "
@@ -4744,7 +4838,7 @@ Sub CalcularIndicador
 				end if
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				sql = sql & " GROUP BY "
-				sql = sql & " Cantidad, "
+				'sql = sql & " Cantidad, "
 				sql = sql & " Id_Consumo "
 				'response.write "<br>36 sql:=" & sql
 				'response.end
@@ -4933,7 +5027,11 @@ Sub CalcularIndicador
 				for iDat = 0 to ubound(gDatos1,2)
 					Indicador1 = Indicador1 + (cdbl(gDatos1(0,iDat)) *cdbl(gDatos1(1,iDat)))
 				next
-				Indicador1 = Indicador1/1000
+				if cint(sCat) <> 124 then
+					Indicador1 = Indicador1/1000
+				else
+					Indicador1 = Indicador1
+				end if
 				
 				Valor = cdbl(Indicador2)/cdbl(Indicador1)
 				Valor = FormatNumber(Valor,2)
@@ -5080,7 +5178,7 @@ Sub CalcularIndicador
 				Valor = 0
 				Indicador3 = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					Indicador3 = Indicador3 + gDatos1(0,iDat)
+					Indicador3 = Indicador3 + cdbl(gDatos1(0,iDat))
 				next
 				
 				Valor = cdbl(Indicador2)/cdbl(Indicador3)
@@ -5244,10 +5342,14 @@ Sub CalcularIndicador
 			sql = sql & " Id_Categoria = " & sCat
 			'20May2021
 			'sql = sql & " and Id_Area = 0" '& iAre
-			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
-				sql = sql & " and Id_Area = 0 "
-			else
+			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" and sTam <> "" then
 				sql = sql & " and Id_Area = " & iAre
+			else
+				if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
+					sql = sql & " and Id_Area = 0 "
+				else
+					sql = sql & " and Id_Area = " & iAre
+				end if
 			end if
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0"
@@ -5345,31 +5447,41 @@ Sub CalcularIndicador
 				if sTam <> "" then 
 					sql = sql & " And Id_Tamano = " & iTam
 				end if
-				'if aAre = "" and sFab = "" and sMar = "" and sSeg <> "" and sRan <> "" and sTam = "" then
-				'	'response.write "<br>5596 Pasoooooo"
-				'	sql = ""
-				'	sql = sql & " SELECT "
-				'	sql = sql & " Tamano, "
-				'	sql = sql & " Cantidad "
-				'	sql = sql & " FROM "
-				'	sql = sql & " PH_DataCrudaMensual "
-				'	sql = sql & " GROUP BY "
-				'	sql = sql & " Tamano, "
-				'	sql = sql & " Cantidad, "
-				'	sql = sql & " Id_Consumo, "
-				'	sql = sql & " Id_Categoria, "
-				'	sql = sql & " Id_Area, "
-				'	sql = sql & " Id_Fabricante, "
-				'	sql = sql & " Id_Segmento, "
-				'	sql = sql & " Id_RangoTamano, "
-				'	sql = sql & " id_Semana "
-				'	sql = sql & " HAVING "
-				'	sql = sql & " Id_Categoria = " & sCat
-				'	sql = sql & " AND Id_Area = 0 "
-				'	sql = sql & " AND Id_Fabricante = 0 "
-				'	sql = sql & " AND Id_Segmento = " & iSeg
-				'	sql = sql & " AND Id_RangoTamano = " & iRan
-				'end if
+				 if sFab = "" and sMar = "" and sSeg <> "" and sRan <> "" and sTam = "" then
+					if sAre = "" then sAre = 0
+					'response.write "<br>5596 Pasoooooo" & sAre
+					'response.end 
+					
+					if sAre = 0 then
+						sql = sql & " And Id_Marca = 0 "  
+					else
+						'sql = sql & " And Id_Marca = 0 "  
+						'sql = sql & " And Id_Fabricante = 0 "  
+						sql = replace(sql," And Id_Marca = 0 And Id_Fabricante = 0"," ")
+					end if
+					' sql = ""
+					' sql = sql & " SELECT "
+					' sql = sql & " Tamano, "
+					' sql = sql & " Cantidad "
+					' sql = sql & " FROM "
+					' sql = sql & " PH_DataCrudaMensual "
+					' sql = sql & " GROUP BY "
+					' sql = sql & " Tamano, "
+					' sql = sql & " Cantidad, "
+					' sql = sql & " Id_Consumo, "
+					' sql = sql & " Id_Categoria, "
+					' sql = sql & " Id_Area, "
+					' sql = sql & " Id_Fabricante, "
+					' sql = sql & " Id_Segmento, "
+					' sql = sql & " Id_RangoTamano, "
+					' sql = sql & " id_Semana "
+					' sql = sql & " HAVING "
+					' sql = sql & " Id_Categoria = " & sCat
+					' sql = sql & " AND Id_Area = " & iAre
+					' sql = sql & " AND Id_Fabricante = 0 "
+					' sql = sql & " AND Id_Segmento = " & iSeg
+					' sql = sql & " AND Id_RangoTamano = " & iRan
+				 end if 
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				'response.write "<br>5577 sql:=" & sql & "<br>"
 				'response.end
@@ -5414,10 +5526,14 @@ Sub CalcularIndicador
 			sql = sql & " Id_Categoria = " & sCat
 			'20May2021
 			'sql = sql & " and Id_Area = 0" '& iAre
-			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
-				sql = sql & " and Id_Area = 0 "
-			else
+			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" and sTam <> "" then
 				sql = sql & " and Id_Area = " & iAre
+			else
+				if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
+					sql = sql & " and Id_Area = 0 "
+				else
+					sql = sql & " and Id_Area = " & iAre
+				end if
 			end if
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0 "
@@ -5513,6 +5629,41 @@ Sub CalcularIndicador
 				if sTam <> "" then 
 					sql = sql & " And Id_Tamano = " & iTam
 				end if
+				 if sFab = "" and sMar = "" and sSeg <> "" and sRan <> "" and sTam = "" then
+					if sAre = "" then sAre = 0
+					'response.write "<br>5596 Pasoooooo" & sAre
+					'response.end 
+					
+					if sAre = 0 then
+						sql = sql & " And Id_Marca = 0 "  
+					else
+						'sql = sql & " And Id_Marca = 0 "  
+						'sql = sql & " And Id_Fabricante = 0 "  
+						sql = replace(sql," And Id_Marca = 0 And Id_Fabricante = 0"," ")
+					end if
+					' sql = ""
+					' sql = sql & " SELECT "
+					' sql = sql & " Tamano, "
+					' sql = sql & " Cantidad "
+					' sql = sql & " FROM "
+					' sql = sql & " PH_DataCrudaMensual "
+					' sql = sql & " GROUP BY "
+					' sql = sql & " Tamano, "
+					' sql = sql & " Cantidad, "
+					' sql = sql & " Id_Consumo, "
+					' sql = sql & " Id_Categoria, "
+					' sql = sql & " Id_Area, "
+					' sql = sql & " Id_Fabricante, "
+					' sql = sql & " Id_Segmento, "
+					' sql = sql & " Id_RangoTamano, "
+					' sql = sql & " id_Semana "
+					' sql = sql & " HAVING "
+					' sql = sql & " Id_Categoria = " & sCat
+					' sql = sql & " AND Id_Area = " & iAre
+					' sql = sql & " AND Id_Fabricante = 0 "
+					' sql = sql & " AND Id_Segmento = " & iSeg
+					' sql = sql & " AND Id_RangoTamano = " & iRan
+				 end if 
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				'response.write "<br>36 sql:=" & sql
 				'response.end
@@ -5553,10 +5704,14 @@ Sub CalcularIndicador
 			sql = sql & " Id_Categoria = " & sCat
 			'20May2021
 			'sql = sql & " and Id_Area = 0" '& iAre
-			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
-				sql = sql & " and Id_Area = 0 "
-			else
+			if sFab = "" and sMar = "" and sSeg = "" and sRan = "" and sTam <> "" then
 				sql = sql & " and Id_Area = " & iAre
+			else
+				if sFab = "" and sMar = "" and sSeg = "" and sRan = "" then
+					sql = sql & " and Id_Area = 0 "
+				else
+					sql = sql & " and Id_Area = " & iAre
+				end if
 			end if
 			sql = sql & " And Id_Fabricante = 0 "
 			sql = sql & " And Id_Marca = 0 "
@@ -5579,7 +5734,7 @@ Sub CalcularIndicador
 				rsx1.close
 				TotalUnidades = 0
 				for iDat = 0 to ubound(gDatos1,2)
-					TotalUnidades = TotalUnidades + gDatos1(0,iDat)
+					TotalUnidades = TotalUnidades + cdbl(gDatos1(0,iDat))
 				next
 				
 				sql = ""
@@ -5645,6 +5800,41 @@ Sub CalcularIndicador
 				if sTam <> "" then 
 					sql = sql & " And Id_Tamano = " & iTam
 				end if
+				 if sFab = "" and sMar = "" and sSeg <> "" and sRan <> "" and sTam = "" then
+					if sAre = "" then sAre = 0
+					'response.write "<br>5596 Pasoooooo" & sAre
+					'response.end 
+					
+					if sAre = 0 then
+						sql = sql & " And Id_Marca = 0 "  
+					else
+						'sql = sql & " And Id_Marca = 0 "  
+						'sql = sql & " And Id_Fabricante = 0 "  
+						sql = replace(sql," And Id_Marca = 0 And Id_Fabricante = 0"," ")
+					end if
+					' sql = ""
+					' sql = sql & " SELECT "
+					' sql = sql & " Tamano, "
+					' sql = sql & " Cantidad "
+					' sql = sql & " FROM "
+					' sql = sql & " PH_DataCrudaMensual "
+					' sql = sql & " GROUP BY "
+					' sql = sql & " Tamano, "
+					' sql = sql & " Cantidad, "
+					' sql = sql & " Id_Consumo, "
+					' sql = sql & " Id_Categoria, "
+					' sql = sql & " Id_Area, "
+					' sql = sql & " Id_Fabricante, "
+					' sql = sql & " Id_Segmento, "
+					' sql = sql & " Id_RangoTamano, "
+					' sql = sql & " id_Semana "
+					' sql = sql & " HAVING "
+					' sql = sql & " Id_Categoria = " & sCat
+					' sql = sql & " AND Id_Area = " & iAre
+					' sql = sql & " AND Id_Fabricante = 0 "
+					' sql = sql & " AND Id_Segmento = " & iSeg
+					' sql = sql & " AND Id_RangoTamano = " & iRan
+				 end if 
 				sql = sql & " And id_Semana in( " & idSemana & ")"
 				'response.write "<br>36 sql:=" & sql
 				'response.end
@@ -5662,7 +5852,7 @@ Sub CalcularIndicador
 					rsx1.close
 					TotalFiltro = 0
 					for iDat = 0 to ubound(gDatos1,2)
-						TotalFiltro = TotalFiltro + gDatos1(0,iDat)
+						TotalFiltro = TotalFiltro + cdbl(gDatos1(0,iDat))
 					next
 					
 					'if iFab = 0 and iMar = 0 and iSeg = 0 and iTam = 0 then TotalFiltro = TotalUnidades
@@ -5944,6 +6134,31 @@ Sub CalcularIndicador
 					idSemana1 = "33,34,35,36"
 					idSemana2 = "37,38,39,40"
 				end if 
+				if idSemana = "41,42,43,44,45" then 
+					isw = 2
+					idSemana1 = "37,38,39,40"
+					idSemana2 = "41,42,43,44,45"
+				end if 
+				if idSemana = "46,47,48,49" then 
+					isw = 2
+					idSemana1 = "41,42,43,44,45"
+					idSemana2 = "46,47,48,49"
+				end if 
+				if idSemana = "50,51,52,53,54" then 
+					isw = 2
+					idSemana1 = "46,47,48,49"
+					idSemana2 = "50,51,52,53,54"
+				end if 
+				if idSemana = "55,56,57,58" then 
+					isw = 2
+					idSemana1 = "50,51,52,53,54"
+					idSemana2 = "55,56,57,58"
+				end if 
+				if idSemana = "59,60,61,62" then 
+					isw = 2
+					idSemana1 = "55,56,57,58"
+					idSemana2 = "59,60,61,62"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -6160,6 +6375,31 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "33,34,35,36"
 					idSemana2 = "37,38,39,40"
+				end if 
+				if idSemana = "41,42,43,44,45" then 
+					isw = 2
+					idSemana1 = "37,38,39,40"
+					idSemana2 = "41,42,43,44,45"
+				end if 
+				if idSemana = "46,47,48,49" then 
+					isw = 2
+					idSemana1 = "41,42,43,44,45"
+					idSemana2 = "46,47,48,49"
+				end if 
+				if idSemana = "50,51,52,53,54" then 
+					isw = 2
+					idSemana1 = "46,47,48,49"
+					idSemana2 = "50,51,52,53,54"
+				end if 
+				if idSemana = "55,56,57,58" then 
+					isw = 2
+					idSemana1 = "50,51,52,53,54"
+					idSemana2 = "55,56,57,58"
+				end if 
+				if idSemana = "59,60,61,62" then 
+					isw = 2
+					idSemana1 = "55,56,57,58"
+					idSemana2 = "59,60,61,62"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6379,6 +6619,31 @@ Sub CalcularIndicador
 					idSemana1 = "33,34,35,36"
 					idSemana2 = "37,38,39,40"
 				end if 
+				if idSemana = "41,42,43,44,45" then 
+					isw = 2
+					idSemana1 = "37,38,39,40"
+					idSemana2 = "41,42,43,44,45"
+				end if 
+				if idSemana = "46,47,48,49" then 
+					isw = 2
+					idSemana1 = "41,42,43,44,45"
+					idSemana2 = "46,47,48,49"
+				end if 
+				if idSemana = "50,51,52,53,54" then 
+					isw = 2
+					idSemana1 = "46,47,48,49"
+					idSemana2 = "50,51,52,53,54"
+				end if 
+				if idSemana = "55,56,57,58" then 
+					isw = 2
+					idSemana1 = "50,51,52,53,54"
+					idSemana2 = "55,56,57,58"
+				end if 
+				if idSemana = "59,60,61,62" then 
+					isw = 2
+					idSemana1 = "55,56,57,58"
+					idSemana2 = "59,60,61,62"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -6596,7 +6861,32 @@ Sub CalcularIndicador
 					idSemana1 = "33,34,35,36"
 					idSemana2 = "37,38,39,40"
 				end if 
-				
+				if idSemana = "41,42,43,44,45" then 
+					isw = 2
+					idSemana1 = "37,38,39,40"
+					idSemana2 = "41,42,43,44,45"
+				end if 
+				if idSemana = "46,47,48,49" then 
+					isw = 2
+					idSemana1 = "41,42,43,44,45"
+					idSemana2 = "46,47,48,49"
+				end if 
+				if idSemana = "50,51,52,53,54" then 
+					isw = 2
+					idSemana1 = "46,47,48,49"
+					idSemana2 = "50,51,52,53,54"
+				end if 
+				if idSemana = "55,56,57,58" then 
+					isw = 2
+					idSemana1 = "50,51,52,53,54"
+					idSemana2 = "55,56,57,58"
+				end if 
+				if idSemana = "59,60,61,62" then 
+					isw = 2
+					idSemana1 = "55,56,57,58"
+					idSemana2 = "59,60,61,62"
+				end if 
+ 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
 				if isw > 0 Then 

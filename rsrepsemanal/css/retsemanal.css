@@ -1,0 +1,123 @@
+/*
+// retsemanal.css 08oct21 - 10nov21
+*/
+#main {  
+  background: url('../img/3.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+
+#grad2 {
+  background-color: #1a52c6;
+}
+
+.barrabotones {
+  background-color: #DcDcDc;
+  vertical-align: middle;
+}
+
+
+/* redondear select */
+.selectWrapper {
+  border-radius: 36px;
+  display: inline-block;
+  overflow: hidden;
+  background: #cccccc;
+  border: 1px solid #cccccc;
+}
+
+.selectBox {
+  width: 140px;
+  height: 40px;
+  border: 0px;
+  outline: none;
+}
+
+
+/* centrar imagen */
+.separa {
+  margin: 0 auto;
+  padding: 3px;
+}
+
+.lb {
+  margin: 0 auto;
+  padding: 3px;
+  text-align: left;
+  font-Size: 12px;
+  font-weight: bold;
+  /*color: #5787C2;*/
+  color: navy;
+  font-family: Verdana;
+  /* text-shadow: 2px 0.2px #A9A9A9; */
+}
+
+.lb2 {
+  margin: 0 auto;
+  padding: 3px;
+  text-align: left;
+  font-Size: 14px;
+  font-weight: bold;
+  color: #5787C2;
+  font-family: Verdana;
+  /* text-shadow: 2px 0.2px #A9A9A9; */
+}
+
+.recorta {
+  margin-top: 25px;  
+}
+
+/* centrar imagen */
+.img-center {
+  margin: 0 auto;
+}
+
+.borderless table {
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom-style: none;
+}
+/*Preloaders*/
+
+body {
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
+}
+
+html, body { min-height: 100%; }
+
+/*
+body.loading {
+  background: #333 url('http://code.jquery.com/mobile/1.3.1/images/ajax-loader.gif') no-repeat 50% 50%;
+  -webkit-transition: background-color 0;
+  transition: background-color 0;
+  opacity: 0;
+  -webkit-transition: opacity 10;
+  transition: opacity 10;
+}
+*/
+/*
+#load{
+    width:100%;
+    height:100%;
+    position:fixed;
+    z-index:9999;
+    background:url("../img/atenas518.gif") no-repeat center center rgba(0,0,0,0.25)
+}
+*/
+/*
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
+}
+*/

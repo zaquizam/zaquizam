@@ -17,12 +17,11 @@
 <!--#include file="in_DataEN1.asp"-->
 
 <%
-
+'18ago21
   
 '==========================================================================================
 ' Variables y Constantes
 '==========================================================================================
-
 
     Apertura
 %>
@@ -35,8 +34,7 @@
 			var sBus = document.getElementById("Excel").value
 			window.open('Sys_mUsuarioExcel.asp?bus='+sBus,'_blank');
 		}	
-		//**Fin Generar PDF
-	
+		//**Fin Generar PDF	
 	</script>   
 <%
 
@@ -72,15 +70,14 @@ Sub ParDat
 	ed_Bot(4)="disabled"
 	ed_Bot(1)="disabled"
 	ed_iNumCam		=18					' Numero de campos en la pantalla principal
-	ed_iRegPag		=25					' Numero de registros por pagina
-	
+	ed_iRegPag		=25					' Numero de registros por pagina	
 	ed_sNomTab		="PH_EncuestaEspecialDet"
 	ed_sNomInd		="Id_EncuestaEspecialDet"
 	ed_cCol		=1	' Columna a Ordenar
 	ed_cOrd		=0	' Orden 0=ascendente 1=descendente
 	ed_iRan		=0	' Presentar ranking de columnas
 	ed_iRep=0
-'ed_ides=1
+	'ed_ides=1
 	SqlCla = " SELECT * FROM "  & ed_sNomTab
 	sqlcla = sqlcla & " WHERE  (fec_inactivo is null)"
 	if ed_sPar(1,0) <> "Seleccionar" and ed_sPar(1,0) <> "" then
@@ -100,7 +97,10 @@ Sub ParDat
    ed_sCampo(07,0)="Salto Cuadro"
    ed_sCampo(08,0)="Imagen"
    ed_sCampo(09,0)="Max Cantidad Resp"
-   ed_sCampo(10,0)="Activo?"
+   ed_sCampo(10,0)="% Msximo"
+   ed_sCampo(11,0)="Activo?"
+   ed_sCampo(12,0)="Rotar Respuestas?"
+   ed_sCampo(13,0)="Fijar Respuesta Otros?"
    'ed_sCampo(04,0)="Desde"
    'ed_sCampo(05,0)="Hasta"
    'ed_sCampo(06,0)="Ano"
@@ -224,11 +224,9 @@ End Sub
 	</div>
 		
 	<br>
-	<div style="width:98%"><%ed_Main %></div></center>
+	<div style="width:98%"><%ed_Main%></div></center>
 
     <%conexion.close%>
 	
-
-
 </body>
 </html>

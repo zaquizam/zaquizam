@@ -34,11 +34,10 @@
 	dim gSemanas
 	dim gSemanasAcum
 	dim TotalSemAcum
-
+	dim gMarcas
 	'sCat=Request.QueryString("cat")
 	sCat=Request.form("cat")
 	if sCat = "" Then response.end
-
 	' sAre=Request.QueryString("are")
 	' sZon=Request.QueryString("zon")
 	' sCan=Request.QueryString("can")
@@ -117,6 +116,7 @@
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
 	rsx1.LockType = 1 'adLockOptimistic 
+
 
 	'Semanas
 	sql = ""
@@ -216,9 +216,9 @@
 		gIndicadores = rsx1.GetRows
 		rsx1.close
 	end if
+	'
 	'response.write "<br>203 Paso" 
-	'response.end
-	
+	'response.end	
 	'Query
 	sql = ""
     sql = sql & " SELECT "
@@ -266,19 +266,18 @@
 	sql = sql & " And Id_Fabricante in (" & sFab & ")"
 	sql = sql & " And Id_Marca in (" & sMar & ")"
 	sql = sql & " And Id_Segmento in (" & sSeg & ")"
-	if sTam <> "" and sTam <> "0" then
+	if len(sTam) > 1 then
 		sql = sql & " And Id_Tamano in (" & sTam & ")"
 	else
-		if sPro <> "" then
-		else
-			sql = sql & " And Id_Tamano = 0 "
-		end if
+		sql = sql & " And Id_Tamano = 0 "
 	end if
 	if sPro <> "" then
 		sPro = replace(sPro,",","','")
 		sql = sql & " And CodigoBarra in ('" & sPro & "')"
 	else
-		sql = sql & " And CodigoBarra = ''"
+		if sPro = "" then
+			sql = sql & " And CodigoBarra = ''"
+		end if
 	end if
     sql = sql & " ORDER BY "
 	sql = sql & " Id_Area, "
@@ -291,6 +290,10 @@
 	sql = sql & " CodigoBarra, "
 	sql = sql & " Descripcion, "
 	sql = sql & " id_Semana "
+	if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
+		sql = replace(sql,"And Id_Tamano = 0","")
+	else
+	end if
 	'response.write "<br>258 sql:= " & sql
 	'response.end
     rsx1.Open sql ,conexionRS
@@ -341,7 +344,6 @@
 											<th class="cell100 column14 text-center"><%=strSemana4%></th>
 											<th class="cell100 column15 text-center"><%=strSemana5%></th>
 										</tr>
-										</tr>
 									</thead>
 								</table>
 							</div>
@@ -357,15 +359,10 @@
 		
 		%>
 		<div class="limiter">
-			
 			<div class="container-table100">
-			
 				<div class="wrap-table100">
-								
 					<div class="table100 ver1 m-b-110">
-						
 							<div class="table100-head">
-							
 								<table border=0>
 									<thead>
 										<tr class="row100 head">
@@ -387,9 +384,7 @@
 										</tr>
 									</thead>
 								</table>
-								
 							</div>
-							<br>
 							<div class="table100-body js-pscroll">
 								<table border=0>
 									<tbody>					
@@ -419,13 +414,38 @@
 												'Marca
 												response.write "<td width=6% class='cell100 column5'>"
 													response.write gProductosTotal(9,iPro) 
+													if sCat >= 127 and sCat <= 145 then
+														xMar = cint(gProductosTotal(8,iPro))
+														if xMar <> 0 then 
+															sql = ""
+															sql = sql & " SELECT "
+															sql = sql & " PH_CB_Marca.Id_Marca, "
+															sql = sql & " PH_CB_Fabricante.Fabricante "
+															sql = sql & " FROM PH_CB_Marca INNER JOIN PH_CB_Fabricante ON PH_CB_Marca.Id_Fabricante = PH_CB_Fabricante.id_Fabricante "
+															sql = sql & " WHERE "
+															sql = sql & " PH_CB_Marca.Ind_Medicina = 1 "
+															sql = sql & " AND PH_CB_Fabricante.Ind_Medicina = 1 "
+															sql = sql & " AND PH_CB_Marca.Id_Marca = " & xMar
+															'response.write "<br>36 sql:=" & sql
+															'response.end
+															rsx1.Open sql ,conexionRS
+															if rsx1.eof then
+																rsx1.close
+															else
+																gMarcas = rsx1.GetRows
+																rsx1.close
+															end if
+														
+															response.write "(" & gMarcas(1,0) & ")"
+														end if
+													end if
 												response.write "</td>"
 												'Segmento
 												response.write "<td width=6% class='cell100 column6'>"
 													response.write gProductosTotal(11,iPro) 
 												response.write "</td>"
 												'Tamaño
-												response.write "<td width=6% class='cell100 column7'>"
+												response.write "<td width=6% class='cell100 column7 text-center'>"
 													'response.write gProductosTotal(13,iPro) 
 													'response.end
 													if gProductosTotal(12,iPro) <> 0 then
@@ -435,21 +455,16 @@
 													else
 													
 													end if
-													
 												response.write "</td>"
 												'Producto
-												
-												response.write "<td width=6% class='cell100 column8'>"
-													response.write gProductosTotal(14,iPro) & "-" & gProductosTotal(15,iPro)
+												response.write "<td width=16% class='cell100 column8'>"
+													response.write gProductosTotal(14,iPro) & " " & gProductosTotal(15,iPro)
 												response.write "</td>"
-												'response.write "<td width=6% colspan=7 class='cell100 column9' >"
-												'response.write "</td>"
-											'response.write "</tr>"
-											iPro2 = iPro
-											isw = 0
-											for iInd = 0 to  ubound(gIndicadores,2)
-												iPro1 = iPro
-												'response.write "<br>354 LLEGO:= " & iPro1
+												iPro2 = iPro
+												isw = 0
+												for iInd = 0 to  ubound(gIndicadores,2)
+													iPro1 = iPro
+													'response.write "<br>354 LLEGO:= " & iPro1
 													if isw = 0 then
 														isw = 1
 													else
@@ -499,7 +514,6 @@
 														response.write "</td>"
 														
 													next					
-													
 													ix = cint(ubound(gSemanas,2))
 													iy = 4 - ix
 													if sw <> 0 then 
@@ -510,11 +524,11 @@
 													Menos = 0
 													if iy <> 0 then  
 														for ia = 1 to iy
-															response.write "<td width=6% class='cell100 column15 text-left'>"
+															'response.write "<td width=6% class='cell100 column15 text-left'>"
 																'Valor = 0
 																'Valor = FormatNumber(Valor,2)
 																'response.write Valor
-															response.write "</td>"
+															'response.write "</td>"
 														next 
 													end if
 												response.write "</tr>"

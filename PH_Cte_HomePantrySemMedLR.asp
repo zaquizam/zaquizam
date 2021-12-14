@@ -17,7 +17,7 @@
 		//alert("Generar Excel");
 		num = document.getElementById("Excel").value;
 		//alert("Generar Excel:="+ num);
-		window.open("g_CteHomePartySemLRExcel.asp?" + num,"_blank");
+		window.open("g_CteHomePartySemMedLRExcel.asp?" + num,"_blank");
 	}
 </script>
 	
@@ -250,11 +250,8 @@ Sub DataCombos
 	sql = sql & " FROM "
 	sql = sql & " PH_Indicadores "
 	sql = sql & " WHERE "
-	if Session("perusu") = 5 then
-		sql = sql & " Ind_Sem = 1 " 
-	else
-		sql = sql & " Ind_Activo = 1 " 
-	end if
+	sql = sql & " Ind_Medicina = 1 " 
+	sql = sql & " and Ind_Activo = 1 " 
 	sql = sql & " ORDER BY "
 	sql = sql & " Id_Indicador "
 	'response.write "<br>372 Combo1:=" & sql

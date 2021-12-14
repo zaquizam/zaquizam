@@ -46,7 +46,7 @@ Sub Combos
 	sql = sql & " ss_Periodo "
 	sql = sql & " WHERE "
 	sql = sql & " IdAno = 2021 "
-	sql = sql & " AND IdMes = 6 "
+	sql = sql & " AND IdMes = 11 "
 	'response.write "<br>372 Combo1:=" & sql
     ed_sCombo(1,0)="Mes"
     ed_sCombo(1,1)=sql 
@@ -134,6 +134,9 @@ sub BuscarHogares
 	sql = sql & " WHERE "
 	sql = sql & " PH_PanelHogar.Ind_Activo = 1 "
 	sql = sql & " AND PH_Panelistas.ResponsablePanel = 1 "
+	if idArea <> 0 then
+		sql = sql & " and PH_GArea.id_Area = "  & idArea
+	end if
 	'sql = sql & " and PH_PanelHogar.Id_PanelHogar = 706 "
 	sql = sql & " Order by "
 	sql = sql & " PH_GArea.Area, "
@@ -220,26 +223,28 @@ end sub
 				<td>Banco</td>
 				<td>Banco Codigo</td>
 				<td>Cuenta</td>
-				<th>(22) Del 31 May 2021 al 06 Jun 2021</th>
-				<th>(23) Del 07 Jun 2021 al 13 Jun 2021</th>
-				<th>(24) Del 14 Jun 2021 al 20 Jun 2021</th>
-				<th>(25) Del 21 Jun 2021 al 27 Jun 2021</th>
+				<th>(44) Del 01 Nov 2021 al 07 Nov 2021</th>
+				<th>(45) Del 08 Nov 2021 al 14 Nov 2021</th>
+				<th>(46) Del 15 Nov 2021 al 21 Nov 2021</th>
+				<th>(47) Del 22 Nov 2021 al 28 Nov 2021</th>
 				<th>Pagar Incentivo</th>
-				<th>Enc. Enjuaje Bucal</th>
-				<th>Enc. Alimento</th>
-
+				<!--<th>Enc. Carrito de compra</th>
+				<th>Enc. Retailers Capital</th>
+				<th>Enc. Retailers Centro</th>
+				<th>Enc. Retailers Oriente</th>
+				<th>Enc. Retailers Occidente</th>
+				<th>Enc. Retailers Andes</th>-->
 			</tr>
 			<%
 			'response.end
 			for iHog = 0 to ubound(gHogares,2)
 				idHogar = gHogares(0,iHog)
-				
 				sql = ""
 				sql = sql & " SELECT "
 				sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 				sql = sql & " FROM PH_Consumo "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 37 "
+				sql = sql & " PH_Consumo.Id_Semana = 59 "
 				sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 				sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 				'response.write "<br>232 sql:= " & sql
@@ -258,7 +263,7 @@ end sub
 				sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 				sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 37 "
+				sql = sql & " PH_Consumo.Id_Semana = 59 "
 				sql = sql & " GROUP BY "
 				sql = sql & " PH_Consumo.Id_Hogar, "
 				sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -282,7 +287,7 @@ end sub
 				sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 				sql = sql & " FROM PH_Consumo "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 38 "
+				sql = sql & " PH_Consumo.Id_Semana = 60 "
 				sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 				sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 				'response.write "<br>232 sql:= " & sql
@@ -301,7 +306,7 @@ end sub
 				sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 				sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 38 "
+				sql = sql & " PH_Consumo.Id_Semana = 60 "
 				sql = sql & " GROUP BY "
 				sql = sql & " PH_Consumo.Id_Hogar, "
 				sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -326,7 +331,7 @@ end sub
 				sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 				sql = sql & " FROM PH_Consumo "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 39 "
+				sql = sql & " PH_Consumo.Id_Semana = 61 "
 				sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 				sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 				'response.write "<br>232 sql:= " & sql
@@ -345,7 +350,7 @@ end sub
 				sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 				sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 39 "
+				sql = sql & " PH_Consumo.Id_Semana = 61 "
 				sql = sql & " GROUP BY "
 				sql = sql & " PH_Consumo.Id_Hogar, "
 				sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -369,7 +374,7 @@ end sub
 				sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 				sql = sql & " FROM PH_Consumo "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 40 "
+				sql = sql & " PH_Consumo.Id_Semana = 62 "
 				sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 				sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 				'response.write "<br>232 sql:= " & sql
@@ -388,7 +393,7 @@ end sub
 				sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 				sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 				sql = sql & " WHERE "
-				sql = sql & " PH_Consumo.Id_Semana = 40 "
+				sql = sql & " PH_Consumo.Id_Semana = 62 "
 				sql = sql & " GROUP BY "
 				sql = sql & " PH_Consumo.Id_Hogar, "
 				sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -438,7 +443,7 @@ end sub
 						end if
 						response.write "<td>V" & Cedula & "</td>"
 						response.write "<td>" & gHogares(8,iHog) & "</td>"
-						response.write "<td>'" & gHogares(9,iHog) & "</td>"
+						response.write "<td>" & gHogares(9,iHog) & "</td>"
 						response.write "<td>'" & gHogares(10,iHog) & "</td>"
 						
 						response.write "<td>'" & iSemana1 & "-" & iSemana1Reg & "</td>"
@@ -451,49 +456,28 @@ end sub
 						else
 							response.write "<td>No</td>"
 						end if
-						sql = ""
-						sql = sql & " SELECT "
-						sql = sql & " Id_EncuestaEspecial, "
-						sql = sql & " Id_Hogar, "
-						sql = sql & " Ind_Realizada "
-						sql = sql & " FROM PH_EncuestaHogar "
-						sql = sql & " WHERE "
-						sql = sql & " Id_EncuestaEspecial = 40 "
-						sql = sql & " and Id_Hogar = " & idHogar
-						sql = sql & " AND Ind_Realizada =  1 "
-						'response.write "<br>232 sql:= " & sql
-						'response.end
-						rsx2.Open sql ,conexion
-						if rsx2.eof then
-							rsx2.close
-							response.write "<td>No</td>"
-						else 
-							gDatosSol1 = rsx2.GetRows
-							rsx2.close
-							response.write "<td>Si</td>"
-						end if
-						sql = ""
-						sql = sql & " SELECT "
-						sql = sql & " Id_EncuestaEspecial, "
-						sql = sql & " Id_Hogar, "
-						sql = sql & " Ind_Realizada "
-						sql = sql & " FROM PH_EncuestaHogar "
-						sql = sql & " WHERE "
-						sql = sql & " Id_EncuestaEspecial = 37 "
-						sql = sql & " and Id_Hogar = " & idHogar
-						sql = sql & " AND Ind_Realizada =  1 "
-						'response.write "<br>232 sql:= " & sql
-						'response.end
-						rsx2.Open sql ,conexion
-						if rsx2.eof then
-							rsx2.close
-							response.write "<td>No</td>"
-						else 
-							gDatosSol1 = rsx2.GetRows
-							rsx2.close
-							response.write "<td>Si</td>"
-						end if
 
+						'sql = ""
+						'sql = sql & " SELECT "
+						'sql = sql & " Id_EncuestaEspecial, "
+						'sql = sql & " Id_Hogar, "
+						'sql = sql & " Ind_Realizada "
+						'sql = sql & " FROM PH_EncuestaHogar "
+						'sql = sql & " WHERE "
+						'sql = sql & " Id_EncuestaEspecial = 82 "
+						'sql = sql & " and Id_Hogar = " & idHogar
+						'sql = sql & " AND Ind_Realizada =  1 "
+						''response.write "<br>232 sql:= " & sql
+						''response.end
+						'rsx2.Open sql ,conexion
+						'if rsx2.eof then
+						'	rsx2.close
+						'	response.write "<td>No</td>"
+						'else 
+						'	gDatosSol1 = rsx2.GetRows
+						'	rsx2.close
+						'	response.write "<td>Si</td>"
+						'end if
 					response.write "</tr>"
 				end if
 			next 

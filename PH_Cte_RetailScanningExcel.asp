@@ -35,6 +35,7 @@
 	dim gSemanas
 	dim gSemanasAcum
 	dim TotalSemAcum
+	dim gMarcas
 
 	sCat=Request.QueryString("cat")
 	'sCat=Request.form("cat")
@@ -151,6 +152,25 @@
 		if iSem = 3 then strSemana4 = gSemanas(1,iSem)
 		if iSem = 4 then strSemana5 = gSemanas(1,iSem)
 	next
+	idCliente = Session("idCliente")
+	'response.write "<br> Cliente:= " & idCliente 
+	'if idCliente = 1 then
+	'	response.write "<br> Cliente:= " & idCliente 
+	'	
+	'	erase gSemanas
+	'	redim gSemanas(1,10)
+	'	gSemanas(1,0) = 24
+	'	gSemanas(1,1) = 25
+	'	gSemanas(1,2) = 26
+	'	gSemanas(1,3) = 27
+	'	gSemanas(1,4) = 28
+	'	gSemanas(1,5) = 29
+	'	gSemanas(1,6) = 30
+	'	gSemanas(1,7) = 31
+	'	gSemanas(1,8) = 32
+	'	gSemanas(1,9) = 33
+	'	gSemanas(1,10) = 24
+	'end if
 	if sSemAcum <> "" then
 		'Semanas Acumuladas
 		sql = ""
@@ -267,19 +287,18 @@
 	sql = sql & " And Id_Fabricante in (" & sFab & ")"
 	sql = sql & " And Id_Marca in (" & sMar & ")"
 	sql = sql & " And Id_Segmento in (" & sSeg & ")"
-	if sTam <> "" and sTam <> "0" then
+	if len(sTam) > 1 then
 		sql = sql & " And Id_Tamano in (" & sTam & ")"
 	else
-		if sPro <> "" then
-		else
-			sql = sql & " And Id_Tamano = 0 "
-		end if
+		sql = sql & " And Id_Tamano = 0 "
 	end if
 	if sPro <> "" then
 		sPro = replace(sPro,",","','")
 		sql = sql & " And CodigoBarra in ('" & sPro & "')"
 	else
-		sql = sql & " And CodigoBarra = ''"
+		if sPro = "" then
+			sql = sql & " And CodigoBarra = ''"
+		end if
 	end if
     sql = sql & " ORDER BY "
 	sql = sql & " Id_Area, "
@@ -292,6 +311,10 @@
 	sql = sql & " CodigoBarra, "
 	sql = sql & " Descripcion, "
 	sql = sql & " id_Semana "
+	if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
+		sql = replace(sql,"And Id_Tamano = 0","")
+	else
+	end if
 	'response.write "<br>258 sql:= " & sql
 	'response.end
     rsx1.Open sql ,conexionRS
@@ -308,7 +331,7 @@
 	'response.end
 	Response.ContentType = "application/vnd.ms-excel"
 	Response.AddHeader "Content-disposition","attachment; filename=tem.xls"
-
+	
 	if iExiste = 0 then
 		
 		%>
@@ -390,12 +413,11 @@
 								</table>
 								
 							</div>
-							<br>
 							<div class="table100-body js-pscroll">
 								<table border=0>
 									<tbody>					
 										<% 
-										'response.write "<br>397 LLEGO:= " & ubound(gProductosTotal,2)
+										'response.write "<br>415 LLEGO:= " & ubound(gProductosTotal,2)
 										'response.end
 										for iPro = 0 to  ubound(gProductosTotal,2)
 											'response.write "<br>354 LLEGO:= " & iPro
@@ -423,6 +445,30 @@
 												'Marca
 												response.write "<td width=6% class='cell100 column5'>"
 													response.write gProductosTotal(9,iPro) 
+													if sCat >= 127 and sCat <= 145 then
+														xMar = cint(gProductosTotal(8,iPro))
+														if xMar <> 0 then 
+															sql = ""
+															sql = sql & " SELECT "
+															sql = sql & " PH_CB_Marca.Id_Marca, "
+															sql = sql & " PH_CB_Fabricante.Fabricante "
+															sql = sql & " FROM PH_CB_Marca INNER JOIN PH_CB_Fabricante ON PH_CB_Marca.Id_Fabricante = PH_CB_Fabricante.id_Fabricante "
+															sql = sql & " WHERE "
+															sql = sql & " PH_CB_Marca.Ind_Medicina = 1 "
+															sql = sql & " AND PH_CB_Fabricante.Ind_Medicina = 1 "
+															sql = sql & " AND PH_CB_Marca.Id_Marca = " & xMar
+															'response.write "<br>36 sql:=" & sql
+															'response.end
+															rsx1.Open sql ,conexionRS
+															if rsx1.eof then
+																rsx1.close
+															else
+																gMarcas = rsx1.GetRows
+																rsx1.close
+															end if
+															response.write "(" & gMarcas(1,0) & ")"
+														end if
+													end if
 												response.write "</td>"
 												'Segmento
 												response.write "<td width=6% class='cell100 column6'>"
@@ -470,7 +516,6 @@
 													Indicador = gIndicadores(0,iInd)
 													Columna = Indicador + 16
 													Menos = 0
-													'response.write "<br>iPro1:=" & iPro1 & ""
 													for iSem = 0 to  ubound(gSemanas,2)
 														response.write "<td width=6% class='cell100 column11 text-right'>"
 															'response.write "iPro:=" & iPro & "=>"
@@ -490,6 +535,11 @@
 															end if
 															response.write Valor
 														response.write "</td>"
+													'response.write "<br>510"
+													'response.end
+
+										'response.write "<br>397 LLEGO:= " & ubound(gProductosTotal,2)
+										'response.end
 													next					
 													
 													ix = cint(ubound(gSemanas,2))

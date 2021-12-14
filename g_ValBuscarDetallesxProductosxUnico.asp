@@ -28,7 +28,9 @@
 	sql = sql & " PH_Consumo_Detalle_Productos.Moneda,"
 	sql = sql & " PH_Consumo_Detalle_Productos.Total_compra,"	
 	sql = sql & " PH_Consumo_Detalle_Productos.Id_Consumo_detalle_Productos,"
-	sql = sql & " PH_Consumo_Detalle_Productos.id_Moneda"
+	sql = sql & " PH_Consumo_Detalle_Productos.id_Moneda,"
+	sql = sql & " PH_Consumo_Detalle_Productos.id_Categoria,"
+	sql = sql & " PH_Consumo_Detalle_Productos.Unidad_empaque"
 	sql = sql & " FROM"
 	sql = sql & " PH_Consumo_Detalle_Productos"
 	sql = sql & " WHERE"
@@ -59,6 +61,8 @@
 			sTabla    =    sTabla &  chr(34) & "tasa" 	    & chr(34) & ":" & chr(34) & tasa & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "moneda"	    & chr(34) & ":" & chr(34) & arrDetalleUnico(5,i) & chr(34) & chr(44)			
 			sTabla    =    sTabla &  chr(34) & "idmoneda"	& chr(34) & ":" & chr(34) & Cstr(arrDetalleUnico(8,i)) & chr(34) & chr(44)
+			sTabla    =    sTabla &  chr(34) & "idcateg"	& chr(34) & ":" & chr(34) & Cstr(arrDetalleUnico(9,i)) & chr(34) & chr(44)
+			sTabla    =    sTabla &  chr(34) & "unidademp"	& chr(34) & ":" & chr(34) & arrDetalleUnico(10,i) & chr(34) & chr(44)
 			'			
 			precio = replace(arrDetalleUnico(2,i),",",".")
 			sTabla    =    sTabla &  chr(34) & "precio"    & chr(34) & ":" & chr(34) & precio & chr(34) & chr(125) & chr(44)

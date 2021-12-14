@@ -57,7 +57,7 @@ Session.LCID = 8202
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType = 2 'adLockOptimistic 
+	rsx1.LockType = 1 'adLockOptimistic 
 
 	'Buscar Semanas Mes Actual
 	sql = ""
@@ -187,7 +187,7 @@ Session.LCID = 8202
 	response.write "Total Hogares Mes Anterior = " & ubound(gDatosSol,2) + 1
 	response.write "</center>"
 	HogaresMesAnteriorCuadro1 = ubound(gDatosSol,2) + 1
-
+	
 	'Buscar Los Hogares en mes Actual
 	sql = ""
 	sql = sql & " SELECT "
@@ -229,6 +229,7 @@ Session.LCID = 8202
 		response.write "Total Hogares Mes Actual = " & ubound(gDatosSol,2) + 1
 		response.write "</center>"
 	end if
+	
 	for iReg = 1 to 40000
 		Data(iReg,1) = 0
 	next
@@ -239,6 +240,7 @@ Session.LCID = 8202
 		Data(idMarca,1) = Data(idMarca,1) + 1
 		Data(idMarca,2) = Marca
 	next
+	
 	Total = ubound(gDatosSol,2) + 1
 	TotalReg = 0
 	for iReg = 1 to 40000
@@ -310,6 +312,7 @@ Session.LCID = 8202
 					response.write "</tr>"
 					RsCuadro2.MoveNext
 				next 
+				response.flush
 				RsCuadro2.close
 				set RsCuadro2 = nothing
 				%>
@@ -482,6 +485,7 @@ Session.LCID = 8202
 				</thead>
 				<%
 				for iReg = 1 to TotalCuadro
+					
 					response.write "<tr>"
 						response.write "<td>"
 							response.write RsCuadro1("Marcas")

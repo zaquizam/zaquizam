@@ -47,15 +47,17 @@
 Sub ParDat
 	ed_Bot(4)="disabled"
 	ed_Bot(1)="disabled"
+	'ed_Bot(2)="disabled"
+	'ed_Bot(3)="disabled"
 	ed_iNumCam		=18					' Numero de campos en la pantalla principal
-	ed_iRegPag		=25					' Numero de registros por pagina
+	ed_iRegPag		=10					' Numero de registros por pagina
 	
 	ed_sNomTab		="PH_Ciudad"
 	ed_sNomInd		="Id_Ciudad"
 	ed_cCol		=1	' Columna a Ordenar
 	ed_cOrd		=0	' Orden 0=ascendente 1=descendente
 	ed_iRan		=0	' Presentar ranking de columnas
-	ed_iRep=0
+	'ed_iRep=1
 'ed_ides=1
 	SqlCla = " SELECT * FROM "  & ed_sNomTab
 	sqlcla = sqlcla & " WHERE  (fec_inactivo is null)"

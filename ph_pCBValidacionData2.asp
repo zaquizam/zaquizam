@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!Doctype html>
 <html >
 <head>
 	<title>Validacion Data 2</title>
@@ -16,7 +16,7 @@
 <!--#include file="estiloscss.asp"-->
 <!--#include file="encabezado.asp"-->
 <!--#include file="nn_subN.asp"-->
-<!--#include file="in_DataEN.asp"-->
+<!--#include file="in_DataEN1.asp"-->
 <!--#include file="ph_pCBValidacionDataModal.asp"-->
 <script>
 	//**Inicio Actualizar Promedio
@@ -247,12 +247,14 @@ Sub Combos
 	sql = sql & " FROM ss_Semana "
 	sql = sql & " Where "
 	sql = sql & " IdSemana > 14 "
+	'sql = sql & " and IdSemana < 47 "
 	sql = sql & " Order By "
 	sql = sql & " IdSemana Desc "
 	'response.write "<br>372 Combo1:=" & sql
     ed_sCombo(1,0)="Semana"
     ed_sCombo(1,1)=sql 
-    ed_sCombo(1,2)="Seleccionar"
+    'ed_sCombo(1,2)="Seleccionar"
+	ed_sCombo(1,2)=""
  
 	sql = ""
 	sql = sql & " SELECT "
@@ -283,19 +285,24 @@ Sub Combos
 	sql = sql & " FROM PH_DataValidacion INNER JOIN PH_CB_Producto ON PH_DataValidacion.CodigoBarra = PH_CB_Producto.CodigoBarra "
 	if ed_sPar(1,0) <> "" and ed_sPar(1,0) <> "Seleccionar" and ed_sPar(2,0) <> "" and ed_sPar(2,0) <> "Seleccionar" then
 		sql = sql & " WHERE "
-		sql = sql & " PH_DataValidacion.Id_Semana = " & ed_sPar(1,0)
-		sql = sql & " AND PH_DataValidacion.Id_Categoria = " & ed_sPar(2,0)
+		'sql = sql & " PH_DataValidacion.Id_Categoria = " & ed_sPar(2,0)
+		sql = sql & " PH_CB_Producto.Id_Categoria = " & ed_sPar(2,0)
+		sql = sql & " and PH_DataValidacion.Id_Semana = " & ed_sPar(1,0)
+	else
+		ed_iCombo = 2
 	END IF
 	sql = sql & " GROUP BY "
 	sql = sql & " PH_CB_Producto.Id_Producto, "
 	sql = sql & " PH_DataValidacion.Producto "
 	sql = sql & " HAVING (((PH_DataValidacion.Producto) Is Not Null)) "
+	'sql = sql & " and PH_CB_Producto.Id_Producto < 42826 "
 	sql = sql & " ORDER BY "
 	sql = sql & " PH_DataValidacion.Producto "
 	'response.write "<br>372 Combo3:=" & sql
-    ed_sCombo(3,0)="Producto"
+    'response.end
+	ed_sCombo(3,0)="Producto"
     ed_sCombo(3,1)=sql 
-    ed_sCombo(3,2)="Seleccionar"
+	ed_sCombo(3,2)="Seleccionar"
 	
 End Sub
 	   
@@ -313,6 +320,7 @@ End Sub
 	'if ed_sPar(1,0) = "" or ed_sPar(1,0) = "Seleccionar" then ed_sPar(1,0) = 17
     Combos
 	'response.end
+	
 %>		
 	<br>
 	<div style="width:98%">
@@ -320,7 +328,9 @@ End Sub
 	<table border="0" align="right">
 		<tr>
 			<td>
-				<%ed_vCombo%>
+				<%
+				ed_vCombo
+				%>
 			</td>
 		</tr>
 	</table>

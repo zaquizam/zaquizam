@@ -23,6 +23,11 @@ LCID = 1034
 	dim gCategoriasAbr
 	dim gCategoriasMay
 	dim gCategoriasJun
+	dim gCategoriasJul
+	dim gCategoriasAgo
+	dim gCategoriasSep
+	dim gCategoriasOct
+	dim gCategoriasNov
 	dim gCategoriasAcu
 	
 	dim gHogaresTotalEne
@@ -31,6 +36,11 @@ LCID = 1034
 	dim gHogaresTotalAbr
 	dim gHogaresTotalMay
 	dim gHogaresTotalJun
+	dim gHogaresTotalJul
+	dim gHogaresTotalAgo
+	dim gHogaresTotalSep
+	dim gHogaresTotalOct
+	dim gHogaresTotalNov
 	dim gHogaresTotalAcu
 	
 	dim gHogaresCategoriaEne
@@ -39,6 +49,11 @@ LCID = 1034
 	dim gHogaresCategoriaAbr
 	dim gHogaresCategoriaMay
 	dim gHogaresCategoriaJun
+	dim gHogaresCategoriaJul
+	dim gHogaresCategoriaAgo
+	dim gHogaresCategoriaSep
+	dim gHogaresCategoriaOct
+	dim gHogaresCategoriaNov
 	dim gHogaresCategoriaAcu
 	
 	Dim TotalHogaresEne
@@ -47,6 +62,11 @@ LCID = 1034
 	Dim TotalHogaresAbr
 	Dim TotalHogaresMay
 	Dim TotalHogaresJun
+	Dim TotalHogaresJul
+	Dim TotalHogaresAgo
+	Dim TotalHogaresSep
+	Dim TotalHogaresOct
+	Dim TotalHogaresNov
 	Dim TotalHogaresAcu
 	
 	Dim TotalHogaresCatEne
@@ -55,6 +75,11 @@ LCID = 1034
 	Dim TotalHogaresCatAbr
 	Dim TotalHogaresCatMay
 	Dim TotalHogaresCatJun
+	Dim TotalHogaresCatJul
+	Dim TotalHogaresCatAgo
+	Dim TotalHogaresCatSep
+	Dim TotalHogaresCatOct
+	Dim TotalHogaresCatNov
 	Dim TotalHogaresCatAcu
 	
 	TotalHogaresEne = 0
@@ -63,6 +88,11 @@ LCID = 1034
 	TotalHogaresAbr = 0
 	TotalHogaresMay = 0
 	TotalHogaresJun = 0
+	TotalHogaresJul = 0
+	TotalHogaresAgo = 0
+	TotalHogaresSep = 0
+	TotalHogaresOct = 0
+	TotalHogaresNov = 0
 	TotalHogaresAcu = 0
 	
 	'TotalHogaresEne
@@ -227,6 +257,141 @@ LCID = 1034
 		rsx1.close
 		TotalHogaresJun = ubound(gHogaresTotalJun,2) + 1
 	end if
+
+	'TotalHogaresJul
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno "
+	sql = sql & " FROM ss_Semana INNER JOIN PH_DataCruda ON ss_Semana.IdSemana = PH_DataCruda.Id_Semana "
+	sql = sql & " WHERE "
+	sql = sql & " PH_DataCruda.Id_Fabricante <> 0 "
+	sql = sql & " GROUP BY "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno, "
+	sql = sql & " PH_DataCruda.Id_Hogar "
+	sql = sql & " HAVING "
+	sql = sql & " ss_Semana.IdMes = 7 "
+	sql = sql & " AND ss_Semana.IdAno=2021 "
+	'response.write "<br>75 sql:=" & sql
+	'response.end
+	rsx1.Open sql ,conexion
+	if rsx1.eof then
+		rsx1.close
+		TotalHogaresJul = 0
+	else
+		gHogaresTotalJul = rsx1.GetRows
+		rsx1.close
+		TotalHogaresJul = ubound(gHogaresTotalJul,2) + 1
+	end if
+
+	'TotalHogaresAgo
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno "
+	sql = sql & " FROM ss_Semana INNER JOIN PH_DataCruda ON ss_Semana.IdSemana = PH_DataCruda.Id_Semana "
+	sql = sql & " WHERE "
+	sql = sql & " PH_DataCruda.Id_Fabricante <> 0 "
+	sql = sql & " GROUP BY "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno, "
+	sql = sql & " PH_DataCruda.Id_Hogar "
+	sql = sql & " HAVING "
+	sql = sql & " ss_Semana.IdMes = 8 "
+	sql = sql & " AND ss_Semana.IdAno=2021 "
+	'response.write "<br>75 sql:=" & sql
+	'response.end
+	rsx1.Open sql ,conexion
+	if rsx1.eof then
+		rsx1.close
+		TotalHogaresAgo = 0
+	else
+		gHogaresTotalAgo = rsx1.GetRows
+		rsx1.close
+		TotalHogaresAgo = ubound(gHogaresTotalAgo,2) + 1
+	end if
+
+	'TotalHogaresSep
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno "
+	sql = sql & " FROM ss_Semana INNER JOIN PH_DataCruda ON ss_Semana.IdSemana = PH_DataCruda.Id_Semana "
+	sql = sql & " WHERE "
+	sql = sql & " PH_DataCruda.Id_Fabricante <> 0 "
+	sql = sql & " GROUP BY "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno, "
+	sql = sql & " PH_DataCruda.Id_Hogar "
+	sql = sql & " HAVING "
+	sql = sql & " ss_Semana.IdMes = 9 "
+	sql = sql & " AND ss_Semana.IdAno=2021 "
+	'response.write "<br>75 sql:=" & sql
+	'response.end
+	rsx1.Open sql ,conexion
+	if rsx1.eof then
+		rsx1.close
+		TotalHogaresSep = 0
+	else
+		gHogaresTotalSep = rsx1.GetRows
+		rsx1.close
+		TotalHogaresSep = ubound(gHogaresTotalSep,2) + 1
+	end if
+
+	'TotalHogaresOct
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno "
+	sql = sql & " FROM ss_Semana INNER JOIN PH_DataCruda ON ss_Semana.IdSemana = PH_DataCruda.Id_Semana "
+	sql = sql & " WHERE "
+	sql = sql & " PH_DataCruda.Id_Fabricante <> 0 "
+	sql = sql & " GROUP BY "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno, "
+	sql = sql & " PH_DataCruda.Id_Hogar "
+	sql = sql & " HAVING "
+	sql = sql & " ss_Semana.IdMes = 10 "
+	sql = sql & " AND ss_Semana.IdAno=2021 "
+	'response.write "<br>75 sql:=" & sql
+	'response.end
+	rsx1.Open sql ,conexion
+	if rsx1.eof then
+		rsx1.close
+		TotalHogaresOct = 0
+	else
+		gHogaresTotalOct = rsx1.GetRows
+		rsx1.close
+		TotalHogaresOct = ubound(gHogaresTotalOct,2) + 1
+	end if
+
+	'TotalHogaresNov
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno "
+	sql = sql & " FROM ss_Semana INNER JOIN PH_DataCruda ON ss_Semana.IdSemana = PH_DataCruda.Id_Semana "
+	sql = sql & " WHERE "
+	sql = sql & " PH_DataCruda.Id_Fabricante <> 0 "
+	sql = sql & " GROUP BY "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno, "
+	sql = sql & " PH_DataCruda.Id_Hogar "
+	sql = sql & " HAVING "
+	sql = sql & " ss_Semana.IdMes = 11 "
+	sql = sql & " AND ss_Semana.IdAno=2021 "
+	'response.write "<br>75 sql:=" & sql
+	'response.end
+	rsx1.Open sql ,conexion
+	if rsx1.eof then
+		rsx1.close
+		TotalHogaresNov = 0
+	else
+		gHogaresTotalNov = rsx1.GetRows
+		rsx1.close
+		TotalHogaresNov = ubound(gHogaresTotalNov,2) + 1
+	end if
 	
 	'TotalHogaresAcu
 	sql = ""
@@ -280,18 +445,39 @@ LCID = 1034
 		<tr>
 			<td>IdCategoria</td>
 			<td>Categoria</td>
-			<td>Penetracion Enero 2021</td>
-			<td>Hogares Enero 2021</td>
-			<td>Penetracion Febrero 2021</td>
-			<td>Hogares Febrero 2021</td>
-			<td>Penetracion Marzo 2021</td>
-			<td>Hogares Marzo 2021</td>
-			<td>Penetracion Abril 2021</td>
-			<td>Hogares Abril 2021</td>
-			<td>Penetracion Mayo 2021</td>
-			<td>Hogares Mayo 2021</td>
+			<td>Penetracion Ene 2021</td>
+			<td>Hogares Ene 2021</td>
+
+			<td>Penetracion Feb 2021</td>
+			<td>Hogares Feb 2021</td>
+
+			<td>Penetracion Mar 2021</td>
+			<td>Hogares Mar 2021</td>
+
+			<td>Penetracion Abr 2021</td>
+			<td>Hogares Abr 2021</td>
+
+			<td>Penetracion May 2021</td>
+			<td>Hogares May 2021</td>
+
 			<td>Penetracion Jun 2021</td>
 			<td>Hogares Jun 2021</td>
+
+			<td>Penetracion Jul 2021</td>
+			<td>Hogares Jul 2021</td>
+
+			<td>Penetracion Ago 2021</td>
+			<td>Hogares Ago 2021</td>
+
+			<td>Penetracion Sep 2021</td>
+			<td>Hogares Sep 2021</td>
+
+			<td>Penetracion Oct 2021</td>
+			<td>Hogares Oct 2021</td>
+
+			<td>Penetracion Nov 2021</td>
+			<td>Hogares Nov 2021</td>
+			
 			<td>Acumulado 2021</td>
 			<td>Hogares Acumulado 2021</td>
 		</tr>
@@ -520,6 +706,187 @@ LCID = 1034
 					PenetracionJun = FormatNumber(PenetracionJun,2)
 					response.write "<br>(" & TotalHogaresCatJun & "-" & TotalHogaresJun & ")"
 				response.write "</td>"
+
+				'Penetración Julio
+				sql = ""
+				sql = sql & " SELECT "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " FROM PH_DataCruda INNER JOIN ss_Semana ON PH_DataCruda.Id_Semana = ss_Semana.IdSemana "
+				sql = sql & " WHERE "
+				sql = sql & " ss_Semana.IdMes = 7 "
+				sql = sql & " AND ss_Semana.IdAno = 2021 "
+				sql = sql & " AND PH_DataCruda.Id_Categoria = " & iCat
+				sql = sql & " GROUP BY "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				'response.write "<br>190 sql:=" & sql
+				'response.end
+				rsx1.Open sql ,conexion
+				if rsx1.eof then
+					rsx1.close
+					TotalHogaresCatJul = 0
+				else
+					gHogaresCategoriaJul = rsx1.GetRows
+					rsx1.close
+					TotalHogaresCatJul = ubound(gHogaresCategoriaJul,2) + 1
+				end if
+				PenetracionJul = 0
+				response.write "<td>"
+					PenetracionJul = (TotalHogaresCatJul * 100) / TotalHogaresJul
+					PenetracionJul = FormatNumber(PenetracionJul,2)
+					'PenetracionJul = cStr(PenetracionJul)
+					'PenetracionJul = replace(PenetracionJul,",",".")
+					response.write PenetracionJul
+				response.write "</td>"
+				response.write "<td>"
+					PenetracionJul = (TotalHogaresCatJul * 100) / TotalHogaresJul
+					PenetracionJul = FormatNumber(PenetracionJul,2)
+					response.write "<br>(" & TotalHogaresCatJul & "-" & TotalHogaresJul & ")"
+				response.write "</td>"
+
+				'Penetración Ago
+				sql = ""
+				sql = sql & " SELECT "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " FROM PH_DataCruda INNER JOIN ss_Semana ON PH_DataCruda.Id_Semana = ss_Semana.IdSemana "
+				sql = sql & " WHERE "
+				sql = sql & " ss_Semana.IdMes = 8 "
+				sql = sql & " AND ss_Semana.IdAno = 2021 "
+				sql = sql & " AND PH_DataCruda.Id_Categoria = " & iCat
+				sql = sql & " GROUP BY "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				'response.write "<br>190 sql:=" & sql
+				'response.end
+				rsx1.Open sql ,conexion
+				if rsx1.eof then
+					rsx1.close
+					TotalHogaresCatAgo = 0
+				else
+					gHogaresCategoriaAgo = rsx1.GetRows
+					rsx1.close
+					TotalHogaresCatAgo = ubound(gHogaresCategoriaAgo,2) + 1
+				end if
+				PenetracionAgo = 0
+				response.write "<td>"
+					PenetracionAgo = (TotalHogaresCatAgo * 100) / TotalHogaresAgo
+					PenetracionAgo = FormatNumber(PenetracionAgo,2)
+					'PenetracionAgo = cStr(PenetracionAgo)
+					'PenetracionAgo = replace(PenetracionAgo,",",".")
+					response.write PenetracionAgo
+				response.write "</td>"
+				response.write "<td>"
+					PenetracionAgo = (TotalHogaresCatAgo * 100) / TotalHogaresAgo
+					PenetracionAgo = FormatNumber(PenetracionAgo,2)
+					response.write "<br>(" & TotalHogaresCatAgo & "-" & TotalHogaresAgo & ")"
+				response.write "</td>"
+
+				'Penetración Sep
+				sql = ""
+				sql = sql & " SELECT "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " FROM PH_DataCruda INNER JOIN ss_Semana ON PH_DataCruda.Id_Semana = ss_Semana.IdSemana "
+				sql = sql & " WHERE "
+				sql = sql & " ss_Semana.IdMes = 9 "
+				sql = sql & " AND ss_Semana.IdAno = 2021 "
+				sql = sql & " AND PH_DataCruda.Id_Categoria = " & iCat
+				sql = sql & " GROUP BY "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				'response.write "<br>190 sql:=" & sql
+				'response.end
+				rsx1.Open sql ,conexion
+				if rsx1.eof then
+					rsx1.close
+					TotalHogaresCatSep = 0
+				else
+					gHogaresCategoriaSep = rsx1.GetRows
+					rsx1.close
+					TotalHogaresCatSep = ubound(gHogaresCategoriaSep,2) + 1
+				end if
+				PenetracionSep = 0
+				response.write "<td>"
+					PenetracionSep = (TotalHogaresCatSep * 100) / TotalHogaresSep
+					PenetracionSep = FormatNumber(PenetracionSep,2)
+					'PenetracionSep = cStr(PenetracionSep)
+					'PenetracionSep = replace(PenetracionSep,",",".")
+					response.write PenetracionSep
+				response.write "</td>"
+				response.write "<td>"
+					PenetracionSep = (TotalHogaresCatSep * 100) / TotalHogaresSep
+					PenetracionSep = FormatNumber(PenetracionSep,2)
+					response.write "<br>(" & TotalHogaresCatSep & "-" & TotalHogaresSep & ")"
+				response.write "</td>"
+
+				'Penetración Oct
+				sql = ""
+				sql = sql & " SELECT "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " FROM PH_DataCruda INNER JOIN ss_Semana ON PH_DataCruda.Id_Semana = ss_Semana.IdSemana "
+				sql = sql & " WHERE "
+				sql = sql & " ss_Semana.IdMes = 10 "
+				sql = sql & " AND ss_Semana.IdAno = 2021 "
+				sql = sql & " AND PH_DataCruda.Id_Categoria = " & iCat
+				sql = sql & " GROUP BY "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				'response.write "<br>190 sql:=" & sql
+				'response.end
+				rsx1.Open sql ,conexion
+				if rsx1.eof then
+					rsx1.close
+					TotalHogaresCatOct = 0
+				else
+					gHogaresCategoriaOct = rsx1.GetRows
+					rsx1.close
+					TotalHogaresCatOct = ubound(gHogaresCategoriaOct,2) + 1
+				end if
+				PenetracionOct = 0
+				response.write "<td>"
+					PenetracionOct = (TotalHogaresCatOct * 100) / TotalHogaresOct
+					PenetracionOct = FormatNumber(PenetracionOct,2)
+					'PenetracionOct = cStr(PenetracionOct)
+					'PenetracionOct = replace(PenetracionOct,",",".")
+					response.write PenetracionOct
+				response.write "</td>"
+				response.write "<td>"
+					PenetracionOct = (TotalHogaresCatOct * 100) / TotalHogaresOct
+					PenetracionOct = FormatNumber(PenetracionOct,2)
+					response.write "<br>(" & TotalHogaresCatOct & "-" & TotalHogaresOct & ")"
+				response.write "</td>"
+
+				'Penetración Nov
+				sql = ""
+				sql = sql & " SELECT "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " FROM PH_DataCruda INNER JOIN ss_Semana ON PH_DataCruda.Id_Semana = ss_Semana.IdSemana "
+				sql = sql & " WHERE "
+				sql = sql & " ss_Semana.IdMes = 11 "
+				sql = sql & " AND ss_Semana.IdAno = 2021 "
+				sql = sql & " AND PH_DataCruda.Id_Categoria = " & iCat
+				sql = sql & " GROUP BY "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				'response.write "<br>190 sql:=" & sql
+				'response.end
+				rsx1.Open sql ,conexion
+				if rsx1.eof then
+					rsx1.close
+					TotalHogaresCatNov = 0
+				else
+					gHogaresCategoriaNov = rsx1.GetRows
+					rsx1.close
+					TotalHogaresCatNov = ubound(gHogaresCategoriaNov,2) + 1
+				end if
+				PenetracionNov = 0
+				response.write "<td>"
+					PenetracionNov = (TotalHogaresCatNov * 100) / TotalHogaresNov
+					PenetracionNov = FormatNumber(PenetracionNov,2)
+					'PenetracionNov = cStr(PenetracionNov)
+					'PenetracionNov = replace(PenetracionNov,",",".")
+					response.write PenetracionNov
+				response.write "</td>"
+				response.write "<td>"
+					PenetracionNov = (TotalHogaresCatNov * 100) / TotalHogaresNov
+					PenetracionNov = FormatNumber(PenetracionNov,2)
+					response.write "<br>(" & TotalHogaresCatNov & "-" & TotalHogaresNov & ")"
+				response.write "</td>"
+
 
 				'Penetración Acumulado
 				sql = ""

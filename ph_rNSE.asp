@@ -180,7 +180,7 @@
 	sql = sql & " PH_TipoVivienda ON PH_PanelHogar.Id_TipoVivienda = PH_TipoVivienda.Id_TipoVivienda "
 	sql = sql & " WHERE "
 	sql = sql & " PH_PanelHogar.Ind_Activo = 1 "
-	'sql = sql & " and PH_PanelHogar.Id_PanelHogar = 706 "
+	'sql = sql & " and PH_PanelHogar.Id_PanelHogar = 1955 "
 	'sql = sql & " and PH_PanelHogar.Id_PanelHogar = 313 "
 	sql = sql & " Order By "
 	sql = sql & " PH_PanelHogar.Id_PanelHogar "
