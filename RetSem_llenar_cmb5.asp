@@ -1,7 +1,7 @@
 <!--#include file="conexionRS.asp" -->
 <%
 '
-' RetSem_llenar_cmb5.asp - 15jul21 - 13dic21
+' RetSem_llenar_cmb5.asp - 15jul21 - 06ene22
 '
 ' Cambio en combo Marca - 
 '
@@ -56,7 +56,7 @@ IF (Cint(opcion) = 5) THEN
 		QrySql = vbnullstring	
 		QrySql = QrySql & " SELECT "
 		QrySql = QrySql & " Id_Marca as id, "
-		QrySql = QrySql & " Marca+'('+Fabricante+')' as nombre "
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')' as nombre "
 		QrySql = QrySql & " FROM "
 		QrySql = QrySql & " RS_DataProcSem "
 		QrySql = QrySql & " WHERE "
@@ -75,11 +75,13 @@ IF (Cint(opcion) = 5) THEN
 		end if	
 		QrySql = QrySql & " GROUP BY "
 		QrySql = QrySql & " Id_Marca, "
-		QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		'QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')'"
 		QrySql = QrySql & " HAVING "
 		QrySql = QrySql & " Id_Marca <> 0 "
 		QrySql = QrySql & " ORDER BY "
-		QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		'QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')'"
 	else 
 		QrySql = vbnullstring	
 		QrySql = QrySql & " SELECT "

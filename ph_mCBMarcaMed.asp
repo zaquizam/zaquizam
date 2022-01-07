@@ -60,7 +60,7 @@ Sub ParDat
 	ed_cOrd		=0	' Orden 0=ascendente 1=descendente
 	ed_iRan		=0	' Presentar ranking de columnas
 	ed_iRep=0
-	if idUsuario <> 170 and idUsuario <> 1 and idUsuario <> 76 then  ed_iRep=1
+	'if idUsuario <> 170 and idUsuario <> 1 and idUsuario <> 76 then  ed_iRep=1
 'ed_ides=1
 	SqlCla = " SELECT * FROM "  & ed_sNomTab
 	sqlcla = sqlcla & " WHERE  (fec_inactivo is null)"

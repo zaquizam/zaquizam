@@ -1,7 +1,7 @@
 <!--#include file="conexionRS.asp" -->
 <%
 '
-' RetMen_llenar_cmb2.asp - 15jul21 - 13dic21
+' RetMen_llenar_cmb2.asp - 15jul21 - 06ene22
 '
 ' Cambio en combo Area - 
 '
@@ -229,21 +229,21 @@ ELSEIF (Cint(opcion) = 5) THEN
 		QrySql = vbnullstring	
 		QrySql = QrySql & " SELECT "
 		QrySql = QrySql & " Id_Marca as id, "
-		QrySql = QrySql & " Marca + '('+Fabricante+')' as nombre "
+		QrySql = QrySql & " Trim(Marca) + '('+Trim(Fabricante)+')' as nombre "
 		QrySql = QrySql & " FROM "
 		QrySql = QrySql & " RS_DataProcSem "
 		QrySql = QrySql & " WHERE "
-		QrySql = QrySql & " Id_Categoria = " & idCat
+		QrySql = QrySql & " Id_Fabricante <> 0 AND Id_Categoria = " & idCat
 		if Len(idArea)<>0 then 
 			QrySql = QrySql & " AND Id_Area in (" & idArea & ")"
 		end if	
 		QrySql = QrySql & " GROUP BY "
 		QrySql = QrySql & " Id_Marca, "
-		QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')'"
 		QrySql = QrySql & " HAVING "
 		QrySql = QrySql & " Id_Marca <> 0 "
 		QrySql = QrySql & " ORDER BY "
-		QrySql = QrySql & " Marca + '('+Fabricante+')'"
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')'"
 	else 
 		QrySql = vbnullstring	
 		QrySql = QrySql & " SELECT "

@@ -392,6 +392,7 @@
 								TotalReg = ubound(gProductosTotal,2)
 								
 								FOR iPro = 0 TO  ubound(gProductosTotal,2)
+								for iInd = 0 to  ubound(gIndicadores,2)
 									'Response.Write "<br>354 LLEGO:= " & iPro
 									Response.Write "<tr>"									
 										Response.Write "<td>"
@@ -434,7 +435,7 @@
 										iPro2 = iPro
 										isw = 0										
 										Response.Flush										
-										for iInd = 0 to  ubound(gIndicadores,2)
+										'for iInd = 0 to  ubound(gIndicadores,2)
 											iPro1 = iPro
 											'Response.Write "<br>354 LLEGO:= " & iPro1
 												if isw = 0 then
@@ -1005,7 +1006,12 @@
 																	'iExiste = 1
 																	gValor = rSx1.GetRows
 																	rSx1.close
-																	iValor = cDbl(gValor(0,0)) * 100
+																	'19nov21 - uFev
+																	if isNull(gValor(0,0)) then
+																		iValor = 0
+																	else
+																		iValor = cDbl(gValor(0,0)) * 100
+																	end if																	
 																end if
 																if isNull(iValor) then
 																	iValor = 0
@@ -1091,7 +1097,12 @@
 																	'iExiste = 1
 																	gValor = rSx1.GetRows
 																	rSx1.close
-																	iValor = cDbl(gValor(0,0)) * 100
+																	'19nov21 - uFev
+																	if isNull(gValor(0,0)) then
+																		iValor = 0
+																	else
+																		iValor = cDbl(gValor(0,0)) * 100
+																	end if																	
 																end if
 																if isNull(iValor) then
 																	iValor = 0

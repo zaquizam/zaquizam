@@ -1,6 +1,6 @@
 <%@language=vbscript%>
 <!--#include file="conexionRS.asp"-->
-<!-- RetSem_Excel.asp - 12oct21 - 17nov21 -->
+<!-- RetSem_Excel.asp - 12oct21 - 04ene22 -->
 <%
 	' Variables y Constantes
 	Response.buffer = True	
@@ -305,6 +305,8 @@
 								TotalReg = ubound(gProductosTotal,2)
 								
 								FOR iPro = 0 TO  ubound(gProductosTotal,2)
+								
+								for iInd = 0 to  ubound(gIndicadores,2)
 									'Response.Write "<br>354 LLEGO:= " & iPro
 									Response.Write "<tr>"									
 										Response.Write "<td>"
@@ -351,7 +353,7 @@
 										'Response.Write "</tr>"
 										iPro2 = iPro
 										isw = 0
-										for iInd = 0 to  ubound(gIndicadores,2)
+										'for iInd = 0 to  ubound(gIndicadores,2)
 											iPro1 = iPro
 											'Response.Write "<br>354 LLEGO:= " & iPro1
 												if isw = 0 then

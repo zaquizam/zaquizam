@@ -144,7 +144,10 @@
 	strSemana46 = "(46) Del 15 Nov 2021 al 21 Nov 2021"
 	strSemana47 = "(47) Del 22 Nov 2021 al 28 Nov 2021"
 	strSemana48 = "(48) Del 29 Nov 2021 al 05 Dic 2021"
-	
+	strSemana49 = "(49) Del 06 Dic 2021 al 12 Dic 2021"	
+	strSemana50 = "(50) Del 13 Dic 2021 al 19 Dic 2021"	
+	strSemana51 = "(51) Del 20 Dic 2021 al 26 Dic 2021"
+	strSemana52 = "(52) Del 27 Dic 2021 al 02 Ene 2022"
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
 	'else
@@ -390,6 +393,10 @@
 											<th class="cell100 column10 text-center"><%=strSemana46%></th>
 											<th class="cell100 column10 text-center"><%=strSemana47%></th>
 											<th class="cell100 column10 text-center"><%=strSemana48%></th>
+											<th class="cell100 column10 text-center"><%=strSemana49%></th>
+											<th class="cell100 column10 text-center"><%=strSemana50%></th>
+											<th class="cell100 column10 text-center"><%=strSemana51%></th>
+											<th class="cell100 column10 text-center"><%=strSemana52%></th>
 										</tr>
 									</thead>
 								</table>
@@ -475,6 +482,10 @@
 											<th class="cell100 column10 text-center"><%=strSemana46%></th>
 											<th class="cell100 column10 text-center"><%=strSemana47%></th>
 											<th class="cell100 column10 text-center"><%=strSemana48%></th>
+											<th class="cell100 column10 text-center"><%=strSemana49%></th>
+											<th class="cell100 column10 text-center"><%=strSemana50%></th>
+											<th class="cell100 column10 text-center"><%=strSemana51%></th>
+											<th class="cell100 column10 text-center"><%=strSemana52%></th>
 										</tr>
 									</thead>
 								</table>
@@ -805,6 +816,30 @@
 															response.write Valor
 														response.write "</td>"
 														idSemana = 63
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 64
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 65
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 66
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 67
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
@@ -1161,6 +1196,30 @@
 													response.write "<td width=10% class='text-right'>"
 														response.write Valor
 													response.write "</td>"
+													idSemana = 64
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 65
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 66
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 67
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
 												response.write "</tr>"
 											next
 										next					
@@ -1168,7 +1227,7 @@
 										%>
 									</tbody>
 								</table>
-							</div>
+							</div> 
 					</div>
 				
 				</div>

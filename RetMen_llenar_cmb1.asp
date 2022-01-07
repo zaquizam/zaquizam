@@ -1,7 +1,7 @@
 <!--#include file="conexionRS.asp" -->
 <%
 '
-'RetMen_llenar_cmb1.asp - 12jul21 - 13dic21
+'RetMen_llenar_cmb1.asp - 12jul21 - 06ene22
 '
 Session.lcid = 1034
 Response.CodePage = 65001
@@ -376,38 +376,22 @@ ELSEIF (Cint(opcion) = 6) THEN
 	'
 	' Buscar Datos de todas las Canales
 	'
-	'QrySql = vbnullstring	
-	'QrySql = QrySql & " SELECT "
-	'QrySql = QrySql & " Id_Marca as id, "
-	'QrySql = QrySql & " Marca as nombre"
-	'QrySql = QrySql & " FROM "
-	'QrySql = QrySql & " RS_DataProcSem "
-	'QrySql = QrySql & " WHERE "
-	'QrySql = QrySql & " Id_Categoria = " & idCat
-	'QrySql = QrySql & " GROUP BY "
-	'QrySql = QrySql & " Id_Marca, "
-	'QrySql = QrySql & " Marca "
-	'QrySql = QrySql & " HAVING "
-	'QrySql = QrySql & " Id_Marca <> 0 "
-	'QrySql = QrySql & " ORDER BY "
-	'QrySql = QrySql & " Marca "
-	'
 	if idCat >= 127 and idCat <= 145 then
 		QrySql = vbnullstring	
 		QrySql = QrySql & " SELECT "
 		QrySql = QrySql & " Id_Marca as id, "
-		QrySql = QrySql & " Marca+'('+Fabricante+')' as nombre "
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')' as nombre "
 		QrySql = QrySql & " FROM "
 		QrySql = QrySql & " RS_DataProcSem "
 		QrySql = QrySql & " WHERE "
-		QrySql = QrySql & " Id_Categoria = " & idCat
+		QrySql = QrySql & " Id_Fabricante <> 0 AND Id_Categoria = " & idCat
 		QrySql = QrySql & " GROUP BY "
 		QrySql = QrySql & " Id_Marca, "
-		QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')'"
 		QrySql = QrySql & " HAVING "
 		QrySql = QrySql & " Id_Marca <> 0 "
 		QrySql = QrySql & " ORDER BY "
-		QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		QrySql = QrySql & " Trim(Marca) + '('+Trim(Fabricante)+')'"
 	else 
 		QrySql = vbnullstring	
 		QrySql = QrySql & " SELECT "
@@ -425,9 +409,17 @@ ELSEIF (Cint(opcion) = 6) THEN
 		QrySql = QrySql & " ORDER BY "
 		QrySql = QrySql & " Marca "
 	end if
+	'	
+	' if idCat >= 127 and idCat <= 145 then
+		' 'QrySql = vbnullstring	
+		' QrySql = " SELECT Id_Marca as id, Trim(Marca)+'('+Trim(Fabricante)+')' as nombre FROM RS_DataProcSem WHERE Id_Fabricante <> 0 AND Id_Categoria = " & idCat & " GROUP BY Id_Marca, Trim(Marca)+'('+Trim(Fabricante)+')'"
+		' QrySql = QrySql & " HAVING Id_Marca <> 0 ORDER BY Trim(Marca) + '('+Trim(Fabricante)+')'"
+	' else 
+		' 'QrySql = vbnullstring	
+		' QrySql = QrySql & " SELECT Id_Marca as id, Marca as nombre FROM RS_DataProcSem  WHERE Id_Categoria = " & idCat & " GROUP BY Id_Marca, Marca HAVING Id_Marca <> 0 ORDER BY Marca "
+	' end if
 	
-	
-	
+	'	
 	'Response.Write QrySql & "<BR><BR>"
 	'Response.end
 	'
@@ -710,7 +702,7 @@ ELSEIF (Cint(opcion) = 10) THEN
 		QrySql = QrySql & " Ind_Men = 1 " 
 	end if
 	'
- 	if (idCat > 126 and idCat < 146) or (idCat = 41 or idCat = 18) then
+ 	if (idCat > 126 and idCat < 146) or (idCat = 41 or idCat = 18 or idCat = 54) then
 		QrySql = QrySql & " AND ( Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9 ) "
 	end if
 	'

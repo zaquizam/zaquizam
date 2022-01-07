@@ -1,5 +1,5 @@
 <!Doctype html>
-<!-- PH_Cte_RetailScanning.asp - 12jul21 - 16nov21 -->
+<!-- PH_Cte_RetailScanning.asp - 12jul21 - 06ene22 -->
 <html lang="es" >
 <head>
 	<title>| Retail Scanning Mensual |</title>
@@ -182,10 +182,19 @@
 			<span ><img src="images/atenas518.gif" border="0" width="48" height="48" ><strong>&nbsp;Espere, procesando....!</strong></span>
 		</div>
 		
+		<div class="container-fluid text-center text-primary" id="procesandoExcel" style="display:none;">
+			<br>			
+			<span ><img src="images/atenas518.gif" border="0" width="48" height="48" ><strong>&nbsp;Espere, generando Excel....!</strong></span>
+		</div>
+		
 		<hr>
 		
 		<div class="container-fluid text-center text-primary" id="DivRetailScanningSem" style="display:none;" >
 			<!-- Mostrar la tabla con los resultados -->
+		</div>
+		
+		<div class="container-fluid text-center text-primary" id="DivRetailScanningExcel" style="display:none;" >
+			<!-- Mostrar la tabla con los resultados Excel-->
 		</div>
 
 	<%conexion.close%>
@@ -198,7 +207,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-multiselect-0915.js"></script>
 <script src="rsrepmensual/js/funcionesMenV02.js"></script>
-<script src="rsrepmensual/js/refillCombosMenV02.js"></script>
+<script src="rsrepmensual/js/refillCombosMenV03.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/plugins/export/libs/FileSaver.js/FileSaver.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.6/xlsx.full.min.js"></script>
 
@@ -322,15 +331,7 @@
 				$("#cargando").css("display", "none");
 				aCtivar();			
 				return false;
-			}
-			/*
-			if (semanas.length == 0 || semanas==undefined) {
-				swal("Alerta","Indique al menos una Semana");				
-				$("#cargando").css("display", "none");
-				aCtivar();			
-				return false;
-			}
-			*/
+			}			
 			//
 			if (semanas.length == 0 || semanas==undefined) {				
 				semanas  = 0;
@@ -343,7 +344,7 @@
 			}else{
 				meses = meses.join();				
 			}			
-			ExecPrograma = 'RetMen_Excel.asp';
+			ExecPrograma = 'RetMen_Datos.asp';
 			//
 			let ajax = {
 				cat : categ,
@@ -388,8 +389,8 @@
 
 		});
 		//
-		
-		$('#BtnHistorico').click(function() {
+				
+		$('#BtnExcel').click(function() {
 			//
 			debugger;
 			event.preventDefault();
@@ -397,7 +398,7 @@
 			let semanas;
 			bLoquear();
 			//
-			$("#DivRetailScanningSem").css("display", "none");
+			$("#DivRetailScanningExcel").css("display", "none");
 			//
 			let categ = $("#cboCategoria").val();
 			if(categ==null){
@@ -461,8 +462,28 @@
 				indicadores = indicadores.join();
 			}
 			//			
-			semanas  = "";
-			ExecPrograma = 'RetMen_ExcelHist.asp';
+			semanas = $("#cboSemanas :selected").map((_,e) => e.value).get();
+			meses = $("#cboMeses :selected").map((_,e) => e.value).get();			
+			//
+			if ((semanas.length == 0 || semanas==undefined) && (meses.length == 0 || meses==undefined)) {
+				swal("Alerta","Indique al menos una Semana o Mes","error");				
+				$("#cargando").css("display", "none");
+				aCtivar();			
+				return false;
+			}			
+			//
+			if (semanas.length == 0 || semanas==undefined) {				
+				semanas  = 0;
+			}else{
+				semanas  = semanas.join();								
+			}			
+			//
+			if (meses.length == 0 || meses==undefined) {
+				meses = 0;
+			}else{
+				meses = meses.join();				
+			}			
+			ExecPrograma = 'RetMen_Excel.asp';
 			//
 			let ajax = {
 				cat : categ,
@@ -476,27 +497,46 @@
 				pro : producto,
 				ind : indicadores,
 				sem : semanas,
+				mes : meses,
 			};
-
-			$('#DivRetailScanningSem').html("");
+			//$('#DivRetailScanningExcel').html("");
 			$.ajax({
 				url: ExecPrograma,
 				type:'POST',
 				data: ajax,
 				beforeSend: function(objeto){
-					$("#procesando").css("display", "block");
+					$("#procesandoExcel").css("display", "block");
 				}
 			})
 			/*Si la consulta se realizo con exito*/
-			.done(function(data) {				
-				debugger;
+			.done(function(data) {								
 				console.log(data);
-				$('#DivRetailScanningSem').html('');
-				$('#DivRetailScanningSem').html(data);
-				$("#procesando").css("display", "none");
-				$("#DivRetailScanningSem").css("display", "block");
+				debugger;
+				$('#DivRetailScanningExcel').html('');
+				$('#DivRetailScanningExcel').html(data);				
+				//$("#DivRetailScanningExcel").css("display", "block");
 				sessionStorage.setItem("eXcel", 1);
 				aCtivar();
+				//
+				if(sessionStorage.getItem("eXcel")==1){
+					sessionStorage.setItem("eXcel", 0);
+					event.preventDefault();
+					//html_table_to_excel('xlsx');
+					var wb = XLSX.utils.table_to_book(document.getElementById('tbl_exportar_to_xls'), {
+					  sheet: "Resultados",
+					  raw: true
+					});
+					var wbout = XLSX.write(wb, {
+					  bookType: 'xlsx',
+					  bookSST: true,
+					  type: 'binary'
+					});
+					saveAs(new Blob([s2ab(wbout)], {  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8" }), 'Reporte Mensual.xlsx');
+					$("#procesandoExcel").css("display", "none");
+				}else{
+					swal("Aviso.!","Sin Datos para procesar..!", "error");
+					return false;
+				}
 			})
 			/*Si la consulta Fallo*/
 			.fail(function() {
@@ -504,28 +544,7 @@
 				aCtivar();
 				swal("Algo salio mal.!","Intente de nuevo", "error");
 			},'html');
-
-		});
-		//
-
-		$('#BtnExcel').click(function() {
-			if(sessionStorage.getItem("eXcel")==1){
-				event.preventDefault();
-				//html_table_to_excel('xlsx');
-				var wb = XLSX.utils.table_to_book(document.getElementById('tbl_exportar_to_xls'), {
-				  sheet: "Resultados",
-				  raw: true
-				});
-				var wbout = XLSX.write(wb, {
-				  bookType: 'xlsx',
-				  bookSST: true,
-				  type: 'binary'
-				});
-				saveAs(new Blob([s2ab(wbout)], {  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8" }), 'Reporte Mensual.xlsx');
-			}else{
-				swal("Aviso.!","Sin Datos para procesar..!", "error");
-				return false;
-			}
+			
 		});
 
 		function s2ab(s) {

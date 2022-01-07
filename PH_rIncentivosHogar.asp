@@ -79,7 +79,7 @@ Sub Combos
 	sql = sql & " ss_Periodo "
 	sql = sql & " WHERE "
 	sql = sql & " IdAno = 2021 "
-	sql = sql & " AND IdMes = 11 "
+	sql = sql & " AND IdMes = 12 "
 	'response.write "<br>372 Combo1:=" & sql
     ed_sCombo(1,0)="Mes"
     ed_sCombo(1,1)=sql 
@@ -92,7 +92,7 @@ Sub Combos
 	sql = sql & " FROM "
 	sql = sql & " ss_Cantidad "
 	sql = sql & " WHERE "
-	sql = sql & " Id_Cantidad < 5 "
+	sql = sql & " Id_Cantidad < 6 "
 	'response.write "<br>372 Combo1:=" & sql
     ed_sCombo(2,0)="Cantidad Semanas"
     ed_sCombo(2,1)=sql 
@@ -295,10 +295,11 @@ end sub
 							<th>Banco</th>
 							<th>Banco Codigo</th>
 							<th>Cuenta</th>
-							<th>(44) Del 01 Nov 2021 al 07 Nov 2021</th>
-							<th>(45) Del 08 Nov 2021 al 14 Nov 2021</th>
-							<th>(46) Del 15 Nov 2021 al 21 Nov 2021</th>
-							<th>(47) Del 22 Nov 2021 al 28 Nov 2021</th>
+							<th>(48) Del 29 Nov 2021 al 05 Dic 2021</th>
+							<th>(49) Del 06 Dic 2021 al 12 Dic 2021</th>
+							<th>(50) Del 13 Dic 2021 al 19 Dic 2021</th>
+							<th>(51) Del 20 Dic 2021 al 26 Dic 2021</th>
+							<th>(52) Del 27 Dic 2021 al 02 Ene 2022</th>
 							<th>Pagar Incentivo</th>
 							<!--<th>Enc. Carrito de compra</th>
 							<th>Enc. Retailers Capital</th>
@@ -316,7 +317,7 @@ end sub
 						sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 						sql = sql & " FROM PH_Consumo "
 						sql = sql & " WHERE "
-						sql = sql & " PH_Consumo.Id_Semana = 59 "
+						sql = sql & " PH_Consumo.Id_Semana = 63 "
 						sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 						sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 						'response.write "<br>232 sql:= " & sql
@@ -335,7 +336,7 @@ end sub
 						sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 						sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 						sql = sql & " WHERE "
-						sql = sql & " PH_Consumo.Id_Semana = 59 "
+						sql = sql & " PH_Consumo.Id_Semana = 63 "
 						sql = sql & " GROUP BY "
 						sql = sql & " PH_Consumo.Id_Hogar, "
 						sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -359,7 +360,7 @@ end sub
 						sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 						sql = sql & " FROM PH_Consumo "
 						sql = sql & " WHERE "
-						sql = sql & " PH_Consumo.Id_Semana = 60 "
+						sql = sql & " PH_Consumo.Id_Semana = 64 "
 						sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 						sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 						'response.write "<br>232 sql:= " & sql
@@ -378,7 +379,7 @@ end sub
 						sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 						sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 						sql = sql & " WHERE "
-						sql = sql & " PH_Consumo.Id_Semana = 60 "
+						sql = sql & " PH_Consumo.Id_Semana = 64 "
 						sql = sql & " GROUP BY "
 						sql = sql & " PH_Consumo.Id_Hogar, "
 						sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -403,7 +404,7 @@ end sub
 						sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 						sql = sql & " FROM PH_Consumo "
 						sql = sql & " WHERE "
-						sql = sql & " PH_Consumo.Id_Semana = 61 "
+						sql = sql & " PH_Consumo.Id_Semana = 65 "
 						sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 						sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 						'response.write "<br>232 sql:= " & sql
@@ -422,7 +423,7 @@ end sub
 						sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 						sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 						sql = sql & " WHERE "
-						sql = sql & " PH_Consumo.Id_Semana = 61 "
+						sql = sql & " PH_Consumo.Id_Semana = 65 "
 						sql = sql & " GROUP BY "
 						sql = sql & " PH_Consumo.Id_Hogar, "
 						sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -446,7 +447,7 @@ end sub
 						sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
 						sql = sql & " FROM PH_Consumo "
 						sql = sql & " WHERE "
-						sql = sql & " PH_Consumo.Id_Semana = 62 "
+						sql = sql & " PH_Consumo.Id_Semana = 66 "
 						sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
 						sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
 						'response.write "<br>232 sql:= " & sql
@@ -465,7 +466,7 @@ end sub
 						sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
 						sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
 						sql = sql & " WHERE "
-						sql = sql & " PH_Consumo.Id_Semana = 62 "
+						sql = sql & " PH_Consumo.Id_Semana = 66 "
 						sql = sql & " GROUP BY "
 						sql = sql & " PH_Consumo.Id_Hogar, "
 						sql = sql & " PH_Consumo.id_TipoConsumo "
@@ -484,11 +485,55 @@ end sub
 							iSemana4Reg = gDatosSol1(0,0)  
 						end if
 
+						sql = ""
+						sql = sql & " SELECT "
+						sql = sql & " Count(PH_Consumo.Id_Consumo) AS CuentaDeId_Consumo "
+						sql = sql & " FROM PH_Consumo "
+						sql = sql & " WHERE "
+						sql = sql & " PH_Consumo.Id_Semana = 67 "
+						sql = sql & " AND PH_Consumo.Id_Hogar = " & idHogar
+						sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
+						'response.write "<br>232 sql:= " & sql
+						'response.end
+						rsx2.Open sql ,conexion
+						if rsx2.eof then
+							rsx2.close
+							iSemana5 = 0
+						else 
+							gDatosSol1 = rsx2.GetRows
+							rsx2.close
+							iSemana5 = gDatosSol1(0,0)  
+						end if
+						sql = ""
+						sql = sql & " SELECT "
+						sql = sql & " Count(PH_Consumo_Detalle_Productos.Id_Consumo_Detalle_Productos) AS CuentaDeId_Consumo_Detalle_Productos "
+						sql = sql & " FROM PH_Consumo INNER JOIN PH_Consumo_Detalle_Productos ON (PH_Consumo.Id_Hogar = PH_Consumo_Detalle_Productos.Id_Hogar) AND (PH_Consumo.Id_Consumo = PH_Consumo_Detalle_Productos.Id_Consumo) "
+						sql = sql & " WHERE "
+						sql = sql & " PH_Consumo.Id_Semana = 67 "
+						sql = sql & " GROUP BY "
+						sql = sql & " PH_Consumo.Id_Hogar, "
+						sql = sql & " PH_Consumo.id_TipoConsumo "
+						sql = sql & " HAVING "
+						sql = sql & " PH_Consumo.Id_Hogar = " & idHogar 
+						sql = sql & " AND PH_Consumo.id_TipoConsumo = 1 "
+						'response.write "<br>232 sql:= " & sql
+						'response.end
+						rsx2.Open sql ,conexion
+						if rsx2.eof then
+							rsx2.close
+							iSemana5Reg = 0
+						else 
+							gDatosSol1 = rsx2.GetRows
+							rsx2.close
+							iSemana5Reg = gDatosSol1(0,0)  
+						end if
+
 						iSemana = 0
 						if iSemana1 > 0 then iSemana = iSemana + 1
 						if iSemana2 > 0 then iSemana = iSemana + 1
 						if iSemana3 > 0 then iSemana = iSemana + 1
 						if iSemana4 > 0 then iSemana = iSemana + 1
+						if iSemana5 > 0 then iSemana = iSemana + 1
 						
 						if cint(iSemana) >= cint(idCantidadConsumos) then
 							response.write "<tr>"
@@ -522,6 +567,7 @@ end sub
 								response.write "<td>" & iSemana2 & "-" & iSemana2Reg &"</td>"
 								response.write "<td>" & iSemana3 & "-" & iSemana3Reg &"</td>"
 								response.write "<td>" & iSemana4 & "-" & iSemana4Reg &"</td>"
+								response.write "<td>" & iSemana5 & "-" & iSemana5Reg &"</td>"
 								
 								if cint(iSemana) >= cint(idCantidadConsumos) then
 									response.write "<td>Si</td>"

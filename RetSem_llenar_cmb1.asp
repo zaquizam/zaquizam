@@ -1,7 +1,7 @@
 <!--#include file="conexionRS.asp" -->
 <%
 '
-'RetSem_llenar_cmb1.asp - 12jul21 - 13dic21
+'RetSem_llenar_cmb1.asp - 12jul21 - 23dic21
 '
 Session.lcid = 1034
 Response.CodePage = 65001
@@ -389,18 +389,18 @@ ELSEIF (Cint(opcion) = 6) THEN
 		QrySql = vbnullstring	
 		QrySql = QrySql & " SELECT "
 		QrySql = QrySql & " Id_Marca as id, "
-		QrySql = QrySql & " Marca+'('+Fabricante+')' as nombre "
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')' as nombre "
 		QrySql = QrySql & " FROM "
 		QrySql = QrySql & " RS_DataProcSem "
 		QrySql = QrySql & " WHERE "
-		QrySql = QrySql & " Id_Categoria = " & idCat
+		QrySql = QrySql & " Id_Fabricante <> 0 AND Id_Categoria = " & idCat
 		QrySql = QrySql & " GROUP BY "
 		QrySql = QrySql & " Id_Marca, "
-		QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')'"
 		QrySql = QrySql & " HAVING "
 		QrySql = QrySql & " Id_Marca <> 0 "
 		QrySql = QrySql & " ORDER BY "
-		QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		QrySql = QrySql & " Trim(Marca) + '('+Trim(Fabricante)+')'"
 	else 
 		QrySql = vbnullstring	
 		QrySql = QrySql & " SELECT "
@@ -702,7 +702,7 @@ ELSEIF (Cint(opcion) = 10) THEN
 		QrySql = QrySql & " Ind_Sem = 1 " 
 	end if
 	
-	if (idCat > 126 and idCat < 146) or (idCat = 41 or idCat = 18) then
+	if (idCat > 126 and idCat < 146) or (idCat = 41 or idCat = 18 or idCat = 54) then
 		QrySql = QrySql & " AND ( Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9 ) "
 	end if	
 	'

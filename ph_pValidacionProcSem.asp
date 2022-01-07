@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html >
 <head>
-	<title>Procesamiento Semanal</title>
+	<title>Proc Sem Consumo</title>
     <meta name="Robots" content="noindex" >
     <meta name="Robots" content="none" >
     <meta name="Robots" content="nofollow" >
@@ -122,6 +122,8 @@ Sub Combos
 	sql = sql & " Categoria "
 	sql = sql & " FROM "
 	sql = sql & " PH_CB_Categoria "
+	sql = sql & " Where "
+	sql = sql & " Ind_Medicina = 0 "
 	sql = sql & " Order by Categoria "
 	'response.write "<br>372 Combo1:=" & sql
     ed_sCombo(2,0)="Categoria"

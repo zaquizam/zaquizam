@@ -141,11 +141,15 @@
 	'strSemana1 = "(41) Del 11 Oct 2021 al 17 Oct 2021"
 	'strSemana1 = "(42) Del 18 Oct 2021 al 24 Oct 2021"
 	'strSemana1 = "(43) Del 25 Oct 2021 al 31 Oct 2021"
-	strSemana1 = "(44) Del 01 Nov 2021 al 07 Nov 2021"
-	strSemana2 = "(45) Del 08 Nov 2021 al 14 Nov 2021"
-	strSemana3 = "(46) Del 15 Nov 2021 al 21 Nov 2021"
-	strSemana4 = "(47) Del 22 Nov 2021 al 28 Nov 2021"
-	strSemana5 = "(48) Del 29 Nov 2021 al 05 Dic 2021"
+	'strSemana1 = "(44) Del 01 Nov 2021 al 07 Nov 2021"
+	'strSemana1 = "(45) Del 08 Nov 2021 al 14 Nov 2021"
+	'strSemana1= "(46) Del 15 Nov 2021 al 21 Nov 2021"
+	'strSemana1= "(47) Del 22 Nov 2021 al 28 Nov 2021"
+	strSemana1 = "(48) Del 29 Nov 2021 al 05 Dic 2021"
+	strSemana2 = "(49) Del 06 Dic 2021 al 12 Dic 2021"
+	strSemana3 = "(50) Del 13 Dic 2021 al 19 Dic 2021"
+	strSemana4 = "(51) Del 20 Dic 2021 al 26 Dic 2021"
+	strSemana5 = "(52) Del 27 Dic 2021 al 02 Ene 2022"
 	
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
@@ -432,31 +436,31 @@
 														iMar = gProductosTotal(2,iPro)
 														iSeg = gProductosTotal(4,iPro)
 														'response.write "<br>Ind = " & Indicador
-														idSemana = 59
+														idSemana = 63
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='cell100 column8 text-right'>"
 															response.write Valor
 														response.write "</td>"
-														idSemana = 60
+														idSemana = 64
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
 															response.write Valor
 														response.write "</td>"
-														idSemana = 61
+														idSemana = 65
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
 															response.write Valor
 														response.write "</td>"
-														idSemana = 62
+														idSemana = 66
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
 															response.write Valor
 														response.write "</td>"
-														idSemana = 63
+														idSemana = 67
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
@@ -537,32 +541,32 @@
 														iX = IX + 2
 													end if
 													'response.write "<br>Ind = " & Indicador
-													idSemana = 59
+													idSemana = 63
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='cell100 column8 text-right'>"
 														response.write Valor
 													response.write "</td>"
-													idSemana = 60
+													idSemana = 64
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
 														response.write Valor
 													response.write "</td>"
-													idSemana = 61
+													idSemana = 65
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
 														'Valor = ""
 														response.write Valor
 													response.write "</td>"
-													idSemana = 62
+													idSemana = 66
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
 														response.write Valor
 													response.write "</td>"
-													idSemana = 63
+													idSemana = 67
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
@@ -989,6 +993,7 @@ Sub CalcularIndicador
 					sql = sql & " And Id_Marca =  0 "
 					sql = sql & " And Id_Segmento = " & iSeg 
 					sql = sql & " And id_Semana in( " & idSemana & ")"
+					'response.write "<br>933Paso 2" 
 				else
 					sql = ""
 					sql = sql & " SELECT "
@@ -1003,7 +1008,7 @@ Sub CalcularIndicador
 					sql = sql & " And Id_Segmento = 0"
 					sql = sql & " And Id_RangoTamano = 0"
 					sql = sql & " And id_Semana in( " & idSemana & ")"
-					'response.write "<br>933Paso 2" 
+					'response.write "<br>933Paso 3" 
 				end if
 			end if
 			'response.write "<br>36 sql:=" & sql

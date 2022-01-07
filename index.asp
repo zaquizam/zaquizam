@@ -1,4 +1,4 @@
-﻿<%
+﻿i<%
 'Variables Globales
 Session.TimeOut = 60
 Server.ScriptTimeout = 5000
@@ -6,7 +6,7 @@ Dim sActivar_planificacion
 Dim sActivar_tiendaspendientes
 Dim sActivar_tiendasrealizadas
 Dim sTitulo_modulo
-Response.CharSet = "utf-8"
+Response.CharSet = "ISO-8859-1"
 Response.addHeader "pragma", "no-cache"
 Response.CacheControl = "Private"
 Response.Expires = 0
@@ -23,7 +23,7 @@ Next
 <head>
 	<!-- Creado: 18abr17 - Actualizado: 26jun17 -->
 	<title>| Atenas |</title>       
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Los 3 primeros metas siempre deben ir en el HEAD antes que nada -->			
@@ -33,11 +33,12 @@ Next
 	<link href="css/login.css" rel="stylesheet" type="text/css" media="screen">
 	<link rel="icon" href="favicon.ico" type="image/x-icon"> 	
 	<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>-->
-	
+	<script type="text/javascript" src="js/jquery-1.11.3-jquery.min.js"></script>
+	<script type="text/javascript" src="js/validation.min.js"></script>
+	<script type="text/javascript" src="js/loginscript.js"></script>						
 </head>
 <!--<body onload="loadLocation();">-->
 <body>
-	
 	<div id="DetallePauta">
 
 		<div id="1" class="modalmask">
@@ -118,15 +119,11 @@ Next
 			</div>
 	   </form>					
 	</div> <!-- class="signin-form" -->
-	<script type="text/javascript" src="js/jquery-1.11.3-jquery.min.js"></script>
-	<script type="text/javascript" src="js/validation.min.js"></script>
-	<script type="text/javascript" src="js/loginscript.js"></script>						
 	<script src="js/bootstrap.min.js"></script>
 	<script>	
 		
 		//**Inicio Solitar Clave por Correo 
 		function SolicitarClave() {
-		
 			var sx = document.getElementById("CorreoSolicitar").value
 			if (sx == "") {
 				alert("Debe Incluir un correo");

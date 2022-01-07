@@ -1,7 +1,7 @@
 <!--#include file="conexionRS.asp" -->
 <%
 '
-' RetSem_llenar_cmb2.asp - 15jul21 - 13dic21
+' RetSem_llenar_cmb2.asp - 15jul21 - 06ene22
 '
 ' Cambio en combo Area - 
 '
@@ -216,24 +216,16 @@ ELSEIF (Cint(opcion) = 5) THEN
 	Dim rsMarca, arrMarca
 	'
 	' Buscar Datos de todas las Marcas
-	'
-	'QrySql = vbnullstring	
-	'QrySql = QrySql & " SELECT DISTINCT Id_Marca as id, Marca as nombre FROM RS_DataProcSem WHERE"
-	'QrySql = QrySql & " Id_Categoria = " & idCat
-	'if Len(idArea)<>0 then 
-	'	QrySql = QrySql & " AND Id_Area in (" & idArea & ")"
-	'end if	
-	'QrySql = QrySql & " AND Id_Marca <> 0 ORDER BY Marca"	
-	'
+	'	
 	if idCat >= 127 and idCat <= 145 then
 		QrySql = vbnullstring	
 		QrySql = QrySql & " SELECT "
 		QrySql = QrySql & " Id_Marca as id, "
-		QrySql = QrySql & " Marca+'('+Fabricante+')' as nombre "
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')' as nombre "
 		QrySql = QrySql & " FROM "
 		QrySql = QrySql & " RS_DataProcSem "
 		QrySql = QrySql & " WHERE "
-		QrySql = QrySql & " Id_Categoria = " & idCat
+		QrySql = QrySql & " Id_Fabricante <> 0 AND Id_Categoria = " & idCat
 		'
 		if Len(idArea)<>0 then 
 			QrySql = QrySql & " AND Id_Area in (" & idArea & ")"
@@ -241,11 +233,11 @@ ELSEIF (Cint(opcion) = 5) THEN
 		'		
 		QrySql = QrySql & " GROUP BY "
 		QrySql = QrySql & " Id_Marca, "
-		QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')'"
 		QrySql = QrySql & " HAVING "
 		QrySql = QrySql & " Id_Marca <> 0 "
 		QrySql = QrySql & " ORDER BY "
-		QrySql = QrySql & " Marca+'('+Fabricante+')'"
+		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')'"
 
 	else 
 		QrySql = vbnullstring	

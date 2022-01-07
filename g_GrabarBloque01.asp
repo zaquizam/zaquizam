@@ -186,7 +186,7 @@ Session.LCID = 8202
 	%>
 	<div id="DivHogar"> 
 		<input type="text" name="Hogar" disabled id="Hogar" value="<%=recordID%>" size=6 style="text-align:right; background-color:#d1d1d1;">
-		<input type="text" name="Hogar" disabled id="Hogar" value="<%=ycod%>" size=10 style="text-align:right; background-color:#d1d1d1;">
+		<input type="text" name="CodigoHogar" disabled id="CodigoHogar" value="<%=ycod%>" size=10 style="text-align:right; background-color:#d1d1d1;">
 	</div>
 
 	<%
