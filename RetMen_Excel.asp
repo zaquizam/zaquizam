@@ -732,9 +732,14 @@
 																else
 																	'iExiste = 1
 																	gValor = rSx1.GetRows
-																	rSx1.close
+																	iValor = gValor(0,0)
 																	'Response.Write "<br>659 Query:=" & gValor(0,0) & " Convertido:= " & cDbl(gValor(0,0)) &  "<br>"
-																	iValor = cDbl(gValor(0,0))
+																	if isNull(iValor) then
+																		iValor = 0
+																	else
+																		iValor = cDbl(gValor(0,0))
+																	end if
+																	rSx1.close
 																end if
 																if isNull(iValor) then
 																	iValor = 0
