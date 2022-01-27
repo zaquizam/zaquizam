@@ -43,14 +43,14 @@
 	idCliente = Session("idCliente")
 	'		
 	' Response.Write "Pro " & sPro & "<br>"
-	' response.end
+	' Response.End
 	'	
 	sSemanas = sSem
 	'Response.Write "<br>84 Sem:=" & sSem	
 	
-	if len(sPro) = 0 then sPro = "" end if
-	if len(sInd) = 0 then sInd = "" end if	
-	if len(sMes) = 0 then sMes = "" end if
+	if Len(sPro) = 0 then sPro = "" end if
+	if Len(sInd) = 0 then sInd = "" end if	
+	if Len(sMes) = 0 then sMes = "" end if
 		
 	Dim gProductosTotal
 	Dim gIndicadores
@@ -62,62 +62,42 @@
 	set rSx1 = CreateObject("ADODB.Recordset")
 	rSx1.CursorType = adOpenKeyset 
 	rSx1.LockType = 1 'adLockOptimistic 
-
+	'
 	'Semanas	
-	sQl = vbnullstring
-	sQl = sQl & " SELECT "
-	sQl = sQl & " IdSemana, "
-	sQl = sQl & " SemanaCorta "
-	sQl = sQl & " FROM "
-	sQl = sQl & " ss_Semana "
-	sQl = sQl & " WHERE "
-	sQl = sQl & " IdSemana in ( " & sSemanas & ")"	
-	sQl = sQl & " Order By "
-	sQl = sQl & " IdSemana "
-	'Response.Write "<br>151 sQl:=" & sQl & "<br>"
-	'response.end
+	'
+	sQl = vbNullstring
+	sQl = " SELECT IdSemana, SemanaCorta FROM ss_Semana WHERE IdSemana in ( " & sSemanas & ") Order By IdSemana"
+	'nse.Write "<br>151 sQl:=" & sQl & "<br>"
+	'Response.End
 	rSx1.Open sQl ,conexionRS
-	if rSx1.eof then
-		rSx1.close
+	if rSx1.Eof then
+		rSx1.Close
 	else
 		gSemanas = rSx1.GetRows
-		rSx1.close
+		rSx1.Close
 	end if
 	'	
 	'Meses
 	'
-	if sMes <> "" then
-	
-		sQl = vbnullstring
-		sQl = sQl & " SELECT "
-		sQl = sQl & " IdPeriodo, "
-		sQl = sQl & " PeriodoCorto "
-		sQl = sQl & " FROM "
-		sQl = sQl & " ss_Periodo"
-		sQl = sQl & " WHERE Semanas IS NOT NULL"
-		sQl = sQl & " AND IdPeriodo in ( " & sMes & ")"	
-		sQl = sQl & " Order By "
-		sQl = sQl & " idPeriodo ASC "
+	if sMes <> "" then	
+		sQl = vbNullstring
+		sQl = " SELECT IdPeriodo, PeriodoCorto FROM ss_Periodo WHERE Semanas IS NOT NULL AND IdPeriodo in ( " & sMes & ") Order By idPeriodo ASC "
 		'Response.Write "<br>151 sQl:=" & sQl & "<br>"
-		'response.end
+		'Response.End
 		rSx1.Open sQl ,conexionRS
-		if rSx1.eof then
-			rSx1.close
+		if rSx1.Eof then
+			rSx1.Close
 		else
 			gMeses = rSx1.GetRows
-			rSx1.close
+			rSx1.Close
 		end if
 	'	
 	end if
-	sQl = vbnullstring
-	sQl = sQl & " SELECT "
-	sQl = sQl & " Id_Indicador, "
-	sQl = sQl & " Abreviatura, "
-	sQl = sQl & " UnidadMedida "
-	sQl = sQl & " FROM "
-	sQl = sQl & " RS_Indicadores "
-	sQl = sQl & " WHERE "	'
-	sQl = sQl & " Ind_Activo = 1 " 
+	'	
+	' Indicadores
+	'
+	sQl = vbNullstring
+	sQl = " SELECT Id_Indicador, Abreviatura, UnidadMedida FROM RS_Indicadores WHERE Ind_Activo = 1 " 
 	'
 	if (CInt(idCliente) = 1) then
 		sQl = sQl & " AND Ind_atenas = 1 " 		
@@ -127,127 +107,118 @@
 	if sInd <> "" then
 		sQl = sQl & " And Id_Indicador in (" & sInd & ")"
 	end if
-	if (sCat >= 127 and sCat <= 145) or sCat = 41 or sCat = 18 then
-		sql = sql & " and (Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9) "
-	end if	
-	sQl = sQl & " ORDER BY "
-	sQl = sQl & " Id_Indicador "
+	'if (sCat >= 127 and sCat <= 145) or sCat = 41 or sCat = 18 then
+	'	sQl = sQl & " and (Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9) "
+	'end if	
+	if (sCat > 126 and sCat < 146) or (sCat = 41 or sCat = 18 or sCat = 54) then
+		sQl = sQl & " AND ( Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9 ) "
+	end if
+	sQl = sQl & " ORDER BY Id_Indicador "
+	'
 	'Response.Write "<br>191 sQl:=" & sQl & "<br>"
-	''	
-	'response.end 
+	'	
+	'Response.End 
+	'
 	rSx1.Open sQl ,conexionRS
-	if rSx1.eof then
-		rSx1.close
+	if rSx1.Eof then
+		rSx1.Close
 	else
 		gIndicadores = rSx1.GetRows
-		rSx1.close
+		rSx1.Close
 	end if
 	'Response.Write "<br>203 Paso" 
-	'response.end	
+	'Response.End	
 	''
-	'Query
-	sql = ""
-    sql = sql & " SELECT "
-	sql = sql & " Id_Area, "
-	sql = sql & " Area, "
-	sql = sql & " Id_Zona, "
-	sql = sql & " Zona, "
-	sql = sql & " Id_Canal, "
-	sql = sql & " Canal, "
-	sql = sql & " Id_Fabricante, "
-	sql = sql & " Fabricante, "
-	sql = sql & " Id_Marca, "
-	sql = sql & " Marca, "
-	sql = sql & " Id_Segmento, "
-	sql = sql & " Segmento, "
-	sql = sql & " Id_Tamano, "
-	sql = sql & " Tamano, "
-	sql = sql & " CodigoBarra, "
-	sql = sql & " Descripcion, "
-	sql = sql & " UnidadMedida, "
-	sql = sql & " VentasUni, "			'17
-	sql = sql & " VentasVal, "			'18
-	sql = sql & " VentasUniMed, "		'19
-	sql = sql & " VentasNo, "			'20
-	sql = sql & " DistribucionNum, "	'21
-	sql = sql & " DistribucionPon, "	'22
-	sql = sql & " DistribucionEfe, "	'23
-	sql = sql & " ShareUni, "			'24
-	sql = sql & " ShareVol, "			'25
-	sql = sql & " ShareVal, "			'26
-	sql = sql & " PrecioPro, "			'27
-	sql = sql & " PrecioMax, "			'28
-	sql = sql & " PrecioMin, "			'29
-	sql = sql & " PrecioUni, "			'30
-	sql = sql & " PrecioUniMed, "		'31
-	sql = sql & " id_Semana "			'32
-	sql = sql & " FROM "
-	sql = sql & " RS_DataProcSem "
-	sql = sql & " WHERE "
-	sql = sql & " Id_Categoria = " & sCat
-	sql = sql & " And Id_Semana in ( " & sSemanas & ")"
-	sql = sql & " And Id_Area in (" & sAre & ")"
-	sql = sql & " And Id_Zona in (" & sZon & ")"
-	sql = sql & " And Id_Canal in (" & sCan & ")"
-	sql = sql & " And Id_Fabricante in (" & sFab & ")"
-	sql = sql & " And Id_Marca in (" & sMar & ")"
-	sql = sql & " And Id_Segmento in (" & sSeg & ")"
-	if len(sTam) > 1 then
-		sql = sql & " And Id_Tamano in (" & sTam & ")"
+	sQl = vbNullstring
+    sQl = sQl & " SELECT "
+	sQl = sQl & " Id_Area, "
+	sQl = sQl & " Area, "
+	sQl = sQl & " Id_Zona, "
+	sQl = sQl & " Zona, "
+	sQl = sQl & " Id_Canal, "
+	sQl = sQl & " Canal, "
+	sQl = sQl & " Id_Fabricante, "
+	sQl = sQl & " Fabricante, "
+	sQl = sQl & " Id_Marca, "
+	sQl = sQl & " Marca, "
+	sQl = sQl & " Id_Segmento, "
+	sQl = sQl & " Segmento, "
+	sQl = sQl & " Id_Tamano, "
+	sQl = sQl & " Tamano, "
+	sQl = sQl & " CodigoBarra, "
+	sQl = sQl & " Descripcion, "
+	sQl = sQl & " UnidadMedida, "
+	sQl = sQl & " VentasUni, "			'17
+	sQl = sQl & " VentasVal, "			'18
+	sQl = sQl & " VentasUniMed, "		'19
+	sQl = sQl & " VentasNo, "			'20
+	sQl = sQl & " DistribucionNum, "	'21
+	sQl = sQl & " DistribucionPon, "	'22
+	sQl = sQl & " DistribucionEfe, "	'23
+	sQl = sQl & " ShareUni, "			'24
+	sQl = sQl & " ShareVol, "			'25
+	sQl = sQl & " ShareVal, "			'26
+	sQl = sQl & " PrecioPro, "			'27
+	sQl = sQl & " PrecioMax, "			'28
+	sQl = sQl & " PrecioMin, "			'29
+	sQl = sQl & " PrecioUni, "			'30
+	sQl = sQl & " PrecioUniMed, "		'31
+	sQl = sQl & " id_Semana "			'32
+	sQl = sQl & " FROM RS_DataProcSem WHERE "
+	sQl = sQl & " Id_Categoria = " & sCat
+	sQl = sQl & " And Id_Semana in ( " & sSemanas & ")"
+	sQl = sQl & " And Id_Area in (" & sAre & ")"
+	sQl = sQl & " And Id_Zona in (" & sZon & ")"
+	sQl = sQl & " And Id_Canal in (" & sCan & ")"
+	sQl = sQl & " And Id_Fabricante in (" & sFab & ")"
+	sQl = sQl & " And Id_Marca in (" & sMar & ")"
+	sQl = sQl & " And Id_Segmento in (" & sSeg & ")"
+	if Len(sTam) > 1 then
+		sQl = sQl & " And Id_Tamano in (" & sTam & ")"
 	else
-		sql = sql & " And Id_Tamano = 0 "
+		sQl = sQl & " And Id_Tamano = 0 "
 	end if
 	if sPro <> "" then
-		sPro = replace(sPro,",","','")
-		sql = sql & " And CodigoBarra in ('" & sPro & "')"
+		sPro = Replace(sPro,",","','")
+		sQl = sQl & " And CodigoBarra in ('" & sPro & "')"
 	else
 		if sPro = "" then
-			sql = sql & " And CodigoBarra = ''"
+			sQl = sQl & " And CodigoBarra = ''"
 		end if
 	end if
-    sql = sql & " ORDER BY "
-	sql = sql & " Id_Area, "
-	sql = sql & " Id_Zona, "
-	sql = sql & " Id_Canal, "
-	sql = sql & " Id_Fabricante, "
-	sql = sql & " Id_Marca, "
-	sql = sql & " Id_Segmento, "
-	sql = sql & " Id_Tamano, "
-	sql = sql & " CodigoBarra, "
-	sql = sql & " Descripcion, "
-	sql = sql & " id_Semana "
+    sQl = sQl & " ORDER BY Id_Area, Id_Zona, Id_Canal, Id_Fabricante, Id_Marca, Id_Segmento, Id_Tamano, CodigoBarra, Descripcion, id_Semana "
 	if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
-		sql = replace(sql,"And Id_Tamano = 0","")
+		sQl = Replace(sQl,"And Id_Tamano = 0","")
 	else
 	end if
 	'
 	'Response.Write "<br>276 sQl:=" & sQl & "<br>"
-	'response.end
+	'Response.End
 	'
     rSx1.Open sQl ,conexionRS
 	iExiste = 0
-	if rSx1.eof then
+	if rSx1.Eof then
 		iExiste = 0
-		rSx1.close
+		rSx1.Close
 	else
 		iExiste = 1
 		gProductosTotal = rSx1.GetRows
-		rSx1.close
+		rSx1.Close
 	end if
 	'Response.Write "<br>271 Paso" 
-	'response.end
+	'Response.End
 	'Response.Write "<br>" & sQl
-	'response.end
+	'Response.End
 	'
 	if iExiste = 0 then			
 		Response.Write "<center>"
 		Response.Write "<h2 class='text-danger'>No hay datos para mostrar..!</h2>"
 		Response.Write "<hr>"
 		Response.Write "</center>"
-		Response.end		
+		Response.End		
 	else
 		'Response.Write "<br>84 LLEGO"
-		'response.end		
+		'Response.End		
 			
 		Response.Write "<div class='container-fluid'>"
 		
@@ -334,10 +305,10 @@
 										Response.Write "<td>"
 											'Tamaño
 											'Response.Write gProductosTotal(13,iPro) 
-											'response.end
+											'Response.End
 											if gProductosTotal(12,iPro) <> 0 then
 												Valor = gProductosTotal(13,iPro)
-												Valor = replace(Valor,".",",")
+												Valor = Replace(Valor,".",",")
 												Response.Write formatnumber(Valor,2) 											
 											end if										
 										Response.Write "</td>"
@@ -411,7 +382,7 @@
 												end if
 												
 												Menos = 0
-												'04nov41 eliminada rutina por no hacer nada
+												'04nov21 eliminada rutina por no hacer nada
 												' if iy <> 0 then  
 													' for ia = 1 to iy
 														' 'Response.Write "<td width=6% class='cell100 column15 text-left'>"
@@ -423,7 +394,7 @@
 												' end if
 											Response.Write "</tr>"
 										next
-										'if iPro > TotalReg then response.end
+										'if iPro > TotalReg then Response.End
 										iPro = iPro2 + iPro1 - 1
 										iPro = iPro1 - 1
 										'Response.Write "<br>iPro:=" & iPro & ""
@@ -441,5 +412,11 @@
     	Response.Write "</div>"
 
 	end if
-	'response.end
+	'Response.End
+	'
+	' Cerrar conexiones
+	'	
+	conexionRS.Close : Set conexionRS = Nothing	
+	Set rSx1 = Nothing	
+	'	
 %>

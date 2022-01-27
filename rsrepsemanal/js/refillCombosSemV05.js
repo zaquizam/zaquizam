@@ -2,14 +2,13 @@
 // RefillCombosSemV01.js - 15jul21 - 09nov21
 //
 function GetCambioCombo( opc ){
-	//GCC-Marca
-	//bloquearCombos(opc);
+	//GCC-Marca	
 	console.log('opcion ' + opc);
-	//	
-	//debugger;
-	//
+	// debugger;
 	$("#cargando").css("display", "block");
 	bLoquear();
+	$("#DivRetailScanningSem").html("");			
+	$("#DivRetailScanningSem").css("display", "none");
 	//
 	if(opc==2) {
 		// Cambio en cboArea
@@ -56,7 +55,7 @@ function GetCambioCombo( opc ){
 				filterPlaceholder: 'Buscar...',
 				includeFilterClearBtn: true,
 				enableCaseInsensitiveFiltering: true,
-				maxHeight: 300,
+				maxHeight: 200,
 				onDropdownHide: function(event) {
 					GetCambioCombo(3,jQuery(cbo).val());
 				}
@@ -93,7 +92,7 @@ function GetCambioCombo( opc ){
 					filterPlaceholder: 'Buscar...',
 					includeFilterClearBtn: true,
 					enableCaseInsensitiveFiltering: true,
-					maxHeight: 300,
+					maxHeight: 200,
 					onDropdownHide: function(event) {
 						GetCambioCombo(4,jQuery(cbo).val());
 					}
@@ -132,7 +131,7 @@ function GetCambioCombo( opc ){
 						filterPlaceholder: 'Buscar...',
 						includeFilterClearBtn: true,
 						enableCaseInsensitiveFiltering: true,
-						maxHeight: 300,
+						maxHeight: 200,
 						onDropdownHide: function(event) {
 							GetCambioCombo(5,jQuery(cbo).val());
 						}
@@ -170,7 +169,7 @@ function GetCambioCombo( opc ){
 								filterPlaceholder: 'Buscar...',
 								includeFilterClearBtn: true,
 								enableCaseInsensitiveFiltering: true,
-								maxHeight: 300,
+								maxHeight: 200,
 								onDropdownHide: function(event) {
 									GetCambioCombo(6,jQuery(cbo).val());
 								}
@@ -208,7 +207,7 @@ function GetCambioCombo( opc ){
 									filterPlaceholder: 'Buscar...',
 									includeFilterClearBtn: true,
 									enableCaseInsensitiveFiltering: true,
-									maxHeight: 300,
+									maxHeight: 200,
 									onDropdownHide: function(event) {
 										GetCambioCombo(7,jQuery(cbo).val());
 									}
@@ -248,7 +247,7 @@ function GetCambioCombo( opc ){
 										filterPlaceholder: 'Buscar...',
 										includeFilterClearBtn: true,
 										enableCaseInsensitiveFiltering: true,
-										maxHeight: 300,
+										maxHeight: 200,
 										onDropdownHide: function(event) {
 											GetCambioCombo(8,jQuery(cbo).val());
 										}
@@ -287,7 +286,7 @@ function GetCambioCombo( opc ){
 											filterPlaceholder: 'Buscar...',
 											includeFilterClearBtn: true,
 											enableCaseInsensitiveFiltering: true,
-											maxHeight: 300,
+											maxHeight: 200,
 											onDropdownHide: function(event) {
 												GetCambioCombo(9,jQuery(cbo).val());
 											}
@@ -329,7 +328,7 @@ function GetCambioCombo( opc ){
 			swal("Algo salio mal.!","GCC-Area opc-2", "error");
 		});
 		
-	}else if(opc==3) {
+	} else if(opc==3) {
 		debugger;
 		// Cambio en cboZona
 		//$("#cargando").css("display", "block");
@@ -341,6 +340,7 @@ function GetCambioCombo( opc ){
 		idZona  = idZona.join();
 		if(idZona.length==0 || idZona==undefined){
 			$("#cargando").css("display", "none");
+			bLankSelect(opc);
 			aCtivar();
 			return false;
 		}		
@@ -376,7 +376,7 @@ function GetCambioCombo( opc ){
 				filterPlaceholder: 'Buscar...',
 				includeFilterClearBtn: true,
 				enableCaseInsensitiveFiltering: true,
-				maxHeight: 300,
+				maxHeight: 200,
 				onDropdownHide: function(event) {
 					GetCambioCombo(4,jQuery(cbo).val());
 				}
@@ -415,7 +415,7 @@ function GetCambioCombo( opc ){
 					filterPlaceholder: 'Buscar...',
 					includeFilterClearBtn: true,
 					enableCaseInsensitiveFiltering: true,
-					maxHeight: 300,
+					maxHeight: 200,
 					onDropdownHide: function(event) {
 						GetCambioCombo(5,jQuery(cbo).val());
 					}
@@ -453,7 +453,7 @@ function GetCambioCombo( opc ){
 						filterPlaceholder: 'Buscar...',
 						includeFilterClearBtn: true,
 						enableCaseInsensitiveFiltering: true,
-						maxHeight: 300,
+						maxHeight: 200,
 						onDropdownHide: function(event) {
 							GetCambioCombo(6,jQuery(cbo).val());
 						}
@@ -491,7 +491,7 @@ function GetCambioCombo( opc ){
 								filterPlaceholder: 'Buscar...',
 								includeFilterClearBtn: true,
 								enableCaseInsensitiveFiltering: true,
-								maxHeight: 300,
+								maxHeight: 200,
 								onDropdownHide: function(event) {
 									GetCambioCombo(7,jQuery(cbo).val());
 								}
@@ -529,7 +529,7 @@ function GetCambioCombo( opc ){
 									filterPlaceholder: 'Buscar...',
 									includeFilterClearBtn: true,
 									enableCaseInsensitiveFiltering: true,
-									maxHeight: 300,
+									maxHeight: 200,
 									onDropdownHide: function(event) {
 										GetCambioCombo(8,jQuery(cbo).val());
 									}
@@ -567,7 +567,7 @@ function GetCambioCombo( opc ){
 										filterPlaceholder: 'Buscar...',
 										includeFilterClearBtn: true,
 										enableCaseInsensitiveFiltering: true,
-										maxHeight: 300,
+										maxHeight: 200,
 										onDropdownHide: function(event) {
 											GetCambioCombo(9,jQuery(cbo).val());
 										}
@@ -633,6 +633,7 @@ function GetCambioCombo( opc ){
 		if(idCanal.length==0 || idCanal==undefined){
 			$("#cargando").css("display", "none");
 			aCtivar();
+			bLankSelect(opc);
 			return false;
 		}
 		// Llenar Fabricante
@@ -667,7 +668,7 @@ function GetCambioCombo( opc ){
 				filterPlaceholder: 'Buscar...',
 				includeFilterClearBtn: true,
 				enableCaseInsensitiveFiltering: true,
-				maxHeight: 300,
+				maxHeight: 200,
 				onDropdownHide: function(event) {
 					GetCambioCombo(5,jQuery(cbo).val());
 				}
@@ -705,7 +706,7 @@ function GetCambioCombo( opc ){
 					filterPlaceholder: 'Buscar...',
 					includeFilterClearBtn: true,
 					enableCaseInsensitiveFiltering: true,
-					maxHeight: 300,
+					maxHeight: 200,
 					onDropdownHide: function(event) {
 						GetCambioCombo(6,jQuery(cbo).val());
 					}
@@ -743,7 +744,7 @@ function GetCambioCombo( opc ){
 						filterPlaceholder: 'Buscar...',
 						includeFilterClearBtn: true,
 						enableCaseInsensitiveFiltering: true,
-						maxHeight: 300,
+						maxHeight: 200,
 						onDropdownHide: function(event) {
 							GetCambioCombo(7,jQuery(cbo).val());
 						}
@@ -783,7 +784,7 @@ function GetCambioCombo( opc ){
 								filterPlaceholder: 'Buscar...',
 								includeFilterClearBtn: true,
 								enableCaseInsensitiveFiltering: true,
-								maxHeight: 300,
+								maxHeight: 200,
 								onDropdownHide: function(event) {
 									GetCambioCombo(8,jQuery(cbo).val());
 								}
@@ -821,7 +822,7 @@ function GetCambioCombo( opc ){
 									filterPlaceholder: 'Buscar...',
 									includeFilterClearBtn: true,
 									enableCaseInsensitiveFiltering: true,
-									maxHeight: 300,
+									maxHeight: 200,
 									onDropdownHide: function(event) {
 										GetCambioCombo(9,jQuery(cbo).val());
 									}
@@ -866,7 +867,6 @@ function GetCambioCombo( opc ){
 	}else if(opc==5) {
 		debugger;
 		// Cambio en cboFabricante
-		//$("#cargando").css("display", "block");
 		let idCli   = sessionStorage.getItem("idCliente");
 		let idCatg  = $("#cboCategoria option:selected").val();
 		let idArea  = $("#cboArea  :selected").map((_,e) => e.value).get();
@@ -878,8 +878,9 @@ function GetCambioCombo( opc ){
 		idCanal = idCanal.join();		
 		idFabr  = idFabr.join();				
 		if(idFabr.length==0 || idFabr==undefined){
-			$("#cargando").css("display", "none");
+			//$("#cargando").css("display", "none");
 			aCtivar();
+			bLankSelect(opc);
 			return false;
 		}
 		// Llenar Marca		
@@ -913,7 +914,7 @@ function GetCambioCombo( opc ){
 				filterPlaceholder: 'Buscar...',
 				includeFilterClearBtn: true,
 				enableCaseInsensitiveFiltering: true,
-				maxHeight: 300,
+				maxHeight: 200,
 				onDropdownHide: function(event) {
 					GetCambioCombo(6,jQuery(cbo).val());
 				}
@@ -951,7 +952,7 @@ function GetCambioCombo( opc ){
 					filterPlaceholder: 'Buscar...',
 					includeFilterClearBtn: true,
 					enableCaseInsensitiveFiltering: true,
-					maxHeight: 300,
+					maxHeight: 200,
 					onDropdownHide: function(event) {
 						GetCambioCombo(7,jQuery(cbo).val());
 					}
@@ -992,7 +993,7 @@ function GetCambioCombo( opc ){
 						filterPlaceholder: 'Buscar...',
 						includeFilterClearBtn: true,
 						enableCaseInsensitiveFiltering: true,
-						maxHeight: 300,
+						maxHeight: 200,
 						onDropdownHide: function(event) {
 							GetCambioCombo(8,jQuery(cbo).val());
 						}
@@ -1030,7 +1031,7 @@ function GetCambioCombo( opc ){
 							filterPlaceholder: 'Buscar...',
 							includeFilterClearBtn: true,
 							enableCaseInsensitiveFiltering: true,
-							maxHeight: 300,
+							maxHeight: 200,
 							onDropdownHide: function(event) {
 								GetCambioCombo(9,jQuery(cbo).val());
 							}
@@ -1085,6 +1086,7 @@ function GetCambioCombo( opc ){
 		if(idMar.length==0 || idMar==undefined){
 			$("#cargando").css("display", "none");
 			aCtivar();
+			bLankSelect(opc);
 			return false;
 		}
 		// Llenar Segmento		
@@ -1118,7 +1120,7 @@ function GetCambioCombo( opc ){
 				filterPlaceholder: 'Buscar...',
 				includeFilterClearBtn: true,
 				enableCaseInsensitiveFiltering: true,
-				maxHeight: 300,
+				maxHeight: 200,
 				onDropdownHide: function(event) {
 					GetCambioCombo(7,jQuery(cbo).val());
 				}
@@ -1158,7 +1160,7 @@ function GetCambioCombo( opc ){
 					filterPlaceholder: 'Buscar...',
 					includeFilterClearBtn: true,
 					enableCaseInsensitiveFiltering: true,
-					maxHeight: 300,
+					maxHeight: 200,
 					onDropdownHide: function(event) {
 						GetCambioCombo(8,jQuery(cbo).val());
 					}
@@ -1196,7 +1198,7 @@ function GetCambioCombo( opc ){
 						filterPlaceholder: 'Buscar...',
 						includeFilterClearBtn: true,
 						enableCaseInsensitiveFiltering: true,
-						maxHeight: 300,
+						maxHeight: 200,
 						onDropdownHide: function(event) {
 							GetCambioCombo(9,jQuery(cbo).val());
 						}
@@ -1246,6 +1248,7 @@ function GetCambioCombo( opc ){
 		if(idSegm.length==0 || idSegm==undefined){
 			$("#cargando").css("display", "none");
 			aCtivar();
+			bLankSelect(opc);
 			return false;
 		}
 		// Llenar Tamaño		
@@ -1281,7 +1284,7 @@ function GetCambioCombo( opc ){
 				filterPlaceholder: 'Buscar...',
 				includeFilterClearBtn: true,
 				enableCaseInsensitiveFiltering: true,
-				maxHeight: 300,
+				maxHeight: 200,
 				onDropdownHide: function(event) {
 					GetCambioCombo(8,jQuery(cbo).val());
 				}
@@ -1319,7 +1322,7 @@ function GetCambioCombo( opc ){
 					filterPlaceholder: 'Buscar...',
 					includeFilterClearBtn: true,
 					enableCaseInsensitiveFiltering: true,
-					maxHeight: 300,
+					maxHeight: 200,
 					onDropdownHide: function(event) {						
 						GetCambioCombo(9,jQuery(cbo).val());
 					}
@@ -1364,6 +1367,7 @@ function GetCambioCombo( opc ){
 		if(idTama.length==0 || idTama==undefined){
 			$("#cargando").css("display", "none");
 			aCtivar();
+			bLankSelect(opc);
 			return false;
 		}
 		// Llenar Producto		
@@ -1397,7 +1401,7 @@ function GetCambioCombo( opc ){
 				filterPlaceholder: 'Buscar...',
 				includeFilterClearBtn: true,
 				enableCaseInsensitiveFiltering: true,
-				maxHeight: 300,
+				maxHeight: 200,
 				onDropdownHide: function(event) {
 					debugger;
 					GetCambioCombo(9,jQuery(cbo).val());
@@ -1416,6 +1420,7 @@ function GetCambioCombo( opc ){
 	}else if(opc==9){
 	  $("#cargando").css("display", "none");	
 	  aCtivar();
+	  bLankSelect(opc);
 	  
 	}else if(opc==0){
 	  $("#cargando").css("display", "none");	

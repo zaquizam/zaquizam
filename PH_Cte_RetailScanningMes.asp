@@ -1,8 +1,8 @@
 <!Doctype html>
-<!-- PH_Cte_RetailScanning.asp - 12jul21 - 06ene22 -->
+<!-- PH_Cte_RetailScanning.asp - 12jul21 - 23ene22 -->
 <html lang="es" >
 <head>
-	<title>| Retail Scanning Mensual |</title>
+	<title>| RS Reporte Mensual |</title>
 	<meta charset="UTF-8">
     <meta name="Robots" content="noindex" >
     <meta name="Robots" content="none" >
@@ -26,7 +26,6 @@
 	<!--#include file="in_DataEN.asp"-->
 
 	<%
-		' 12jul21 - 18jul21
 		Apertura
 		LeePar
 		if ed_iPas<>4 then
@@ -559,8 +558,25 @@
 
 </script>
 
+
+<script>
+var scripts = document.getElementsByTagName('script');
+//console.log(scripts);
+var toRefreshs = ['funcionesMenV02.js', 'refillCombosMenV03.js']; // list of js to be refresh
+var key = Math.floor((Math.random() * 10) + 1); // change this key every time you want force a refresh
+for (var i = 0; i < scripts.length; i++) {
+    for (var j = 0; j < toRefreshs.length; j++) {
+        if (scripts[i].src && (scripts[i].src.indexOf(toRefreshs[j]) > -1)) {
+            new_src = scripts[i].src.replace(toRefreshs[j], toRefreshs[j] + 'k=' + key);
+            scripts[i].src = new_src; // change src in order to refresh js
+        }
+    }
+}
+</script>
+
 <script>
 // Reload all javascript / CSS
+/*
 $('script').each(function() {
     if ($(this).attr('src') != undefined && $(this).attr('src').lastIndexOf('jquery') == -1) {
         var old_src = $(this).attr('src');
@@ -571,4 +587,5 @@ $('script').each(function() {
         }, 250);
     }
 });
+*/
 </script>

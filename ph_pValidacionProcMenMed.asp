@@ -121,10 +121,10 @@ Sub Combos
 	sql = sql & " Id_Categoria, "
 	sql = sql & " Categoria "
 	sql = sql & " FROM "
+	sql = sql & " PH_CB_Categoria "
 	sql = sql & " Where "
 	sql = sql & " Ind_Medicina = 1 "
 	sql = sql & " and id_Categoria > 0  "
-	sql = sql & " PH_CB_Categoria "
 	sql = sql & " Order by Categoria "
 	'response.write "<br>372 Combo1:=" & sql
     ed_sCombo(2,0)="Categoria"

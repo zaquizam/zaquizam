@@ -69,7 +69,8 @@
 '==========================================================================================
 ' Variables y Constantes
 '==========================================================================================
-    Apertura
+    'Response.Redirect "ph_Mantto.asp"
+	Apertura
 	'response.write "<br>36 Cliente:= " & Session("idCliente")
 
 	Dim idCliente

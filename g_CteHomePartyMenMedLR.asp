@@ -133,8 +133,8 @@
 		iMesHas = gDatos1(1,0)
 	end if
 	if idCliente = 1 then
-		iMesDes = 24257
-		iMesHas = 24263
+		iMesDes = 24258
+		iMesHas = 24264
 	end if
 	'response.write "<br>310 Semana iMesDes:= " &  iMesDes
 	'response.write "<br>310 Semana iMesHas:= " &  iMesHas
@@ -769,7 +769,7 @@
 													response.write "</tr>"
 												next
 											next			
-											'response.end 
+											response.end 
 										end if
 
 										if TotalArea = "SI" and sFab = "" and sMar = "" and sSeg <> "" and sRan = "" and sTam = "" then 

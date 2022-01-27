@@ -1,8 +1,8 @@
 <!Doctype html>
-<!-- PH_Cte_RetailScanning.asp - 12jul21 - 06ene22 -->
+<!-- PH_Cte_RetailScanning.asp - 12jul21 - 27ene22 -->
 <html lang="es" >
 <head>
-	<title>| Retail Scanning Semanal |</title>
+	<title>| RS Reporte Semanal |</title>
 	<meta charset="UTF-8">
     <meta name="Robots" content="noindex" >
     <meta name="Robots" content="none" >
@@ -192,35 +192,15 @@
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/sweetalert.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="rsrepsemanal/js/funcionesSemV04.js"></script>
-<script src="rsrepsemanal/js/refillCombosSemV03.js"></script>
+<script src="rsrepsemanal/js/funcionesSemV07.js"></script>
+<script src="rsrepsemanal/js/refillCombosSemV05.js"></script>
 <script src="js/bootstrap-multiselect-0915.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/plugins/export/libs/FileSaver.js/FileSaver.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.6/xlsx.full.min.js"></script>
 <script src="js/jquery.blockUI.js"></script>
 
 <script>
-			
-	//function loader(){		
-		//$.blockUI({ message: '<h5><img src="images/loader/Hourglass.gif"/>&nbsp;procesando ...!</h5>' });	
-		/*
-		$.blockUI({ message: '<h5><img src="images/loader/atenas518.gif" width="64px;" height="64px;"/>&nbsp;<strong>Procesando..!</strong></h5>', css: { 
-            border: 'none', 
-            padding: '15px', 
-            backgroundColor: '#fff', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .7, 
-            color: '#000' 
-        } });		
-		*/		
-		//debugger;
-		//document.getElementById('main').style.visibility="hidden";		
-	//}
-	
-	$(function () {		
-		//removeLoading();		
-		//document.getElementById('main').style.visibility="hidden";
+	$(function () {			
 		sessionStorage.clear();
 		sessionStorage.setItem("idCliente", <%=Session("idCliente")%>);
 		sessionStorage.setItem("repCompleto", 0);
@@ -548,22 +528,21 @@
 			return buf;
 		}
 		
-
 	});
 
 </script>
 
 <script>
-// Reload all javascript / CSS
-$('script').each(function() {
-    if ($(this).attr('src') != undefined && $(this).attr('src').lastIndexOf('jquery') == -1) {
-        var old_src = $(this).attr('src');
-        var that = $(this);
-        $(this).attr('src', '');
-        setTimeout(function() {
-            that.attr('src', old_src + '?' + new Date().getTime());
-        }, 250);
+var scripts = document.getElementsByTagName('script');
+//console.log(scripts);
+var toRefreshs = ['funcionesSemV07.js', 'refillCombosSemV05.js']; // list of js to be refresh
+var key = Math.floor((Math.random() * 10) + 1); // change this key every time you want force a refresh
+for (var i = 0; i < scripts.length; i++) {
+    for (var j = 0; j < toRefreshs.length; j++) {
+        if (scripts[i].src && (scripts[i].src.indexOf(toRefreshs[j]) > -1)) {
+            new_src = scripts[i].src.replace(toRefreshs[j], toRefreshs[j] + 'k=' + key);
+            scripts[i].src = new_src; // change src in order to refresh js
+        }
     }
-});
+}
 </script>
-

@@ -1,9 +1,9 @@
 <%@language=vbscript%>
 <!--#include file="conexionRS.asp"-->
-<!-- RetSem_Excel.asp - 12oct21 - 04ene22 -->
+<!-- RetSem_Excel.asp - 12oct21 - 12ene22 -->
 <%
 	' Variables y Constantes
-	Response.buffer = True	
+	Response.Buffer = True	
 	Session.lcid = 1034
 	Response.ContentType = "text/html"	
 	Response.CodePage = 65001
@@ -48,9 +48,9 @@
 	sSemanas = sSem
 	'Response.Write "<br>84 Sem:=" & sSem	
 	
-	if len(sPro) = 0 then sPro = "" end if
-	if len(sInd) = 0 then sInd = "" end if	
-	if len(sMes) = 0 then sMes = "" end if
+	if Len(sPro) = 0 then sPro = "" end if
+	if Len(sInd) = 0 then sInd = "" end if	
+	if Len(sMes) = 0 then sMes = "" end if
 		
 	Dim gProductosTotal
 	Dim gIndicadores
@@ -64,60 +64,40 @@
 	rSx1.LockType = 1 'adLockOptimistic 
 
 	'Semanas	
-	sQl = vbnullstring
-	sQl = sQl & " SELECT "
-	sQl = sQl & " IdSemana, "
-	sQl = sQl & " SemanaCorta "
-	sQl = sQl & " FROM "
-	sQl = sQl & " ss_Semana "
-	sQl = sQl & " WHERE "
-	sQl = sQl & " IdSemana in ( " & sSemanas & ")"	
-	sQl = sQl & " Order By "
-	sQl = sQl & " IdSemana "
+	sQl = vbNullstring
+	sQl = " SELECT IdSemana, SemanaCorta FROM ss_Semana WHERE IdSemana in ( " & sSemanas & ") Order By IdSemana "
 	'Response.Write "<br>151 sQl:=" & sQl & "<br>"
 	'response.end
 	rSx1.Open sQl ,conexionRS
-	if rSx1.eof then
-		rSx1.close
+	if rSx1.Eof then
+		rSx1.Close
 	else
 		gSemanas = rSx1.GetRows
-		rSx1.close
+		rSx1.Close
 	end if
 	'	
 	'Meses
 	'
 	if sMes <> "" then
 	
-		sQl = vbnullstring
-		sQl = sQl & " SELECT "
-		sQl = sQl & " IdPeriodo, "
-		sQl = sQl & " PeriodoCorto "
-		sQl = sQl & " FROM "
-		sQl = sQl & " ss_Periodo"
-		sQl = sQl & " WHERE Semanas IS NOT NULL"
-		sQl = sQl & " AND IdPeriodo in ( " & sMes & ")"	
-		sQl = sQl & " Order By "
-		sQl = sQl & " idPeriodo ASC "
+		sQl = vbNullstring
+		sQl = " SELECT IdPeriodo, PeriodoCorto FROM ss_Periodo WHERE Semanas IS NOT NULL AND IdPeriodo in ( " & sMes & ") Order By idPeriodo ASC "
 		'Response.Write "<br>151 sQl:=" & sQl & "<br>"
 		'response.end
 		rSx1.Open sQl ,conexionRS
-		if rSx1.eof then
-			rSx1.close
+		if rSx1.Eof then
+			rSx1.Close
 		else
 			gMeses = rSx1.GetRows
-			rSx1.close
+			rSx1.Close
 		end if
 	'	
 	end if
-	sQl = vbnullstring
-	sQl = sQl & " SELECT "
-	sQl = sQl & " Id_Indicador, "
-	sQl = sQl & " Abreviatura, "
-	sQl = sQl & " UnidadMedida "
-	sQl = sQl & " FROM "
-	sQl = sQl & " RS_Indicadores "
-	sQl = sQl & " WHERE "	'
-	sQl = sQl & " Ind_Activo = 1 " 
+	'	
+	' Indicadores
+	'
+	sQl = vbNullstring
+	sQl = " SELECT Id_Indicador, Abreviatura, UnidadMedida FROM RS_Indicadores WHERE Ind_Activo = 1 " 
 	'
 	if (CInt(idCliente) = 1) then
 		sQl = sQl & " AND Ind_atenas = 1 " 		
@@ -127,20 +107,24 @@
 	if sInd <> "" then
 		sQl = sQl & " And Id_Indicador in (" & sInd & ")"
 	end if
-	if (sCat >= 127 and sCat <= 145) or sCat = 41 or sCat = 18 then
-		sql = sql & " and (Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9) "
-	end if	
-	sQl = sQl & " ORDER BY "
-	sQl = sQl & " Id_Indicador "
+	'if (sCat >= 127 and sCat <= 145) or sCat = 41 or sCat = 18 then
+	'	sql = sql & " and (Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9) "
+	'end if
+	'
+	if (sCat > 126 and sCat < 146) or (sCat = 41 or sCat = 18 or sCat = 54) then
+		sQl = sQl & " AND ( Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9 ) "
+	end if
+	'		
+	sQl = sQl & " ORDER BY Id_Indicador "
 	'Response.Write "<br>191 sQl:=" & sQl & "<br>"
 	''	
 	'response.end 
 	rSx1.Open sQl ,conexionRS
-	if rSx1.eof then
-		rSx1.close
+	if rSx1.Eof then
+		rSx1.Close
 	else
 		gIndicadores = rSx1.GetRows
-		rSx1.close
+		rSx1.Close
 	end if
 	'Response.Write "<br>203 Paso" 
 	'response.end	
@@ -192,7 +176,7 @@
 	sql = sql & " And Id_Fabricante in (" & sFab & ")"
 	sql = sql & " And Id_Marca in (" & sMar & ")"
 	sql = sql & " And Id_Segmento in (" & sSeg & ")"
-	if len(sTam) > 1 then
+	if Len(sTam) > 1 then
 		sql = sql & " And Id_Tamano in (" & sTam & ")"
 	else
 		sql = sql & " And Id_Tamano = 0 "
@@ -226,13 +210,13 @@
 	'
     rSx1.Open sQl ,conexionRS
 	iExiste = 0
-	if rSx1.eof then
+	if rSx1.Eof then
 		iExiste = 0
-		rSx1.close
+		rSx1.Close
 	else
 		iExiste = 1
 		gProductosTotal = rSx1.GetRows
-		rSx1.close
+		rSx1.Close
 	end if
 	'Response.Write "<br>271 Paso" 
 	'response.end
@@ -413,7 +397,7 @@
 												end if
 												
 												Menos = 0
-												'04nov41 eliminada rutina por no hacer nada
+												'04nov21 eliminada rutina por no hacer nada
 												' if iy <> 0 then  
 													' for ia = 1 to iy
 														' 'Response.Write "<td width=6% class='cell100 column15 text-left'>"
@@ -444,4 +428,9 @@
 
 	end if
 	'response.end
+	'
+	' Cerrar conexiones
+	'	
+	conexionRS.Close : Set conexionRS = Nothing	
+	Set rSx1 = Nothing	
 %>

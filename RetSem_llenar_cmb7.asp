@@ -5,9 +5,12 @@
 '
 ' Cambio en combo Segmento - 
 '
+Server.ScriptTimeout = 10000
+Response.Buffer = True	
 Session.lcid = 1034
 Response.CodePage = 65001
-Response.CharSet = "utf-8"
+Response.CharSet = "UTF-8"	
+'
 '
 if conexionRS.errors.count <> 0 Then
   Response.Write ("No hay conexionRS con la BD...!")

@@ -1,27 +1,24 @@
 <!--#include file="conexionRS.asp" -->
 <%
 '
-'RetMen_llenar_cmb1.asp - 12jul21 - 06ene22
+'RetMen_llenar_cmb1.asp - 12jul21 - 12ene22
 '
 Session.lcid = 1034
 Response.CodePage = 65001
 Response.CharSet = "utf-8"
+Server.ScriptTimeout=10000000
 '
 if conexionRS.errors.count <> 0 Then
   Response.Write ("No hay conexionRS con la BD...!")
   Response.End
 end if
 
-Dim opcion, QrySql, idCat, idCliente
-'
-'opcion  = Cint(Request.Querystring("opcion"))
-'idQuery = Cint(Request.Querystring("id"))
+Dim opcion, qrySql, idCat, idCliente
 '
 opcion = Request.Querystring("opcion")
 idCat  = Request.Querystring("idCat")
 idCliente = Request.Querystring("idCli")
 '
-
 IF (Cint(opcion) = 1) THEN
 	'
 	'Fill combo Categoria
@@ -32,24 +29,24 @@ IF (Cint(opcion) = 1) THEN
 	' 03nov21
 	'
 	IF (Cint(idCliente) = 1 ) THEN
-		QrySql = vbnullstring
-		QrySql = QrySql & " SELECT RS_DataProcSem.Id_Categoria AS id,  RS_DataProcSem.Categoria AS nombre FROM dbo.RS_DataProcSem"
-		QrySql = QrySql & " GROUP BY RS_DataProcSem.Id_Categoria, RS_DataProcSem.Categoria ORDER BY RS_DataProcSem.Categoria ASC"
+		qrySql = vbNullstring
+		qrySql = qrySql & " SELECT RS_DataProcSem.Id_Categoria AS id,  RS_DataProcSem.Categoria AS nombre FROM dbo.RS_DataProcSem"
+		qrySql = qrySql & " GROUP BY RS_DataProcSem.Id_Categoria, RS_DataProcSem.Categoria ORDER BY RS_DataProcSem.Categoria ASC"
 	ELSE
-		QrySql = vbnullstring
-		QrySql = QrySql & " SELECT RS_DataProcSem.Id_Categoria AS id,  RS_DataProcSem.Categoria AS nombre FROM dbo.RS_DataProcSem"		
-		QrySql = QrySql & " INNER JOIN dbo.ss_ClienteCategoria ON  RS_DataProcSem.Id_Categoria = ss_ClienteCategoria.Id_Categoria"
-		QrySql = QrySql & " WHERE"
-		QrySql = QrySql & " ss_ClienteCategoria.Id_Cliente = " & idCliente
-		QrySql = QrySql & " and ss_ClienteCategoria.Ind_Mensual = 1 "
-		QrySql = QrySql & " GROUP BY RS_DataProcSem.Id_Categoria, RS_DataProcSem.Categoria ORDER BY RS_DataProcSem.Categoria ASC"
+		qrySql = vbNullstring
+		qrySql = qrySql & " SELECT RS_DataProcSem.Id_Categoria AS id,  RS_DataProcSem.Categoria AS nombre FROM dbo.RS_DataProcSem"		
+		qrySql = qrySql & " INNER JOIN dbo.ss_ClienteCategoria ON  RS_DataProcSem.Id_Categoria = ss_ClienteCategoria.Id_Categoria"
+		qrySql = qrySql & " WHERE"
+		qrySql = qrySql & " ss_ClienteCategoria.Id_Cliente = " & idCliente
+		qrySql = qrySql & " and ss_ClienteCategoria.Ind_Mensual = 1 "
+		qrySql = qrySql & " GROUP BY RS_DataProcSem.Id_Categoria, RS_DataProcSem.Categoria ORDER BY RS_DataProcSem.Categoria ASC"
 	END IF			
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsCategoria = Server.CreateObject("ADODB.recordSet")
-	rsCategoria.Open QrySql, conexionRS
+	rsCategoria.Open qrySql, conexionRS
 	'
 	if not rsCategoria.EOF then
 		arrCategoria = rsCategoria.GetRows()  ' Convert recordSet to 2D Array
@@ -59,7 +56,7 @@ IF (Cint(opcion) = 1) THEN
 	'	
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrCategoria) then
 
@@ -68,7 +65,7 @@ IF (Cint(opcion) = 1) THEN
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrCategoria(0,i) & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrCategoria(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -78,7 +75,7 @@ IF (Cint(opcion) = 1) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -98,25 +95,25 @@ ELSEIF (Cint(opcion) = 2) THEN
 	'
 	' Buscar Datos de todas las Areas
 	'
-	QrySql = vbnullstring
-	QrySql = QrySql & " SELECT "
-	QrySql = QrySql & " Id_Area as id, "
-	QrySql = QrySql & " Area as mombre "
-	QrySql = QrySql & " FROM "
-	QrySql = QrySql & " RS_DataProcSem "
-	QrySql = QrySql & " WHERE "
-	QrySql = QrySql & " Id_Categoria = " & idCat
-	QrySql = QrySql & " GROUP BY "
-	QrySql = QrySql & " Id_Area, "
-	QrySql = QrySql & " Area "
-	QrySql = QrySql & " ORDER BY "
-	QrySql = QrySql & " Id_Area "	
+	qrySql = vbNullstring
+	qrySql = qrySql & " SELECT "
+	qrySql = qrySql & " Id_Area as id, "
+	qrySql = qrySql & " Area as mombre "
+	qrySql = qrySql & " FROM "
+	qrySql = qrySql & " RS_DataProcSem "
+	qrySql = qrySql & " WHERE "
+	qrySql = qrySql & " Id_Categoria = " & idCat
+	qrySql = qrySql & " GROUP BY "
+	qrySql = qrySql & " Id_Area, "
+	qrySql = qrySql & " Area "
+	qrySql = qrySql & " ORDER BY "
+	qrySql = qrySql & " Id_Area "	
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsArea = Server.CreateObject("ADODB.recordSet")
-	rsArea.Open QrySql, conexionRS
+	rsArea.Open qrySql, conexionRS
 	'
 	if not rsArea.EOF then
 		arrArea = rsArea.GetRows()  ' Convert recordSet to 2D Array
@@ -126,7 +123,7 @@ ELSEIF (Cint(opcion) = 2) THEN
 	'
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrArea) then
 
@@ -135,7 +132,7 @@ ELSEIF (Cint(opcion) = 2) THEN
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrArea(0,i) & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrArea(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -145,7 +142,7 @@ ELSEIF (Cint(opcion) = 2) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -162,30 +159,28 @@ ELSEIF (Cint(opcion) = 3) THEN
 	'Fill combo Zona
 	'			
 	Dim rsZona, arrZona
-	
-	'idCat = Request.Form("idCat")
 	'
 	' Buscar Datos de todas las Zonas
 	'
-	QrySql = vbnullstring
-	QrySql = QrySql & " SELECT "
-	QrySql = QrySql & " Id_Zona, "
-	QrySql = QrySql & " Zona "
-	QrySql = QrySql & " FROM "
-	QrySql = QrySql & " RS_DataProcSem "
-	QrySql = QrySql & " WHERE  "
-	QrySql = QrySql & " Id_Categoria= " & idCat
-	QrySql = QrySql & " GROUP BY "
-	QrySql = QrySql & " Id_Zona, "
-	QrySql = QrySql & " Zona "
-	QrySql = QrySql & " ORDER BY "
-	QrySql = QrySql & " Zona "
+	qrySql = vbNullstring
+	qrySql = qrySql & " SELECT "
+	qrySql = qrySql & " Id_Zona, "
+	qrySql = qrySql & " Zona "
+	qrySql = qrySql & " FROM "
+	qrySql = qrySql & " RS_DataProcSem "
+	qrySql = qrySql & " WHERE  "
+	qrySql = qrySql & " Id_Categoria= " & idCat
+	qrySql = qrySql & " GROUP BY "
+	qrySql = qrySql & " Id_Zona, "
+	qrySql = qrySql & " Zona "
+	qrySql = qrySql & " ORDER BY "
+	qrySql = qrySql & " Zona "
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsZona = Server.CreateObject("ADODB.recordSet")
-	rsZona.Open QrySql, conexionRS
+	rsZona.Open qrySql, conexionRS
 	'
 	if not rsZona.EOF then
 		arrZona = rsZona.GetRows()  ' Convert recordSet to 2D Array
@@ -195,7 +190,7 @@ ELSEIF (Cint(opcion) = 3) THEN
 	'	
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrZona) then
 
@@ -204,7 +199,7 @@ ELSEIF (Cint(opcion) = 3) THEN
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrZona(0,i) & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrZona(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -214,7 +209,7 @@ ELSEIF (Cint(opcion) = 3) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -232,31 +227,29 @@ ELSEIF (Cint(opcion) = 4) THEN
 	'Fill combo Canal
 	'			
 	Dim rsCanal, arrCanal
-	
-	'idCat = Request.Form("idCat")
 	'
 	' Buscar Datos de todas las Canales
 	'
-	QrySql = vbnullstring
+	qrySql = vbNullstring
 	
-	QrySql = QrySql & " SELECT "
-	QrySql = QrySql & " Id_Canal as id, "
-	QrySql = QrySql & " rtrim(Canal) as nombre"
-	QrySql = QrySql & " FROM "
-	QrySql = QrySql & " RS_DataProcSem "
-	QrySql = QrySql & " WHERE "
-	QrySql = QrySql & " Id_Categoria = " & idCat
-	QrySql = QrySql & " GROUP BY "
-	QrySql = QrySql & " Id_Canal, "
-	QrySql = QrySql & " Canal "
-	QrySql = QrySql & " ORDER BY "
-	QrySql = QrySql & " Canal "
+	qrySql = qrySql & " SELECT "
+	qrySql = qrySql & " Id_Canal as id, "
+	qrySql = qrySql & " rtrim(Canal) as nombre"
+	qrySql = qrySql & " FROM "
+	qrySql = qrySql & " RS_DataProcSem "
+	qrySql = qrySql & " WHERE "
+	qrySql = qrySql & " Id_Categoria = " & idCat
+	qrySql = qrySql & " GROUP BY "
+	qrySql = qrySql & " Id_Canal, "
+	qrySql = qrySql & " Canal "
+	qrySql = qrySql & " ORDER BY "
+	qrySql = qrySql & " Canal "
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsCanal = Server.CreateObject("ADODB.recordSet")
-	rsCanal.Open QrySql, conexionRS
+	rsCanal.Open qrySql, conexionRS
 	'
 	if not rsCanal.EOF then
 		arrCanal = rsCanal.GetRows()  ' Convert recordSet to 2D Array
@@ -266,7 +259,7 @@ ELSEIF (Cint(opcion) = 4) THEN
 	'	
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrCanal) then
 
@@ -275,7 +268,7 @@ ELSEIF (Cint(opcion) = 4) THEN
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrCanal(0,i) & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrCanal(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -285,7 +278,7 @@ ELSEIF (Cint(opcion) = 4) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -305,27 +298,27 @@ ELSEIF (Cint(opcion) = 5) THEN
 	'
 	' Buscar Datos de todas las Fabricantes
 	'
-	QrySql = vbnullstring	
-	QrySql = QrySql & " SELECT "
-	QrySql = QrySql & " Id_Fabricante as id, "
-	QrySql = QrySql & " Fabricante as nombre "
-	QrySql = QrySql & " FROM "
-	QrySql = QrySql & " RS_DataProcSem "
-	QrySql = QrySql & " WHERE "
-	QrySql = QrySql & " Id_Categoria = " & idCat
-	QrySql = QrySql & " GROUP BY "
-	QrySql = QrySql & " Id_Fabricante, "
-	QrySql = QrySql & " Fabricante "
-	QrySql = QrySql & " HAVING "
-	QrySql = QrySql & " Id_Fabricante <> 0 "
-	QrySql = QrySql & " ORDER BY "
-	QrySql = QrySql & " Fabricante "
+	qrySql = vbNullstring	
+	qrySql = qrySql & " SELECT "
+	qrySql = qrySql & " Id_Fabricante as id, "
+	qrySql = qrySql & " Fabricante as nombre "
+	qrySql = qrySql & " FROM "
+	qrySql = qrySql & " RS_DataProcSem "
+	qrySql = qrySql & " WHERE "
+	qrySql = qrySql & " Id_Categoria = " & idCat
+	qrySql = qrySql & " GROUP BY "
+	qrySql = qrySql & " Id_Fabricante, "
+	qrySql = qrySql & " Fabricante "
+	qrySql = qrySql & " HAVING "
+	qrySql = qrySql & " Id_Fabricante <> 0 "
+	qrySql = qrySql & " ORDER BY "
+	qrySql = qrySql & " Fabricante "
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsFabricante = Server.CreateObject("ADODB.recordSet")
-	rsFabricante.Open QrySql, conexionRS
+	rsFabricante.Open qrySql, conexionRS
 	'
 	if not rsFabricante.EOF then
 		arrFabricante = rsFabricante.GetRows()  ' Convert recordSet to 2D Array
@@ -335,7 +328,7 @@ ELSEIF (Cint(opcion) = 5) THEN
 	'	
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrFabricante) then
 
@@ -344,7 +337,7 @@ ELSEIF (Cint(opcion) = 5) THEN
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrFabricante(0,i) & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrFabricante(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -354,7 +347,7 @@ ELSEIF (Cint(opcion) = 5) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -371,60 +364,48 @@ ELSEIF (Cint(opcion) = 6) THEN
 	'Fill combo Marca
 	'			
 	Dim rsMarca, arrMarca
-	
-	'idCat = Request.Form("idCat")
 	'
 	' Buscar Datos de todas las Canales
 	'
 	if idCat >= 127 and idCat <= 145 then
-		QrySql = vbnullstring	
-		QrySql = QrySql & " SELECT "
-		QrySql = QrySql & " Id_Marca as id, "
-		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')' as nombre "
-		QrySql = QrySql & " FROM "
-		QrySql = QrySql & " RS_DataProcSem "
-		QrySql = QrySql & " WHERE "
-		QrySql = QrySql & " Id_Fabricante <> 0 AND Id_Categoria = " & idCat
-		QrySql = QrySql & " GROUP BY "
-		QrySql = QrySql & " Id_Marca, "
-		QrySql = QrySql & " Trim(Marca)+'('+Trim(Fabricante)+')'"
-		QrySql = QrySql & " HAVING "
-		QrySql = QrySql & " Id_Marca <> 0 "
-		QrySql = QrySql & " ORDER BY "
-		QrySql = QrySql & " Trim(Marca) + '('+Trim(Fabricante)+')'"
+		qrySql = vbNullstring	
+		qrySql = qrySql & " SELECT "
+		qrySql = qrySql & " Id_Marca as id, "
+		qrySql = qrySql & " Trim(Marca)+'('+Trim(Fabricante)+')' as nombre "
+		qrySql = qrySql & " FROM "
+		qrySql = qrySql & " RS_DataProcSem "
+		qrySql = qrySql & " WHERE "
+		qrySql = qrySql & " Id_Fabricante <> 0 AND Id_Categoria = " & idCat
+		qrySql = qrySql & " GROUP BY "
+		qrySql = qrySql & " Id_Marca, "
+		qrySql = qrySql & " Trim(Marca)+'('+Trim(Fabricante)+')'"
+		qrySql = qrySql & " HAVING "
+		qrySql = qrySql & " Id_Marca <> 0 "
+		qrySql = qrySql & " ORDER BY "
+		qrySql = qrySql & " Trim(Marca) + '('+Trim(Fabricante)+')'"
 	else 
-		QrySql = vbnullstring	
-		QrySql = QrySql & " SELECT "
-		QrySql = QrySql & " Id_Marca as id, "
-		QrySql = QrySql & " Marca as nombre"
-		QrySql = QrySql & " FROM "
-		QrySql = QrySql & " RS_DataProcSem "
-		QrySql = QrySql & " WHERE "
-		QrySql = QrySql & " Id_Categoria = " & idCat
-		QrySql = QrySql & " GROUP BY "
-		QrySql = QrySql & " Id_Marca, "
-		QrySql = QrySql & " Marca "
-		QrySql = QrySql & " HAVING "
-		QrySql = QrySql & " Id_Marca <> 0 "
-		QrySql = QrySql & " ORDER BY "
-		QrySql = QrySql & " Marca "
+		qrySql = vbNullstring	
+		qrySql = qrySql & " SELECT "
+		qrySql = qrySql & " Id_Marca as id, "
+		qrySql = qrySql & " Marca as nombre"
+		qrySql = qrySql & " FROM "
+		qrySql = qrySql & " RS_DataProcSem "
+		qrySql = qrySql & " WHERE "
+		qrySql = qrySql & " Id_Categoria = " & idCat
+		qrySql = qrySql & " GROUP BY "
+		qrySql = qrySql & " Id_Marca, "
+		qrySql = qrySql & " Marca "
+		qrySql = qrySql & " HAVING "
+		qrySql = qrySql & " Id_Marca <> 0 "
+		qrySql = qrySql & " ORDER BY "
+		qrySql = qrySql & " Marca "
 	end if
-	'	
-	' if idCat >= 127 and idCat <= 145 then
-		' 'QrySql = vbnullstring	
-		' QrySql = " SELECT Id_Marca as id, Trim(Marca)+'('+Trim(Fabricante)+')' as nombre FROM RS_DataProcSem WHERE Id_Fabricante <> 0 AND Id_Categoria = " & idCat & " GROUP BY Id_Marca, Trim(Marca)+'('+Trim(Fabricante)+')'"
-		' QrySql = QrySql & " HAVING Id_Marca <> 0 ORDER BY Trim(Marca) + '('+Trim(Fabricante)+')'"
-	' else 
-		' 'QrySql = vbnullstring	
-		' QrySql = QrySql & " SELECT Id_Marca as id, Marca as nombre FROM RS_DataProcSem  WHERE Id_Categoria = " & idCat & " GROUP BY Id_Marca, Marca HAVING Id_Marca <> 0 ORDER BY Marca "
-	' end if
-	
-	'	
-	'Response.Write QrySql & "<BR><BR>"
+	'		
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsMarca = Server.CreateObject("ADODB.recordSet")
-	rsMarca.Open QrySql, conexionRS
+	rsMarca.Open qrySql, conexionRS
 	'
 	if not rsMarca.EOF then
 		arrMarca = rsMarca.GetRows()  ' Convert recordSet to 2D Array
@@ -434,7 +415,7 @@ ELSEIF (Cint(opcion) = 6) THEN
 	'	
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrMarca) then
 
@@ -443,7 +424,7 @@ ELSEIF (Cint(opcion) = 6) THEN
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrMarca(0,i) & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrMarca(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -453,7 +434,7 @@ ELSEIF (Cint(opcion) = 6) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -473,27 +454,27 @@ ELSEIF (Cint(opcion) = 7) THEN
 	'
 	' Buscar Datos de todas las Canales
 	'
-	QrySql = vbnullstring
-	QrySql = QrySql & " SELECT "
-	QrySql = QrySql & " Id_Segmento as id, "
-	QrySql = QrySql & " Segmento as nombre"
-	QrySql = QrySql & " FROM "
-	QrySql = QrySql & " RS_DataProcSem "
-	QrySql = QrySql & " WHERE "
-	QrySql = QrySql & " Id_Categoria = " & idCat
-	QrySql = QrySql & " GROUP BY "
-	QrySql = QrySql & " Id_Segmento, "
-	QrySql = QrySql & " Segmento "
-	QrySql = QrySql & " HAVING "
-	QrySql = QrySql & " Id_Segmento <> 0 "
-	QrySql = QrySql & " ORDER BY "
-	QrySql = QrySql & " Segmento "
+	qrySql = vbNullstring
+	qrySql = qrySql & " SELECT "
+	qrySql = qrySql & " Id_Segmento as id, "
+	qrySql = qrySql & " Segmento as nombre"
+	qrySql = qrySql & " FROM "
+	qrySql = qrySql & " RS_DataProcSem "
+	qrySql = qrySql & " WHERE "
+	qrySql = qrySql & " Id_Categoria = " & idCat
+	qrySql = qrySql & " GROUP BY "
+	qrySql = qrySql & " Id_Segmento, "
+	qrySql = qrySql & " Segmento "
+	qrySql = qrySql & " HAVING "
+	qrySql = qrySql & " Id_Segmento <> 0 "
+	qrySql = qrySql & " ORDER BY "
+	qrySql = qrySql & " Segmento "
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsSegmento = Server.CreateObject("ADODB.recordSet")
-	rsSegmento.Open QrySql, conexionRS
+	rsSegmento.Open qrySql, conexionRS
 	'
 	if not rsSegmento.EOF then
 		arrSegmento = rsSegmento.GetRows()  ' Convert recordSet to 2D Array
@@ -503,7 +484,7 @@ ELSEIF (Cint(opcion) = 7) THEN
 	'	
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrSegmento) then
 
@@ -512,7 +493,7 @@ ELSEIF (Cint(opcion) = 7) THEN
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrSegmento(0,i) & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrSegmento(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -522,7 +503,7 @@ ELSEIF (Cint(opcion) = 7) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -543,27 +524,27 @@ ELSEIF (Cint(opcion) = 8) THEN
 	'
 	' Buscar Datos de todas las Tamanos
 	'
-	QrySql = vbnullstring
-	QrySql = QrySql & " SELECT "
-	QrySql = QrySql & " Id_Tamano as id, "
-	QrySql = QrySql & " CONVERT(DECIMAL(10,0),Tamano) as nombre"
-	QrySql = QrySql & " FROM "
-	QrySql = QrySql & " RS_DataProcSem "
-	QrySql = QrySql & " WHERE "
-	QrySql = QrySql & " Id_Categoria =  " & idCat
-	QrySql = QrySql & " GROUP BY "
-	QrySql = QrySql & " Id_Tamano, "
-	QrySql = QrySql & " Tamano "
-	QrySql = QrySql & " HAVING "
-	QrySql = QrySql & " Id_Tamano <> 0 "
-	QrySql = QrySql & " ORDER BY "
-	QrySql = QrySql & " CONVERT(DECIMAL(10,0),Tamano) "
+	qrySql = vbNullstring
+	qrySql = qrySql & " SELECT "
+	qrySql = qrySql & " Id_Tamano as id, "
+	qrySql = qrySql & " CONVERT(DECIMAL(10,0),Tamano) as nombre"
+	qrySql = qrySql & " FROM "
+	qrySql = qrySql & " RS_DataProcSem "
+	qrySql = qrySql & " WHERE "
+	qrySql = qrySql & " Id_Categoria =  " & idCat
+	qrySql = qrySql & " GROUP BY "
+	qrySql = qrySql & " Id_Tamano, "
+	qrySql = qrySql & " Tamano "
+	qrySql = qrySql & " HAVING "
+	qrySql = qrySql & " Id_Tamano <> 0 "
+	qrySql = qrySql & " ORDER BY "
+	qrySql = qrySql & " CONVERT(DECIMAL(10,0),Tamano) "
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsTamano = Server.CreateObject("ADODB.recordSet")
-	rsTamano.Open QrySql, conexionRS
+	rsTamano.Open qrySql, conexionRS
 	'
 	if not rsTamano.EOF then
 		arrTamano = rsTamano.GetRows()  ' Convert recordSet to 2D Array
@@ -575,7 +556,7 @@ ELSEIF (Cint(opcion) = 8) THEN
 	''
 	'Crear Archivo Array Json
 	''
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrTamano) then
 
@@ -585,7 +566,7 @@ ELSEIF (Cint(opcion) = 8) THEN
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrTamano(0,i) & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrTamano(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -595,7 +576,7 @@ ELSEIF (Cint(opcion) = 8) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -615,31 +596,31 @@ ELSEIF (Cint(opcion) = 9) THEN
 	'
 	' Buscar Datos de todas las Productos
 	'
-	QrySql = vbnullstring	
-	QrySql = QrySql & " SELECT"
-	QrySql = QrySql & " RS_DataProcSem.CodigoBarra as id,"	
-	QrySql = QrySql & " TRIM(RS_DataProcSem.Descripcion) as nombre"
-	QrySql = QrySql & " FROM"
-	QrySql = QrySql & " RS_DataProcSem INNER JOIN PH_CB_Fabricante ON RS_DataProcSem.Id_Fabricante = PH_CB_Fabricante.id_Fabricante"
-	QrySql = QrySql & " WHERE"
-	QrySql = QrySql & " RS_DataProcSem.Id_Categoria = " & idCat
-	QrySql = QrySql & " AND"
-	QrySql = QrySql & " PH_CB_Fabricante.Ind_MarcaPropia = 0"
-	QrySql = QrySql & " GROUP BY"
-	QrySql = QrySql & " RS_DataProcSem.CodigoBarra,"
-	QrySql = QrySql & " RS_DataProcSem.Descripcion"
-	QrySql = QrySql & " HAVING"	
-	QrySql = QrySql & " ( RS_DataProcSem.CodigoBarra IS NOT NULL AND RS_DataProcSem.CodigoBarra <> '' )"
-	QrySql = QrySql & " AND"
-	QrySql = QrySql & " ( RS_DataProcSem.Descripcion IS NOT NULL AND RS_DataProcSem.Descripcion <> '' )"	
-	QrySql = QrySql & " ORDER BY"
-	QrySql = QrySql & " nombre"	
+	qrySql = vbNullstring	
+	qrySql = qrySql & " SELECT"
+	qrySql = qrySql & " RS_DataProcSem.CodigoBarra as id,"	
+	qrySql = qrySql & " TRIM(RS_DataProcSem.Descripcion) as nombre"
+	qrySql = qrySql & " FROM"
+	qrySql = qrySql & " RS_DataProcSem INNER JOIN PH_CB_Fabricante ON RS_DataProcSem.Id_Fabricante = PH_CB_Fabricante.id_Fabricante"
+	qrySql = qrySql & " WHERE"
+	qrySql = qrySql & " RS_DataProcSem.Id_Categoria = " & idCat
+	qrySql = qrySql & " AND"
+	qrySql = qrySql & " PH_CB_Fabricante.Ind_MarcaPropia = 0"
+	qrySql = qrySql & " GROUP BY"
+	qrySql = qrySql & " RS_DataProcSem.CodigoBarra,"
+	qrySql = qrySql & " RS_DataProcSem.Descripcion"
+	qrySql = qrySql & " HAVING"	
+	qrySql = qrySql & " ( RS_DataProcSem.CodigoBarra IS NOT NULL AND RS_DataProcSem.CodigoBarra <> '' )"
+	qrySql = qrySql & " AND"
+	qrySql = qrySql & " ( RS_DataProcSem.Descripcion IS NOT NULL AND RS_DataProcSem.Descripcion <> '' )"	
+	qrySql = qrySql & " ORDER BY"
+	qrySql = qrySql & " nombre"	
 	'	
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsProducto = Server.CreateObject("ADODB.recordSet")
-	rsProducto.Open QrySql, conexionRS
+	rsProducto.Open qrySql, conexionRS
 	'
 	if not rsProducto.EOF then
 		arrProducto = rsProducto.GetRows()  ' Convert recordSet to 2D Array
@@ -650,7 +631,7 @@ ELSEIF (Cint(opcion) = 9) THEN
 	'	
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrProducto) then
 
@@ -659,7 +640,7 @@ ELSEIF (Cint(opcion) = 9) THEN
 			sTabla     = chr(123) &  chr(34) & "id" 	& chr(34) & ":" & chr(34) & arrProducto(0,i) & chr(34) & chr(44)
 			sTabla     = sTabla   &  chr(34) & "nombre" & chr(34) & ":" & chr(34) & RemoverSaltodeLinea(arrProducto(1,i)) &  " - "  & RemoverSaltodeLinea(arrProducto(0,i)) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -669,7 +650,7 @@ ELSEIF (Cint(opcion) = 9) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"  & chr(34) & ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -689,32 +670,32 @@ ELSEIF (Cint(opcion) = 10) THEN
 	'
 	' Buscar Datos de todas las Indicadores
 	'	
-	QrySql = vbnullstring
-	QrySql = QrySql & " SELECT "	
-	QrySql = QrySql & " Id_Indicador as id, "
-	QrySql = QrySql & " Abreviatura as nombre"
-	QrySql = QrySql & " FROM "
-	QrySql = QrySql & " RS_Indicadores "
-	QrySql = QrySql & " WHERE "	
+	qrySql = vbNullstring
+	qrySql = qrySql & " SELECT "	
+	qrySql = qrySql & " Id_Indicador as id, "
+	qrySql = qrySql & " Abreviatura as nombre"
+	qrySql = qrySql & " FROM "
+	qrySql = qrySql & " RS_Indicadores "
+	qrySql = qrySql & " WHERE "	
 	if idCliente = 1 then 
-		QrySql = QrySql & " Ind_Atenas = 1 " 
+		qrySql = qrySql & " Ind_Atenas = 1 " 
 	else
-		QrySql = QrySql & " Ind_Men = 1 " 
+		qrySql = qrySql & " Ind_Men = 1 " 
 	end if
 	'
  	if (idCat > 126 and idCat < 146) or (idCat = 41 or idCat = 18 or idCat = 54) then
-		QrySql = QrySql & " AND ( Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9 ) "
+		qrySql = qrySql & " AND ( Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9 ) "
 	end if
 	'
-	QrySql = QrySql & " AND Ind_Activo = 1 " 
-	QrySql = QrySql & " ORDER BY "
-	QrySql = QrySql & " Id_Indicador "		
+	qrySql = qrySql & " AND Ind_Activo = 1 " 
+	qrySql = qrySql & " ORDER BY "
+	qrySql = qrySql & " Id_Indicador "		
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsIndicadores = Server.CreateObject("ADODB.recordSet")
-	rsIndicadores.Open QrySql, conexionRS
+	rsIndicadores.Open qrySql, conexionRS
 	'
 	if not rsIndicadores.EOF then
 		arrIndicadores = rsIndicadores.GetRows()  ' Convert recordSet to 2D Array
@@ -724,7 +705,7 @@ ELSEIF (Cint(opcion) = 10) THEN
 	'
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrIndicadores) then
 
@@ -733,7 +714,7 @@ ELSEIF (Cint(opcion) = 10) THEN
 			sTabla     =   chr(123)&  chr(34) & "id" 	& chr(34) & ":" & chr(34) & arrIndicadores(0,i) & chr(34) & chr(44)
 			sTabla     =   sTabla &  chr(34) & "nombre" & chr(34) & ":" & chr(34) & arrIndicadores(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -743,7 +724,7 @@ ELSEIF (Cint(opcion) = 10) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34) & ":" & chr(34) & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -763,26 +744,26 @@ ELSEIF (Cint(opcion) = 11) THEN
 	'	
 	if Cint(idCliente=1) then
 		'atenas
-		QrySql = vbnullstring
-		QrySql = QrySql & " SELECT Min(RS_DataProcSem.Id_Semana) AS desde, Max(RS_DataProcSem.Id_Semana) AS hasta, RS_DataProcSem.Id_Categoria FROM RS_DataProcSem"
-		QrySql = QrySql & " GROUP BY RS_DataProcSem.Id_Categoria HAVING (((RS_DataProcSem.Id_Categoria)=" & idCat & "));"
+		qrySql = vbNullstring
+		qrySql = qrySql & " SELECT Min(RS_DataProcSem.Id_Semana) AS desde, Max(RS_DataProcSem.Id_Semana) AS hasta, RS_DataProcSem.Id_Categoria FROM RS_DataProcSem"
+		qrySql = qrySql & " GROUP BY RS_DataProcSem.Id_Categoria HAVING (((RS_DataProcSem.Id_Categoria)=" & idCat & "));"
 		'		
 	else
-		QrySql = vbnullstring		
-		QrySql = QrySql & " SELECT ss_ClienteCategoria.Id_PeriodoDesde AS desde, ss_ClienteCategoria.Id_PeriodoPub AS hasta FROM ss_ClienteCategoria"
-		QrySql = QrySql & " WHERE"
-		QrySql = QrySql & " ss_ClienteCategoria.Id_Cliente = " & idCliente
-		QrySql = QrySql & " AND"
-		QrySql = QrySql & " ss_ClienteCategoria.Ind_Mensual = 1"
-		QrySql = QrySql & " AND"
-		QrySql = QrySql & " ss_ClienteCategoria.Id_Categoria = " & idCat
+		qrySql = vbNullstring		
+		qrySql = qrySql & " SELECT ss_ClienteCategoria.Id_PeriodoDesde AS desde, ss_ClienteCategoria.Id_PeriodoPub AS hasta FROM ss_ClienteCategoria"
+		qrySql = qrySql & " WHERE"
+		qrySql = qrySql & " ss_ClienteCategoria.Id_Cliente = " & idCliente
+		qrySql = qrySql & " AND"
+		qrySql = qrySql & " ss_ClienteCategoria.Ind_Mensual = 1"
+		qrySql = qrySql & " AND"
+		qrySql = qrySql & " ss_ClienteCategoria.Id_Categoria = " & idCat
 	end if
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsSemanario = Server.CreateObject("ADODB.recordSet")
-	rsSemanario.Open QrySql, conexionRS
+	rsSemanario.Open qrySql, conexionRS
 			
 	if not (rsSemanario.EOF and rsSemanario.BOF) then		
 		iSemanaDes = rsSemanario("desde").value 'rsSemanario(0)
@@ -796,25 +777,25 @@ ELSEIF (Cint(opcion) = 11) THEN
 	'
 	' Buscar Datos de todas las Semanas
 	'	
-	QrySql = vbnullstring
-	QrySql = QrySql & " SELECT "
-	QrySql = QrySql & " IdSemana as id, "
-	QrySql = QrySql & " Semana as nombre "
-	QrySql = QrySql & " FROM "
-	QrySql = QrySql & " ss_Semana "
+	qrySql = vbNullstring
+	qrySql = qrySql & " SELECT "
+	qrySql = qrySql & " IdSemana as id, "
+	qrySql = qrySql & " Semana as nombre "
+	qrySql = qrySql & " FROM "
+	qrySql = qrySql & " ss_Semana "
 	if( iSemanaDes <> 0 and iSemanaHas <> 0 ) then
-		QrySql = QrySql & " WHERE "
-		QrySql = QrySql & " IdSemana >= " & iSemanaDes
-		QrySql = QrySql & " And IdSemana <= " & iSemanaHas
+		qrySql = qrySql & " WHERE "
+		qrySql = qrySql & " IdSemana >= " & iSemanaDes
+		qrySql = qrySql & " And IdSemana <= " & iSemanaHas
 	end if	
-	QrySql = QrySql & " ORDER BY "
-	QrySql = QrySql & " IdSemana DESC "
+	qrySql = qrySql & " ORDER BY "
+	qrySql = qrySql & " IdSemana DESC "
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsSemanas = Server.CreateObject("ADODB.recordSet")
-	rsSemanas.Open QrySql, conexionRS
+	rsSemanas.Open qrySql, conexionRS
 	'
 	if not rsSemanas.EOF then
 		arrSemanas = rsSemanas.GetRows()  ' Convert recordSet to 2D Array
@@ -824,7 +805,7 @@ ELSEIF (Cint(opcion) = 11) THEN
 	'
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrSemanas) then
 
@@ -833,7 +814,7 @@ ELSEIF (Cint(opcion) = 11) THEN
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrSemanas(0,i) & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & arrSemanas(1,i) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -843,7 +824,7 @@ ELSEIF (Cint(opcion) = 11) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"   & chr(34)& ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		'
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
@@ -866,18 +847,18 @@ ELSEIF (Cint(opcion) = 12) THEN
 		Response.Write CInt(idCliente)
 	
 	else
-		QrySql = vbnullstring		
-		QrySql = QrySql & " SELECT COUNT(Id_Cliente) as total FROM dbo.ss_ClienteCategoria"
-		QrySql = QrySql & " WHERE"
-		QrySql = QrySql & " dbo.ss_ClienteCategoria.Id_Cliente = " & idCliente
-		QrySql = QrySql & " AND"
-		QrySql = QrySql & " dbo.ss_ClienteCategoria.Ind_Mensual = 1"
+		qrySql = vbNullstring		
+		qrySql = qrySql & " SELECT COUNT(Id_Cliente) as total FROM dbo.ss_ClienteCategoria"
+		qrySql = qrySql & " WHERE"
+		qrySql = qrySql & " dbo.ss_ClienteCategoria.Id_Cliente = " & idCliente
+		qrySql = qrySql & " AND"
+		qrySql = qrySql & " dbo.ss_ClienteCategoria.Ind_Mensual = 1"
 		'
-		Response.Write QrySql & "<BR><BR>"
+		Response.Write qrySql & "<BR><BR>"
 		'Response.end
 		'
 		Set rsCliente = Server.CreateObject("ADODB.recordSet")
-		rsCliente.Open QrySql, conexionRS
+		rsCliente.Open qrySql, conexionRS
 		'
 		if not (rsCliente.EOF and rsCliente.BOF) then
 			Response.Write rsCliente(0)
@@ -902,26 +883,26 @@ ELSEIF (Cint(opcion) = 13) THEN
 	'	
 	if Cint(idCliente=1) then
 		'Atenas
-		QrySql = vbnullstring
-		QrySql = QrySql & " SELECT Min(RS_DataProcSem.Id_Semana) AS desde, Max(RS_DataProcSem.Id_Semana) AS hasta, RS_DataProcSem.Id_Categoria FROM RS_DataProcSem"
-		QrySql = QrySql & " GROUP BY RS_DataProcSem.Id_Categoria HAVING RS_DataProcSem.Id_Categoria=" & idCat
+		qrySql = vbNullstring
+		qrySql = qrySql & " SELECT Min(RS_DataProcSem.Id_Semana) AS desde, Max(RS_DataProcSem.Id_Semana) AS hasta, RS_DataProcSem.Id_Categoria FROM RS_DataProcSem"
+		qrySql = qrySql & " GROUP BY RS_DataProcSem.Id_Categoria HAVING RS_DataProcSem.Id_Categoria=" & idCat
 		'		
 	else
-		QrySql = vbnullstring		
-		QrySql = QrySql & " SELECT ss_ClienteCategoria.Id_PeriodoDesde AS desde, ss_ClienteCategoria.Id_PeriodoPub AS hasta FROM ss_ClienteCategoria"
-		QrySql = QrySql & " WHERE"
-		QrySql = QrySql & " ss_ClienteCategoria.Id_Cliente = " & idCliente
-		QrySql = QrySql & " AND"
-		QrySql = QrySql & " ss_ClienteCategoria.Ind_Mensual = 1"
-		QrySql = QrySql & " AND"
-		QrySql = QrySql & " ss_ClienteCategoria.Id_Categoria = " & idCat
+		qrySql = vbNullstring		
+		qrySql = qrySql & " SELECT ss_ClienteCategoria.Id_PeriodoDesde AS desde, ss_ClienteCategoria.Id_PeriodoPub AS hasta FROM ss_ClienteCategoria"
+		qrySql = qrySql & " WHERE"
+		qrySql = qrySql & " ss_ClienteCategoria.Id_Cliente = " & idCliente
+		qrySql = qrySql & " AND"
+		qrySql = qrySql & " ss_ClienteCategoria.Ind_Mensual = 1"
+		qrySql = qrySql & " AND"
+		qrySql = qrySql & " ss_ClienteCategoria.Id_Categoria = " & idCat
 	end if
 	'
-	' Response.Write QrySql & "<BR><BR>"
+	' Response.Write qrySql & "<BR><BR>"
 	' Response.end
 	'
 	Set rsMensual = Server.CreateObject("ADODB.recordSet")
-	rsMensual.Open QrySql, conexionRS
+	rsMensual.Open qrySql, conexionRS
 			
 	if not (rsMensual.EOF and rsMensual.BOF) then		
 		iSemDes = rsMensual("desde").value 'rsSemanario(0)
@@ -933,19 +914,18 @@ ELSEIF (Cint(opcion) = 13) THEN
 	'
 	rsMensual.Close : Set rsMensual = Nothing
 	'		
-	QrySql = vbnullstring
-	QrySql = QrySql & " SELECT ss_Periodo.IdPeriodo as id, ss_Periodo.Periodo as nombre"
-	QrySql = QrySql & " FROM ss_Periodo INNER JOIN ss_Semana ON ss_Periodo.IdPeriodo = ss_Semana.Id_Periodo"
-	'QrySql = QrySql & " WHERE (((ss_Semana.IdSemana)>= " & iSemDes & ") AND ((ss_Semana.IdSemana)<= " & iSemHas  & "))"
-	QrySql = QrySql & " WHERE ss_Semana.IdSemana >= " & iSemDes & " AND ss_Semana.IdSemana<= " & iSemHas 
-	QrySql = QrySql & " GROUP BY ss_Periodo.IdPeriodo, ss_Periodo.Periodo"
-	QrySql = QrySql & " ORDER BY ss_Periodo.IdPeriodo DESC;"	
+	qrySql = vbNullstring
+	qrySql = qrySql & " SELECT ss_Periodo.IdPeriodo as id, ss_Periodo.Periodo as nombre"
+	qrySql = qrySql & " FROM ss_Periodo INNER JOIN ss_Semana ON ss_Periodo.IdPeriodo = ss_Semana.Id_Periodo"
+	qrySql = qrySql & " WHERE ss_Semana.IdSemana >= " & iSemDes & " AND ss_Semana.IdSemana<= " & iSemHas 
+	qrySql = qrySql & " GROUP BY ss_Periodo.IdPeriodo, ss_Periodo.Periodo"
+	qrySql = qrySql & " ORDER BY ss_Periodo.IdPeriodo DESC;"	
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsMeses = Server.CreateObject("ADODB.recordSet")
-	rsMeses.Open QrySql, conexionRS
+	rsMeses.Open qrySql, conexionRS
 	'
 	if not rsMeses.EOF then
 		arrMeses = rsMeses.GetRows()  ' Convert recordSet to 2D Array
@@ -955,7 +935,7 @@ ELSEIF (Cint(opcion) = 13) THEN
 	'
 	'Crear Archivo Array Json
 	'
-	sTabla = vbnullstring
+	sTabla = vbNullstring
 
 	if IsArray(arrMeses) then
 
@@ -964,7 +944,7 @@ ELSEIF (Cint(opcion) = 13) THEN
 			sTabla    =   chr(123)&  chr(34) & "id" 	& chr(34)& ":" & chr(34) & arrMeses(0,i) & chr(34) & chr(44)
 			sTabla    =    sTabla &  chr(34) & "nombre" & chr(34)& ":" & chr(34) & RemoverSaltodeLinea(arrMeses(1,i)) & chr(34) & chr(125) &chr(44)
 			sTablaJson = sTablaJson & sTabla
-			sTabla = vbnullstring
+			sTabla = vbNullstring
 			'
 		Next
 
@@ -974,12 +954,12 @@ ELSEIF (Cint(opcion) = 13) THEN
 		sTabla  =   sTabla   &  chr(34) & "nombre"  & chr(34) & ":" & chr(34)  & "No Aplica" & chr(34) & chr(125) & chr(44)
 		''
 		sTablaJson = sTablaJson & sTabla
-		sTabla = vbnullstring
+		sTabla = vbNullstring
 
 	end if
 	''
-	sTabla  = Left(sTablaJson, Len(sTablaJson) - 1) 'Devuelve "Cadena"
-	JsonData=chr(123) & chr(34)& "data" & chr(34)& ":" & chr(91) & sTabla & chr(93) & chr(125)
+	sTabla   = Left(sTablaJson, Len(sTablaJson) - 1) 'Devuelve "Cadena"
+	JsonData = chr(123) & chr(34)& "data" & chr(34)& ":" & chr(91) & sTabla & chr(93) & chr(125)
 	Response.Write(JsonData)
 	'
 	' Cerrar conexiones
@@ -992,14 +972,14 @@ ELSEIF (Cint(opcion) = 14) THEN
 	'				
 	Dim rsMedicina
 	'	
-	QrySql = vbnullstring
-	QrySql = " SELECT PH_CB_Categoria.Ind_Medicina as Medicina FROM dbo.PH_CB_Categoria WHERE PH_CB_Categoria.id_Categoria = " & idCat
+	qrySql = vbNullstring
+	qrySql = " SELECT PH_CB_Categoria.Ind_Medicina as Medicina FROM dbo.PH_CB_Categoria WHERE PH_CB_Categoria.id_Categoria = " & idCat
 	'		
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsMedicina = Server.CreateObject("ADODB.recordSet")
-	rsMedicina.Open QrySql, conexionRS
+	rsMedicina.Open qrySql, conexionRS
 			
 	if not (rsMedicina.EOF and rsMedicina.BOF) then	
 		Response.Write rsMedicina("Medicina").value							
@@ -1013,7 +993,7 @@ ELSEIF (Cint(opcion) = 14) THEN
 	'
 ELSE
 	' de lo Contrario
-	Response.Write "error"
+	Response.Write "Ups!, Algo Salio Mal..!"
 END IF
 '
 %>

@@ -1,0 +1,8 @@
+El código HTTP de redirección 304 
+Not Modified en el response de la petición indica que no hay necesidad de retransmitir los recursos solicitados. 
+Es una redirección implícita a un elemento/recurso de caché.
+
+403 Prohibido – No tiene permiso para acceder a / en este servidor
+ es un código de estado HTTP que se produce cuando el servidor web entiende la solicitud 
+ pero no puede proporcionarte acceso. Puede ocurrir cuando visitas un directorio vacío del
+ sitio web o una página específica que tiene un error de permiso.1

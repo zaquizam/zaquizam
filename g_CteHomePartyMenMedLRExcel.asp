@@ -134,7 +134,7 @@
 	end if
 	if idCliente = 1 then
 		iMesDes = 24255
-		iMesHas = 24263
+		iMesHas = 24264
 	end if
 	'response.write "<br>310 Semana iMesDes:= " &  iMesDes
 	'response.write "<br>310 Semana iMesHas:= " &  iMesHas

@@ -8,11 +8,13 @@
 '==========================================================================================
 ' Variables y Constantes
 '==========================================================================================
+	Server.ScriptTimeout=10000
+	Response.buffer = true
 	dim gDatosSol1
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType = 2 'adLockOptimistic 
+	rsx1.LockType = 1 'adLockOptimistic 
 
 	dim gSemanas
 	dim gTipoConsumo
@@ -28,7 +30,7 @@
 	dim rsx2
 	set rsx2 = CreateObject("ADODB.Recordset")
 	rsx2.CursorType = adOpenKeyset 
-	rsx2.LockType = 2 'adLockOptimistic 
+	rsx2.LockType = 1 'adLockOptimistic 
 
 	'Semana 
 	sql = ""

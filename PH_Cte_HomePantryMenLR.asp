@@ -760,7 +760,8 @@ body.stop-scrolling {
 '==========================================================================================
 ' Variables y Constantes
 '==========================================================================================
-    Apertura
+    'Response.Redirect "ph_Mantto.asp"
+	Apertura
 	dim idCliente
 	
 	idCliente = Session("idCliente")

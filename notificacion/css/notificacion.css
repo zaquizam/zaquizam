@@ -1,0 +1,85 @@
+#grad1{ 
+	background-color: #f3f3f3;
+}
+
+#grad2{ 
+
+	background-color: #1a52c6;
+}
+
+.barrabotones {
+  background-color: #DcDcDc;  
+  vertical-align: middle;  
+}
+
+
+.coolBackground {
+  background-image: url("ab2.jpg");
+  background-size: cover;
+}
+
+#image img {
+    min-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+/* centrar imagen */
+.img-center {margin:0 auto;}
+
+/* redondear select */
+.selectWrapper{
+  border-radius:36px;
+  display:inline-block;
+  overflow:hidden;
+  background:#cccccc;
+  border:1px solid #cccccc;
+}
+.selectBox{
+  width:140px;
+  height:40px;
+  border:0px;
+  outline:none;
+}
+
+
+/* centrar imagen */
+.separa{
+	margin:0 auto;
+	padding :3px;	
+}
+
+.lb {
+	margin:0 auto;
+	padding :3px;
+    text-align: left;
+    font-Size: 12px;
+    font-weight: bold;
+    /*color: #5787C2;*/
+	color: #2EA3F2;
+    font-family: Verdana;
+	/* text-shadow: 2px 0.2px #A9A9A9; */
+}
+
+.lb2 {
+	margin:0 auto;
+	padding :3px;
+    text-align: left;
+    font-Size: 14px;
+    font-weight: bold;
+    color: #5787C2;
+    font-family: Verdana;
+	/* text-shadow: 2px 0.2px #A9A9A9; */
+}
+
+.img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+.borderless table {
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+}

@@ -760,7 +760,8 @@ body.stop-scrolling {
 '==========================================================================================
 ' Variables y Constantes
 '==========================================================================================
-    Apertura
+    'Response.Redirect "ph_Mantto.asp"
+	Apertura
 	dim idCliente
 	
 	idCliente = Session("idCliente")
@@ -1127,6 +1128,11 @@ Sub DataCombos
 	if (cint(ed_sPar(1,0)) = 93)  and idCliente = 28 then
 		'response.write "<br>pasoooooooooooooooo"
 		sql = sql & " and Id_Indicador in(6,9,10,12,14,15,24,26,28,29,32,35,36,37,39) "
+	end if
+	'MANPA
+	if (cint(ed_sPar(1,0)) = 54) and idCliente = 22 then
+		'response.write "<br>pasoooooooooooooooo"
+		sql = sql & " and Id_Indicador in(6,10,11,12,15,16,25,26,29,30,32) "
 	end if
 	
 	sql = sql & " ORDER BY "

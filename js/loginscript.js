@@ -38,11 +38,11 @@ $('document').ready(function() {
             success : function(response){						
                 if (response=="usuario") {					
 					$("#btn-login").html('<img src="images/ajax-loader3.gif" /> &nbsp; Espere ...!');
-                    setTimeout(' window.location.href = "pr_mInicio.asp"; ',1500);					
+                    setTimeout(' window.location.href = "pr_mInicio.asp"; ',800);					
 				}
 				else if (response=="auditor") {
 					$("#btn-login").html('<img src="images/ajax-loader3.gif" /> &nbsp; Ingresando ..!');					
-                    setTimeout(' window.location.href = "pr_mInicioAdt.asp"; ',1500);					
+                    setTimeout(' window.location.href = "pr_mInicioAdt.asp"; ',800);					
 				}
 				else {
 					$("#error").fadeIn(2000, function(){						

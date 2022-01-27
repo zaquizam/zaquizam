@@ -8,6 +8,7 @@
 Session.lcid = 1034
 Response.CodePage = 65001
 Response.CharSet = "utf-8"
+Server.ScriptTimeout=10000000
 '
 if conexionRS.errors.count <> 0 Then
   Response.Write ("No hay conexionRS con la BD...!")

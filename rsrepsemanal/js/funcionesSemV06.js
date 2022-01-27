@@ -3,43 +3,43 @@
 //
 function Reset(){
 	//
-	$("#DivRetailScanningSem").html("");		
-	$("#procesando").css("display", "none");		
-	$("#prcargando").css("display", "none");										
+	$("#DivRetailScanningSem").html("");
+	$("#procesando").css("display", "none");
+	$("#prcargando").css("display", "none");
 	$("#DivRetailScanningSem").css("display", "none");
-	$("#cboCategoria").multiselect("deselectAll", false);		
-	$("#cboCategoria").multiselect("refresh"); 
+	$("#cboCategoria").multiselect("deselectAll", false);
+	$("#cboCategoria").multiselect("refresh");
 	$("#cboArea").multiselect("deselectAll", false);
-	$("#cboArea").multiselect("refresh"); 	
+	$("#cboArea").multiselect("refresh");
 	$("#cboZona").multiselect("deselectAll", false);
-	$("#cboZona").multiselect("refresh"); 
-	$("#cboCanal").multiselect("deselectAll", false);		
-	$("#cboCanal").multiselect("refresh"); 			
+	$("#cboZona").multiselect("refresh");
+	$("#cboCanal").multiselect("deselectAll", false);
+	$("#cboCanal").multiselect("refresh");
 	$("#cboFabricante").multiselect("deselectAll", false);
-	$("#cboFabricante").multiselect("refresh"); 			
+	$("#cboFabricante").multiselect("refresh");
 	$("#cboMarca").multiselect("deselectAll", false);
-	$("#cboMarca").multiselect("refresh"); 			
+	$("#cboMarca").multiselect("refresh");
 	$("#cboSegmento").multiselect("deselectAll", false);
-	$("#cboSegmento").multiselect("refresh"); 			
+	$("#cboSegmento").multiselect("refresh");
 	$("#cboTamano").multiselect("deselectAll", false);
-	$("#cboTamano").multiselect("refresh"); 			
+	$("#cboTamano").multiselect("refresh");
 	$("#cboProducto").multiselect("deselectAll", false);
-	$("#cboProducto").multiselect("refresh"); 
+	$("#cboProducto").multiselect("refresh");
 	$("#cboIndicadores").multiselect("deselectAll", false);
-	$("#cboIndicadores").multiselect("refresh"); 			
+	$("#cboIndicadores").multiselect("refresh");
 	$("#cboSemanas").multiselect("deselectAll", false);
-	$("#cboSemanas").multiselect("refresh"); 
+	$("#cboSemanas").multiselect("refresh");
 	$("#cboMeses").multiselect("deselectAll", false);
-	$("#cboMeses").multiselect("refresh"); 
+	$("#cboMeses").multiselect("refresh");
 	sessionStorage.setItem("eXcel", 0);
-	sessionStorage.setItem("repCompleto", 0);	
-	//	
+	sessionStorage.setItem("repCompleto", 0);
+	//
 }
 //
 function multiselect_deselectAll($el) {
     $('option', $el).each(function(element) {
         $el.multiselect('deselect', $(this).val());
-    });
+	});
 }
 //
 $('.multiselect').each(function() {
@@ -50,63 +50,58 @@ $('.multiselect').each(function() {
 function tipoProducto() {
 	//
 	//debugger;
-	//
 	let idCat = $('#cboCategoria').val();
-	//	
 	let ajax = { opcion: 14, idCat: idCat };
-	//
 	$.ajax({
 		url: "RetSem_llenar_cmb1.asp",
 		type: "GET",
 		dataType: 'html',
-		data:  ajax,		
+		data:  ajax,
 	})
 	.done (function(response, textStatus, jqXHR) {
-		console.log('TipFab?');		
-		console.log(response);		
+		console.log('TipFab?');
+		console.log(response);
 		//debugger;
-		if( response == 'False' ){			
-			$("#tipoFabricante").html("<i class='fas fa-industry'></i>&nbsp;Fabricante:");            
-			return true;						
-		}else{
-			$("#tipoFabricante").html("<i class='fas fa-clinic-medical'></i>&nbsp;Laboratorio:");            
-			return true;						
-		}				
+		if( response == 'False' ){
+			$("#tipoFabricante").html("<i class='fas fa-industry'></i>&nbsp;Fabricante:");
+			return true;
+			}else{
+			$("#tipoFabricante").html("<i class='fas fa-clinic-medical'></i>&nbsp;Laboratorio:");
+			return true;
+		}
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
 		swal("Algo salio mal.!","Tipo Producto()", "error");
 	});
-	//	
-}	
+	//
+}
 //
 function ValidarCliente(){
-	//	
-	//debugger;
+	//
+	// debugger;
 	//
 	$("#cargando").show();
 	let idCliente = sessionStorage.getItem("idCliente");
-	//	
 	let ajax = { opcion: 12, idCli: sessionStorage.getItem("idCliente"), };
-	//
 	$.ajax({
 		url: "RetSem_llenar_cmb1.asp",
 		type: "GET",
 		dataType: 'html',
-		data:  ajax,		
+		data:  ajax,
 	})
 	.done (function(response, textStatus, jqXHR) {
-		console.log('Cliente?');		
-		console.log(response);		
+		//console.log('Cliente?');
+		//console.log(response);
 		//debugger;
 		if( parseInt(response) == 0 ){
-			$("#cboCategoria").empty();			
+			$("#cboCategoria").empty();
 			$("#cargando").hide();
 			swal("Atenas Grupo Consultor","Servicio No Contratado","info");
-			return false;						
-		}else{
-			 LlenarCategoria();
-			 return true;		
-		}				
+			return false;
+			}else{
+			LlenarCategoria();
+			return true;
+		}
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
 		swal("Algo salio mal.!","LlenarCategoria()", "error");
@@ -119,19 +114,17 @@ function LlenarCategoria() {
 	//
 	// debugger;
 	bLoquear();
-	//$("#cboCategoria").multiselect("disable");
-	//$("#cargando").show();
-	let ajax = { opcion: 1,	idCli: sessionStorage.getItem("idCliente") };	
+	let ajax = { opcion: 1,	idCli: sessionStorage.getItem("idCliente") };
 	//
 	$.ajax({
 		url: "RetSem_llenar_cmb1.asp",
 		type: "GET",
 		dataType: 'json',
-		data:  ajax,		
+		data:  ajax,
 	})
 	.done (function(response, textStatus, jqXHR) {
 		console.log(response);
-		debugger;
+		//debugger;
 		var len = response.data.length;
 		$("#cboCategoria").multiselect('destroy');
 		$("#cboCategoria").empty();
@@ -140,9 +133,9 @@ function LlenarCategoria() {
 			var id = response.data[i]['id'];
 			var nombre = response.data[i]['nombre'];
 			$("#cboCategoria").append("<option value='" + id + "'>" + nombre.trim() + "</option>");
-		}		
+		}
 		//
-		$("#cboCategoria").multiselect({ 
+		$("#cboCategoria").multiselect({
 			nonSelectedText: '-- Seleccione --',
 			disableIfEmpty: true,
 			buttonWidth: '275px',
@@ -158,16 +151,16 @@ function LlenarCategoria() {
 				if(categ == null || categ == undefined){
 					swal("Alerta","Debe seleccionar una Categoria..!","error");
 					$("#cargando").css("display", "none");
-					aCtivar();			
+					aCtivar();
 					//return false;
-				}else{			
+					}else{
 					let optCat   = $("#cboCategoria option:selected").val();
-					let idCli    = sessionStorage.getItem("idCliente");	
+					let idCli    = sessionStorage.getItem("idCliente");
 					$("#Cat").val(optCat);
 					Reset();
 					showMe('disable');
-					$("#cargando").show();				
-					//	
+					$("#cargando").show();
+					//
 					Promise.all([
 						tipoProducto(),
 						fillAllCombos(2,  optCat, "#cboArea",  0, idCli, 0),
@@ -179,28 +172,28 @@ function LlenarCategoria() {
 						fillAllCombos(8,  optCat, "#cboTamano", 1, idCli, 8),
 						fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
 						fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
-						fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),	
-						//fillAllCombos(13, optCat, "#cboMeses", 1, idCli, 0),	
+						fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+						//fillAllCombos(13, optCat, "#cboMeses", 1, idCli, 0),
 						]).then(() => { // try removing ajax 1 or replacing with ajax2
-							//
-							setTimeout(function () {
-								console.log('All Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());
-								//$("#cargando").hide();
-								//showMe('enable');
-								//$("#cboCategoria").multiselect("enable");
-							}, 3000);							
-							//							
-						}).catch((response) => {						
-							console.log('All Ajax some failed!');			
-							$("#cargando").hide();
-							showMe('enable');
-					});	
+						//
+						setTimeout(function () {
+							console.log('All Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());
+							//$("#cargando").hide();
+							//showMe('enable');
+							//$("#cboCategoria").multiselect("enable");
+						}, 3000);
+						//
+						}).catch((response) => {
+						console.log('All Ajax some failed!');
+						$("#cargando").hide();
+						showMe('enable');
+					});
 				}
 			}
 		});
-		$('#cboCategoria').multiselect('rebuild');			
+		$('#cboCategoria').multiselect('rebuild');
 		$('#cboCategoria').multiselect('refresh');
-		//	
+		//
 		$("#cargando").hide();
 		removeLoading();
 		aCtivar();
@@ -210,57 +203,56 @@ function LlenarCategoria() {
 		$("#cargando").hide();
 		aCtivar();
 		swal("Algo salio mal.!","LlenarCategoria()", "error");
-	});	
+	});
 }
 //
 // <!-- FUNCIONES -->
 //
-function fillAllCombos(opc, idcat, cbo, mtp, idCli, cmb) {			
-	//debugger;		
-	let ajax = { opcion: opc, idCat: idcat, idCli: idCli };
-	//
+function fillAllCombos(opc, idcat, cbo, mtp, idCli, cmb) {
+	//debugger;
+	let ajax = { opcion: opc, idCat: idcat, idCli: idCli };	
 	$.ajax({
 		url: "RetSem_llenar_cmb1.asp",
 		type: "GET",
 		dataType: 'json',
-		data:  ajax,		
+		data:  ajax,
 	})
 	.done (function(response, textStatus, jqXHR) {
 		console.log(cbo);
 		console.log(response);
 		//ebugger;
-		if (mtp == 0) {			
-			//			
+		if (mtp == 0) {
+			//
 			$(cbo).empty();
-			let conta=0;			
+			let conta=0;
 			var len = response.data.length;
 			if(cbo=="#cboFabricante"){
 				$(cbo).append("<option value='0'>TOTAL CATEGORIA</option>");
 			}
 			for( var i = 0; i < len; i++){
 				var id = response.data[i]['id'];
-				var nombre = response.data[i]['nombre'];				
+				var nombre = response.data[i]['nombre'];
 				if(cbo=="#cboSemanas"){
 					if(i <= 4){
 						$(cbo).append("<option value='"+id+"' selected>"+nombre.trim()+"</option>");
 						//conta++;
+						}else{
+						$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");
+					}
 					}else{
-						$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");	
-					}					
-				}else{
-					$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");					
+					$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");
 				}
 			}
 			$(cbo).multiselect('destroy');
 			$(cbo).multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '275px', includeSelectAllOption: true, maxHeight: 200 });
-			$(cbo).multiselect('rebuild');	
-			$(cbo).multiselect('refresh');				
+			$(cbo).multiselect('rebuild');
+			$(cbo).multiselect('refresh');
 			if(cbo=="#cboSemanas"){
-				$("#cargando").hide();	
-				showMe('enable');			
+				$("#cargando").hide();
+				showMe('enable');
 			}
 			
-		}else{	
+			}else{
 			//
 			$(cbo).multiselect('destroy');
 			var len = response.data.length;
@@ -268,22 +260,22 @@ function fillAllCombos(opc, idcat, cbo, mtp, idCli, cmb) {
 			if(cbo=="#cboFabricante"){
 				$(cbo).append("<option value='0'>TOTAL CATEGORIA</option>");
 			}
-			let conta=0;			
+			let conta=0;
 			for( var i = 0; i < len; i++){
 				var id = response.data[i]['id'];
-				var nombre = response.data[i]['nombre'];												
+				var nombre = response.data[i]['nombre'];
 				if(cbo=="#cboSemanas"){
 					if(conta<=4){
 						$(cbo).append("<option value='" + id + "' selected>" + nombre.trim() + "</option>");
 						conta++;
+						}else{
+						$(cbo).append("<option value='" + id + "'>" + nombre.trim() + "</option>");
+					}
 					}else{
-						$(cbo).append("<option value='" + id + "'>" + nombre.trim() + "</option>");	
-					}					
-				}else{
-					$(cbo).append("<option value='" + id + "'>" + nombre.trim() + "</option>");					
+					$(cbo).append("<option value='" + id + "'>" + nombre.trim() + "</option>");
 				}
-			}			
-			$(cbo).multiselect({ 
+			}
+			$(cbo).multiselect({
 				nonSelectedText: '-- Seleccione --',
 				disableIfEmpty: true,
   				buttonWidth: '275px',
@@ -294,87 +286,11 @@ function fillAllCombos(opc, idcat, cbo, mtp, idCli, cmb) {
 				includeFilterClearBtn: true,
 				enableCaseInsensitiveFiltering: true,
 				maxHeight: 200,
-				onDropdownHide: function(event) {        			
-					GetCambioCombo(cmb);					
+				onDropdownHide: function(event) {
+					GetCambioCombo(cmb);
 				}
 			});
-			$(cbo).multiselect('rebuild');	
-			$(cbo).multiselect('refresh');		
-		}
-		//		
-	})
-	.fail (function(jqXHR, textStatus, errorThrown) {
-		console.log('Fallo:  ' + cbo);
-		swal("Algo salio mal.!", cbo , "error");
-	});	
-}
-//
-function fillAllCombos2(opc, idcat, cbo, mtp, idCli, cmb) {
-	//		
-	let ajax = { opcion: opc, idCat: idcat, idCli: idCli };
-	//
-	$.ajax({
-		url: "RetSem_llenar_cmb1.asp",
-		type: "GET",
-		dataType: 'json',
-		data:  ajax,		
-	})
-	.done (function(response, textStatus, jqXHR) {
-		console.log(cbo);
-		console.log(response);
-		//debugger;
-		if (mtp == 0) {			
-									
-			$(cbo).multiselect('destroy');			
-			$(cbo).empty();									
-			var len = response.data.length;
-			for( var i = 0; i < len; i++){
-				var id = response.data[i]['id'];
-				var nombre = response.data[i]['nombre'];				  
-				$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");
-			}
-			$(cbo).multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '275px', includeSelectAllOption: true, });
-			$(cbo).multiselect('rebuild');			
-			$(cbo).multiselect('refresh');
-			
-		}else{	
-		
-			$(cbo).multiselect('destroy');			
-			$(cbo).empty();	
-			let x=opc;			
-			var len = response.data.length;
-			for( var i = 0; i < len; i++){
-				var id = response.data[i]['id'];
-				var nombre = response.data[i]['nombre'];
-				//
-				//console.log(nombre);
-            	//nombre = nombre.split(" ").join(""); 				
-				//console.log(id + " - "+nombre);
-				//
-				if(opc!=9){
-					$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");
-				}else{
-					$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");
-				}
-			}
-			
-			$(cbo).multiselect({ 
-				nonSelectedText: '-- Seleccione --',
-				disableIfEmpty: true,
-  				buttonWidth: '275px',
-				buttonHeight: '30px',
-				includeSelectAllOption: true,
-				enableFiltering: true,
-				filterPlaceholder: 'Buscar...',
-				includeFilterClearBtn: true,
-				enableCaseInsensitiveFiltering: true,
-				maxHeight: 200,
-				onDropdownHide: function(event) {        			
-					//GetCambioCombo(cmb,jQuery(cbo).val());					
-					GetCambioCombo(cmb);					
-				}
-			});
-			$(cbo).multiselect('rebuild');			
+			$(cbo).multiselect('rebuild');
 			$(cbo).multiselect('refresh');
 		}
 		//
@@ -382,15 +298,89 @@ function fillAllCombos2(opc, idcat, cbo, mtp, idCli, cmb) {
 	.fail (function(jqXHR, textStatus, errorThrown) {
 		console.log('Fallo:  ' + cbo);
 		swal("Algo salio mal.!", cbo , "error");
-	});	
+	});
+}
+//
+function fillAllCombos2(opc, idcat, cbo, mtp, idCli, cmb) {
+	//
+	let ajax = { opcion: opc, idCat: idcat, idCli: idCli };
+	$.ajax({
+		url: "RetSem_llenar_cmb1.asp",
+		type: "GET",
+		dataType: 'json',
+		data:  ajax,
+	})
+	.done (function(response, textStatus, jqXHR) {
+		console.log(cbo);
+		console.log(response);
+		//debugger;
+		if (mtp == 0) {
+			
+			$(cbo).multiselect('destroy');
+			$(cbo).empty();
+			var len = response.data.length;
+			for( var i = 0; i < len; i++){
+				var id = response.data[i]['id'];
+				var nombre = response.data[i]['nombre'];
+				$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");
+			}
+			$(cbo).multiselect({ nonSelectedText: '-- Seleccione --', disableIfEmpty: true, buttonWidth: '275px', includeSelectAllOption: true, });
+			$(cbo).multiselect('rebuild');
+			$(cbo).multiselect('refresh');
+			
+			}else{
+			
+			$(cbo).multiselect('destroy');
+			$(cbo).empty();
+			let x=opc;
+			var len = response.data.length;
+			for( var i = 0; i < len; i++){
+				var id = response.data[i]['id'];
+				var nombre = response.data[i]['nombre'];
+				//
+				//console.log(nombre);
+            	//nombre = nombre.split(" ").join("");
+				//console.log(id + " - "+nombre);
+				//
+				if(opc!=9){
+					$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");
+					}else{
+					$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");
+				}
+			}
+			
+			$(cbo).multiselect({
+				nonSelectedText: '-- Seleccione --',
+				disableIfEmpty: true,
+  				buttonWidth: '275px',
+				buttonHeight: '30px',
+				includeSelectAllOption: true,
+				enableFiltering: true,
+				filterPlaceholder: 'Buscar...',
+				includeFilterClearBtn: true,
+				enableCaseInsensitiveFiltering: true,
+				maxHeight: 200,
+				onDropdownHide: function(event) {
+					//GetCambioCombo(cmb,jQuery(cbo).val());
+					GetCambioCombo(cmb);
+				}
+			});
+			$(cbo).multiselect('rebuild');
+			$(cbo).multiselect('refresh');
+		}
+		//
+	})
+	.fail (function(jqXHR, textStatus, errorThrown) {
+		console.log('Fallo:  ' + cbo);
+		swal("Algo salio mal.!", cbo , "error");
+	});
 }
 //
 function showMe(value){
 	$("#cboCategoria").multiselect(value);
-	//debugger;
 	$("#cboArea").multiselect(value);
 	$("#cboZona").multiselect(value);
-	$("#cboCanal").multiselect(value);		
+	$("#cboCanal").multiselect(value);
 	$("#cboFabricante").multiselect(value);
 	$("#cboMarca").multiselect(value);
 	$("#cboSegmento").multiselect(value);
@@ -399,15 +389,14 @@ function showMe(value){
 	$("#cboIndicadores").multiselect(value);
 	$("#cboSemanas").multiselect(value);
 	$("#cboMeses").multiselect(value);
-	//debugger;
 }
 //
 function bLoquear(){
-	$("#cboCategoria").multiselect('disable');
 	//debugger;
+	$("#cboCategoria").multiselect('disable');
 	$("#cboArea").multiselect('disable');
 	$("#cboZona").multiselect('disable');
-	$("#cboCanal").multiselect('disable');		
+	$("#cboCanal").multiselect('disable');
 	$("#cboFabricante").multiselect('disable');
 	$("#cboMarca").multiselect('disable');
 	$("#cboSegmento").multiselect('disable');
@@ -416,20 +405,18 @@ function bLoquear(){
 	$("#cboIndicadores").multiselect('disable');
 	$("#cboSemanas").multiselect('disable');
 	$("#cboMeses").multiselect('disable');
-	//debugger;
 	$("#BtnAplicarFiltro").prop('disabled', true);
 	$("#BtnHistorico").prop('disabled', true);
 	$("#BtnExcel").prop('disabled', true);
-	$("#BtnBorrar").prop('disabled', true);
-	
+	$("#BtnBorrar").prop('disabled', true);	
 }
 //
 function aCtivar(){
-	$("#cboCategoria").multiselect('enable');
 	//debugger;
+	$("#cboCategoria").multiselect('enable');
 	$("#cboArea").multiselect('enable');
 	$("#cboZona").multiselect('enable');
-	$("#cboCanal").multiselect('enable');		
+	$("#cboCanal").multiselect('enable');
 	$("#cboFabricante").multiselect('enable');
 	$("#cboMarca").multiselect('enable');
 	$("#cboSegmento").multiselect('enable');
@@ -438,10 +425,144 @@ function aCtivar(){
 	$("#cboIndicadores").multiselect('enable');
 	$("#cboSemanas").multiselect('enable');
 	$("#cboMeses").multiselect('enable');
-	//debugger;
 	$("#BtnAplicarFiltro").prop('disabled', false);
 	$("#BtnHistorico").prop('disabled', false);
 	$("#BtnExcel").prop('disabled', false);
 	$("#BtnBorrar").prop('disabled', false);
+}
+//
+function bLankSelect(cmb){	
+	debugger;
+	bLoquear();
+	$("#cargando").show();
+	let optCat   = $("#cboCategoria option:selected").val();
+	let idCli    = sessionStorage.getItem("idCliente");
+	if(cmb==4){		
+		//Canal				
+		Promise.all([			
+			fillAllCombos(5,  optCat, "#cboFabricante", 1, idCli, 5),
+			fillAllCombos(6,  optCat, "#cboMarca", 1, idCli, 6),
+			fillAllCombos(7,  optCat, "#cboSegmento", 1, idCli, 7),
+			fillAllCombos(8,  optCat, "#cboTamano", 1, idCli, 8),
+			fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());				
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		} else if(cmb==5){	
+		//Fab
+		Promise.all([
+			fillAllCombos(6,  optCat, "#cboMarca", 1, idCli, 6),
+			fillAllCombos(7,  optCat, "#cboSegmento", 1, idCli, 7),
+			fillAllCombos(8,  optCat, "#cboTamano", 1, idCli, 8),
+			fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		} else if(cmb==6){	
+		//Marca		
+		Promise.all([			
+			fillAllCombos(7,  optCat, "#cboSegmento", 1, idCli, 7),
+			fillAllCombos(8,  optCat, "#cboTamano", 1, idCli, 8),
+			fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());				
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		} else if(cmb==7){	
+		//Segmento				
+		Promise.all([						
+			fillAllCombos(8,  optCat, "#cboTamano", 1, idCli, 8),
+			fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());				
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		} else if(cmb==8){	
+		//Tamaño			
+		Promise.all([									
+			fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());				
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		} else if(cmb==9){	
+		//Producto		
+		Promise.all([												
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());				
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		
+	}
+	sessionStorage.setItem("eXcel", 0);
+	sessionStorage.setItem("repCompleto", 0);	
 }
 //

@@ -67,7 +67,7 @@ Sub Combos
     
 	ed_iCombo = 2
 	sql = vbnullstring
-	sql = sql & " SELECT idPeriodo, Periodo FROM  ss_Periodo WHERE IdAno = 2021 Order By idPeriodo Desc "
+	sql = sql & " SELECT idPeriodo, Periodo FROM  ss_Periodo WHERE IdAno = 2021 or IdAno = 2022 Order By idPeriodo Desc "
 	'Response.Write "<br>372 Combo1:=" & sql
     ed_sCombo(1,0)="Mes"
     ed_sCombo(1,1)=sql 
