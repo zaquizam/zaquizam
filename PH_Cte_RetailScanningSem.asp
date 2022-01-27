@@ -27,7 +27,7 @@
 	<!--#include file="in_DataEN.asp"-->
 
 	<%
-		' 12jul21 - 18jul21
+		' 12jul21 - 27rne22
 		Apertura
 		LeePar
 		if ed_iPas<>4 then
@@ -152,7 +152,6 @@
 					
 				</div>				
 						
-
 			</div>
 			<!-- < / class="row" -->
 
@@ -193,7 +192,7 @@
 <script src="js/sweetalert.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="rsrepsemanal/js/funcionesSemV07.js"></script>
-<script src="rsrepsemanal/js/refillCombosSemV05.js"></script>
+<script src="rsrepsemanal/js/refillCombosSemV07.js"></script>
 <script src="js/bootstrap-multiselect-0915.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/plugins/export/libs/FileSaver.js/FileSaver.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.6/xlsx.full.min.js"></script>
@@ -535,7 +534,7 @@
 <script>
 var scripts = document.getElementsByTagName('script');
 //console.log(scripts);
-var toRefreshs = ['funcionesSemV07.js', 'refillCombosSemV05.js']; // list of js to be refresh
+var toRefreshs = ['funcionesSemV07.js', 'refillCombosSemV07.js']; // list of js to be refresh
 var key = Math.floor((Math.random() * 10) + 1); // change this key every time you want force a refresh
 for (var i = 0; i < scripts.length; i++) {
     for (var j = 0; j < toRefreshs.length; j++) {
