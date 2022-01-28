@@ -5,10 +5,11 @@
 '
 ' Cambio en combo Tamaño - 
 '
+Server.ScriptTimeout = 30000
+Response.Buffer = True	
 Session.lcid = 1034
 Response.CodePage = 65001
-Response.CharSet = "utf-8"
-Server.ScriptTimeout=10000000
+Response.CharSet = "UTF-8"
 '
 if conexionRS.errors.count <> 0 Then
   Response.Write ("No hay conexionRS con la BD...!")
@@ -41,13 +42,7 @@ IF (Cint(opcion) = 8) THEN
 	'	
 	'17nov
 	QrySql = vbnullstring	
-	QrySql = QrySql & " SELECT"
-	QrySql = QrySql & " RS_DataProcSem.CodigoBarra as id,"	
-	QrySql = QrySql & " TRIM(RS_DataProcSem.Descripcion) as nombre"
-	QrySql = QrySql & " FROM"
-	QrySql = QrySql & " RS_DataProcSem INNER JOIN PH_CB_Fabricante ON RS_DataProcSem.Id_Fabricante = PH_CB_Fabricante.id_Fabricante"
-	QrySql = QrySql & " WHERE"
-	QrySql = QrySql & " RS_DataProcSem.Id_Categoria = " & idCat
+	QrySql = " SELECT RS_DataProcSem.CodigoBarra as id, TRIM(RS_DataProcSem.Descripcion) as nombre FROM RS_DataProcSem INNER JOIN PH_CB_Fabricante ON RS_DataProcSem.Id_Fabricante = PH_CB_Fabricante.id_Fabricante WHERE RS_DataProcSem.Id_Categoria = " & idCat
 	'
 	if Len(idArea) <> 0 then 
 		QrySql = QrySql & " AND Id_Area in (" & idArea & ")"
@@ -70,23 +65,13 @@ IF (Cint(opcion) = 8) THEN
 	if Len(idTam)<>0 then 
 		QrySql = QrySql & " AND Id_Tamano in (" & idTam & ")"
 	end if
-	QrySql = QrySql & " AND"
-	QrySql = QrySql & " PH_CB_Fabricante.Ind_MarcaPropia = 0"
-	QrySql = QrySql & " GROUP BY"
-	QrySql = QrySql & " RS_DataProcSem.CodigoBarra,"
-	QrySql = QrySql & " RS_DataProcSem.Descripcion"
-	QrySql = QrySql & " HAVING"	
-	QrySql = QrySql & " ( RS_DataProcSem.CodigoBarra IS NOT NULL AND RS_DataProcSem.CodigoBarra <> '' )"
-	QrySql = QrySql & " AND"
-	QrySql = QrySql & " ( RS_DataProcSem.Descripcion IS NOT NULL AND RS_DataProcSem.Descripcion <> '' )"	
-	QrySql = QrySql & " ORDER BY"
-	QrySql = QrySql & " nombre"	
+	QrySql = QrySql & " AND PH_CB_Fabricante.Ind_MarcaPropia = 0 GROUP BY RS_DataProcSem.CodigoBarra, RS_DataProcSem.Descripcion HAVING ( RS_DataProcSem.CodigoBarra IS NOT NULL AND RS_DataProcSem.CodigoBarra <> '' ) AND ( RS_DataProcSem.Descripcion IS NOT NULL AND RS_DataProcSem.Descripcion <> '' ) ORDER BY nombre"	
 	'
 	'Response.Write QrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsProducto = Server.CreateObject("ADODB.recordset")
-	rsProducto.Open QrySql, conexionRS
+	rsProducto.Open qrySql,conexionRS,0,1
 	'
 	if not rsProducto.EOF then
 		arrProducto = rsProducto.GetRows()  ' Convert recordset to 2D Array
@@ -133,22 +118,4 @@ ELSE
 	Response.write "error"
 END IF
 '
-FUNCTION RemoverSaltodeLinea2(byval str)
-
-	IF isNull(str) THEN str = "" END IF
-	str = REPLACE(str,vbCr," ")			'Chr(13)
-	str = REPLACE(str,vbLf," ")			'Chr(10)
-	str = REPLACE(str,VbCrlf," ")		'Chr(13)+Chr(10)
-	str = REPLACE(str,vbNewLine," ")	'vbNewLine
-	str = REPLACE(str,vbFormFeed," ")	'Chr(12)
-	str = REPLACE(str,vbTab," ")		'Chr(9)
-	str = REPLACE(str,vbTab," ")		'Chr(11)
-	str = REPLACE(str,"'","´")			'Comillas simples
-	str = REPLACE(str,"""", "`") 		'Comillas dobles		
-	str = REPLACE(str,",", " ") 		'Comillas dobles
-	'
-	RemoverSaltodeLinea = TRIM(str)
-	'
-END FUNCTION
-
 %>

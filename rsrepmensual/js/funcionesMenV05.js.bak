@@ -36,21 +36,9 @@ function Reset(){
 	//	
 }
 //
-function multiselect_deselectAll($el) {
-    $('option', $el).each(function(element) {
-        $el.multiselect('deselect', $(this).val());
-    });
-}
-//
-$('.multiselect').each(function() {
-    var select = $(this);
-    multiselect_deselectAll(select);
-});
-//
 function tipoProducto() {
 	//
 	//debugger;
-	//
 	let idCat = $('#cboCategoria').val();
 	let ajax = { opcion: 14, idCat: idCat };
 	$.ajax({
@@ -59,19 +47,20 @@ function tipoProducto() {
 		dataType: 'html',
 		data:  ajax,		
 	})
-	.done (function(response, textStatus, jqXHR) {
-		console.log('TipFab?');		
-		console.log(response);		
+	.done (function(response, textStatus, jqXHR) {						
 		//debugger;
 		if( response == 'False' ){			
 			$("#tipoFabricante").html("<i class='fas fa-industry'></i>&nbsp;Fabricante:");            
+			console.log('TipFab?', 'Fab');
 			return true;						
 		}else{
 			$("#tipoFabricante").html("<i class='fas fa-clinic-medical'></i>&nbsp;Laboratorio:");            
+			console.log('TipFab?', 'Lab');
 			return true;						
 		}				
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
+		console.log('Fallo en: tipFab ' + ' Err? ' + errorThrown);		
 		swal("Algo salio mal.!","Tipo Producto()", "error");
 	});
 	//	
@@ -80,11 +69,8 @@ function tipoProducto() {
 function ValidarCliente(){
 	//	
 	//debugger;
-	//
 	let idCliente = sessionStorage.getItem("idCliente");
-	//	
 	let ajax = { opcion: 12, idCli: sessionStorage.getItem("idCliente"), };
-	//
 	$.ajax({
 		url: "RetMen_llenar_cmb1.asp",
 		type: "GET",
@@ -93,7 +79,6 @@ function ValidarCliente(){
 	})
 	.done (function(response, textStatus, jqXHR) {
 		console.log('Clt? ' , response );		
-		//console.log(response);		
 		//debugger;
 		if( parseInt(response) == 0 ){
 			$("#cboCategoria").empty();			
@@ -105,6 +90,7 @@ function ValidarCliente(){
 		}				
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
+		console.log('Fallo en: valClt ' + ' Err? ' + errorThrown);		
 		swal("Algo salio mal.!","LlenarCategoria()", "error");
 	});
 	//
@@ -178,7 +164,7 @@ function LlenarCategoria() {
 						}, 3000);							
 						//							
 					}).catch((response) => {						
-						console.log('All Ajax some failed!');			
+						console.log('Algunos Ajax fallaron!');			
 						$("#cargando").hide();
 						showMe('enable');
 				});	
@@ -191,7 +177,6 @@ function LlenarCategoria() {
 		aCtivar();
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
-		//alert("Error " + errorThrown);
 		$("#cargando").hide();		
 		aCtivar();
 		console.log('Fallo en: cboCat ' + ' Err? ' + errorThrown);		

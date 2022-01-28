@@ -1,7 +1,7 @@
 <!--#include file="conexionRS.asp" -->
 <%
 '
-' RetSem_llenar_cmb7.asp - 15jul21 - 22nov21
+' RetSem_llenar_cmb7.asp - 15jul21 - 27ene22
 '
 ' Cambio en combo Segmento - 
 '
@@ -17,7 +17,7 @@ if conexionRS.errors.count <> 0 Then
   Response.End
 end if
 
-Dim oPcion, qRySql, idCat, idCliente
+Dim oPcion, qrySql, idCat, idCliente
 '
 ' oPcion  = Cint(Request.Querystring("oPcion"))
 ' idQuery = Cint(Request.Querystring("id"))
@@ -32,16 +32,6 @@ idMar   = Request.Querystring("idMar")
 idSeg  = Request.Querystring("idSeg")
 idCliente = Request.Querystring("idCli")
 '
-'let ajax = { opcion: opc, idCat: idCatg, idArea: idArea, idZona: idZona, idCanal: idCanal, idFab: idFabr, idMar: idMar, idSeg: idSegm };
-'
-' if Len(idArea)=0  then idArea=0
-' if Len(idZona)=0  then idZona=0
-' if Len(idCanal)=0 then idCanal=0
-' if Len(idFab)=0   then idFab=0
-' if Len(idMar)=0   then idMar=0
-' if Len(idSeg)=0   then idSeg=0
-'if Len(idTam)=0   then idTam=0
-'
 IF (Cint(oPcion) = 7) THEN
 	'
 	'ReFill combo Tamaño
@@ -50,35 +40,33 @@ IF (Cint(oPcion) = 7) THEN
 	'
 	' Buscar Datos de todas las Tamano
 	'
-	qRySql = vbnullstring	
-	qRySql = qRySql & " SELECT DISTINCT Id_Tamano as id, Tamano as nombre FROM RS_DataProcSem  WHERE"
-	qRySql = qRySql & " Id_Categoria = " & idCat
+	qrySql = vbnullstring	
+	qrySql = " SELECT DISTINCT Id_Tamano as id, Tamano as nombre FROM RS_DataProcSem  WHERE Id_Categoria = " & idCat
 	if Len(idArea) <> 0 then 
-		qRySql = qRySql & " AND Id_Area in (" & idArea & ")"
+		qrySql = qrySql & " AND Id_Area in (" & idArea & ")"
 	end if
 	if Len(idZona) <> 0 then 
-		qRySql = qRySql & " AND Id_Zona in (" & idZona & ")"
+		qrySql = qrySql & " AND Id_Zona in (" & idZona & ")"
 	end if
 	if Len(idCanal) <> 0 then 
-		qRySql = qRySql & " AND Id_Canal in (" & idCanal & ")"
+		qrySql = qrySql & " AND Id_Canal in (" & idCanal & ")"
 	end if
 	if Len(idFab) <> 0 then 
-		qRySql = qRySql & " AND Id_Fabricante in (" & idFab & ")"
+		qrySql = qrySql & " AND Id_Fabricante in (" & idFab & ")"
 	end if
 	if Len(idMar) <> 0 then 
-		qRySql = qRySql & " AND Id_Marca in (" & idMar & ")"
+		qrySql = qrySql & " AND Id_Marca in (" & idMar & ")"
 	end if
 	if Len(idSeg) <> 0 then 
-		qRySql = qRySql & " AND Id_Segmento in (" & idSeg & ")"
-	end if	
-	
-	qRySql = qRySql & " AND Id_Tamano <> 0 ORDER BY Tamano"	
+		qrySql = qrySql & " AND Id_Segmento in (" & idSeg & ")"
+	end if		
+	qrySql = qrySql & " AND Id_Tamano <> 0 ORDER BY Tamano"	
 	'
-	'Response.Write qRySql & "<BR><BR>"
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsTamano = Server.CreateObject("ADODB.recordset")
-	rsTamano.Open qRySql, conexionRS
+	rsTamano.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsTamano.EOF then
 		arrTamano = rsTamano.GetRows()  ' Convert recordset to 2D Array
@@ -126,73 +114,34 @@ ELSEIF (Cint(oPcion) = 8) THEN
 	Dim rsProducto, arrProducto
 	'
 	' Buscar Datos de todas las Productos
-	'
-	' qRySql = vbnullstring
-	' qRySql = qRySql & " SELECT DISTINCT CodigoBarra as id, Descripcion as nombre FROM RS_DataProcSem WHERE"
-	' qRySql = qRySql & " Id_Categoria= " &  idCat
-	' if Len(idArea) <> 0 then 
-		' qRySql = qRySql & " AND Id_Area in (" & idArea & ")"
-	' end if
-	' if Len(idZona) <> 0 then 
-		' qRySql = qRySql & " AND Id_Zona in (" & idZona & ")"
-	' end if
-	' if Len(idCanal) <> 0 then 
-		' qRySql = qRySql & " AND Id_Canal in (" & idCanal & ")"
-	' end if
-	' if Len(idFab) <> 0 then 
-		' qRySql = qRySql & " AND Id_Fabricante in (" & idFab & ")"
-	' end if
-	' if Len(idMar) <> 0 then 
-		' qRySql = qRySql & " AND Id_Marca in (" & idMar & ")"
-	' end if
-	' if Len(idSeg) <> 0 then 
-		' qRySql = qRySql & " AND Id_Segmento in (" & idSeg & ")"
-	' end if	
-	' qRySql = qRySql & " AND  CodigoBarra IS NOT NULL AND CodigoBarra <> '' AND Descripcion IS NOT NULL AND Descripcion <> '' ORDER BY Descripcion"
-	'
+	'	
 	'17nov
-	QrySql = vbnullstring	
-	QrySql = QrySql & " SELECT"
-	QrySql = QrySql & " RS_DataProcSem.CodigoBarra as id,"	
-	QrySql = QrySql & " TRIM(RS_DataProcSem.Descripcion) as nombre"
-	QrySql = QrySql & " FROM"
-	QrySql = QrySql & " RS_DataProcSem INNER JOIN PH_CB_Fabricante ON RS_DataProcSem.Id_Fabricante = PH_CB_Fabricante.id_Fabricante"
-	QrySql = QrySql & " WHERE"
-	QrySql = QrySql & " RS_DataProcSem.Id_Categoria = " & idCat
+	qrySql = vbnullstring	
+	qrySql = " SELECT RS_DataProcSem.CodigoBarra as id, TRIM(RS_DataProcSem.Descripcion) as nombre FROM RS_DataProcSem INNER JOIN PH_CB_Fabricante ON RS_DataProcSem.Id_Fabricante = PH_CB_Fabricante.id_Fabricante WHERE RS_DataProcSem.Id_Categoria = " & idCat
 	if Len(idArea)<>0 then 
-		QrySql = QrySql & " AND Id_Area in (" & idArea & ")"
+		qrySql = qrySql & " AND Id_Area in (" & idArea & ")"
 	end if	
 	if Len(idZona)<>0 then 
-		QrySql = QrySql & " AND Id_Zona in (" & idZona & ")"
+		qrySql = qrySql & " AND Id_Zona in (" & idZona & ")"
 	end if		
 	if Len(idCanal)<>0 then 
-		QrySql = QrySql & " AND Id_Canal in (" & idCanal & ")"
+		qrySql = qrySql & " AND Id_Canal in (" & idCanal & ")"
 	end if	
 	if Len(idFab)<>0 then 
-		QrySql = QrySql & " AND PH_CB_Fabricante.id_Fabricante in (" & idFab & ")"
+		qrySql = qrySql & " AND PH_CB_Fabricante.id_Fabricante in (" & idFab & ")"
 	end if
 	if Len(idMar)<>0 then 
-		QrySql = QrySql & " AND Id_Marca in (" & idMar & ")"
+		qrySql = qrySql & " AND Id_Marca in (" & idMar & ")"
 	end if
 	if Len(idSeg) <> 0 then 
-		qRySql = qRySql & " AND Id_Segmento in (" & idSeg & ")"
+		qrySql = qrySql & " AND Id_Segmento in (" & idSeg & ")"
 	end if
-	QrySql = QrySql & " AND"
-	QrySql = QrySql & " PH_CB_Fabricante.Ind_MarcaPropia = 0"
-	QrySql = QrySql & " GROUP BY"
-	QrySql = QrySql & " RS_DataProcSem.CodigoBarra,"
-	QrySql = QrySql & " RS_DataProcSem.Descripcion"
-	QrySql = QrySql & " HAVING"	
-	QrySql = QrySql & " ( RS_DataProcSem.CodigoBarra IS NOT NULL AND RS_DataProcSem.CodigoBarra <> '' )"
-	QrySql = QrySql & " AND"
-	QrySql = QrySql & " ( RS_DataProcSem.Descripcion IS NOT NULL AND RS_DataProcSem.Descripcion <> '' )"	
-	QrySql = QrySql & " ORDER BY"
-	QrySql = QrySql & " nombre"	
-	'Response.Write qRySql & "<BR><BR>"
+	qrySql = qrySql & " AND PH_CB_Fabricante.Ind_MarcaPropia = 0 GROUP BY RS_DataProcSem.CodigoBarra, RS_DataProcSem.Descripcion HAVING ( RS_DataProcSem.CodigoBarra IS NOT NULL AND RS_DataProcSem.CodigoBarra <> '' ) AND ( RS_DataProcSem.Descripcion IS NOT NULL AND RS_DataProcSem.Descripcion <> '' ) ORDER BY nombre"	
+	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsProducto = Server.CreateObject("ADODB.recordset")
-	rsProducto.Open qRySql, conexionRS
+	rsProducto.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsProducto.EOF then
 		arrProducto = rsProducto.GetRows()  ' Convert recordset to 2D Array

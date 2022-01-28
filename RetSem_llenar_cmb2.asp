@@ -50,7 +50,7 @@ IF (Cint(opcion) = 2) THEN
 	'Response.end
 	'
 	Set rsZona = Server.CreateObject("ADODB.recordset")
-	rsZona.Open QrySql, conexionRS
+	rsZona.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsZona.EOF then
 		arrZona = rsZona.GetRows()  ' Convert recordset to 2D Array
@@ -121,7 +121,7 @@ ELSEIF (Cint(opcion) = 3) THEN
 	'Response.end
 	'
 	Set rsCanal = Server.CreateObject("ADODB.recordset")
-	rsCanal.Open QrySql, conexionRS
+	rsCanal.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsCanal.EOF then
 		arrCanal = rsCanal.GetRows()  ' Convert recordset to 2D Array
@@ -187,7 +187,7 @@ ELSEIF (Cint(opcion) = 4) THEN
 	'Response.end
 	'
 	Set rsFabricante = Server.CreateObject("ADODB.recordset")
-	rsFabricante.Open QrySql, conexionRS
+	rsFabricante.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsFabricante.EOF then
 		arrFabricante = rsFabricante.GetRows()  ' Convert recordset to 2D Array
@@ -295,7 +295,7 @@ ELSEIF (Cint(opcion) = 5) THEN
 	'Response.end
 	'
 	Set rsMarca = Server.CreateObject("ADODB.recordset")
-	rsMarca.Open QrySql, conexionRS
+	rsMarca.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsMarca.EOF then
 		arrMarca = rsMarca.GetRows()  ' Convert recordset to 2D Array
@@ -356,7 +356,7 @@ ELSEIF (Cint(opcion) = 6) THEN
 	'Response.end
 	'
 	Set rsSegmento = Server.CreateObject("ADODB.recordset")
-	rsSegmento.Open QrySql, conexionRS
+	rsSegmento.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsSegmento.EOF then
 		arrSegmento = rsSegmento.GetRows()  ' Convert recordset to 2D Array
@@ -416,7 +416,7 @@ ELSEIF (Cint(opcion) = 7) THEN
 	'Response.end
 	'
 	Set rsTamano = Server.CreateObject("ADODB.recordset")
-	rsTamano.Open QrySql, conexionRS
+	rsTamano.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsTamano.EOF then
 		arrTamano = rsTamano.GetRows()  ' Convert recordset to 2D Array
@@ -500,7 +500,7 @@ ELSEIF (Cint(opcion) = 8) THEN
 	'Response.end
 	'
 	Set rsProducto = Server.CreateObject("ADODB.recordset")
-	rsProducto.Open QrySql, conexionRS
+	rsProducto.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsProducto.EOF then
 		arrProducto = rsProducto.GetRows()  ' Convert recordset to 2D Array

@@ -1,10 +1,10 @@
 <%@language=vbscript%>
 <!--#include file="conexionRS.asp"-->
-<!-- RetSem_Excel.asp - 12oct21 - 12ene22 -->
+<!-- RetSem_Datos.asp - 12oct21 - 27ene22 -->
 <%
 	' Variables y Constantes
 	'Response.Write(Server.ScriptTimeout)
-	Server.ScriptTimeout = 10000
+	Server.ScriptTimeout = 30000
 	Response.Buffer = True	
 	Session.lcid = 1034
 	Response.ContentType = "text/html"	
@@ -67,19 +67,19 @@
 	Dim gDatos1
 	Dim rSx1
 	set rSx1 = CreateObject("ADODB.Recordset")
-	rSx1.CursorType = adOpenKeyset 
-	rSx1.LockType = 1 'adLockOptimistic 
+	'rSx1.CursorType = adOpenKeyset 
+	'rSx1.LockType = 1 'adLockOptimistic 
 
 	'Semanas	
 	sQl = vbNullstring
 	sQl = " SELECT IdSemana, SemanaCorta FROM ss_Semana WHERE IdSemana in ( " & sSemanas & ") Order By IdSemana "
 	'Response.Write "<br>151 sQl:=" & sQl & "<br>"
 	'Response.End
-	rSx1.Open sQl ,conexionRS
+	rSx1.Open sQl,conexionRS,0,1
 	if rSx1.Eof then
 		rSx1.Close
 	else
-		gSemanas = rSx1.GetRows
+		gSemanas = rSx1.GetRows()
 		rSx1.Close
 	end if
 	'	
@@ -89,11 +89,11 @@
 	sQl = " SELECT IdPeriodo, PeriodoCorto, Semanas FROM ss_Periodo WHERE Semanas IS NOT NULL AND IdPeriodo in ( " & sMes & ") Order By idPeriodo ASC "
 	'Response.Write "<br>151 sQl:=" & sQl & "<br>"
 	'Response.End
-	rSx1.Open sQl ,conexionRS
+	rSx1.Open sQl,conexionRS,0,1
 	if rSx1.Eof then
 		rSx1.Close
 	else
-		gMeses = rSx1.GetRows
+		gMeses = rSx1.GetRows()
 		rSx1.Close
 	end if
 	sSemMes = ""
@@ -124,11 +124,11 @@
 	'Response.Write "<br>191 sQl:=" & sQl & "<br>"
 	''	
 	'Response.End 
-	rSx1.Open sQl ,conexionRS
+	rSx1.Open sQl,conexionRS,0,1
 	if rSx1.Eof then
 		rSx1.Close
 	else
-		gIndicadores = rSx1.GetRows
+		gIndicadores = rSx1.GetRows()
 		rSx1.Close
 	end if
 	'Response.Write "<br>203 Paso" 
@@ -140,14 +140,8 @@
 		sql = " SELECT Id_Area, Area, Id_Zona, Zona, Id_Canal, Canal, Id_Fabricante, Fabricante, Id_Marca, Marca, Id_Segmento, Segmento, Id_Tamano, Tamano, CodigoBarra,"
 		sql = sql & " Descripcion, UnidadMedida, VentasUni, VentasVal, VentasUniMed, VentasNo, DistribucionNum, DistribucionPon, DistribucionEfe, ShareUni,"			'24
 		sql = sql & " ShareVol, ShareVal, PrecioPro, PrecioMax, PrecioMin, PrecioUni, PrecioUniMed, id_Semana FROM RS_DataProcSem WHERE"
-		sql = sql & " Id_Categoria = " & sCat
-		sql = sql & " And Id_Semana in ( " & sSemanas & ")"
-		sql = sql & " And Id_Area in (" & sAre & ")"
-		sql = sql & " And Id_Zona in (" & sZon & ")"
-		sql = sql & " And Id_Canal in (" & sCan & ")"
-		sql = sql & " And Id_Fabricante in (" & sFab & ")"
-		sql = sql & " And Id_Marca in (" & sMar & ")"
-		sql = sql & " And Id_Segmento in (" & sSeg & ")"
+		sql = sql & " Id_Categoria = " & sCat & " And Id_Semana in ( " & sSemanas & ") And Id_Area in (" & sAre & ")  And Id_Zona in (" & sZon & ") And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ")"
+		sql = sql & " And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 		if Len(sTam) > 1 then
 			sql = sql & " And Id_Tamano in (" & sTam & ")"
 		else
@@ -173,14 +167,8 @@
 		sql = vbNullstring
 		sql = " SELECT Id_Area, Area, Id_Zona, Zona, Id_Canal, Canal, Id_Fabricante, Fabricante, Id_Marca, Marca, Id_Segmento, Segmento, Id_Tamano, Tamano, CodigoBarra, "
 		sql = sql & " Descripcion, UnidadMedida FROM RS_DataProcSem WHERE "
-		sql = sql & " Id_Categoria = " & sCat
-		sql = sql & " And Id_Semana in ( " & sSemMes & ")"
-		sql = sql & " And Id_Area in (" & sAre & ")"
-		sql = sql & " And Id_Zona in (" & sZon & ")"
-		sql = sql & " And Id_Canal in (" & sCan & ")"
-		sql = sql & " And Id_Fabricante in (" & sFab & ")"
-		sql = sql & " And Id_Marca in (" & sMar & ")"
-		sql = sql & " And Id_Segmento in (" & sSeg & ")"
+		sql = sql & " Id_Categoria = " & sCat & " And Id_Semana in ( " & sSemMes & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ") And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ")"
+		sql = sql & " And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 		if Len(sTam) > 1 then
 			sql = sql & " And Id_Tamano in (" & sTam & ")"
 		else
@@ -201,6 +189,7 @@
 		if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
 			sql = replace(sql,"And Id_Tamano = 0","")		
 		end if
+		
 	end if
 	if sPro <> "" then
 		sql = replace(sql,"And Id_Tamano = 0","")		
@@ -209,14 +198,14 @@
 	'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 	'Response.End
 	'
-    rSx1.Open sQl ,conexionRS
+    rSx1.Open sQl,conexionRS,0,1
 	iExiste = 0
 	if rSx1.Eof then
 		iExiste = 0
 		rSx1.Close
 	else
 		iExiste = 1
-		gProductosTotal = rSx1.GetRows
+		gProductosTotal = rSx1.GetRows()
 		rSx1.Close
 	end if
 	'Response.Write "<br>271 Paso" 
@@ -405,20 +394,10 @@
 														Select Case Columna
 															
 															Case 17	'1VentasUni
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasUni) "			'17
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT sum(VentasUni) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat
+																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ") And Id_Canal in (" & sCan & ")"
+																sql = sql & " And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ") "
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -433,14 +412,13 @@
 																	end if
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
-																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
+																	sql = replace(sql,"And Id_Tamano = 0","")																
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -449,7 +427,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	iValor = gValor(0,0)
 																end if
@@ -462,20 +440,9 @@
 																Response.Write "</td>"
 															
 															Case 18	'2VentasVal
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasVal) "			'18
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT sum(VentasVal) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ")"
+																sql = sql & " And Id_Zona in (" & sZon & ") And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -497,7 +464,7 @@
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -506,7 +473,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	iValor = gValor(0,0)
 																end if
@@ -519,20 +486,9 @@
 																Response.Write "</td>"
 															
 															Case 19	'3VentasVol
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasUniMed) "			'19
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT sum(VentasUniMed) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ")"
+																sql = sql & " And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ") "
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -548,13 +504,12 @@
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
 																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -563,7 +518,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	iValor = gValor(0,0)
 																end if
@@ -581,21 +536,9 @@
 																Response.Write "</td>"
 															
 															Case 21	'5DistNum
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " Max(DistribucionNum) "			'21
-																'sql = sql & " (sum(TotalTiendasCat))/sum(TotalTiendas) as Calculo "
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT Max(DistribucionNum) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ")"
+																sql = sql & " And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -611,13 +554,12 @@
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
 																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -626,7 +568,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	iValor = gValor(0,0)
 																	'Response.Write "<br>659 Query:=" & gValor(0,0) & " Convertido:= " & cDbl(gValor(0,0)) &  "<br>"
 																	if isNull(iValor) then
@@ -645,20 +587,9 @@
 																Response.Write "</td>"
 															
 															Case 22	'6DistPon
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " Max(DistribucionNum) "			'21
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT Max(DistribucionNum) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ")"
+																sql = sql & " And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -674,13 +605,12 @@
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
 																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValorDN = 0
 																if rSx1.Eof then
@@ -689,7 +619,7 @@
 																	iValorDN = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	'Response.Write "<br>659 Query:=" & gValor(0,0) & " Convertido:= " & cDbl(gValor(0,0)) &  "<br>"
 																	iValorDN = gValor(0,0)
@@ -699,21 +629,9 @@
 																end if
 																iValorDN = replace(iValorDN,",",".")
 																
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " DistribucionPon "			'22
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And DistribucionNum = '" & iValorDN & "'"
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT DistribucionPon FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And DistribucionNum = '" & iValorDN & "' And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ")"
+																sql = sql & " And Id_Zona in (" & sZon & ") And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -728,14 +646,13 @@
 																	end if
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
-																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
+																	sql = replace(sql,"And Id_Tamano = 0","")															
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -744,7 +661,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	'Response.Write "<br>659 Query:=" & gValor(0,0) & " Convertido:= " & cDbl(gValor(0,0)) &  "<br>"
 																	iValor = cDbl(gValor(0,0))
@@ -764,20 +681,9 @@
 																Response.Write "</td>"
 															
 															Case 24	'8ShareUni
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasUni) "		
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT sum(VentasUni) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ")"
+																sql = sql & " And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -793,13 +699,12 @@
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
 																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -808,7 +713,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	'19nov21 - uFev
 																	if isNull(gValor(0,0)) then
@@ -820,19 +725,13 @@
 																if isNull(iValor) then
 																	iValor = 0
 																end if
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasUni) "
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSemVentas "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " AND Id_Categoria = " & sCat
+																sql = vbNullstring
+																sql = " SELECT sum(VentasUni) FROM RS_DataProcSemVentas WHERE Id_Semana in ( " & gMeses(2,iMes) & ") AND Id_Categoria = " & sCat
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValorTotal = 0
 																if rSx1.Eof then
@@ -841,7 +740,7 @@
 																	iValorTotal = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	iValorTotal = gValor(0,0)
 																end if
@@ -860,20 +759,9 @@
 																Response.Write "</td>"
 
 															Case 25	'9ShareVol
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasUniMed) "			
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT sum(VentasUniMed) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ")"
+																sql = sql & " And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -888,14 +776,13 @@
 																	end if
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
-																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
+																	sql = replace(sql,"And Id_Tamano = 0","")																
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -904,7 +791,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	'19nov21 - uFev
 																	if isNull(gValor(0,0)) then
@@ -916,19 +803,13 @@
 																if isNull(iValor) then
 																	iValor = 0
 																end if
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasUniMed) "
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSemVentas "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " AND Id_Categoria = " & sCat
+																sql = vbNullstring
+																sql = " SELECT sum(VentasUniMed) FROM RS_DataProcSemVentas WHERE Id_Semana in ( " & gMeses(2,iMes) & ") AND Id_Categoria = " & sCat
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValorTotal = 0
 																if rSx1.Eof then
@@ -937,7 +818,7 @@
 																	iValorTotal = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	iValorTotal = gValor(0,0)
 																end if
@@ -951,20 +832,9 @@
 																Response.Write "</td>"
 															
 															Case 26	'10ShareVal
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasVal) "			
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT sum(VentasVal) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ")"
+																sql = sql & " And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -979,14 +849,13 @@
 																	end if
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
-																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
+																	sql = replace(sql,"And Id_Tamano = 0","")																
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -995,7 +864,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	'19nov21 - uFev
 																	if isNull(gValor(0,0)) then
@@ -1007,19 +876,13 @@
 																if isNull(iValor) then
 																	iValor = 0
 																end if
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasVal) "
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSemVentas "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " AND Id_Categoria = " & sCat
+																sql = vbNullstring
+																sql = " SELECT sum(VentasVal) FROM RS_DataProcSemVentas WHERE Id_Semana in ( " & gMeses(2,iMes) & ") AND Id_Categoria = " & sCat
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValorTotal = 0
 																if rSx1.Eof then
@@ -1028,7 +891,7 @@
 																	iValorTotal = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	iValorTotal = gValor(0,0)
 																end if
@@ -1047,20 +910,9 @@
 																Response.Write "</td>"
 															
 															Case 28	'12PrecioMax
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " Max(PrecioMax) "			'28
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT Max(PrecioMax) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ")"
+																sql = sql & " And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -1076,13 +928,12 @@
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
 																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -1091,7 +942,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	iValor = gValor(0,0)
 																end if
@@ -1104,20 +955,9 @@
 																Response.Write "</td>"
 
 															Case 29	'13PrecioMin
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " Min(PrecioMin) "			'29
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT Min(PrecioMin) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ")"
+																sql = sql & " And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ") "
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -1133,13 +973,12 @@
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
 																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -1148,7 +987,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	iValor = gValor(0,0)
 																end if
@@ -1161,20 +1000,9 @@
 																Response.Write "</td>"
 															
 															Case 30	'14PrecioUni
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasVal)/sum(VentasUni) "			
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT sum(VentasVal)/sum(VentasUni) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ")"
+																sql = sql & " And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -1190,13 +1018,12 @@
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
 																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -1205,7 +1032,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	iValor = gValor(0,0)
 																end if
@@ -1218,20 +1045,9 @@
 																Response.Write "</td>"
 															
 															Case 31	'15PrecioUniMed
-																sql = ""
-																sql = sql & " SELECT "
-																sql = sql & " sum(VentasVal)/sum(VentasUniMed) "			
-																sql = sql & " FROM "
-																sql = sql & " RS_DataProcSem "
-																sql = sql & " WHERE "
-																sql = sql & " Id_Categoria = " & sCat
-																sql = sql & " And Id_Semana in ( " & gMeses(2,iMes) & ")"
-																sql = sql & " And Id_Area in (" & sAre & ")"
-																sql = sql & " And Id_Zona in (" & sZon & ")"
-																sql = sql & " And Id_Canal in (" & sCan & ")"
-																sql = sql & " And Id_Fabricante in (" & sFab & ")"
-																sql = sql & " And Id_Marca in (" & sMar & ")"
-																sql = sql & " And Id_Segmento in (" & sSeg & ")"
+																sql = vbNullstring
+																sql = " SELECT sum(VentasVal)/sum(VentasUniMed) FROM RS_DataProcSem WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & gMeses(2,iMes) & ")  And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ")"
+																sql = sql & " And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 																if Len(sTam) > 1 then
 																	sql = sql & " And Id_Tamano in (" & sTam & ")"
 																else
@@ -1246,14 +1062,13 @@
 																	end if
 																end if
 																if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
-																	sql = replace(sql,"And Id_Tamano = 0","")
-																else
+																	sql = replace(sql,"And Id_Tamano = 0","")																
 																end if
 																'
 																'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 																'Response.End
 																'
-																rSx1.Open sQl ,conexionRS
+																rSx1.Open sQl,conexionRS,0,1
 																'iExiste = 0
 																iValor = 0
 																if rSx1.Eof then
@@ -1262,7 +1077,7 @@
 																	iValor = 0
 																else
 																	'iExiste = 1
-																	gValor = rSx1.GetRows
+																	gValor = rSx1.GetRows()
 																	rSx1.Close
 																	iValor = gValor(0,0)
 																end if

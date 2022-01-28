@@ -1,5 +1,5 @@
 //
-// funcionesV3.js // 12jul21 - 02nov21
+// funcionesMenV05.js // 12jul21 - 27ene22
 //
 function Reset(){
 	//
@@ -36,72 +36,82 @@ function Reset(){
 	//	
 }
 //
-function multiselect_deselectAll($el) {
-    $('option', $el).each(function(element) {
-        $el.multiselect('deselect', $(this).val());
-    });
-}
-//
-$('.multiselect').each(function() {
-    var select = $(this);
-    multiselect_deselectAll(select);
-});
+function tipoProducto() {
+	//
+	//debugger;
+	let idCat = $('#cboCategoria').val();
+	let ajax = { opcion: 14, idCat: idCat };
+	$.ajax({
+		url: "RetMen_llenar_cmb1.asp",
+		type: "GET",
+		dataType: 'html',
+		data:  ajax,		
+	})
+	.done (function(response, textStatus, jqXHR) {						
+		//debugger;
+		if( response == 'False' ){			
+			$("#tipoFabricante").html("<i class='fas fa-industry'></i>&nbsp;Fabricante:");            
+			console.log('TipFab?', 'Fab');
+			return true;						
+		}else{
+			$("#tipoFabricante").html("<i class='fas fa-clinic-medical'></i>&nbsp;Laboratorio:");            
+			console.log('TipFab?', 'Lab');
+			return true;						
+		}				
+	})
+	.fail (function(jqXHR, textStatus, errorThrown) {
+		console.log('Fallo en: tipFab ' + ' Err? ' + errorThrown);		
+		swal("Algo salio mal.!","Tipo Producto()", "error");
+	});
+	//	
+}	
 //
 function ValidarCliente(){
 	//	
-	// debugger;
-	//
+	//debugger;
 	let idCliente = sessionStorage.getItem("idCliente");
-	if(idCliente == "1"){
-		$("#historico").css("display", "block");		
-	}else{
-		$("#historico").css("display", "none");		
-		sessionStorage.setItem("repCompleto", 0);
-	}
-	//		
-	let ajax = { opcion: 12, idCli: idCliente, };
-	//
+	let ajax = { opcion: 12, idCli: sessionStorage.getItem("idCliente"), };
 	$.ajax({
-		url: "RetSem_llenar_cmb1.asp",
+		url: "RetMen_llenar_cmb1.asp",
 		type: "GET",
 		dataType: 'html',
 		data:  ajax,		
 	})
 	.done (function(response, textStatus, jqXHR) {
-		//console.log(response);		
-		if(response=="True"){
-			LlenarCategoria();
-			return true;			
-		}else{
+		console.log('Clt? ' , response );		
+		//debugger;
+		if( parseInt(response) == 0 ){
 			$("#cboCategoria").empty();			
 			swal("Atenas Grupo Consultor","Servicio No Contratado","info");
-			return false;			
+			return false;						
+		}else{
+			 LlenarCategoria();
+			 return true;		
 		}				
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
+		console.log('Fallo en: valClt ' + ' Err? ' + errorThrown);		
 		swal("Algo salio mal.!","LlenarCategoria()", "error");
 	});
-		
+	//
 }
 //
 // <!-- CATEGORIA -->
-//
 function LlenarCategoria() {
 	//
-	$("#cboCategoria").multiselect("disable");
-	$("#cargando").show();
-	let ajax = { opcion: 1,	idCli: sessionStorage.getItem("idCliente"), };
+	//debugger;
 	bLoquear();
-	//
+	$("#cargando").show();
+	let ajax = { opcion: 1,	idCli: sessionStorage.getItem("idCliente") };	
 	$.ajax({
-		url: "RetSem_llenar_cmb1.asp",
+		url: "RetMen_llenar_cmb1.asp",
 		type: "GET",
 		dataType: 'json',
 		data:  ajax,		
 	})
 	.done (function(response, textStatus, jqXHR) {
-		//console.log(response);
-		//debugger;
+		console.log(response);
+		debugger;
 		var len = response.data.length;
 		$("#cboCategoria").multiselect('destroy');
 		$("#cboCategoria").empty();
@@ -129,10 +139,10 @@ function LlenarCategoria() {
 				$("#Cat").val(optCat);
 				Reset();
 				showMe('disable');
-				$("#cargando").show();
-				//$("#cboCategoria").multiselect("disable");				
+				$("#cargando").show();				
 				//	
 				Promise.all([
+				    tipoProducto(),
 					fillAllCombos(2,  optCat, "#cboArea",  0, idCli, 0),
 					fillAllCombos(3,  optCat, "#cboZona",  1, idCli, 3),
 					fillAllCombos(4,  optCat, "#cboCanal", 1, idCli, 4),
@@ -148,13 +158,10 @@ function LlenarCategoria() {
 						//
 						setTimeout(function () {
 							console.log('All Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());
-							//$("#cargando").hide();
-							//showMe('enable');
-							//$("#cboCategoria").multiselect("enable");
 						}, 3000);							
 						//							
 					}).catch((response) => {						
-						console.log('All Ajax some failed!');			
+						console.log('Algunos Ajax fallaron!');			
 						$("#cargando").hide();
 						showMe('enable');
 				});	
@@ -167,9 +174,9 @@ function LlenarCategoria() {
 		aCtivar();
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
-		//alert("Error " + errorThrown);
-		$("#cargando").hide();
+		$("#cargando").hide();		
 		aCtivar();
+		console.log('Fallo en: cboCat ' + ' Err? ' + errorThrown);		
 		swal("Algo salio mal.!","LlenarCategoria()", "error");
 	});	
 }
@@ -181,7 +188,7 @@ function fillAllCombos(opc, idcat, cbo, mtp, idCli, cmb) {
 	let ajax = { opcion: opc, idCat: idcat, idCli: idCli };
 	//
 	$.ajax({
-		url: "RetSem_llenar_cmb1.asp",
+		url: "RetMen_llenar_cmb1.asp",
 		type: "GET",
 		dataType: 'json',
 		data:  ajax,		
@@ -189,7 +196,7 @@ function fillAllCombos(opc, idcat, cbo, mtp, idCli, cmb) {
 	.done (function(response, textStatus, jqXHR) {
 		console.log(cbo);
 		console.log(response);
-		//ebugger;
+		debugger;
 		if (mtp == 0) {			
 			//			
 			$(cbo).empty();
@@ -264,7 +271,7 @@ function fillAllCombos(opc, idcat, cbo, mtp, idCli, cmb) {
 		//		
 	})
 	.fail (function(jqXHR, textStatus, errorThrown) {
-		console.log('Fallo:  ' + cbo);
+		console.log('Fallo en: ' + cbo + ' Err? ' + errorThrown);
 		swal("Algo salio mal.!", cbo , "error");
 	});	
 }
@@ -274,7 +281,7 @@ function fillAllCombos2(opc, idcat, cbo, mtp, idCli, cmb) {
 	let ajax = { opcion: opc, idCat: idcat, idCli: idCli };
 	//
 	$.ajax({
-		url: "RetSem_llenar_cmb1.asp",
+		url: "RetMen_llenar_cmb1.asp",
 		type: "GET",
 		dataType: 'json',
 		data:  ajax,		
@@ -306,11 +313,6 @@ function fillAllCombos2(opc, idcat, cbo, mtp, idCli, cmb) {
 			for( var i = 0; i < len; i++){
 				var id = response.data[i]['id'];
 				var nombre = response.data[i]['nombre'];
-				//
-				//console.log(nombre);
-            	//nombre = nombre.split(" ").join(""); 				
-				//console.log(id + " - "+nombre);
-				//
 				if(opc!=9){
 					$(cbo).append("<option value='"+id+"'>"+nombre.trim()+"</option>");
 				}else{
@@ -339,15 +341,15 @@ function fillAllCombos2(opc, idcat, cbo, mtp, idCli, cmb) {
 		}
 		//
 	})
-	.fail (function(jqXHR, textStatus, errorThrown) {
-		console.log('Fallo:  ' + cbo);
+	.fail (function(jqXHR, textStatus, errorThrown) {		
+		console.log('Fallo: ' + cbo + ' Err? ' + errorThrown);		
 		swal("Algo salio mal.!", cbo , "error");
 	});	
 }
 //
-function showMe(value){
-	$("#cboCategoria").multiselect(value);
+function showMe(value){	
 	//debugger;
+	$("#cboCategoria").multiselect(value);
 	$("#cboArea").multiselect(value);
 	$("#cboZona").multiselect(value);
 	$("#cboCanal").multiselect(value);		
@@ -359,8 +361,8 @@ function showMe(value){
 	$("#cboIndicadores").multiselect(value);
 	$("#cboSemanas").multiselect(value);
 	$("#cboMeses").multiselect(value);
-	//debugger;
 }
+//
 function bLoquear(){
 	$("#cboCategoria").multiselect('disable');
 	//debugger;
@@ -375,13 +377,13 @@ function bLoquear(){
 	$("#cboIndicadores").multiselect('disable');
 	$("#cboSemanas").multiselect('disable');
 	$("#cboMeses").multiselect('disable');
-	//debugger;
 	$("#BtnAplicarFiltro").prop('disabled', true);
 	$("#BtnHistorico").prop('disabled', true);
 	$("#BtnExcel").prop('disabled', true);
 	$("#BtnBorrar").prop('disabled', true);
 	
 }
+//
 function aCtivar(){
 	$("#cboCategoria").multiselect('enable');
 	//debugger;
@@ -401,5 +403,147 @@ function aCtivar(){
 	$("#BtnHistorico").prop('disabled', false);
 	$("#BtnExcel").prop('disabled', false);
 	$("#BtnBorrar").prop('disabled', false);
+}
+//
+//
+function bLankSelect(cmb){	
+	debugger;
+	bLoquear();
+	$("#cargando").show();
+	let optCat   = $("#cboCategoria option:selected").val();
+	let idCli    = sessionStorage.getItem("idCliente");
+	if(cmb==4){		
+		//Canal				
+		Promise.all([			
+			fillAllCombos(5,  optCat, "#cboFabricante", 1, idCli, 5),
+			fillAllCombos(6,  optCat, "#cboMarca", 1, idCli, 6),
+			fillAllCombos(7,  optCat, "#cboSegmento", 1, idCli, 7),
+			fillAllCombos(8,  optCat, "#cboTamano", 1, idCli, 8),
+			fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			fillAllCombos(13, optCat, "#cboMeses", 1, idCli, 0),				
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());				
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		} else if(cmb==5){	
+		//Fab
+		Promise.all([
+			fillAllCombos(6,  optCat, "#cboMarca", 1, idCli, 6),
+			fillAllCombos(7,  optCat, "#cboSegmento", 1, idCli, 7),
+			fillAllCombos(8,  optCat, "#cboTamano", 1, idCli, 8),
+			fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			fillAllCombos(13, optCat, "#cboMeses", 1, idCli, 0),	
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		} else if(cmb==6){	
+		//Marca		
+		Promise.all([			
+			fillAllCombos(7,  optCat, "#cboSegmento", 1, idCli, 7),
+			fillAllCombos(8,  optCat, "#cboTamano", 1, idCli, 8),
+			fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			fillAllCombos(13, optCat, "#cboMeses", 1, idCli, 0),	
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());				
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		} else if(cmb==7){	
+		//Segmento				
+		Promise.all([						
+			fillAllCombos(8,  optCat, "#cboTamano", 1, idCli, 8),
+			fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			fillAllCombos(13, optCat, "#cboMeses", 1, idCli, 0),	
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());				
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		} else if(cmb==8){	
+		//Tamaño			
+		Promise.all([									
+			fillAllCombos2(9, optCat, "#cboProducto", 1, idCli, 0),
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			fillAllCombos(13, optCat, "#cboMeses", 1, idCli, 0),	
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());				
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		} else if(cmb==9){	
+		//Producto		
+		Promise.all([												
+			fillAllCombos(10, optCat, "#cboIndicadores", 0, idCli, 0),
+			fillAllCombos(11, optCat, "#cboSemanas", 0, idCli, 0),
+			fillAllCombos(13, optCat, "#cboMeses", 1, idCli, 0),	
+			]).then(() => { // try removing ajax 1 or replacing with ajax2
+			//
+			setTimeout(function () {
+				console.log('All bLankSelect Ajax done with success! ' + $("#cboCategoria option:selected").text().trim() + " - " + $("#cboCategoria option:selected").val());				
+				$("#cargando").hide();
+				aCtivar();
+			}, 3000);
+			//
+			}).catch((response) => {
+			console.log('All Ajax some failed!');
+			$("#cargando").hide();
+			aCtivar();
+		});
+		
+	}
+	sessionStorage.setItem("eXcel", 0);
+	sessionStorage.setItem("repCompleto", 0);	
 }
 //

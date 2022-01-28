@@ -51,9 +51,7 @@ IF (Cint(opcion) = 1) THEN
 		' 'QrySql = QrySql & " ss_ClienteCategoria.Id_Ind_Semanal "
 		' QrySql = QrySql & " ORDER BY RS_DataProcSem.Categoria ASC"
 		'27ene22
-		QrySql = " SELECT RS_DataProcSem.Id_Categoria AS id, RS_DataProcSem.Categoria AS nombre FROM dbo.RS_DataProcSem INNER JOIN dbo.ss_ClienteCategoria ON  RS_DataProcSem.Id_Categoria = ss_ClienteCategoria.Id_Categoria WHERE ss_ClienteCategoria.Id_Cliente = " & idCliente
-		QrySql = QrySql & " and ss_ClienteCategoria.Ind_Semanal = 1 GROUP BY RS_DataProcSem.Id_Categoria, RS_DataProcSem.Categoria ORDER BY RS_DataProcSem.Categoria ASC"
-		
+		QrySql = " SELECT RS_DataProcSem.Id_Categoria AS id, RS_DataProcSem.Categoria AS nombre FROM dbo.RS_DataProcSem INNER JOIN dbo.ss_ClienteCategoria ON  RS_DataProcSem.Id_Categoria = ss_ClienteCategoria.Id_Categoria WHERE ss_ClienteCategoria.Id_Cliente = " & idCliente & " and ss_ClienteCategoria.Ind_Semanal = 1 GROUP BY RS_DataProcSem.Id_Categoria, RS_DataProcSem.Categoria ORDER BY RS_DataProcSem.Categoria ASC"		
 		
 	END IF			
 	'
@@ -61,7 +59,7 @@ IF (Cint(opcion) = 1) THEN
 	'Response.end
 	'
 	Set rsCategoria = Server.CreateObject("ADODB.recordSet")
-	rsCategoria.Open QrySql, conexionRS
+	rsCategoria.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsCategoria.EOF then
 		arrCategoria = rsCategoria.GetRows()  ' Convert recordSet to 2D Array
@@ -129,7 +127,7 @@ ELSEIF (Cint(opcion) = 2) THEN
 	'Response.end
 	'
 	Set rsArea = Server.CreateObject("ADODB.recordSet")
-	rsArea.Open QrySql, conexionRS
+	rsArea.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsArea.EOF then
 		arrArea = rsArea.GetRows()  ' Convert recordSet to 2D Array
@@ -199,7 +197,7 @@ ELSEIF (Cint(opcion) = 3) THEN
 	'Response.end
 	'
 	Set rsZona = Server.CreateObject("ADODB.recordSet")
-	rsZona.Open QrySql, conexionRS
+	rsZona.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsZona.EOF then
 		arrZona = rsZona.GetRows()  ' Convert recordSet to 2D Array
@@ -272,7 +270,7 @@ ELSEIF (Cint(opcion) = 4) THEN
 	'Response.end
 	'
 	Set rsCanal = Server.CreateObject("ADODB.recordSet")
-	rsCanal.Open QrySql, conexionRS
+	rsCanal.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsCanal.EOF then
 		arrCanal = rsCanal.GetRows()  ' Convert recordSet to 2D Array
@@ -343,7 +341,7 @@ ELSEIF (Cint(opcion) = 5) THEN
 	'Response.end
 	'
 	Set rsFabricante = Server.CreateObject("ADODB.recordSet")
-	rsFabricante.Open QrySql, conexionRS
+	rsFabricante.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsFabricante.EOF then
 		arrFabricante = rsFabricante.GetRows()  ' Convert recordSet to 2D Array
@@ -437,7 +435,7 @@ ELSEIF (Cint(opcion) = 6) THEN
 	'Response.end
 	'
 	Set rsMarca = Server.CreateObject("ADODB.recordSet")
-	rsMarca.Open QrySql, conexionRS
+	rsMarca.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsMarca.EOF then
 		arrMarca = rsMarca.GetRows()  ' Convert recordSet to 2D Array
@@ -507,7 +505,7 @@ ELSEIF (Cint(opcion) = 7) THEN
 	'Response.end
 	'
 	Set rsSegmento = Server.CreateObject("ADODB.recordSet")
-	rsSegmento.Open QrySql, conexionRS
+	rsSegmento.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsSegmento.EOF then
 		arrSegmento = rsSegmento.GetRows()  ' Convert recordSet to 2D Array
@@ -579,7 +577,7 @@ ELSEIF (Cint(opcion) = 8) THEN
 	'Response.end
 	'
 	Set rsTamano = Server.CreateObject("ADODB.recordSet")
-	rsTamano.Open QrySql, conexionRS
+	rsTamano.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsTamano.EOF then
 		arrTamano = rsTamano.GetRows()  ' Convert recordSet to 2D Array
@@ -659,7 +657,7 @@ ELSEIF (Cint(opcion) = 9) THEN
 	'Response.end
 	'
 	Set rsProducto = Server.CreateObject("ADODB.recordSet")
-	rsProducto.Open QrySql, conexionRS
+	rsProducto.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsProducto.EOF then
 		arrProducto = rsProducto.GetRows()  ' Convert recordSet to 2D Array
@@ -739,7 +737,7 @@ ELSEIF (Cint(opcion) = 10) THEN
 	'Response.end
 	'
 	Set rsIndicadores = Server.CreateObject("ADODB.recordSet")
-	rsIndicadores.Open QrySql, conexionRS
+	rsIndicadores.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsIndicadores.EOF then
 		arrIndicadores = rsIndicadores.GetRows()  ' Convert recordSet to 2D Array
@@ -810,7 +808,7 @@ ELSEIF (Cint(opcion) = 11) THEN
 	'Response.end
 	'
 	Set rsSemanario = Server.CreateObject("ADODB.recordSet")
-	rsSemanario.Open QrySql, conexionRS
+	rsSemanario.Open QrySql, conexionRS, 0, 1
 			
 	if not (rsSemanario.EOF and rsSemanario.BOF) then		
 		iSemanaDes = rsSemanario("desde").value 'rsSemanario(0)
@@ -849,7 +847,7 @@ ELSEIF (Cint(opcion) = 11) THEN
 	'Response.end
 	'
 	Set rsSemanas = Server.CreateObject("ADODB.recordSet")
-	rsSemanas.Open QrySql, conexionRS
+	rsSemanas.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsSemanas.EOF then
 		arrSemanas = rsSemanas.GetRows()  ' Convert recordSet to 2D Array
@@ -908,7 +906,7 @@ ELSEIF (Cint(opcion) = 12) THEN
 		'Response.end
 		'
 		Set rsCliente = Server.CreateObject("ADODB.recordSet")
-		rsCliente.Open QrySql, conexionRS
+		rsCliente.Open QrySql, conexionRS, 0, 1
 		'
 		if not (rsCliente.EOF and rsCliente.BOF) then
 			Response.Write rsCliente(0)
@@ -948,7 +946,7 @@ ELSEIF (Cint(opcion) = 13) THEN
 	' Response.end
 	'
 	Set rsMensual = Server.CreateObject("ADODB.recordSet")
-	rsMensual.Open QrySql, conexionRS
+	rsMensual.Open QrySql, conexionRS, 0, 1
 			
 	if not (rsMensual.EOF and rsMensual.BOF) then		
 		iSemDes = rsMensual("desde").value 'rsSemanario(0)
@@ -972,7 +970,7 @@ ELSEIF (Cint(opcion) = 13) THEN
 	'Response.end
 	'
 	Set rsMeses = Server.CreateObject("ADODB.recordSet")
-	rsMeses.Open QrySql, conexionRS
+	rsMeses.Open QrySql, conexionRS, 0, 1
 	'
 	if not rsMeses.EOF then
 		arrMeses = rsMeses.GetRows()  ' Convert recordSet to 2D Array
@@ -1026,7 +1024,7 @@ ELSEIF (Cint(opcion) = 14) THEN
 	'Response.end
 	'
 	Set rsMedicina = Server.CreateObject("ADODB.recordSet")
-	rsMedicina.Open QrySql, conexionRS
+	rsMedicina.Open QrySql, conexionRS, 0, 1
 			
 	if not (rsMedicina.EOF and rsMedicina.BOF) then	
 		Response.Write rsMedicina("Medicina").value							

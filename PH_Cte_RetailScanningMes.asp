@@ -1,5 +1,5 @@
 <!Doctype html>
-<!-- PH_Cte_RetailScanning.asp - 12jul21 - 23ene22 -->
+<!-- PH_Cte_RetailScanning.asp - 12jul21 - 27ene22 -->
 <html lang="es" >
 <head>
 	<title>| RS Reporte Mensual |</title>
@@ -205,15 +205,15 @@
 <script src="js/sweetalert.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-multiselect-0915.js"></script>
-<script src="rsrepmensual/js/funcionesMenV02.js"></script>
-<script src="rsrepmensual/js/refillCombosMenV03.js"></script>
+<script src="rsrepmensual/js/funcionesMenV05.js"></script>
+<script src="rsrepmensual/js/refillCombosMenV05.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/plugins/export/libs/FileSaver.js/FileSaver.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.6/xlsx.full.min.js"></script>
 
 <script>
 
 	$(function () {
-        sessionStorage.clear();
+       sessionStorage.clear();
 		sessionStorage.setItem("idCliente", <%=Session("idCliente")%>);
 		sessionStorage.setItem("repCompleto", 0);
 		sessionStorage.setItem("eXcel", 0);
@@ -553,7 +553,6 @@
 			return buf;
 		}
 		
-
 	});
 
 </script>
@@ -561,8 +560,7 @@
 
 <script>
 var scripts = document.getElementsByTagName('script');
-//console.log(scripts);
-var toRefreshs = ['funcionesMenV02.js', 'refillCombosMenV03.js']; // list of js to be refresh
+var toRefreshs = ['funcionesMenV05.js', 'refillCombosMenV05.js']; // list of js to be refresh
 var key = Math.floor((Math.random() * 10) + 1); // change this key every time you want force a refresh
 for (var i = 0; i < scripts.length; i++) {
     for (var j = 0; j < toRefreshs.length; j++) {

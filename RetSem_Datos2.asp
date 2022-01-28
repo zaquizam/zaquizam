@@ -1,6 +1,6 @@
 <%@language=vbscript%>
 <!--#include file="conexionRS.asp"-->
-<!-- RetSem_Datos.asp - 12oct21 - 27ene22 -->
+<!-- RetSem_Excel.asp - 12oct21 - 04ene22 -->
 <%
 	' Variables y Constantes
 	Server.ScriptTimeout = 10000	
@@ -60,8 +60,8 @@
 	Dim gDatos1
 	Dim rSx1
 	set rSx1 = CreateObject("ADODB.Recordset")
-	'rSx1.CursorType = 0 'adOpenKeyset 
-	'rSx1.LockType = 1 'adLockOptimistic 
+	rSx1.CursorType = adOpenKeyset 
+	rSx1.LockType = 1 'adLockOptimistic 
 	'
 	'Semanas	
 	'
@@ -69,7 +69,7 @@
 	sQl = " SELECT IdSemana, SemanaCorta FROM ss_Semana WHERE IdSemana in ( " & sSemanas & ") Order By IdSemana"
 	'nse.Write "<br>151 sQl:=" & sQl & "<br>"
 	'Response.End
-	rSx1.Open sQl ,conexionRS, 0, 1
+	rSx1.Open sQl ,conexionRS
 	if rSx1.Eof then
 		rSx1.Close
 	else
@@ -84,7 +84,7 @@
 		sQl = " SELECT IdPeriodo, PeriodoCorto FROM ss_Periodo WHERE Semanas IS NOT NULL AND IdPeriodo in ( " & sMes & ") Order By idPeriodo ASC "
 		'Response.Write "<br>151 sQl:=" & sQl & "<br>"
 		'Response.End
-		rSx1.Open sQl ,conexionRS, 0, 1
+		rSx1.Open sQl ,conexionRS
 		if rSx1.Eof then
 			rSx1.Close
 		else
@@ -106,7 +106,10 @@
 	end if
 	if sInd <> "" then
 		sQl = sQl & " And Id_Indicador in (" & sInd & ")"
-	end if	
+	end if
+	'if (sCat >= 127 and sCat <= 145) or sCat = 41 or sCat = 18 then
+	'	sQl = sQl & " and (Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9) "
+	'end if	
 	if (sCat > 126 and sCat < 146) or (sCat = 41 or sCat = 18 or sCat = 54) then
 		sQl = sQl & " AND ( Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9 ) "
 	end if
@@ -116,7 +119,7 @@
 	'	
 	'Response.End 
 	'
-	rSx1.Open sQl ,conexionRS, 0, 1
+	rSx1.Open sQl ,conexionRS
 	if rSx1.Eof then
 		rSx1.Close
 	else
@@ -127,9 +130,49 @@
 	'Response.End	
 	''
 	sQl = vbNullstring
-	sQl = " SELECT Id_Area, Area, Id_Zona, Zona, Id_Canal, Canal, Id_Fabricante, Fabricante, Id_Marca, Marca, Id_Segmento, Segmento, Id_Tamano, Tamano, CodigoBarra, Descripcion, UnidadMedida, VentasUni, VentasVal, "
-	sQl = sQl & " VentasUniMed, VentasNo, DistribucionNum, DistribucionPon, DistribucionEfe, ShareUni, ShareVol, ShareVal, PrecioPro, PrecioMax, PrecioMin, PrecioUni, PrecioUniMed, id_Semana FROM RS_DataProcSem WHERE "
-	sQl = sQl & " Id_Categoria = " & sCat & " And Id_Semana in ( " & sSemanas & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ") And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
+    sQl = sQl & " SELECT "
+	sQl = sQl & " Id_Area, "
+	sQl = sQl & " Area, "
+	sQl = sQl & " Id_Zona, "
+	sQl = sQl & " Zona, "
+	sQl = sQl & " Id_Canal, "
+	sQl = sQl & " Canal, "
+	sQl = sQl & " Id_Fabricante, "
+	sQl = sQl & " Fabricante, "
+	sQl = sQl & " Id_Marca, "
+	sQl = sQl & " Marca, "
+	sQl = sQl & " Id_Segmento, "
+	sQl = sQl & " Segmento, "
+	sQl = sQl & " Id_Tamano, "
+	sQl = sQl & " Tamano, "
+	sQl = sQl & " CodigoBarra, "
+	sQl = sQl & " Descripcion, "
+	sQl = sQl & " UnidadMedida, "
+	sQl = sQl & " VentasUni, "			'17
+	sQl = sQl & " VentasVal, "			'18
+	sQl = sQl & " VentasUniMed, "		'19
+	sQl = sQl & " VentasNo, "			'20
+	sQl = sQl & " DistribucionNum, "	'21
+	sQl = sQl & " DistribucionPon, "	'22
+	sQl = sQl & " DistribucionEfe, "	'23
+	sQl = sQl & " ShareUni, "			'24
+	sQl = sQl & " ShareVol, "			'25
+	sQl = sQl & " ShareVal, "			'26
+	sQl = sQl & " PrecioPro, "			'27
+	sQl = sQl & " PrecioMax, "			'28
+	sQl = sQl & " PrecioMin, "			'29
+	sQl = sQl & " PrecioUni, "			'30
+	sQl = sQl & " PrecioUniMed, "		'31
+	sQl = sQl & " id_Semana "			'32
+	sQl = sQl & " FROM RS_DataProcSem WHERE "
+	sQl = sQl & " Id_Categoria = " & sCat
+	sQl = sQl & " And Id_Semana in ( " & sSemanas & ")"
+	sQl = sQl & " And Id_Area in (" & sAre & ")"
+	sQl = sQl & " And Id_Zona in (" & sZon & ")"
+	sQl = sQl & " And Id_Canal in (" & sCan & ")"
+	sQl = sQl & " And Id_Fabricante in (" & sFab & ")"
+	sQl = sQl & " And Id_Marca in (" & sMar & ")"
+	sQl = sQl & " And Id_Segmento in (" & sSeg & ")"
 	if Len(sTam) > 1 then
 		sQl = sQl & " And Id_Tamano in (" & sTam & ")"
 	else
@@ -152,7 +195,7 @@
 	'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 	'Response.End
 	'
-    rSx1.Open sQl ,conexionRS, 0, 1
+    rSx1.Open sQl ,conexionRS
 	iExiste = 0
 	if rSx1.Eof then
 		iExiste = 0

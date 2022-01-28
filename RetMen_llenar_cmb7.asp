@@ -5,10 +5,11 @@
 '
 ' Cambio en combo Segmento - 
 '
+Server.ScriptTimeout = 30000
+Response.Buffer = True	
 Session.lcid = 1034
 Response.CodePage = 65001
-Response.CharSet = "utf-8"
-Server.ScriptTimeout=10000000
+Response.CharSet = "UTF-8"
 '
 if conexionRS.errors.count <> 0 Then
   Response.Write ("No hay conexionRS con la BD...!")
@@ -39,8 +40,7 @@ IF (Cint(oPcion) = 7) THEN
 	' Buscar Datos de todas las Tamano
 	'
 	qrySql = vbnullstring	
-	qrySql = qrySql & " SELECT DISTINCT Id_Tamano as id, Tamano as nombre FROM RS_DataProcSem WHERE"
-	qrySql = qrySql & " Id_Categoria = " & idCat
+	qrySql = " SELECT DISTINCT Id_Tamano as id, Tamano as nombre FROM RS_DataProcSem WHERE Id_Categoria = " & idCat
 	'
 	if Len(idArea) <> 0 then 
 		qrySql = qrySql & " AND Id_Area in (" & idArea & ")"
@@ -66,7 +66,7 @@ IF (Cint(oPcion) = 7) THEN
 	'Response.end
 	'
 	Set rsTamano = Server.CreateObject("ADODB.recordset")
-	rsTamano.Open qrySql, conexionRS
+	rsTamano.Open qrySql,conexionRS,0,1
 	'
 	if not rsTamano.EOF then
 		arrTamano = rsTamano.GetRows()  ' Convert recordset to 2D Array
@@ -117,13 +117,7 @@ ELSEIF (Cint(oPcion) = 8) THEN
 	'	
 	'17nov
 	qrySql = vbnullstring	
-	qrySql = qrySql & " SELECT"
-	qrySql = qrySql & " RS_DataProcSem.CodigoBarra as id,"	
-	qrySql = qrySql & " TRIM(RS_DataProcSem.Descripcion) as nombre"
-	qrySql = qrySql & " FROM"
-	qrySql = qrySql & " RS_DataProcSem INNER JOIN PH_CB_Fabricante ON RS_DataProcSem.Id_Fabricante = PH_CB_Fabricante.id_Fabricante"
-	qrySql = qrySql & " WHERE"
-	qrySql = qrySql & " RS_DataProcSem.Id_Categoria = " & idCat
+	qrySql = " SELECT RS_DataProcSem.CodigoBarra as id, TRIM(RS_DataProcSem.Descripcion) as nombre FROM RS_DataProcSem INNER JOIN PH_CB_Fabricante ON RS_DataProcSem.Id_Fabricante = PH_CB_Fabricante.id_Fabricante WHERE RS_DataProcSem.Id_Categoria = " & idCat
 	'
 	if Len(idArea) <> 0 then 
 		qrySql = qrySql & " AND Id_Area in (" & idArea & ")"
@@ -143,23 +137,13 @@ ELSEIF (Cint(oPcion) = 8) THEN
 	if Len(idSeg) <> 0 then 
 		qrySql = qrySql & " AND Id_Segmento in (" & idSeg & ")"
 	end if
-	qrySql = qrySql & " AND"
-	qrySql = qrySql & " PH_CB_Fabricante.Ind_MarcaPropia = 0"
-	qrySql = qrySql & " GROUP BY"
-	qrySql = qrySql & " RS_DataProcSem.CodigoBarra,"
-	qrySql = qrySql & " RS_DataProcSem.Descripcion"
-	qrySql = qrySql & " HAVING"	
-	qrySql = qrySql & " ( RS_DataProcSem.CodigoBarra IS NOT NULL AND RS_DataProcSem.CodigoBarra <> '' )"
-	qrySql = qrySql & " AND"
-	qrySql = qrySql & " ( RS_DataProcSem.Descripcion IS NOT NULL AND RS_DataProcSem.Descripcion <> '' )"	
-	qrySql = qrySql & " ORDER BY"
-	qrySql = qrySql & " nombre"	
+	qrySql = qrySql & " AND PH_CB_Fabricante.Ind_MarcaPropia = 0 GROUP BY RS_DataProcSem.CodigoBarra, RS_DataProcSem.Descripcion HAVING ( RS_DataProcSem.CodigoBarra IS NOT NULL AND RS_DataProcSem.CodigoBarra <> '' ) AND ( RS_DataProcSem.Descripcion IS NOT NULL AND RS_DataProcSem.Descripcion <> '' ) ORDER BY nombre"	
 	'
 	'Response.Write qrySql & "<BR><BR>"
 	'Response.end
 	'
 	Set rsProducto = Server.CreateObject("ADODB.recordset")
-	rsProducto.Open qrySql, conexionRS
+	rsProducto.Open qrySql,conexionRS,0,1
 	'
 	if not rsProducto.EOF then
 		arrProducto = rsProducto.GetRows()  ' Convert recordset to 2D Array
