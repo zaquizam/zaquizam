@@ -486,6 +486,19 @@
 	
 	'Atenas Agrupado
 	if idCliente = 35 then 
+		'Bebidas Energizantes
+		if (sCat = 91) then 
+			erase gMeses
+			redim gMeses(2,2)
+			gMeses(1,0) = "Sem. Ene-Jun/2021"
+			gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
+			gMeses(1,1) = "Sem. Jul-Dic/2021"
+			gMeses(2,1) = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67"
+			gMeses(1,2) = "Ene-Dic/2021"
+			gMeses(2,2) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67"
+			'response.write "paso"
+			'response.end
+		end if
 		'Sodas/Mezzcladores
 		if (sCat = 109) then 
 			erase gMeses
@@ -502,13 +515,17 @@
 		'Agua Mineral
 		if (sCat = 3) then 
 			erase gMeses
-			redim gMeses(2,2)
+			redim gMeses(2,4)
 			gMeses(1,0) = "Sem. Ene-Jun/2021"
 			gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
 			gMeses(1,1) = "Sem. Jul-Dic/2021"
 			gMeses(2,1) = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67"
 			gMeses(1,2) = "Ene-Dic/2021"
 			gMeses(2,2) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67"
+			gMeses(1,3) = "Trim Jul-Sep/2021"
+			gMeses(2,3) = "41,42,43,44,45,46,47,48,49,50,51,52,53,54"
+			gMeses(1,4) = "Trim Oct-Dic/2021"
+			gMeses(2,4) = "55,56,57,58,59,60,61,62,63,64,65,66,67"
 			'response.write "paso"
 			'response.end
 		end if
@@ -609,12 +626,17 @@
 			'response.write "paso"
 			'response.end
 		end if
+		'Cereales_Complem Alimenticios 
 		if (sCat = 13) then  
 			'response.write "<br>pasoooooooooooooooo"
 			erase gMeses
-			redim gMeses(2,0)
+			redim gMeses(2,2)
 			gMeses(1,0) = "Enero - Noviembre 2021"
 			gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62"
+			gMeses(1,1) = "Trim Jul-Ago-Sep/2021"
+			gMeses(2,1) = "41,42,43,44,45,46,47,48,49,50,51,52,53,54"
+			gMeses(1,2) = "Trim Oct-Nov-Dic/2021"
+			gMeses(2,2) = "55,56,57,58,59,60,61,62,63,64,65,66,67"
 		end if
 		if (sCat = 26 ) then 
 			'response.write "<br>pasoooooooooooooooo"
@@ -835,9 +857,10 @@
 			'response.write "paso"
 			'response.end
 		end if
+		'Limpiadores
 		if (sCat = 30) then 
 			erase gMeses
-			redim gMeses(2,5)
+			redim gMeses(2,7)
 			gMeses(1,0) = "Trim. Ene-Feb-Mar/2021"
 			gMeses(2,0) = "16,17,18,19,20,21,22,23,24,25,26,27,28"
 			gMeses(1,1) = "Trim. Feb-Mar-Abr/2021"
@@ -850,6 +873,10 @@
 			gMeses(2,4) = "33,34,35,36,37,38,39,40,41,42,43,44,45"
 			gMeses(1,5) = "Trim. Sep-Oct-Nov/2021"
 			gMeses(2,5) = "50,51,52,53,54,55,56,57,58,59,60,61,62"
+			gMeses(1,6) = "Sem. Ene-Jun/2021"
+			gMeses(2,6) = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
+			gMeses(1,7) = "Sem. Jul-Dic/2021"
+			gMeses(2,7) = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67"
 			'response.write "paso"
 			'response.end
 		end if
@@ -7380,6 +7407,11 @@ Sub CalcularIndicador
 					idSemana1 = "59,60,61,62"
 					idSemana2 = "63,64,65,66,67"
 				end if 
+				if idSemana = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67" then 
+					isw = 2
+					idSemana1 = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
+					idSemana2 = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -7636,6 +7668,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "59,60,61,62"
 					idSemana2 = "63,64,65,66,67"
+				end if 
+				if idSemana = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67" then 
+					isw = 2
+					idSemana1 = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
+					idSemana2 = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -7896,6 +7933,11 @@ Sub CalcularIndicador
 					idSemana1 = "59,60,61,62"
 					idSemana2 = "63,64,65,66,67"
 				end if 
+				if idSemana = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67" then 
+					isw = 2
+					idSemana1 = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
+					idSemana2 = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -8153,6 +8195,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "59,60,61,62"
 					idSemana2 = "63,64,65,66,67"
+				end if  
+				if idSemana = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67" then 
+					isw = 2
+					idSemana1 = "16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"
+					idSemana2 = "41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67"
 				end if 
  				
 				'response.write "<br> idSemana:= " & idSemana

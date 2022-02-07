@@ -1,9 +1,9 @@
 <%@language=vbscript%>
 <!--#include file="conexionRS.asp"-->
-<!-- RetSem_Excel.asp - 12oct21 - 12ene22 -->
+<!-- RetSem_Excel.asp - 12oct21 - 27ene22 -->
 <%
 	' Variables y Constantes
-	Server.ScriptTimeout = 10000
+	Server.ScriptTimeout = 30000
 	Response.Buffer = True	
 	Session.lcid = 1034
 	Response.ContentType = "text/html"	

@@ -174,7 +174,8 @@
 	' Cat = 19 Toallas Húmedas para Bebes
 	' Cat = 38 Cuidado Corporal
 	'Categorias Trimestrales Feb-Mar-Abr 2021
-	if (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73)   then 
+	'if (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73)   then 
+	if (sCat = 27) or (sCat = 29) or (sCat = 31) or (sCat = 73)   then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,1)

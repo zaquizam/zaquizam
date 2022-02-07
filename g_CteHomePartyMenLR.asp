@@ -176,7 +176,8 @@
 	' Cat = 38 Cuidado Corporal
 	'Categorias Trimestrales Feb-Mar-Abr 2021
 	'if (sCat = 106) or (sCat = 72) or (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73) or (sCat = 35) or (sCat = 8) or (sCat = 14) or (sCat = 19) or (sCat = 38) or (sCat = 97) then 
-	if  (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73)    then 
+	'if  (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73)    then 
+	if  (sCat = 27) or (sCat = 29) or (sCat = 31) or (sCat = 73)    then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,1)

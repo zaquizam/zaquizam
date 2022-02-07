@@ -53,8 +53,8 @@
 	' Response.End
 	'	
 	sSemanas = sSem
-	'Response.Write "<br>84 Sem:=" & sSem	
-	
+	'Response.Write "<br>84 Sem:=" & sSem
+	'	
 	if Len(sPro) = 0 then sPro = "" end if
 	if Len(sInd) = 0 then sInd = "" end if	
 		
@@ -62,8 +62,7 @@
 	Dim gIndicadores
 	Dim Indicador
 	Dim Valor
-	Dim sSemMes
-	
+	Dim sSemMes	
 	Dim gDatos1
 	Dim rSx1
 	set rSx1 = CreateObject("ADODB.Recordset")
@@ -96,7 +95,7 @@
 		gMeses = rSx1.GetRows()
 		rSx1.Close
 	end if
-	sSemMes = ""
+	sSemMes = vbNullstring
 	if IsArray(gMeses) then
 		for iMes = 0 to ubound(gMeses,2)
 			sSemMes = sSemMes & gMeses(2,iMes) & ","
@@ -115,11 +114,9 @@
 	if sInd <> "" then
 		sQl = sQl & " And Id_Indicador in (" & sInd & ")"
 	end if
-	'
 	if (sCat > 126 and sCat < 146) or (sCat = 41 or sCat = 18 or sCat = 54) then
 		sQl = sQl & " AND ( Id_Indicador <> 3 and Id_Indicador <> 15 and Id_Indicador <> 9 ) "
 	end if
-	'	
 	sQl = sQl & " ORDER BY Id_Indicador "
 	'Response.Write "<br>191 sQl:=" & sQl & "<br>"
 	''	
@@ -155,7 +152,6 @@
 				sql = sql & " And CodigoBarra = ''"
 			end if
 		end if
-		
 		sql = sql & " ORDER BY Id_Area, Id_Zona, Id_Canal, Id_Fabricante, Id_Marca, Id_Segmento, Id_Tamano, CodigoBarra, Descripcion, id_Semana "
 		'
 		if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
@@ -165,10 +161,8 @@
 	else
 		'
 		sql = vbNullstring
-		sql = " SELECT Id_Area, Area, Id_Zona, Zona, Id_Canal, Canal, Id_Fabricante, Fabricante, Id_Marca, Marca, Id_Segmento, Segmento, Id_Tamano, Tamano, CodigoBarra, "
-		sql = sql & " Descripcion, UnidadMedida FROM RS_DataProcSem WHERE "
-		sql = sql & " Id_Categoria = " & sCat & " And Id_Semana in ( " & sSemMes & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ") And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ")"
-		sql = sql & " And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
+		sql = " SELECT Id_Area, Area, Id_Zona, Zona, Id_Canal, Canal, Id_Fabricante, Fabricante, Id_Marca, Marca, Id_Segmento, Segmento, Id_Tamano, Tamano, CodigoBarra, Descripcion, UnidadMedida FROM RS_DataProcSem"
+		sql = sql & " WHERE Id_Categoria = " & sCat & " And Id_Semana in ( " & sSemMes & ") And Id_Area in (" & sAre & ") And Id_Zona in (" & sZon & ") And Id_Canal in (" & sCan & ") And Id_Fabricante in (" & sFab & ") And Id_Marca in (" & sMar & ") And Id_Segmento in (" & sSeg & ")"
 		if Len(sTam) > 1 then
 			sql = sql & " And Id_Tamano in (" & sTam & ")"
 		else
@@ -183,7 +177,7 @@
 			end if
 		end if
 		'
-		sql = sql & " GROUP BY Id_Area, Area, Id_Zona, Zona, Id_Canal, Canal, Id_Fabricante, Fabricante, Id_Marca, Marca, Id_Segmento, Segmento, Id_Tamano, Tamano, CodigoBarra, Descripcion, UnidadMedida "
+		sql = sql & " GROUP BY Id_Area, Area, Id_Zona, Zona, Id_Canal, Canal, Id_Fabricante, Fabricante, Id_Marca, Marca, Id_Segmento, Segmento, Id_Tamano, Tamano, CodigoBarra, Descripcion, UnidadMedida"
 		sql = sql & " ORDER BY Id_Area, Id_Zona, Id_Canal, Id_Fabricante, Id_Marca, Id_Segmento, Id_Tamano,  CodigoBarra, Descripcion "
 		'
 		if sAre = "0" and sZon = "0" and sCan = "0" and sFab = "0" and sMar = "0" and sSeg = "0" and sTam = "0" and sPro <> "" then
@@ -198,7 +192,7 @@
 	'Response.Write "<br>276 sQl:=" & sQl & "<br>"
 	'Response.End
 	'
-    rSx1.Open sQl,conexionRS,0,1
+	rSx1.Open sQl,conexionRS,0,1
 	iExiste = 0
 	if rSx1.Eof then
 		iExiste = 0
@@ -219,7 +213,7 @@
 	else
 		'Response.Write "<br>84 LLEGO"
 		'Response.End		
-		
+	
 		Response.Write "<div class='container-fluid'>"
 		
     		Response.Write "<div class='card'>"
@@ -265,8 +259,7 @@
 											Response.Write "<th class='text-center'>" & Trim(gMeses(1,iMes)) & "</th>"
 										next									
 									
-									end if
- 									
+									end if 									
 									
 								Response.Write "</tr>"
 								

@@ -151,6 +151,7 @@
 	strSemana53 = "(01) Del 03 Ene 2022 al 09 Ene 2022"
 	strSemana54 = "(02) Del 10 Ene 2022 al 16 Ene 2022"	
 	strSemana55 = "(03) Del 17 Ene 2022 al 23 Ene 2022"
+	strSemana56 = "(04) Del 24 Ene 2022 al 30 Ene 2022"
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
 	'else
@@ -403,6 +404,7 @@
 											<th class="cell100 column10 text-center"><%=strSemana53%></th>
 											<th class="cell100 column10 text-center"><%=strSemana54%></th>
 											<th class="cell100 column10 text-center"><%=strSemana55%></th>
+											<th class="cell100 column10 text-center"><%=strSemana56%></th>
 										</tr>
 									</thead>
 								</table>
@@ -495,6 +497,7 @@
 											<th class="cell100 column10 text-center"><%=strSemana53%></th>
 											<th class="cell100 column10 text-center"><%=strSemana54%></th>
 											<th class="cell100 column10 text-center"><%=strSemana55%></th>
+											<th class="cell100 column10 text-center"><%=strSemana56%></th>
 										</tr>
 									</thead>
 								</table>
@@ -867,6 +870,12 @@
 															response.write Valor
 														response.write "</td>"
 														idSemana = 70
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 71
 														TotalDias = 7
 														CalcularIndicador
 														response.write "<td width=10% class='text-right'>"
@@ -1260,6 +1269,12 @@
 														response.write Valor
 													response.write "</td>"
 													idSemana = 70
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 71
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"
