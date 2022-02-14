@@ -468,6 +468,7 @@
 				pro : producto,
 				ind : indicadores,
 				sem : semanas,
+				catg: $("#cboCategoria option:selected").text(),
 			};
 
 			$('#DivRetailScanningExcel').html("");
@@ -503,7 +504,10 @@
 					  bookSST: true,
 					  type: 'binary'
 					});
-					saveAs(new Blob([s2ab(wbout)], {  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8" }), 'Reporte Semanal.xlsx');
+					//saveAs(new Blob([s2ab(wbout)], {  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8" }), 'Reporte Semanal.xlsx');
+					let fileName =  reemplazaTodo('Reporte Semanal '+$("#cboCategoria option:selected").text()," ","_");
+					fileName+=".xlsx";					
+					saveAs(new Blob([s2ab(wbout)], {  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8" }), fileName);
 				}else{
 					swal("Aviso.!","No ha procesado Datos..!", "error");
 					return false;
@@ -527,21 +531,54 @@
 			return buf;
 		}
 		
+		function reemplazaTodo(text, busca, reemplaza) {
+			while (text.toString().indexOf(busca) != -1)
+				text = text.toString().replace(busca, reemplaza);
+			return text;
+		}
+		
 	});
 
 </script>
 
 <script>
-var scripts = document.getElementsByTagName('script');
-//console.log(scripts);
-var toRefreshs = ['funcionesSemV07.js', 'refillCombosSemV07.js']; // list of js to be refresh
-var key = Math.floor((Math.random() * 10) + 1); // change this key every time you want force a refresh
-for (var i = 0; i < scripts.length; i++) {
-    for (var j = 0; j < toRefreshs.length; j++) {
-        if (scripts[i].src && (scripts[i].src.indexOf(toRefreshs[j]) > -1)) {
-            new_src = scripts[i].src.replace(toRefreshs[j], toRefreshs[j] + 'k=' + key);
-            scripts[i].src = new_src; // change src in order to refresh js
+	var scripts = document.getElementsByTagName('script');
+	//console.log(scripts);
+	var toRefreshs = ['funcionesSemV07.js', 'refillCombosSemV07.js']; // list of js to be refresh
+	var key = Math.floor((Math.random() * 10) + 1); // change this key every time you want force a refresh
+	for (var i = 0; i < scripts.length; i++) {
+		for (var j = 0; j < toRefreshs.length; j++) {
+			if (scripts[i].src && (scripts[i].src.indexOf(toRefreshs[j]) > -1)) {
+				new_src = scripts[i].src.replace(toRefreshs[j], toRefreshs[j] + 'k=' + key);
+				scripts[i].src = new_src; // change src in order to refresh js
+			}
+		}
+	}
+	function getFechaHora() {
+        var hoy     	= new Date(); 
+        var ano   	= hoy.getFullano();
+        var mes   	= hoy.getmes()+1; 
+        var dia     	= hoy.getDate();
+        var hora    	= hoy.getHours();
+        var minuto  	= hoy.getMinutes();
+        var segundo  	= hoy.getSeconds(); 
+        if(mes.toString().length == 1) {
+             mes = '0'+mes;
         }
+        if(dia.toString().length == 1) {
+             dia = '0'+dia;
+        }   
+        if(hora.toString().length == 1) {
+             hora = '0'+hora;
+        }
+        if(minuto.toString().length == 1) {
+             minuto = '0'+minuto;
+        }
+        if(segundo.toString().length == 1) {
+             segundo = '0'+segundo;
+        }   
+       var fechaHora = dia+'-'+mes+'-'+ano+'_'+hora+'.'+minute+'.'+segundo;   
+		return fechaHora;
     }
-}
+
 </script>

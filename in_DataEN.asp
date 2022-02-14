@@ -1649,7 +1649,7 @@ Sub ed_VerPag1(iRegsPorPag, ixPag, gData)
 							           		    <% case 6,4 %>
 							                        <%=formatnumber(gData(j,i),2)%> 
 							           		    <% case 131 %>
-							                        <%=formatnumber(gData(j,i),2)%> 
+							                        <%=formatnumber(gData(j,i),5)%> 
 							                    <%case else %>
 							                        <%=gData(j,i) %>
 							                <%end select %>   

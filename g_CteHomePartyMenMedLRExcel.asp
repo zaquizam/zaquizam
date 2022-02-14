@@ -103,11 +103,11 @@
 	dim Indicador
 	dim Valor
 	
-	dim gDatos1
+	dim gDatos1 
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType = 2 'adLockOptimistic 
+	rsx1.LockType = 1 'adLockOptimistic 
 
 	sql = ""
 	sql = sql & " SELECT "
@@ -134,7 +134,7 @@
 	end if
 	if idCliente = 1 then
 		iMesDes = 24255
-		iMesHas = 24264
+		iMesHas = 24265
 	end if
 	'response.write "<br>310 Semana iMesDes:= " &  iMesDes
 	'response.write "<br>310 Semana iMesHas:= " &  iMesHas

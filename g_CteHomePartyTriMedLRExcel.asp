@@ -98,7 +98,7 @@
 	'if sSeg = "" then sSeg = 0
 	'if sRan = "" then sRan = 0
 	
-	dim gProductos
+	dim gProductos 
 	dim gIndicadores
 	dim Indicador
 	dim Valor
@@ -107,7 +107,7 @@
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType = 2 'adLockOptimistic 
+	rsx1.LockType = 1 'adLockOptimistic 
 
 	sql = ""
 	sql = sql & " SELECT "

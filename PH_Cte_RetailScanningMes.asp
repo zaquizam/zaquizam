@@ -497,6 +497,7 @@
 				ind : indicadores,
 				sem : semanas,
 				mes : meses,
+				catg: $('#cboCategoria option:selected').text(),
 			};
 			//$('#DivRetailScanningExcel').html("");
 			$.ajax({
@@ -530,7 +531,11 @@
 					  bookSST: true,
 					  type: 'binary'
 					});
-					saveAs(new Blob([s2ab(wbout)], {  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8" }), 'Reporte Mensual.xlsx');
+					//saveAs(new Blob([s2ab(wbout)], {  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8" }), 'Reporte_Mensual.xlsx');
+					let fileName =  reemplazaTodo('Reporte Mensual '+$("#cboCategoria option:selected").text()," ","_");
+					fileName+=".xlsx";					
+					saveAs(new Blob([s2ab(wbout)], {  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8" }), fileName);
+					
 					$("#procesandoExcel").css("display", "none");
 				}else{
 					swal("Aviso.!","Sin Datos para procesar..!", "error");
@@ -551,6 +556,12 @@
 			var view = new Uint8Array(buf);
 			for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
 			return buf;
+		}
+		
+		function reemplazaTodo(text, busca, reemplaza) {
+			while (text.toString().indexOf(busca) != -1)
+				text = text.toString().replace(busca, reemplaza);
+			return text;
 		}
 		
 	});

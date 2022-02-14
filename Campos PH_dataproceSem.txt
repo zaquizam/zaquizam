@@ -1,0 +1,68 @@
+ComprasVol, 
+ComprasVal, 
+ComprasUnid, 
+NroActosComp,
+PenetracionNum, 
+Penetracion, 
+PenPonVol, 
+PenPonVal, 
+CompraMedHog,
+GastMedHog,
+UnidCompHog,
+ActCompHog,
+CicloCompra,
+VolActoCompra,
+ValActoCompra,
+UnidActoCompra,
+IndiceConsumoVol,
+IndiceConsumoVal,
+RepeticionCompra,
+FidelidadVol,
+FidelidadVal,
+FidelidadActos,
+CuotaMerPonVol,
+PrecPromVol,
+PrecPromUnid,
+MarcasHogar,
+CadenasProm,
+CuotaMercVol,
+CuotaMercVal,
+CuotaMercUnid,
+CuotaMercActos,
+PenetRelativa,
+CompRel,
+PenetracionAcum,
+HogRecomp,
+HogNuevos,
+HogNoRecomp,
+AporPenet,
+HogRecompAnt,
+PenetracionMed,
+
+' ' ' sQl = sQl & " ComprasVol, "
+	' ' ' sQl = sQl & " ComprasVal, "
+	' ' ' sQl = sQl & " ComprasUnid, "
+	' ' ' sQl = sQl & " NroActosComp,"
+	' ' ' sQl = sQl & " PenetracionNum, "
+	' ' ' sQl = sQl & " PenPonVol, "
+	' ' ' sQl = sQl & " PenPonVal, "
+	' ' ' sQl = sQl & " CicloCompra, "
+	' ' ' sQl = sQl & " IndiceConsumoVol, "
+	' ' ' sQl = sQl & " IndiceConsumoVal, "
+	' ' ' sQl = sQl & " RepeticionCompra, "
+	' ' ' sQl = sQl & " FidelidadVol, "
+	' ' ' sQl = sQl & " FidelidadVal, "
+	' ' ' sQl = sQl & " FidelidadActos, "
+	' ' ' sQl = sQl & " CuotaMerPonVol, "	
+	' ' ' sQl = sQl & " MarcasHogar, "
+	' ' ' sQl = sQl & " CadenasProm, "
+	' ' ' sQl = sQl & " CuotaMercActos, "
+	' ' ' sQl = sQl & " CompRel, "
+	' ' ' sQl = sQl & " PenetracionAcum, "
+	' ' ' sQl = sQl & " HogRecomp, "
+	' ' ' sQl = sQl & " HogNuevos, "
+	' ' ' sQl = sQl & " HogNoRecomp, "
+	' ' ' sQl = sQl & " AporPenet, "
+	' ' ' sQl = sQl & " HogRecompAnt, "
+	' ' ' sQl = sQl & " PenetracionMed, "  
+	''		

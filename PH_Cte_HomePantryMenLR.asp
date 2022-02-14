@@ -766,7 +766,6 @@ body.stop-scrolling {
 	
 	idCliente = Session("idCliente")
 	
-
 	dim idCategoria
 	dim idFabricante
 	dim idMarca
@@ -785,7 +784,6 @@ body.stop-scrolling {
 	dim gTamano
 	dim gIndicadores
 
-			
 	dim gDatos1
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
@@ -1264,7 +1262,6 @@ end sub
 <script src="js/main.js"></script>
 <!--===============================================================================================-->
 
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		//
@@ -1292,8 +1289,7 @@ end sub
 			var rango = $("#Rango :selected").map((_,e) => e.value).get();
 			var tamano = $("#Tamano :selected").map((_,e) => e.value).get();
 			var indicadores = $("#Indicadores :selected").map((_,e) => e.value).get();
-			
-			
+						
 			//alert(categoria);
 			//alert("fabricante:" + fabricante);
 			//alert("marca:" + marca);

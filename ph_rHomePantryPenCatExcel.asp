@@ -4,6 +4,8 @@
 
 
 <%
+	Server.ScriptTimeout = 30000
+	Response.Buffer = True	
 
 LCID = 1034  
 '==========================================================================================
@@ -14,7 +16,7 @@ LCID = 1034
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType = 2 'adLockOptimistic 
+	rsx1.LockType = 1 'adLockOptimistic 
 
 	dim gCategorias
 	dim gCategoriasEne
@@ -28,6 +30,7 @@ LCID = 1034
 	dim gCategoriasSep
 	dim gCategoriasOct
 	dim gCategoriasNov
+	dim gCategoriasDic
 	dim gCategoriasAcu
 	
 	dim gHogaresTotalEne
@@ -41,6 +44,7 @@ LCID = 1034
 	dim gHogaresTotalSep
 	dim gHogaresTotalOct
 	dim gHogaresTotalNov
+	dim gHogaresTotalDic
 	dim gHogaresTotalAcu
 	
 	dim gHogaresCategoriaEne
@@ -54,6 +58,7 @@ LCID = 1034
 	dim gHogaresCategoriaSep
 	dim gHogaresCategoriaOct
 	dim gHogaresCategoriaNov
+	dim gHogaresCategoriaDic
 	dim gHogaresCategoriaAcu
 	
 	Dim TotalHogaresEne
@@ -67,6 +72,7 @@ LCID = 1034
 	Dim TotalHogaresSep
 	Dim TotalHogaresOct
 	Dim TotalHogaresNov
+	Dim TotalHogaresDic
 	Dim TotalHogaresAcu
 	
 	Dim TotalHogaresCatEne
@@ -80,6 +86,7 @@ LCID = 1034
 	Dim TotalHogaresCatSep
 	Dim TotalHogaresCatOct
 	Dim TotalHogaresCatNov
+	Dim TotalHogaresCatDic
 	Dim TotalHogaresCatAcu
 	
 	TotalHogaresEne = 0
@@ -93,6 +100,7 @@ LCID = 1034
 	TotalHogaresSep = 0
 	TotalHogaresOct = 0
 	TotalHogaresNov = 0
+	TotalHogaresDic = 0
 	TotalHogaresAcu = 0
 	
 	'TotalHogaresEne
@@ -392,6 +400,33 @@ LCID = 1034
 		rsx1.close
 		TotalHogaresNov = ubound(gHogaresTotalNov,2) + 1
 	end if
+
+	'TotalHogaresDic
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno "
+	sql = sql & " FROM ss_Semana INNER JOIN PH_DataCruda ON ss_Semana.IdSemana = PH_DataCruda.Id_Semana "
+	sql = sql & " WHERE "
+	sql = sql & " PH_DataCruda.Id_Fabricante <> 0 "
+	sql = sql & " GROUP BY "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno, "
+	sql = sql & " PH_DataCruda.Id_Hogar "
+	sql = sql & " HAVING "
+	sql = sql & " ss_Semana.IdMes = 12 "
+	sql = sql & " AND ss_Semana.IdAno=2021 "
+	'response.write "<br>75 sql:=" & sql
+	'response.end
+	rsx1.Open sql ,conexion
+	if rsx1.eof then
+		rsx1.close
+		TotalHogaresDic = 0
+	else
+		gHogaresTotalDic = rsx1.GetRows
+		rsx1.close
+		TotalHogaresDic = ubound(gHogaresTotalDic,2) + 1
+	end if
 	
 	'TotalHogaresAcu
 	sql = ""
@@ -477,6 +512,9 @@ LCID = 1034
 
 			<td>Penetracion Nov 2021</td>
 			<td>Hogares Nov 2021</td>
+
+			<td>Penetracion Dic 2021</td>
+			<td>Hogares Dic 2021</td>
 			
 			<td>Acumulado 2021</td>
 			<td>Hogares Acumulado 2021</td>
@@ -887,6 +925,41 @@ LCID = 1034
 					response.write "<br>(" & TotalHogaresCatNov & "-" & TotalHogaresNov & ")"
 				response.write "</td>"
 
+				'Penetración Dic
+				sql = ""
+				sql = sql & " SELECT "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				sql = sql & " FROM PH_DataCruda INNER JOIN ss_Semana ON PH_DataCruda.Id_Semana = ss_Semana.IdSemana "
+				sql = sql & " WHERE "
+				sql = sql & " ss_Semana.IdMes = 12 "
+				sql = sql & " AND ss_Semana.IdAno = 2021 "
+				sql = sql & " AND PH_DataCruda.Id_Categoria = " & iCat
+				sql = sql & " GROUP BY "
+				sql = sql & " PH_DataCruda.Id_Hogar "
+				'response.write "<br>190 sql:=" & sql
+				'response.end
+				rsx1.Open sql ,conexion
+				if rsx1.eof then
+					rsx1.close
+					TotalHogaresCatDic = 0
+				else
+					gHogaresCategoriaDic = rsx1.GetRows
+					rsx1.close
+					TotalHogaresCatDic = ubound(gHogaresCategoriaDic,2) + 1
+				end if
+				PenetracionDic = 0
+				response.write "<td>"
+					PenetracionDic = (TotalHogaresCatDic * 100) / TotalHogaresDic
+					PenetracionDic = FormatNumber(PenetracionDic,2)
+					'PenetracionDic = cStr(PenetracionDic)
+					'PenetracionDic = replace(PenetracionDic,",",".")
+					response.write PenetracionDic
+				response.write "</td>"
+				response.write "<td>"
+					PenetracionDic = (TotalHogaresCatDic * 100) / TotalHogaresDic
+					PenetracionDic = FormatNumber(PenetracionDic,2)
+					response.write "<br>(" & TotalHogaresCatDic & "-" & TotalHogaresDic & ")"
+				response.write "</td>"
 
 				'Penetración Acumulado
 				sql = ""
@@ -925,6 +998,7 @@ LCID = 1034
 				response.write "</td>"
 				
 			response.write "</tr>"
+			response.flush
 		next
 		%>
 	</table>

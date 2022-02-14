@@ -134,7 +134,7 @@
 	end if
 	if idCliente = 1 then
 		iMesDes = 24253
-		iMesHas = 24264
+		iMesHas = 24265
 	end if
 	'response.write "<br>310 Semana iMesDes:= " &  iMesDes
 	'response.write "<br>310 Semana iMesHas:= " &  iMesHas
@@ -174,7 +174,8 @@
 	' Cat = 19 Toallas Húmedas para Bebes
 	' Cat = 38 Cuidado Corporal
 	'Categorias Trimestrales Feb-Mar-Abr 2021
-	if (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73)   then 
+	'if (sCat = 27) or (sCat = 29) or (sCat = 30) or (sCat = 31) or (sCat = 73)   then 
+	if (sCat = 27) or (sCat = 29) or (sCat = 31) or (sCat = 73)   then 
 		'response.write "<br>pasoooooooooooooooo"
 		erase gMeses
 		redim gMeses(2,1)
@@ -6164,6 +6165,11 @@ Sub CalcularIndicador
 					idSemana1 = "59,60,61,62"
 					idSemana2 = "63,64,65,66,67"
 				end if 
+				if idSemana = "68,69,70,71" then 
+					isw = 2
+					idSemana1 = "63,64,65,66,67"
+					idSemana2 = "68,69,70,71"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -6410,6 +6416,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "59,60,61,62"
 					idSemana2 = "63,64,65,66,67"
+				end if 
+				if idSemana = "68,69,70,71" then 
+					isw = 2
+					idSemana1 = "63,64,65,66,67"
+					idSemana2 = "68,69,70,71"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
@@ -6659,6 +6670,11 @@ Sub CalcularIndicador
 					idSemana1 = "59,60,61,62"
 					idSemana2 = "63,64,65,66,67"
 				end if 
+				if idSemana = "68,69,70,71" then 
+					isw = 2
+					idSemana1 = "63,64,65,66,67"
+					idSemana2 = "68,69,70,71"
+				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana
 				'response.write "<br> iMes:= " & iMes
@@ -6905,6 +6921,11 @@ Sub CalcularIndicador
 					isw = 2
 					idSemana1 = "59,60,61,62"
 					idSemana2 = "63,64,65,66,67"
+				end if 
+				if idSemana = "68,69,70,71" then 
+					isw = 2
+					idSemana1 = "63,64,65,66,67"
+					idSemana2 = "68,69,70,71"
 				end if 
 				
 				'response.write "<br> idSemana:= " & idSemana

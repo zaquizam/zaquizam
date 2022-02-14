@@ -161,7 +161,7 @@ Sub ParDat
 	ed_Bot(3)="disabled"
 	ed_Bot(4)="disabled"
 	
-	ed_iNumCam		=18					' Numero de campos en la pantalla principal
+	ed_iNumCam		=20					' Numero de campos en la pantalla principal
 	ed_iRegPag		=25					' Numero de registros por pagina
 	
 	ed_sNomTab		="ss_meses"
@@ -184,20 +184,27 @@ Sub ParDat
 	SqlCla = SqlCla & " PH_Consumo.Id_Consumo as Consumo, "
 	SqlCla = SqlCla & " PH_Medio.Medio, "
 	SqlCla = SqlCla & " PH_Moneda.Moneda, "
+	SqlCla = SqlCla & " ss_Semana.Semana, "
 	SqlCla = SqlCla & " PH_Consumo.fecha_consumo, "
 	SqlCla = SqlCla & " PH_FormaPago.FormaPago, "
 	SqlCla = SqlCla & " PH_Consumo.Total_items, "
 	SqlCla = SqlCla & " PH_Consumo.Total_Compra, "
+	SqlCla = SqlCla & " PH_Moneda.Moneda, "
 	SqlCla = SqlCla & " PH_Canal.Canal, "
 	SqlCla = SqlCla & " PH_Cadena.Cadena, "
+	SqlCla = SqlCla & " ss_Semana.Dolar, "
+	SqlCla = SqlCla & " ss_Semana.Euro, "
+	SqlCla = SqlCla & " ss_Semana.Petro, "
+	SqlCla = SqlCla & " ss_Semana.Peso, "
 	SqlCla = SqlCla & " PH_PanelHogar.Ind_Activo, "
 	SqlCla = SqlCla & " PH_Consumo.IP, PH_Consumo.USR, PH_Consumo.Fec_Ult_Mod, PH_Consumo.Fec_Inactivo, PH_Consumo.IdSession "
-	SqlCla = SqlCla & " FROM ((((((((PH_Consumo INNER JOIN PH_PanelHogar ON PH_Consumo.Id_Hogar = PH_PanelHogar.Id_PanelHogar) INNER JOIN ss_Estado ON PH_PanelHogar.Id_Estado = ss_Estado.Id_Estado) INNER JOIN PH_GAreaEstado ON ss_Estado.Id_Estado = PH_GAreaEstado.Id_Estado) INNER JOIN PH_GArea ON PH_GAreaEstado.Id_Area = PH_GArea.Id_Area) INNER JOIN PH_Medio ON PH_Consumo.Id_Medio = PH_Medio.Id_Medio) INNER JOIN PH_Moneda ON PH_Consumo.Id_Moneda = PH_Moneda.Id_Moneda) INNER JOIN PH_FormaPago ON PH_Consumo.Id_FomaPago = PH_FormaPago.Id_FormaPago) INNER JOIN PH_Canal ON PH_Consumo.Id_Canal = PH_Canal.Id_Canal) INNER JOIN PH_Cadena ON PH_Consumo.Id_Cadena = PH_Cadena.Id_Cadena "
+	SqlCla = SqlCla & " FROM (((((((((PH_Consumo INNER JOIN PH_PanelHogar ON PH_Consumo.Id_Hogar = PH_PanelHogar.Id_PanelHogar) INNER JOIN ss_Estado ON PH_PanelHogar.Id_Estado = ss_Estado.Id_Estado) INNER JOIN PH_GAreaEstado ON ss_Estado.Id_Estado = PH_GAreaEstado.Id_Estado) INNER JOIN PH_GArea ON PH_GAreaEstado.Id_Area = PH_GArea.Id_Area) INNER JOIN PH_Medio ON PH_Consumo.Id_Medio = PH_Medio.Id_Medio) INNER JOIN PH_Moneda ON PH_Consumo.Id_Moneda = PH_Moneda.Id_Moneda) INNER JOIN PH_FormaPago ON PH_Consumo.Id_FomaPago = PH_FormaPago.Id_FormaPago) INNER JOIN PH_Canal ON PH_Consumo.Id_Canal = PH_Canal.Id_Canal) INNER JOIN PH_Cadena ON PH_Consumo.Id_Cadena = PH_Cadena.Id_Cadena) INNER JOIN ss_Semana ON PH_Consumo.Id_Semana = ss_Semana.IdSemana "
 	SqlCla = SqlCla & " WHERE "
 	SqlCla = SqlCla & " PH_Consumo.Tiene_Factura = 1 "
 	SqlCla = SqlCla & " AND PH_Consumo.Status_registro='G' "
 	SqlCla = SqlCla & " AND PH_Consumo.Id_Semana > 0 "
 	SqlCla = SqlCla & " AND PH_Consumo.Id_Semana = " & idSemana
+	SqlCla = SqlCla & " AND PH_Consumo.id_TipoConsumo = 1 "
 	if idArea <> 0 then
 		SqlCla = SqlCla & " AND PH_GAreaEstado.Id_Area = "  & idArea
 	end if
@@ -413,7 +420,7 @@ End Sub
 	</br>
 
     <%conexion.close%>
-	
+	 
 
 
 </body>

@@ -147,7 +147,7 @@
 	sQl = sQl & " Tamano, "
 	sQl = sQl & " CodigoBarra, "
 	sQl = sQl & " Descripcion, "
-	sQl = sQl & " UnidadMedida, "
+	sQl = sQl & " UnidadMedida, "		'16
 	sQl = sQl & " VentasUni, "			'17
 	sQl = sQl & " VentasVal, "			'18
 	sQl = sQl & " VentasUniMed, "		'19

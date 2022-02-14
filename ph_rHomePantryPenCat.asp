@@ -23,7 +23,8 @@
 '==========================================================================================
 ' Variables y Constantes
 '==========================================================================================
-
+	Server.ScriptTimeout = 30000
+	Response.Buffer = True	
 
     Apertura
 %>
@@ -60,7 +61,7 @@
 	dim rsx1
 	set rsx1 = CreateObject("ADODB.Recordset")
 	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType = 2 'adLockOptimistic 
+	rsx1.LockType = 1 'adLockOptimistic 
 
 	dim gCategorias
 	dim gCategoriasEne
@@ -74,6 +75,7 @@
 	dim gCategoriasSep
 	dim gCategoriasOct
 	dim gCategoriasNov
+	dim gCategoriasDic
 	dim gCategoriasAcu
 	
 	dim gHogaresTotalEne
@@ -87,6 +89,7 @@
 	dim gHogaresTotalSep
 	dim gHogaresTotalOct
 	dim gHogaresTotalNov
+	dim gHogaresTotalDic
 	dim gHogaresTotalAcu
 	
 	dim gHogaresCategoriaEne
@@ -100,6 +103,7 @@
 	dim gHogaresCategoriaSep
 	dim gHogaresCategoriaOct
 	dim gHogaresCategoriaNov
+	dim gHogaresCategoriaDic
 	dim gHogaresCategoriaAcu
 	
 	Dim TotalHogaresEne
@@ -113,6 +117,7 @@
 	Dim TotalHogaresSep
 	Dim TotalHogaresOct
 	Dim TotalHogaresNov
+	Dim TotalHogaresDic
 	Dim TotalHogaresAcu
 	
 	Dim TotalHogaresCatEne
@@ -126,6 +131,7 @@
 	Dim TotalHogaresCatSep
 	Dim TotalHogaresCatOct
 	Dim TotalHogaresCatNov
+	Dim TotalHogaresCatDic
 	Dim TotalHogaresCatAcu
 	
 	TotalHogaresEne = 0
@@ -139,6 +145,7 @@
 	TotalHogaresSep = 0
 	TotalHogaresOct = 0
 	TotalHogaresNov = 0
+	TotalHogaresDic = 0
 	TotalHogaresAcu = 0
 	
 	'TotalHogaresEne
@@ -438,6 +445,32 @@
 		TotalHogaresNov = ubound(gHogaresTotalNov,2) + 1
 	end if
 
+	'TotalHogaresDic
+	sql = ""
+	sql = sql & " SELECT "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno "
+	sql = sql & " FROM ss_Semana INNER JOIN PH_DataCruda ON ss_Semana.IdSemana = PH_DataCruda.Id_Semana "
+	sql = sql & " WHERE "
+	sql = sql & " PH_DataCruda.Id_Fabricante <> 0 "
+	sql = sql & " GROUP BY "
+	sql = sql & " ss_Semana.IdMes, "
+	sql = sql & " ss_Semana.IdAno, "
+	sql = sql & " PH_DataCruda.Id_Hogar "
+	sql = sql & " HAVING "
+	sql = sql & " ss_Semana.IdMes = 12 "
+	sql = sql & " AND ss_Semana.IdAno=2021 "
+	'response.write "<br>75 sql:=" & sql
+	'response.end
+	rsx1.Open sql ,conexion
+	if rsx1.eof then
+		rsx1.close
+		TotalHogaresDic = 0
+	else
+		gHogaresTotalDic = rsx1.GetRows
+		rsx1.close
+		TotalHogaresDic = ubound(gHogaresTotalDic,2) + 1
+	end if
 	
 	'TotalHogaresAcu
 	sql = ""
@@ -518,6 +551,7 @@
 							<th>Penetración <br>Sep 2021</th>
 							<th>Penetración <br>Oct 2021</th>
 							<th>Penetración <br>Nov 2021</th>
+							<th>Penetración <br>Dic 2021</th>
 							<th>Acumulado <br>2021</th>
 						</tr>
 					</thead>
@@ -895,6 +929,39 @@
 								response.write "<br>(" & TotalHogaresCatNov & "-" & TotalHogaresNov & ")"
 							response.write "</td>"
 
+							'Penetración Diciembre
+							sql = ""
+							sql = sql & " SELECT "
+							sql = sql & " PH_DataCruda.Id_Hogar "
+							sql = sql & " FROM PH_DataCruda INNER JOIN ss_Semana ON PH_DataCruda.Id_Semana = ss_Semana.IdSemana "
+							sql = sql & " WHERE "
+							sql = sql & " ss_Semana.IdMes = 12 "
+							sql = sql & " AND ss_Semana.IdAno = 2021 "
+							sql = sql & " AND PH_DataCruda.Id_Categoria = " & iCat
+							sql = sql & " GROUP BY "
+							sql = sql & " PH_DataCruda.Id_Hogar "
+							'if iCat = 91 then
+							'	response.write "<br>269 sql:=" & sql
+							'end if
+							'response.write "<br>190 sql:=" & sql
+							'response.end
+							rsx1.Open sql ,conexion
+							if rsx1.eof then
+								rsx1.close
+								TotalHogaresCatDic = 0
+							else
+								gHogaresCategoriaDic = rsx1.GetRows
+								rsx1.close
+								TotalHogaresCatDic = ubound(gHogaresCategoriaDic,2) + 1
+							end if
+							PenetracionDic = 0
+							response.write "<td>"
+								PenetracionDic = (TotalHogaresCatDic * 100) / TotalHogaresDic
+								PenetracionDic = FormatNumber(PenetracionDic,2)
+								response.write PenetracionDic
+								response.write "<br>(" & TotalHogaresCatDic & "-" & TotalHogaresDic & ")"
+							response.write "</td>"
+
 							'Penetración Acumulado
 							sql = ""
 							sql = sql & " SELECT "
@@ -928,6 +995,7 @@
 							response.write "</td>"
 							
 						response.write "</tr>"
+						response.flush
 					next
 					%>
 				</table>

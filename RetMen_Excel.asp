@@ -1,9 +1,9 @@
 <%@language=vbscript%>
 <!--#include file="conexionRS.asp"-->
-<!-- RetSem_Excel.asp - 12oct21 - 12ene22 -->
+<!-- RetSem_Excel.asp - 12oct21 - 27ene22 -->
 <%
 	' Variables y Constantes
-	Server.ScriptTimeout = 10000
+	Server.ScriptTimeout = 30000
 	Response.Buffer = True	
 	Session.lcid = 1034
 	Response.ContentType = "text/html"	
@@ -48,6 +48,7 @@
 	sSem=Request.Form("sem")
 	sMes=Request.Form("mes")
 	idCliente = Session("idCliente")
+	strCat=Request.Form("catg")
 	'		
 	' Response.Write "<br>sMes " & sMes & "<br>"
 	' Response.End
@@ -249,6 +250,7 @@
 								
 								Response.Write "<tr>"
 								
+									Response.Write "<th class='text-center'>Categoria</th>"
 									Response.Write "<th class='text-center'>Area</th>"
 									Response.Write "<th class='text-center'>Zona</th>"
 									Response.Write "<th class='text-center'>Canal</th>"
@@ -284,7 +286,11 @@
 								FOR iPro = 0 TO  ubound(gProductosTotal,2)
 								for iInd = 0 to  ubound(gIndicadores,2)
 									'Response.Write "<br>354 LLEGO:= " & iPro
-									Response.Write "<tr>"									
+									Response.Write "<tr>"			
+										Response.Write "<td>"
+											'categoria
+											Response.Write strCat 
+										Response.Write "</td>"
 										Response.Write "<td>"
 											'Area
 											Response.Write gProductosTotal(1,iPro) 

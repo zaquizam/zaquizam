@@ -69,8 +69,7 @@
 '==========================================================================================
 ' Variables y Constantes
 '==========================================================================================
-    'Response.Redirect "ph_Mantto.asp"
-	Apertura
+    Apertura
 	'response.write "<br>36 Cliente:= " & Session("idCliente")
 
 	Dim idCliente
@@ -332,8 +331,18 @@ Sub DataCombos
 	sql = sql & " FROM "
 	sql = sql & " ss_Semana "
 	sql = sql & " WHERE "
-	sql = sql & " IdSemana >= " & iSemanaDes
-	sql = sql & " And IdSemana <= " & iSemanaHas
+	'Cliente 13 = Alimentos Polar
+	'Categoria 47 = Mayonesa
+	'Categoria 89 = Arroz
+	'Categoria 21 = Bebidas Instantaneas
+	'Semanas Octubre 2021 = 55,56,57,58
+	'Semanas Enero 2022 = 68,69,70,71
+	if idCliente = 13 and (ed_sPar(1,0) = 47 or ed_sPar(1,0) = 89 or ed_sPar(1,0) = 21) then
+		sql = sql & " IdSemana in(55,56,57,58,68,69,70,71)"
+	else
+		sql = sql & " IdSemana >= " & iSemanaDes
+		sql = sql & " And IdSemana <= " & iSemanaHas
+	end if
 	sql = sql & " ORDER BY "
 	sql = sql & " IdSemana DESC "
 	'response.write "<br>372 Combo1:=" & sql
