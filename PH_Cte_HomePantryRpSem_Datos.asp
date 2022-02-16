@@ -54,7 +54,7 @@
 	' end if
 	if sInd <> "" then
 		sQl = sQl & " And Id_Indicador in (" & sInd & ")"
-	end if		
+		end if		
 	sQl = sQl & " ORDER BY Id_Indicador "
 	'
 	'Response.Write "<br>" & sQl & "<br>"
@@ -288,7 +288,9 @@
 									'Response.Write "<tr style='height:2px;background-color:#5787C2;' >"
 									Response.Write "<tr>"
 										iColumna = 6 + CInt(ubound(gSemanas,2)) 
-										Response.Write "<td colspan=" & iColumna & " class='separador'>"
+										'Response.Write "<td colspan=" & iColumna & " class='separador'>"
+										Response.Write "<td colspan=" & iColumna & " style='padding:1px; font-size:1px; line-height: 0px; background-color:#afc8f4;'>"
+										
 										Response.Write " - "													
 										Response.Write "</td>"													
 									Response.Write "</tr>"

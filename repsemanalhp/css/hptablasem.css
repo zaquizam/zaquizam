@@ -4,7 +4,7 @@
 table {
     border-collapse: separate;
     border-spacing: 0 5px;
-    color: navy;    
+    color: #545454;    
     font-family: Verdana,Helvetica,Arial,sans-serif;
     /*font-family: "Open Sans", "Lato", "Roboto",  Verdana,Helvetica,Arial,sans-serif;*/
 }
@@ -45,7 +45,8 @@ tr th:last-child {
 
 tbody tr:hover{
    background-color: rgba(122,114,81, 0.7);
-   color: rgb(112,24,78);
+   /* color: rgb(112,24,78); */
+   color: navy;
    font-weight: bold;
    text-transform: uppercase;
    cursor: pointer;
@@ -53,7 +54,7 @@ tbody tr:hover{
 
 .table-condensed{
   font-size: 12px;
-  vertical-align : middle;
+  vertical-align : middle;  
 }
 
 .table-responsive {
@@ -70,5 +71,5 @@ tbody tr:hover{
    /*style='font-size:1px; line-height: 0px; background-color:#afc8f4;'*/
     font-size:1px; 
     line-height: 0px; 
-    background-color:#afc8f4;
+    background-color:#afc8f4;   
 }

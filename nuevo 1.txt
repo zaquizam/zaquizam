@@ -1,14 +1,7 @@
-SELECT Id_Fabricante, Fabricante, Id_Marca, Marca, Id_Segmento, Segmento, Penetracion, CompraMedHog, GastMedHog, UnidCompHog, ActCompHog, VolActoCompra, ValActoCompra, UnidActoCompra, PrecPromVol, PrecPromUnid, CuotaMercVol, CuotaMercVal, CuotaMercUnid, PenetRelativa, id_Semana FROM PH_DataProcesadaSem WHERE Id_Categoria = 21 And Id_Semana in ( 67,66,65,64,63) And Id_Fabricante in (0,867,868,869,870,872,873,875,876,4985,5066,883,887,888,889,890,893,896) And Id_Marca in (1710,1731,1711,1724,1728,1684,1732,1682,1714,1716,1683,1698,1725,1688,1708,1721,1690,14672,1695,1687,1691,1706,1723,1681) And Id_Segmento in (203,204) ORDER BY Id_Fabricante, Id_Marca, Id_Segmento, id_Semana
+enviamed - itl0OKyU33
 
-ok
-SELECT Id_Fabricante, Fabricante, Id_Marca, Marca, Id_Segmento, Segmento, Penetracion, CompraMedHog, GastMedHog, UnidCompHog, ActCompHog, VolActoCompra, ValActoCompra, UnidActoCompra, PrecPromVol, PrecPromUnid, CuotaMercVol, CuotaMercVal, CuotaMercUnid, PenetRelativa, id_Semana FROM PH_DataProcesadaSem WHERE Id_Categoria = 21 And Id_Semana in ( 67,66,65,64,63) And Id_Fabricante in (0) And Id_Marca in (0) And Id_Segmento in (203,204) ORDER BY Id_Fabricante, Id_Marca, Id_Segmento, id_Semana
+veciiino - BxwM6Pxw71
 
-SELECT Id_Fabricante, Fabricante, Id_Marca, Marca, Id_Segmento, Segmento, Penetracion, CompraMedHog, GastMedHog, UnidCompHog, ActCompHog, VolActoCompra, ValActoCompra, UnidActoCompra, PrecPromVol, PrecPromUnid, CuotaMercVol, CuotaMercVal, CuotaMercUnid, PenetRelativa, id_Semana FROM PH_DataProcesadaSem WHERE Id_Categoria = 21 AND Id_Semana IN ( 67, 66, 65, 64, 63 ) 
-	--AND Id_Fabricante IN ( 0 ) 
-	--AND Id_Marca IN (		1710,		1731,		1711,		1724,		1728,		1684,		1732,		1682,		1714,		1716,		1683,		1698,		1725,		1688,		1708,		1721,		1690,		14672,		1695,		1687,		1691,		1706,		1723,		1681 	) 
-	AND Id_Segmento IN ( 203, 204 ) 
-ORDER BY
-	Id_Fabricante,
-	Id_Marca,
-	Id_Segmento,
-	id_Semana
+AUTOMERCADOS EMPORIUM - J8gWiLKaSa
+PLANSUAREZ - E6khfQvM13
+FARMABIEN - x04VbAOBtS

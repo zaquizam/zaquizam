@@ -2,7 +2,8 @@
 // hprepsemanal.css 02feb22 - 02feb22
 */
 #main {  
-    /*
+  background: url('../img/hpsemanal.png') no-repeat center center fixed;    
+  /*    
   background: url('../img/pngegg (9).png') no-repeat center center fixed;  
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -17,8 +18,10 @@
   background: rgb(31,120,71);
   background: linear-gradient(170deg, rgba(31,120,71,1) 0%, rgba(52,161,216,1) 50%, rgba(248,177,51,1) 100%);
   */
+  /*
   background: rgb(255,255,255);
   background: linear-gradient(359deg, rgba(255,255,255,1) 30%, rgba(52,161,216,0.7231267507002801) 100%);
+  */
 }
 
 #grad2 {
