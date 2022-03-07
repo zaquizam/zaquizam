@@ -7,7 +7,7 @@
 Session.lcid = 1034
 Response.CodePage = 65001	
 Response.CharSet = "utf-8"
-Server.ScriptTimeout = 360
+Server.ScriptTimeout = 10000
 Response.Buffer = True
 Response.clear
 '	
@@ -90,8 +90,8 @@ SUB Calcular_Refrescos_250
 	' Buscar Todos Los Hogares compraron Tamaño 250 ml
 	'	
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT " & _ 
@@ -111,7 +111,7 @@ SUB Calcular_Refrescos_250
 	" ORDER BY" & _ 
 	" PH_DataCrudaMensual.Id_Hogar;"
 	'	
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then
 		rsx1.close
@@ -147,8 +147,8 @@ SUB Calcular_Refrescos_250
 		'Response.End
 		'
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -174,7 +174,7 @@ SUB Calcular_Refrescos_250
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -197,8 +197,8 @@ SUB Calcular_Refrescos_250
 			' Calcular Tamaño 320
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -224,7 +224,7 @@ SUB Calcular_Refrescos_250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -254,8 +254,8 @@ SUB Calcular_Refrescos_250
 			' Calcular Tamaño 350
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -281,7 +281,7 @@ SUB Calcular_Refrescos_250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -311,8 +311,8 @@ SUB Calcular_Refrescos_250
 			' Calcular Tamaño 355
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -338,7 +338,7 @@ SUB Calcular_Refrescos_250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -369,8 +369,8 @@ SUB Calcular_Refrescos_250
 			' Calcular Tamaño 500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -396,7 +396,7 @@ SUB Calcular_Refrescos_250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion
+			rsx1.Open QrySql, conexion, 0, 1
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -426,8 +426,8 @@ SUB Calcular_Refrescos_250
 			' Calcular Tamaño 600
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -453,7 +453,7 @@ SUB Calcular_Refrescos_250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -483,8 +483,8 @@ SUB Calcular_Refrescos_250
 			' Calcular Tamaño 1000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -510,7 +510,7 @@ SUB Calcular_Refrescos_250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -540,8 +540,8 @@ SUB Calcular_Refrescos_250
 			' Calcular Tamaño 1250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -567,7 +567,7 @@ SUB Calcular_Refrescos_250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -598,8 +598,8 @@ SUB Calcular_Refrescos_250
 			' Calcular Tamaño 1500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -625,7 +625,7 @@ SUB Calcular_Refrescos_250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -653,8 +653,8 @@ SUB Calcular_Refrescos_250
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -680,7 +680,7 @@ SUB Calcular_Refrescos_250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -710,8 +710,8 @@ SUB Calcular_Refrescos_250
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -737,7 +737,7 @@ SUB Calcular_Refrescos_250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -778,8 +778,8 @@ SUB Calcular_Refrescos_320
 	' Buscar Todos Los Hogares compraron Tamaño 320 ml
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT " & _
@@ -802,7 +802,7 @@ SUB Calcular_Refrescos_320
 	' Response.write QrySql & "<br>"
 	' Response.end
 	'
-    rsx1.Open QrySql, conexion 
+    rsx1.Open QrySql, conexion, 0, 1 
 	'
 	if rsx1.eof then
 		rsx1.close
@@ -834,8 +834,8 @@ SUB Calcular_Refrescos_320
 		'Response.write "<br>ID Hogares que compraron 320 = " & replace(Hogares,",","-") & "<br>"
 		'		
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -861,7 +861,7 @@ SUB Calcular_Refrescos_320
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -885,8 +885,8 @@ SUB Calcular_Refrescos_320
 			' Calcular Tamaño 320/250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -912,7 +912,7 @@ SUB Calcular_Refrescos_320
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -940,8 +940,8 @@ SUB Calcular_Refrescos_320
 			' Calcular Tamaño 320/350
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -967,7 +967,7 @@ SUB Calcular_Refrescos_320
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -997,8 +997,8 @@ SUB Calcular_Refrescos_320
 			' Calcular Tamaño 320/355
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1024,7 +1024,7 @@ SUB Calcular_Refrescos_320
 			'Response.write QrySql & " 355<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1052,8 +1052,8 @@ SUB Calcular_Refrescos_320
 			' Calcular Tamaño 500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1079,7 +1079,7 @@ SUB Calcular_Refrescos_320
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1108,8 +1108,8 @@ SUB Calcular_Refrescos_320
 			' Calcular Tamaño 600
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1135,7 +1135,7 @@ SUB Calcular_Refrescos_320
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1165,8 +1165,8 @@ SUB Calcular_Refrescos_320
 			' Calcular Tamaño 1000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1192,7 +1192,7 @@ SUB Calcular_Refrescos_320
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1220,8 +1220,8 @@ SUB Calcular_Refrescos_320
 			' Calcular Tamaño 1250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1247,7 +1247,7 @@ SUB Calcular_Refrescos_320
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1275,8 +1275,8 @@ SUB Calcular_Refrescos_320
 			' Calcular Tamaño 1500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1302,7 +1302,7 @@ SUB Calcular_Refrescos_320
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1329,8 +1329,8 @@ SUB Calcular_Refrescos_320
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1356,7 +1356,7 @@ SUB Calcular_Refrescos_320
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1384,8 +1384,8 @@ SUB Calcular_Refrescos_320
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1411,7 +1411,7 @@ SUB Calcular_Refrescos_320
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1451,8 +1451,8 @@ SUB Calcular_Refrescos_350
 	' Buscar Todos Los Hogares compraron Tamaño 350 ml
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT "  & _
@@ -1475,7 +1475,7 @@ SUB Calcular_Refrescos_350
 	'Response.write QrySql & "<br>"
 	'Response.end
 	'
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then
 		'
@@ -1514,8 +1514,8 @@ SUB Calcular_Refrescos_350
 		'Response.end
 		'				
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -1541,7 +1541,7 @@ SUB Calcular_Refrescos_350
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -1566,8 +1566,8 @@ SUB Calcular_Refrescos_350
 			' Calcular Tamaño 250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1593,7 +1593,7 @@ SUB Calcular_Refrescos_350
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1620,8 +1620,8 @@ SUB Calcular_Refrescos_350
 			' Calcular Tamaño 350
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1644,7 +1644,7 @@ SUB Calcular_Refrescos_350
 			" ORDER BY" & _
 			" PH_DataCrudaMensual.Id_Hogar;"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1671,8 +1671,8 @@ SUB Calcular_Refrescos_350
 			' Calcular Tamaño 355
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1698,7 +1698,7 @@ SUB Calcular_Refrescos_350
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1725,8 +1725,8 @@ SUB Calcular_Refrescos_350
 			' Calcular Tamaño 500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1752,7 +1752,7 @@ SUB Calcular_Refrescos_350
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1779,8 +1779,8 @@ SUB Calcular_Refrescos_350
 			' Calcular Tamaño 600
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1806,7 +1806,7 @@ SUB Calcular_Refrescos_350
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1833,8 +1833,8 @@ SUB Calcular_Refrescos_350
 			' Calcular Tamaño 1000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1860,7 +1860,7 @@ SUB Calcular_Refrescos_350
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1887,8 +1887,8 @@ SUB Calcular_Refrescos_350
 			' Calcular Tamaño 1250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1914,7 +1914,7 @@ SUB Calcular_Refrescos_350
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1942,8 +1942,8 @@ SUB Calcular_Refrescos_350
 			' Calcular Tamaño 1500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -1969,7 +1969,7 @@ SUB Calcular_Refrescos_350
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -1996,8 +1996,8 @@ SUB Calcular_Refrescos_350
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2023,7 +2023,7 @@ SUB Calcular_Refrescos_350
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2051,8 +2051,8 @@ SUB Calcular_Refrescos_350
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2078,7 +2078,7 @@ SUB Calcular_Refrescos_350
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2109,6 +2109,7 @@ SUB Calcular_Refrescos_350
 	end if
 	'	
 	Set rsx1 = nothing
+	Response.Flush
 	'
 END SUB	
 '
@@ -2118,8 +2119,8 @@ SUB Calcular_Refrescos_355
 	' Buscar Todos Los Hogares compraron Tamaño 355 ml
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT "  & _
@@ -2142,7 +2143,7 @@ SUB Calcular_Refrescos_355
 	'Response.write QrySql & "<br>"
 	'Response.end
 	'
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then
 		rsx1.close
@@ -2178,8 +2179,8 @@ SUB Calcular_Refrescos_355
 		'Response.end
 		'				
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -2205,7 +2206,7 @@ SUB Calcular_Refrescos_355
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -2230,8 +2231,8 @@ SUB Calcular_Refrescos_355
 			' Calcular Tamaño 250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2257,7 +2258,7 @@ SUB Calcular_Refrescos_355
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2284,8 +2285,8 @@ SUB Calcular_Refrescos_355
 			' Calcular Tamaño 355/320
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2311,7 +2312,7 @@ SUB Calcular_Refrescos_355
 			'Response.write QrySql & " 320 en hogares con 355<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2341,8 +2342,8 @@ SUB Calcular_Refrescos_355
 			' Calcular Tamaño 500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2368,7 +2369,7 @@ SUB Calcular_Refrescos_355
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2395,8 +2396,8 @@ SUB Calcular_Refrescos_355
 			' Calcular Tamaño 600
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2422,7 +2423,7 @@ SUB Calcular_Refrescos_355
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2450,8 +2451,8 @@ SUB Calcular_Refrescos_355
 			' Calcular Tamaño 1000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2477,7 +2478,7 @@ SUB Calcular_Refrescos_355
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2504,8 +2505,8 @@ SUB Calcular_Refrescos_355
 			' Calcular Tamaño 1250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2531,7 +2532,7 @@ SUB Calcular_Refrescos_355
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2558,8 +2559,8 @@ SUB Calcular_Refrescos_355
 			' Calcular Tamaño 1500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2585,7 +2586,7 @@ SUB Calcular_Refrescos_355
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2612,8 +2613,8 @@ SUB Calcular_Refrescos_355
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2639,7 +2640,7 @@ SUB Calcular_Refrescos_355
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2666,8 +2667,8 @@ SUB Calcular_Refrescos_355
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2693,7 +2694,7 @@ SUB Calcular_Refrescos_355
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2727,7 +2728,11 @@ SUB Calcular_Refrescos_355
 		tRefresco355_500  = 0 : tRefresco355_600  = 0 : tRefresco355_1000 = 0
 		tRefresco355_1500 = 0 : tRefresco355_2000 = 0 : tRefresco355_2500 = 0	
 		'	
-	END IF		
+	END IF
+	
+	Set rsx1 = nothing
+	Response.Flush
+	'
 
 END SUB	
 '
@@ -2737,8 +2742,8 @@ SUB Calcular_Refrescos_500
 	' Buscar Todos Los Hogares compraron Tamaño 500 ml
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT "  & _
@@ -2761,7 +2766,7 @@ SUB Calcular_Refrescos_500
 	'Response.write QrySql & "<br>"
 	'Response.end
 	'
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then		
 		rsx1.close
@@ -2799,8 +2804,8 @@ SUB Calcular_Refrescos_500
 		'Response.end
 		'				
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -2826,7 +2831,7 @@ SUB Calcular_Refrescos_500
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -2849,8 +2854,8 @@ SUB Calcular_Refrescos_500
 			' Calcular Tamaño 250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2876,7 +2881,7 @@ SUB Calcular_Refrescos_500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2903,8 +2908,8 @@ SUB Calcular_Refrescos_500
 			' Calcular Tamaño 320
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2927,7 +2932,7 @@ SUB Calcular_Refrescos_500
 			" ORDER BY" & _
 			" PH_DataCrudaMensual.Id_Hogar;"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -2954,8 +2959,8 @@ SUB Calcular_Refrescos_500
 			' Calcular Tamaño 355
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -2981,7 +2986,7 @@ SUB Calcular_Refrescos_500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3011,8 +3016,8 @@ SUB Calcular_Refrescos_500
 			' Calcular Tamaño 600
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3038,7 +3043,7 @@ SUB Calcular_Refrescos_500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3065,8 +3070,8 @@ SUB Calcular_Refrescos_500
 			' Calcular Tamaño 1000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3092,7 +3097,7 @@ SUB Calcular_Refrescos_500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3119,8 +3124,8 @@ SUB Calcular_Refrescos_500
 			' Calcular Tamaño 1250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3146,7 +3151,7 @@ SUB Calcular_Refrescos_500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3173,8 +3178,8 @@ SUB Calcular_Refrescos_500
 			' Calcular Tamaño 1500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3200,7 +3205,7 @@ SUB Calcular_Refrescos_500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3227,8 +3232,8 @@ SUB Calcular_Refrescos_500
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3254,7 +3259,7 @@ SUB Calcular_Refrescos_500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3281,8 +3286,8 @@ SUB Calcular_Refrescos_500
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3308,7 +3313,7 @@ SUB Calcular_Refrescos_500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3336,8 +3341,10 @@ SUB Calcular_Refrescos_500
 		'
 		
 	end if
-	'	
+	'15feb22	
 	Set rsx1 = nothing
+	Response.Flush
+	'
 	'
 END SUB
 '
@@ -3347,8 +3354,8 @@ SUB Calcular_Refrescos_600
 	' Buscar Todos Los Hogares compraron Tamaño 600 ml
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT "  & _
@@ -3371,7 +3378,7 @@ SUB Calcular_Refrescos_600
 	'Response.write QrySql & "<br>"
 	'Response.end
 	'
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then		
 		rsx1.close
@@ -3406,8 +3413,8 @@ SUB Calcular_Refrescos_600
 		'Response.end
 		'				
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -3433,7 +3440,7 @@ SUB Calcular_Refrescos_600
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -3456,8 +3463,8 @@ SUB Calcular_Refrescos_600
 			' Calcular Tamaño 250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3483,7 +3490,7 @@ SUB Calcular_Refrescos_600
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3510,8 +3517,8 @@ SUB Calcular_Refrescos_600
 			' Calcular Tamaño 320
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3534,7 +3541,7 @@ SUB Calcular_Refrescos_600
 			" ORDER BY" & _
 			" PH_DataCrudaMensual.Id_Hogar;"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3561,8 +3568,8 @@ SUB Calcular_Refrescos_600
 			' Calcular Tamaño 355
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3588,7 +3595,7 @@ SUB Calcular_Refrescos_600
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3617,8 +3624,8 @@ SUB Calcular_Refrescos_600
 			' Calcular Tamaño 500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3644,7 +3651,7 @@ SUB Calcular_Refrescos_600
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3674,8 +3681,8 @@ SUB Calcular_Refrescos_600
 			' Calcular Tamaño 1000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3701,7 +3708,7 @@ SUB Calcular_Refrescos_600
 			Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3728,8 +3735,8 @@ SUB Calcular_Refrescos_600
 			' Calcular Tamaño 1250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3755,7 +3762,7 @@ SUB Calcular_Refrescos_600
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3782,8 +3789,8 @@ SUB Calcular_Refrescos_600
 			' Calcular Tamaño 1500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3809,7 +3816,7 @@ SUB Calcular_Refrescos_600
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3836,8 +3843,8 @@ SUB Calcular_Refrescos_600
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3863,7 +3870,7 @@ SUB Calcular_Refrescos_600
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3890,8 +3897,8 @@ SUB Calcular_Refrescos_600
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -3917,7 +3924,7 @@ SUB Calcular_Refrescos_600
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -3956,8 +3963,8 @@ SUB Calcular_Refrescos_1000
 	' Buscar Todos Los Hogares compraron Tamaño 1000 ml
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT "  & _
@@ -3980,7 +3987,7 @@ SUB Calcular_Refrescos_1000
 	'Response.write QrySql & "<br>"
 	'Response.end
 	'
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then		
 		rsx1.close
@@ -4012,8 +4019,8 @@ SUB Calcular_Refrescos_1000
 		'Response.write "<br>ID Hogares que compraron 1000 = " & replace(Hogares,",","-") & "<br>"
 		'	
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -4039,7 +4046,7 @@ SUB Calcular_Refrescos_1000
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -4064,8 +4071,8 @@ SUB Calcular_Refrescos_1000
 			' Calcular Tamaño 250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4091,7 +4098,7 @@ SUB Calcular_Refrescos_1000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4120,8 +4127,8 @@ SUB Calcular_Refrescos_1000
 			' Calcular Tamaño 320
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4144,7 +4151,7 @@ SUB Calcular_Refrescos_1000
 			" ORDER BY" & _
 			" PH_DataCrudaMensual.Id_Hogar;"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4173,8 +4180,8 @@ SUB Calcular_Refrescos_1000
 			' Calcular Tamaño 355
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4200,7 +4207,7 @@ SUB Calcular_Refrescos_1000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4229,8 +4236,8 @@ SUB Calcular_Refrescos_1000
 			' Calcular Tamaño 500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4256,7 +4263,7 @@ SUB Calcular_Refrescos_1000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4283,8 +4290,8 @@ SUB Calcular_Refrescos_1000
 			' Calcular Tamaño 600
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4310,7 +4317,7 @@ SUB Calcular_Refrescos_1000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4341,8 +4348,8 @@ SUB Calcular_Refrescos_1000
 			' Calcular Tamaño 1250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4368,7 +4375,7 @@ SUB Calcular_Refrescos_1000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4395,8 +4402,8 @@ SUB Calcular_Refrescos_1000
 			' Calcular Tamaño 1500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4422,7 +4429,7 @@ SUB Calcular_Refrescos_1000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4451,8 +4458,8 @@ SUB Calcular_Refrescos_1000
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4478,7 +4485,7 @@ SUB Calcular_Refrescos_1000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4505,8 +4512,8 @@ SUB Calcular_Refrescos_1000
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4532,7 +4539,7 @@ SUB Calcular_Refrescos_1000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4561,7 +4568,10 @@ SUB Calcular_Refrescos_1000
 		
 	end if
 	'	
+	'15feb22	
 	Set rsx1 = nothing
+	Response.Flush
+	'
 	
 END SUB
 '
@@ -4572,8 +4582,8 @@ SUB Calcular_Refrescos_1250
 	' Buscar Todos Los Hogares compraron Tamaño 1250 ml
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT "  & _
@@ -4596,7 +4606,7 @@ SUB Calcular_Refrescos_1250
 	'Response.write QrySql & "<br>"
 	'Response.end
 	'
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then		
 		rsx1.close
@@ -4633,8 +4643,8 @@ SUB Calcular_Refrescos_1250
 		'Response.end
 		'				
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -4660,7 +4670,7 @@ SUB Calcular_Refrescos_1250
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -4691,8 +4701,8 @@ SUB Calcular_Refrescos_1250
 			' Calcular Tamaño 250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4718,7 +4728,7 @@ SUB Calcular_Refrescos_1250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4745,8 +4755,8 @@ SUB Calcular_Refrescos_1250
 			' Calcular Tamaño 320
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4769,7 +4779,7 @@ SUB Calcular_Refrescos_1250
 			" ORDER BY" & _
 			" PH_DataCrudaMensual.Id_Hogar;"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4796,8 +4806,8 @@ SUB Calcular_Refrescos_1250
 			' Calcular Tamaño 355
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4823,7 +4833,7 @@ SUB Calcular_Refrescos_1250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4850,8 +4860,8 @@ SUB Calcular_Refrescos_1250
 			' Calcular Tamaño 500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4877,7 +4887,7 @@ SUB Calcular_Refrescos_1250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4904,8 +4914,8 @@ SUB Calcular_Refrescos_1250
 			' Calcular Tamaño 600
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4931,7 +4941,7 @@ SUB Calcular_Refrescos_1250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -4958,8 +4968,8 @@ SUB Calcular_Refrescos_1250
 			' Calcular Tamaño 1000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -4985,7 +4995,7 @@ SUB Calcular_Refrescos_1250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5017,8 +5027,8 @@ SUB Calcular_Refrescos_1250
 			' Calcular Tamaño 1500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5044,7 +5054,7 @@ SUB Calcular_Refrescos_1250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5071,8 +5081,8 @@ SUB Calcular_Refrescos_1250
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5098,7 +5108,7 @@ SUB Calcular_Refrescos_1250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5127,8 +5137,8 @@ SUB Calcular_Refrescos_1250
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5154,7 +5164,7 @@ SUB Calcular_Refrescos_1250
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5183,7 +5193,10 @@ SUB Calcular_Refrescos_1250
 		
 	end if
 	'	
+	'15feb22	
 	Set rsx1 = nothing
+	Response.Flush
+	'
 	
 END SUB
 '
@@ -5193,8 +5206,8 @@ SUB Calcular_Refrescos_1500
 	' Buscar Todos Los Hogares compraron Tamaño 1500 ml
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT "  & _
@@ -5217,7 +5230,7 @@ SUB Calcular_Refrescos_1500
 	'Response.write QrySql & "<br>"
 	'Response.end
 	'
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then		
 		rsx1.close
@@ -5252,8 +5265,8 @@ SUB Calcular_Refrescos_1500
 		'Response.end
 		'				
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -5279,7 +5292,7 @@ SUB Calcular_Refrescos_1500
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -5303,8 +5316,8 @@ SUB Calcular_Refrescos_1500
 			' Calcular Tamaño 250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5330,7 +5343,7 @@ SUB Calcular_Refrescos_1500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5357,8 +5370,8 @@ SUB Calcular_Refrescos_1500
 			' Calcular Tamaño 320
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5381,7 +5394,7 @@ SUB Calcular_Refrescos_1500
 			" ORDER BY" & _
 			" PH_DataCrudaMensual.Id_Hogar;"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5408,8 +5421,8 @@ SUB Calcular_Refrescos_1500
 			' Calcular Tamaño 355
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5435,7 +5448,7 @@ SUB Calcular_Refrescos_1500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5462,8 +5475,8 @@ SUB Calcular_Refrescos_1500
 			' Calcular Tamaño 500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5489,7 +5502,7 @@ SUB Calcular_Refrescos_1500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5516,8 +5529,8 @@ SUB Calcular_Refrescos_1500
 			' Calcular Tamaño 600
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5543,7 +5556,7 @@ SUB Calcular_Refrescos_1500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5570,8 +5583,8 @@ SUB Calcular_Refrescos_1500
 			' Calcular Tamaño 1000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5597,7 +5610,7 @@ SUB Calcular_Refrescos_1500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5624,8 +5637,8 @@ SUB Calcular_Refrescos_1500
 			' Calcular Tamaño 1250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5651,7 +5664,7 @@ SUB Calcular_Refrescos_1500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5681,8 +5694,8 @@ SUB Calcular_Refrescos_1500
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5708,7 +5721,7 @@ SUB Calcular_Refrescos_1500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5735,8 +5748,8 @@ SUB Calcular_Refrescos_1500
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5762,7 +5775,7 @@ SUB Calcular_Refrescos_1500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5791,7 +5804,10 @@ SUB Calcular_Refrescos_1500
 		
 	end if
 	'	
+	'15feb22	
 	Set rsx1 = nothing
+	Response.Flush
+	'
 	
 END SUB
 '
@@ -5801,8 +5817,8 @@ SUB Calcular_Refrescos_2000
 	' Buscar Todos Los Hogares compraron Tamaño 2000 ml
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT "  & _
@@ -5825,7 +5841,7 @@ SUB Calcular_Refrescos_2000
 	'Response.write QrySql & "<br>"
 	'Response.end
 	'
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then		
 		rsx1.close
@@ -5861,8 +5877,8 @@ SUB Calcular_Refrescos_2000
 		'Response.end
 		'				
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -5888,7 +5904,7 @@ SUB Calcular_Refrescos_2000
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -5914,8 +5930,8 @@ SUB Calcular_Refrescos_2000
 			' Calcular Tamaño 250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5941,7 +5957,7 @@ SUB Calcular_Refrescos_2000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -5968,8 +5984,8 @@ SUB Calcular_Refrescos_2000
 			' Calcular Tamaño 320
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -5992,7 +6008,7 @@ SUB Calcular_Refrescos_2000
 			" ORDER BY" & _
 			" PH_DataCrudaMensual.Id_Hogar;"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6019,8 +6035,8 @@ SUB Calcular_Refrescos_2000
 			' Calcular Tamaño 355
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6046,7 +6062,7 @@ SUB Calcular_Refrescos_2000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6073,8 +6089,8 @@ SUB Calcular_Refrescos_2000
 			' Calcular Tamaño 500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6100,7 +6116,7 @@ SUB Calcular_Refrescos_2000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6127,8 +6143,8 @@ SUB Calcular_Refrescos_2000
 			' Calcular Tamaño 600
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6154,7 +6170,7 @@ SUB Calcular_Refrescos_2000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6181,8 +6197,8 @@ SUB Calcular_Refrescos_2000
 			' Calcular Tamaño 1000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6208,7 +6224,7 @@ SUB Calcular_Refrescos_2000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6235,8 +6251,8 @@ SUB Calcular_Refrescos_2000
 			' Calcular Tamaño 1250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6262,7 +6278,7 @@ SUB Calcular_Refrescos_2000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6289,8 +6305,8 @@ SUB Calcular_Refrescos_2000
 			' Calcular Tamaño 1500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6316,7 +6332,7 @@ SUB Calcular_Refrescos_2000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6343,8 +6359,8 @@ SUB Calcular_Refrescos_2000
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6370,7 +6386,7 @@ SUB Calcular_Refrescos_2000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6397,8 +6413,8 @@ SUB Calcular_Refrescos_2000
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6424,7 +6440,7 @@ SUB Calcular_Refrescos_2000
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6453,8 +6469,10 @@ SUB Calcular_Refrescos_2000
 		
 	end if
 	'	
+	'15feb22	
 	Set rsx1 = nothing
-	
+	Response.Flush
+	'	
 END SUB
 '
 SUB Calcular_Refrescos_2500
@@ -6463,8 +6481,8 @@ SUB Calcular_Refrescos_2500
 	' Buscar Todos Los Hogares compraron Tamaño 2500 ml
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 
+	'rsx1.CursorType = 0 
+	'rsx1.LockType = 1 
 	'
 	QrySql = vbNullstring
 	QrySql = " SELECT "  & _
@@ -6487,7 +6505,7 @@ SUB Calcular_Refrescos_2500
 	'Response.write QrySql & "<br>"
 	'Response.end
 	'
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then		
 		rsx1.close
@@ -6523,8 +6541,8 @@ SUB Calcular_Refrescos_2500
 		'Response.end
 		'				
 		Set rsx1 = CreateObject("ADODB.Recordset")
-		rsx1.CursorType = adOpenStatic 
-		rsx1.LockType = 3 
+		'rsx1.CursorType = 0 
+		'rsx1.LockType = 1 
 		'
 		QrySql = vbNullstring
 		QrySql = " SELECT "  & _
@@ -6550,7 +6568,7 @@ SUB Calcular_Refrescos_2500
 		'Response.write QrySql & "<br>"
 		'Response.end
 		'
-		rsx1.Open QrySql, conexion		
+		rsx1.Open QrySql, conexion, 0, 1		
 		'
 		if rsx1.eof then
 			rsx1.close
@@ -6576,8 +6594,8 @@ SUB Calcular_Refrescos_2500
 			' Calcular Tamaño 250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6603,7 +6621,7 @@ SUB Calcular_Refrescos_2500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6630,8 +6648,8 @@ SUB Calcular_Refrescos_2500
 			' Calcular Tamaño 320
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6654,7 +6672,7 @@ SUB Calcular_Refrescos_2500
 			" ORDER BY" & _
 			" PH_DataCrudaMensual.Id_Hogar;"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6681,8 +6699,8 @@ SUB Calcular_Refrescos_2500
 			' Calcular Tamaño 355
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6708,7 +6726,7 @@ SUB Calcular_Refrescos_2500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6735,8 +6753,8 @@ SUB Calcular_Refrescos_2500
 			' Calcular Tamaño 500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6762,7 +6780,7 @@ SUB Calcular_Refrescos_2500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6789,8 +6807,8 @@ SUB Calcular_Refrescos_2500
 			' Calcular Tamaño 600
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6816,7 +6834,7 @@ SUB Calcular_Refrescos_2500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6843,8 +6861,8 @@ SUB Calcular_Refrescos_2500
 			' Calcular Tamaño 1000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6870,7 +6888,7 @@ SUB Calcular_Refrescos_2500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6897,8 +6915,8 @@ SUB Calcular_Refrescos_2500
 			' Calcular Tamaño 1250
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6924,7 +6942,7 @@ SUB Calcular_Refrescos_2500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -6951,8 +6969,8 @@ SUB Calcular_Refrescos_2500
 			' Calcular Tamaño 1500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -6978,7 +6996,7 @@ SUB Calcular_Refrescos_2500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -7005,8 +7023,8 @@ SUB Calcular_Refrescos_2500
 			' Calcular Tamaño 2000
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -7032,7 +7050,7 @@ SUB Calcular_Refrescos_2500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -7059,8 +7077,8 @@ SUB Calcular_Refrescos_2500
 			' Calcular Tamaño 2500
 			'
 			Set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 
+			'rsx1.CursorType = 0 
+			'rsx1.LockType = 1 
 			'
 			QrySql = vbNullstring
 			QrySql = " SELECT "  & _
@@ -7086,7 +7104,7 @@ SUB Calcular_Refrescos_2500
 			'Response.write QrySql & "<br>"
 			'Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -7205,6 +7223,8 @@ SUB Graficar_Datos
 	   
 	Response.Write "</table></strong>"
 	'
+	'15feb22	
+	Set rsx1 = nothing
 	Response.Flush
 	'
 END SUB

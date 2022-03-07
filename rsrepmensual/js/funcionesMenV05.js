@@ -405,6 +405,7 @@ function aCtivar(){
 	$("#BtnBorrar").prop('disabled', false);
 }
 //
+//
 function bLankSelect(cmb){	
 	debugger;
 	bLoquear();

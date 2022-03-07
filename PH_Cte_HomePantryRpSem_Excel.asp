@@ -218,6 +218,9 @@
 											'Segmento
 											Response.Write gProductosTotal(7,iPro) 
 										Response.Write "</td>"									
+										iFab1 = gProductosTotal(2,iPro) 
+										iMar1 = gProductosTotal(4,iPro) 
+										iSeg1 = gProductosTotal(6,iPro) 
 										'
 										iPro2 = iPro
 										isw = 0
@@ -247,31 +250,60 @@
 												Menos = 0
 												'Response.Write "<br>iPro1:=" & iPro1 & ""
 												sw=0												
+												iswCeros = 0
+												iTotal = ubound(gSemanas,2)
+												iConCeros = 0
 												for iSem = 0 to ubound(gSemanas,2)
 													Response.Write "<td class='text-right'>"
 														'Response.Write "iPro:=" & iPro & "=>"
 														iSem1 = gSemanas(0,iSem)
-														if CInt(iSem1) = CInt(gProductosTotal(50,iPro1)) then 
-															Valor = gProductosTotal(Columna,iPro1)
-															if Valor <> "" then
-																Valor = FormatNumber(Valor,2)
+
+														iFab2 = gProductosTotal(2,iPro1)
+														iMar2 = gProductosTotal(4,iPro1)
+														iSeg2 = gProductosTotal(6,iPro1)
+														if iFab1 = iFab2 and iMar1 = iMar2 and iSeg1 = iSeg2 then
+															if CInt(iSem1) = CInt(gProductosTotal(50,iPro1)) then 
+																Valor = gProductosTotal(Columna,iPro1)
+																if Valor <> "" then
+																	Valor = FormatNumber(Valor,2)
+																else
+																	Valor = "IND"
+																end if
+																iPro1 = iPro1 + 1
 															else
-																Valor = "IND"
+																Valor = 0
+																Valor = FormatNumber(Valor,2)
+																Menos = Menos + 1
 															end if
-															iPro1 = iPro1 + 1
+															Response.Write Valor
+															if iPro1 > TotalReg then 
+																'Response.Write "menos: " & Menos
+																sw=sw+1
+																exit for
+															end if
 														else
+															'iPro1 = iPro1 - 1
+															'Response.Write "Entro"
 															Valor = 0
 															Valor = FormatNumber(Valor,2)
-															Menos = Menos + 1
-														end if
-														Response.Write Valor
-														if iPro1 > TotalReg then 
-															'Response.Write "menos: " & Menos
-															sw=sw+1
+															'Response.Write "<td>"
+																Response.Write Valor
+															'Response.Write "</td>"
+															iswCeros = 1
 															exit for
 														end if
 													Response.Write "</td>"												
 												next					
+												if iswCeros = 1 then
+													'Response.Write "EntroiswCeros"
+													for iCeros = iConCeros to iTotal
+														Valor = 0
+														Valor = FormatNumber(Valor,2)
+														Response.Write "<td class='text-right'>"
+															Response.Write Valor
+														Response.Write "</td>"
+													next 
+												end if
 												
 												ix = CInt(ubound(gSemanas,2))
 												iy = 4 - ix

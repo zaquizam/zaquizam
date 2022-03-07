@@ -7,6 +7,7 @@
 	'
 	Session.lcid = 1034
 	Response.CodePage = 65001	
+	Server.ScriptTimeout = 10000
 	Response.CharSet = "utf-8"
 	Response.Buffer = True
 	'	
@@ -20,8 +21,8 @@
 	' Calcular Total hogares del Mes 
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenKeyset 
-	rsx1.LockType   = 2 'adLockOptimistic 
+	'rsx1.CursorType = adOpenKeyset 
+	'rsx1.LockType   = 2 'adLockOptimistic 
 	'
 	QrySql = vbnullstring
 	QrySql = " SELECT" & _
@@ -42,7 +43,7 @@
 	'
 	' Response.write QrySql & "<br>"
 	'
-    rsx1.Open QrySql, conexion		
+    rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then
 		rsx1.close

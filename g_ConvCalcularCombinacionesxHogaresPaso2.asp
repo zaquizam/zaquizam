@@ -7,7 +7,7 @@
 Session.lcid = 1034
 Response.CodePage = 65001	
 Response.CharSet = "utf-8"
-Server.ScriptTimeout = 360
+Server.ScriptTimeout = 10000
 Response.Buffer = True
 '	
 Dim QrySql, arrResultados(10000,3), idMeses
@@ -42,8 +42,8 @@ SUB Calcular_Refrescos
 	' Calcular Total hogares del Mes Compraron Refresco
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType   = 3 'adLockOptimistic 
+	'rsx1.CursorType = adOpenStatic 
+	'rsx1.LockType = 3 
 	'
 	QrySql = vbnullstring
 	QrySql = " SELECT" & _
@@ -65,7 +65,7 @@ SUB Calcular_Refrescos
 	' Response.write QrySql & "<br>"
 	' Response.end
 	'
-    rsx1.Open QrySql, conexion		
+   rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then
 		rsx1.close
@@ -103,8 +103,8 @@ SUB Calcular_Refrescos
 			' Response.Write "Tipo  : " & TypeName(hogar) & " Categoria : " & TypeName(Categ) & "<BR>"
 			'
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 
 			'
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
@@ -127,7 +127,7 @@ SUB Calcular_Refrescos
 			' Response.write QrySql & "<br>"
 			' Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -163,8 +163,8 @@ SUB Calcular_Refrescos
 			' Response.Write "Tipo  : " & TypeName(hogar) & " Categoria : " & TypeName(Categ) & "<BR>"
 			'
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
 			" PH_DataCrudaMensual.Id_Hogar,"  & _
@@ -185,7 +185,7 @@ SUB Calcular_Refrescos
 			'
 			' Response.write QrySql & "<br>"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -217,8 +217,8 @@ SUB Calcular_Refrescos
 			hogar  = dataArray(0,i)			 
 			' 
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 			
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 			
 			''			
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
@@ -240,7 +240,7 @@ SUB Calcular_Refrescos
 			'
 			' Response.write QrySql & "<br>"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -297,8 +297,8 @@ SUB Calcular_Aguas
 	' Calcular Total hogares del Mes Compraron Agua
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 'adLockOptimistic 
+	'rsx1.CursorType = adOpenStatic 
+	'rsx1.LockType = 3 'adLockOptimistic 
 	'		
 	QrySql = vbnullstring
 	QrySql = " SELECT" & _
@@ -320,7 +320,7 @@ SUB Calcular_Aguas
 	' Response.write QrySql & "<br>"
 	' Response.end
 	'
-    rsx1.Open QrySql, conexion		
+   rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then
 		rsx1.close
@@ -367,8 +367,8 @@ SUB Calcular_Aguas
 			' Response.Write "Tipo  : " & TypeName(hogar) & " Categoria : " & TypeName(Categ) & "<BR>"
 			'
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 
 			'
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
@@ -391,7 +391,7 @@ SUB Calcular_Aguas
 			' Response.write QrySql & "<br>"
 			' Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -427,8 +427,8 @@ SUB Calcular_Aguas
 			' Response.Write "Tipo  : " & TypeName(hogar) & " Categoria : " & TypeName(Categ) & "<BR>"
 			'
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
 			" PH_DataCrudaMensual.Id_Hogar," & _
@@ -449,7 +449,7 @@ SUB Calcular_Aguas
 			'
 			' Response.write QrySql & "<br>"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -481,8 +481,8 @@ SUB Calcular_Aguas
 			hogar  = dataArray(0,i)			 
 			' 
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 			
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 			
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
 			" PH_DataCrudaMensual.Id_Hogar," & _
@@ -503,7 +503,7 @@ SUB Calcular_Aguas
 			'
 			' Response.write QrySql & "<br>"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -559,8 +559,8 @@ SUB Calcular_Jugo
 	' Calcular Total hogares del Mes Compraron Jugo
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 'adLockOptimistic 
+	'rsx1.CursorType = adOpenStatic 
+	''rsx1.LockType = 3 'adLockOptimistic 
 	'
 	QrySql = vbnullstring
 	QrySql = " SELECT" & _
@@ -582,7 +582,7 @@ SUB Calcular_Jugo
 	' Response.write QrySql & "<br>"
 	' Response.end
 	'
-    rsx1.Open QrySql, conexion		
+   rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then
 		rsx1.close
@@ -620,8 +620,8 @@ SUB Calcular_Jugo
 			' Response.Write "Tipo  : " & TypeName(hogar) & " Categoria : " & TypeName(Categ) & "<BR>"
 			'
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 
 			'
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
@@ -644,7 +644,7 @@ SUB Calcular_Jugo
 			' Response.write QrySql & "<br>"
 			' Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -678,8 +678,8 @@ SUB Calcular_Jugo
 			hogar  = dataArray(0,i)			 
 			' 
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 			
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 			
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
 			" PH_DataCrudaMensual.Id_Hogar," & _
@@ -700,7 +700,7 @@ SUB Calcular_Jugo
 			'
 			' Response.write QrySql & "<br>"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -732,8 +732,8 @@ SUB Calcular_Jugo
 			hogar  = dataArray(0,i)			 
 			' 
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 			
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 			
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
 			" PH_DataCrudaMensual.Id_Hogar," & _
@@ -754,7 +754,7 @@ SUB Calcular_Jugo
 			'
 			' Response.write QrySql & "<br>"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -810,8 +810,8 @@ SUB Calcular_Te
 	' Calcular Total hogares del Mes Compraron Te
 	'
 	set rsx1 = CreateObject("ADODB.Recordset")
-	rsx1.CursorType = adOpenStatic 
-	rsx1.LockType = 3 'adLockOptimistic 
+	'rsx1.CursorType = adOpenStatic 
+	''rsx1.LockType = 3 'adLockOptimistic 
 	'
 	QrySql = vbnullstring
 	QrySql = " SELECT" & _
@@ -833,7 +833,7 @@ SUB Calcular_Te
 	' Response.write QrySql & "<br>"
 	' Response.end
 	'
-    rsx1.Open QrySql, conexion		
+   rsx1.Open QrySql, conexion, 0, 1		
 	'
 	if rsx1.eof then
 		rsx1.close
@@ -871,8 +871,8 @@ SUB Calcular_Te
 			' Response.Write "Tipo  : " & TypeName(hogar) & " Categoria : " & TypeName(Categ) & "<BR>"
 			'
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 
 			'
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
@@ -895,7 +895,7 @@ SUB Calcular_Te
 			' Response.write QrySql & "<br>"
 			' Response.end
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -928,8 +928,8 @@ SUB Calcular_Te
 			hogar  = dataArray(0,i)			 
 			' 
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 			
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 			
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
 			" PH_DataCrudaMensual.Id_Hogar," & _
@@ -950,7 +950,7 @@ SUB Calcular_Te
 			'
 			' Response.write QrySql & "<br>"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close
@@ -983,8 +983,8 @@ SUB Calcular_Te
 			hogar  = dataArray(0,i)			 
 			' 
 			set rsx1 = CreateObject("ADODB.Recordset")
-			rsx1.CursorType = adOpenStatic 
-			rsx1.LockType = 3 'adLockOptimistic 			
+			'rsx1.CursorType = adOpenStatic 
+			''rsx1.LockType = 3 'adLockOptimistic 			
 			QrySql = vbnullstring
 			QrySql = " SELECT" & _
 			" PH_DataCrudaMensual.Id_Hogar," & _
@@ -1005,7 +1005,7 @@ SUB Calcular_Te
 			'
 			' Response.write QrySql & "<br>"
 			'
-			rsx1.Open QrySql, conexion		
+			rsx1.Open QrySql, conexion, 0, 1		
 			'
 			if rsx1.eof then
 				rsx1.close

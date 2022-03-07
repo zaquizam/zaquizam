@@ -340,8 +340,16 @@ Sub DataCombos
 	if idCliente = 13 and (ed_sPar(1,0) = 47 or ed_sPar(1,0) = 89 or ed_sPar(1,0) = 21) then
 		sql = sql & " IdSemana in(55,56,57,58,68,69,70,71)"
 	else
-		sql = sql & " IdSemana >= " & iSemanaDes
-		sql = sql & " And IdSemana <= " & iSemanaHas
+		'Categoria 44 = Pastas Alimenticias
+		'Categoria 49 = Detergente
+		'Semanas Noviembre 2021 = 59,60,61,62
+		'Semanas Febrero 2022 = 72
+		if idCliente = 13 and (ed_sPar(1,0) = 44 or ed_sPar(1,0) = 49) then
+			sql = sql & " IdSemana in(59,60,61,62,72)"
+		else
+			sql = sql & " IdSemana >= " & iSemanaDes
+			sql = sql & " And IdSemana <= " & iSemanaHas
+		end if
 	end if
 	sql = sql & " ORDER BY "
 	sql = sql & " IdSemana DESC "

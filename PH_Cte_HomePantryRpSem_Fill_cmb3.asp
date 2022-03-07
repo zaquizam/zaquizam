@@ -1,7 +1,7 @@
 <!--#include file="conexion.asp" -->
 <%
 '
-' PH_Cte_HomePantryRpSem_Fill_cmb3.asp - 15jul21 - 27ene22
+' PH_Cte_HomePantryRpSem_Fill_cmb3.asp - 15jul21 - 18feb22
 '
 ' Cambio en combo Marca - 
 '
@@ -21,7 +21,7 @@ Dim opcion, QrySql, idCat, idCliente, idMar
 opcion = Request.Querystring("opcion")
 idCat  = Request.Querystring("idCat")
 idFab  = Request.Querystring("idFab")
-idMar  = Request.Querystring("idFab")
+idMar  = Request.Querystring("idMar")
 '
 IF (Cint(opcion) = 3) THEN
 	'
@@ -32,16 +32,16 @@ IF (Cint(opcion) = 3) THEN
 	' Buscar Datos de todas las Segmento
 	'
 	QrySql = vbnullstring	
-	QrySql = " SELECT DISTINCT Id_Segmento as id, Segmento as nombre  FROM  PH_DataProcesadaSem  WHERE Id_Categoria = " & idCat		
-	if Len(idFab)<>0 then 
+	QrySql = " SELECT DISTINCT Id_Segmento as id, Segmento as nombre  FROM  PH_DataProcesadaSem WHERE Id_Segmento <> 0 AND Id_Categoria = " & idCat		
+	if Len(idFab) <> 0 then 
 		QrySql = QrySql & " AND Id_Fabricante in (" & idFab & ")"
 	end if	
-	if Len(idMar)<>0 then 
+	if Len(idMar) <> 0 then 
 		QrySql = QrySql & " AND Id_Marca in (" & idMar & ")"
 	end if
-	QrySql = QrySql & " AND Id_Segmento <> 0 ORDER BY  Segmento"	
+	QrySql = QrySql & "ORDER BY Segmento"	
 	'
-	'Response.Write QrySql & "<BR><BR>"
+	'Response.Write QrySql & "<BR><BR>"	
 	'Response.end
 	'
 	Set hpSegmento = Server.CreateObject("ADODB.recordset")

@@ -5,6 +5,7 @@
 	'
 	Session.lcid = 1034
 	Response.CodePage = 65001
+	Server.ScriptTimeout = 10000
 	Response.CharSet = "utf-8"
 	Response.Buffer = True
 	'

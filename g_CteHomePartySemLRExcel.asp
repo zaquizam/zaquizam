@@ -4,6 +4,9 @@
 '==========================================================================================
 ' Variables y Constantes
 '==========================================================================================
+	Server.ScriptTimeout=10000
+	Response.buffer = true
+
 	'response.write "<br>84 LLEGO"
 	'response.end
 	dim sCat
@@ -152,6 +155,8 @@
 	strSemana54 = "(02) Del 10 Ene 2022 al 16 Ene 2022"
 	strSemana55 = "(03) Del 17 Ene 2022 al 23 Ene 2022"
 	strSemana56 = "(04) Del 24 Ene 2022 al 30 Ene 2022"
+	strSemana57 = "(05) Del 31 Ene 2022 al 06 Feb 2022"
+	strSemana58 = "(06) Del 07 Feb 2022 al 13 Feb 2022"
 	'if Session("perusu") = 5 then
 		'strSemana4 = "Acum Sem 1+2+3"
 	'else
@@ -405,6 +410,8 @@
 											<th class="cell100 column10 text-center"><%=strSemana54%></th>
 											<th class="cell100 column10 text-center"><%=strSemana55%></th>
 											<th class="cell100 column10 text-center"><%=strSemana56%></th>
+											<th class="cell100 column10 text-center"><%=strSemana57%></th>
+											<th class="cell100 column10 text-center"><%=strSemana58%></th>
 										</tr>
 									</thead>
 								</table>
@@ -498,6 +505,8 @@
 											<th class="cell100 column10 text-center"><%=strSemana54%></th>
 											<th class="cell100 column10 text-center"><%=strSemana55%></th>
 											<th class="cell100 column10 text-center"><%=strSemana56%></th>
+											<th class="cell100 column10 text-center"><%=strSemana57%></th>
+											<th class="cell100 column10 text-center"><%=strSemana58%></th>
 										</tr>
 									</thead>
 								</table>
@@ -511,7 +520,7 @@
 										'26Ene2021-Todo el IF
 										if TotalFabricante = "SI" then 
 											for iPro = 0 to  ubound(gProductosTotal,2)
-												'Response.flush
+												Response.flush 
 												for iInd = 0 to  ubound(gIndicadores,2)
 												response.write "<tr class='row100 body'>"
 													'Fabricante
@@ -881,6 +890,18 @@
 														response.write "<td width=10% class='text-right'>"
 															response.write Valor
 														response.write "</td>"
+														idSemana = 72
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
+														idSemana = 73
+														TotalDias = 7
+														CalcularIndicador
+														response.write "<td width=10% class='text-right'>"
+															response.write Valor
+														response.write "</td>"
 													response.write "</tr>"
 												next
 											next					
@@ -889,7 +910,7 @@
 										
 										else
 										for iPro = 0 to  ubound(gProductos,2)
-											'Response.flush
+											Response.flush
 											for iInd = 0 to  ubound(gIndicadores,2)
 											response.write "<tr class='row100 body'>"
 												'Fabricante
@@ -898,27 +919,31 @@
 												response.write "</td>"
 												'Marca
 												response.write "<td width=15% class='cell100 column2 text-center'>"
+												iX = 3
 													if sMar <> "" then
 														'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
 														'else
-															response.write gProductos(3,iPro)
+															response.write gProductos(IX,iPro)
+															iX = IX + 2
 														'end if
 													end if
 												response.write "</td>"
+												'response.end
 												'Segmento
 												response.write "<td width=10% class='cell100 column3 text-center'>"
 													if sSeg <> "" then
 														'if "TOTAL CATEGORIA" = trim(gProductos(1,iPro)) then
 														'else
-															response.write gProductos(5,iPro)
+															response.write gProductos(IX,iPro)
 														'end if
 													end if
 												response.write "</td>"
+												'response.write "PASOOOOOOOOOOOOOOOOOOOOOOOOOOO" & iX
 												'Rango
 												response.write "<td width=5% class='cell100 column4 text-center'>"
-													if sRan <> "" then
-														response.write gProductos(7,iPro)
-													end if
+													'if sRan <> "" then
+													'	response.write gProductos(7,iPro)
+													'end if
 												response.write "</td>"
 											
 													response.write "<td width=5% class='cell100 column5 text-center'>"
@@ -934,14 +959,18 @@
 													response.write "</td>"
 													Indicador = gIndicadores(0,iInd)
 													iFab = gProductos(0,iPro)
+													iX = 2
 													if sMar <> "" then
-														iMar = gProductos(2,iPro)
+														iMar = gProductos(IX,iPro)
+														iX = IX + 2
 													end if
 													if sSeg <> "" then
-														iSeg = gProductos(4,iPro)
+														iSeg = gProductos(IX,iPro)
+														iX = IX + 2
 													end if
 													if sRan <> "" then
-														iRan = gProductos(6,iPro)
+														iRan = gProductos(IX,iPro)
+														iX = IX + 2
 													end if
 													'response.write "<br>Ind = " & Indicador
 													idSemana = 16
@@ -1275,6 +1304,18 @@
 														response.write Valor
 													response.write "</td>"
 													idSemana = 71
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 72
+													TotalDias = 7
+													CalcularIndicador
+													response.write "<td width=10% class='text-right'>"
+														response.write Valor
+													response.write "</td>"
+													idSemana = 73
 													TotalDias = 7
 													CalcularIndicador
 													response.write "<td width=10% class='text-right'>"

@@ -169,7 +169,7 @@ function GetCambioCombo(opc) {
 				//				
 			})
 			.fail(function (jqXHR, textStatus, errorThrown) {				
-				console.log('Error GCC-Segmento opc-3:  ' + cbo + ' Error: '+ errorThrown);						
+				console.log('Error GCC-Segmento opc-3:  cboSegmento - Error: '+ errorThrown);						
 				swal("Algo salio mal.!", "Error GCC-Segmento opc-3", "error");
 				$("#cargando").css("display", "none");
 				aCtivar();										
